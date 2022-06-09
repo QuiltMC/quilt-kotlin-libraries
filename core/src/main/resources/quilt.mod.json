@@ -29,6 +29,12 @@
         "versions": "1.19"
       }
     ],
+    "provides": [
+      {
+        "id": "fabric-language-kotlin",
+        "version": "1.8.0"
+      }
+    ],
     "language_adapters": {
       "kotlin": "org.quiltmc.loader.impl.util.DefaultLanguageAdapter"
     }
