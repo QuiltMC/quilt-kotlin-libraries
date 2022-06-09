@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry
  *
  * @author Oliver-makes-code (Emma)
  * */
-class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Unit) {
+public class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Unit) {
     init {
         apply(action)
     }
@@ -21,14 +21,14 @@ class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Unit) {
      *
      * @author Oliver-makes-code (Emma)
      * */
-    data class RegistryObject<T>(val name: String, val t: T)
+    public data class RegistryObject<T>(val name: String, val t: T)
     /**
      * Registers a RegistryObject
      * @param registry The registry to register to
      *
      * @author Oliver-makes-code (Emma)
      * */
-    infix fun <T> RegistryObject<T>.toRegistry(registry: Registry<T>): T {
+    public infix fun <T> RegistryObject<T>.toRegistry(registry: Registry<T>): T {
         return Registry.register(registry, Identifier(modid,this.name), this.t)
     }
     /**
@@ -37,7 +37,7 @@ class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Unit) {
      *
      * @author Oliver-makes-code (Emma)
      * */
-    infix fun <T> T.withName(name: String): RegistryObject<T> {
+    public infix fun <T> T.withName(name: String): RegistryObject<T> {
         return RegistryObject(name, this)
     }
 }
@@ -48,8 +48,8 @@ class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Unit) {
  *
  * @author Oliver-makes-code (Emma)
  * */
-data class RegistryObject<T>(val id: Identifier, val t: T)
-operator fun <T> Registry<T>.invoke(action: Registry<T>.() -> Unit) {
+public data class RegistryObject<T>(val id: Identifier, val t: T)
+public operator fun <T> Registry<T>.invoke(action: Registry<T>.() -> Unit) {
     apply(action)
 }
 /**
@@ -58,7 +58,7 @@ operator fun <T> Registry<T>.invoke(action: Registry<T>.() -> Unit) {
  *
  * @author Oliver-makes-code (Emma)
  * */
-infix fun <T> RegistryObject<T>.toRegistry(registry: Registry<T>): T {
+public infix fun <T> RegistryObject<T>.toRegistry(registry: Registry<T>): T {
     return Registry.register(registry, this.id, this.t)
 }
 /**
@@ -67,6 +67,6 @@ infix fun <T> RegistryObject<T>.toRegistry(registry: Registry<T>): T {
  *
  * @author Oliver-makes-code (Emma)
  * */
-infix fun <T> T.withId(id: Identifier): RegistryObject<T> {
+public infix fun <T> T.withId(id: Identifier): RegistryObject<T> {
     return RegistryObject(id, this)
 }
