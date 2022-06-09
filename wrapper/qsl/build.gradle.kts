@@ -1,3 +1,3 @@
 dependencies {
-    modImplementation(project(":core"))
+    implementation(project(":core"))
 }
