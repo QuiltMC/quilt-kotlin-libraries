@@ -14,4 +14,4 @@ pluginManagement {
 }
 rootProject.name = "quilt-kotlin-libraries"
 
-include(":adapter")
+include(":core")
