@@ -15,7 +15,6 @@ jobs:
           java-version: ${{ matrix.java }}
       - uses: actions/checkout@v2
       - run: chmod +x ./gradlew
-      - run: ./gradlew checkLicenses --parallel --stacktrace
       - run: ./gradlew build --parallel --stacktrace
       - uses: actions/upload-artifact@v3
         with:
