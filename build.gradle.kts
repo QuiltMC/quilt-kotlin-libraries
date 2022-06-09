@@ -1,24 +1,32 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.6.21"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.quilt.loom)
+    alias(libs.plugins.detekt)
 }
 
 group = "org.quiltmc"
-version = "1.0-SNAPSHOT"
+
+kotlin {
+    // Enable explicit API mode, as this is a library
+    explicitApi()
+}
+
+detekt {
+    config = files("./detekt.yml")
+}
 
 repositories {
     mavenCentral()
 }
 
+// TODO: Move this logic to subprojects
 dependencies {
-    testImplementation(kotlin("test"))
-}
+    minecraft(libs.minecraft)
+    mappings(loom.layered {
+        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${libs.versions.quilt.mappings.get()}:v2"))
+    })
 
-tasks.test {
-    useJUnitPlatform()
-}
+    modImplementation(libs.quilt.loader)
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    modImplementation(libs.qsl)
 }
