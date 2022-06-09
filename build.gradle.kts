@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.quilt.loom)
+    alias(libs.plugins.detekt)
 }
 
 group = "org.quiltmc"
@@ -17,6 +18,12 @@ repositories {
 allprojects {
     apply(plugin=rootProject.libs.plugins.kotlin.get().pluginId)
     apply(plugin=rootProject.libs.plugins.quilt.loom.get().pluginId)
+    apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
+
+    detekt {
+        config = files("${rootProject.projectDir}/codeformat/detekt.yml")
+    }
+
     dependencies {
         minecraft(rootProject.libs.minecraft)
         mappings(loom.layered {
