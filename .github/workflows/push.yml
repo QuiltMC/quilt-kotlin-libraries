@@ -1,0 +1,23 @@
+name: Test
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        # Keep the matrix for when jdk 17 rc come out
+        java: [17]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: ${{ matrix.java }}
+      - uses: actions/checkout@v2
+      - run: ./gradlew checkLicenses --parallel --stacktrace
+      - run: ./gradlew build --parallel --stacktrace
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Built Artifacts
+          path: |
+            ./**/build/libs/
