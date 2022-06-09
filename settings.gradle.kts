@@ -16,4 +16,5 @@ rootProject.name = "quilt-kotlin-libraries"
 
 include(":core")
 include(":wrapper:main")
+include(":wrapper:main:registry")
 include(":wrapper:qsl")
