@@ -1,0 +1,46 @@
+build:
+  maxIssues: 0
+  weights:
+    comments: 0
+
+formatting:
+  active: true
+  android: false
+  autoCorrect: true
+  EnumEntryNameCase:
+    active: true
+  MaximumLineLength:
+    active: true
+    maxLineLength: 80
+  MultiLineIfElse:
+    active: true
+  NoEmptyFirstLineInMethodBlock:
+    active: true
+  NoUnusedImports:
+    active: true
+
+style:
+  CanBeNonNullable:
+    active: true
+  CollapsibleIfStatements:
+    active: true
+  LibraryCodeMustSpecifyReturnType:
+    active: true
+  MagicNumber:
+    active: true
+    ignorePropertyDeclaration: true
+    ignoreAnnotation: true
+    ignoreEnums: true
+  MaxLineLength:
+    active: true
+
+naming:
+  ClassNaming:
+    active: true
+  FunctionNaming:
+    active: true
+
+coroutines:
+  active: true
+  RedundantSuspendModifier:
+    active: true
