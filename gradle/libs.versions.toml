@@ -22,3 +22,4 @@ serialization_cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbo
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 quilt_loom = { id = "org.quiltmc.loom", version = "0.12.+" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.20.0" }

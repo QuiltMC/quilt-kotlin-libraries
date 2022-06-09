@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: chmod +x ./gradlew
       - run: ./gradlew build --parallel --stacktrace
+      - run: ./gradlew detekt --parallel --stacktrace
       - uses: actions/upload-artifact@v3
         with:
           name: Built Artifacts
