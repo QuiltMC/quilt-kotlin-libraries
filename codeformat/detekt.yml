@@ -3,22 +3,6 @@ build:
   weights:
     comments: 0
 
-formatting:
-  active: true
-  android: false
-  autoCorrect: true
-  EnumEntryNameCase:
-    active: true
-  MaximumLineLength:
-    active: true
-    maxLineLength: 80
-  MultiLineIfElse:
-    active: true
-  NoEmptyFirstLineInMethodBlock:
-    active: true
-  NoUnusedImports:
-    active: true
-
 style:
   CanBeNonNullable:
     active: true
@@ -32,6 +16,11 @@ style:
     ignoreAnnotation: true
     ignoreEnums: true
   MaxLineLength:
+    active: true
+    maxLineLength: 80
+  MandatoryBracesIfStatements:
+    active: true
+  MandatoryBracesLoops:
     active: true
 
 naming:
