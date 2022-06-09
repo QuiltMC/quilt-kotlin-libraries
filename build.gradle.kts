@@ -5,11 +5,7 @@ plugins {
 }
 
 group = "org.quiltmc"
-
-kotlin {
-    // Enable explicit API mode, as this is a library
-    explicitApi()
-}
+version = project.version
 
 repositories {
     mavenCentral()
@@ -33,5 +29,15 @@ allprojects {
         modImplementation(rootProject.libs.quilt.loader)
 
         modImplementation(rootProject.libs.qsl)
+    }
+    kotlin {
+        // Enable explicit API mode, as this is a library
+        explicitApi()
+    }
+    tasks.processResources {
+        inputs.property("version", version)
+        filesMatching("quilt.mod.json") {
+            expand(Pair("version", version))
+        }
     }
 }
