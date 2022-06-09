@@ -17,7 +17,7 @@ style:
     ignoreEnums: true
   MaxLineLength:
     active: true
-    maxLineLength: 80
+    maxLineLength: 100
   MandatoryBracesIfStatements:
     active: true
   MandatoryBracesLoops:

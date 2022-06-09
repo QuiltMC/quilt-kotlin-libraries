@@ -22,11 +22,7 @@
     "depends": [
       {
         "id": "quilt_loader",
-        "versions": ">=0.16.1"
-      },
-      {
-        "id": "minecraft",
-        "versions": "1.19"
+        "versions": ">=0.17.0"
       }
     ],
     "provides": [
@@ -36,7 +32,7 @@
       }
     ],
     "language_adapters": {
-      "kotlin": "org.quiltmc.loader.impl.util.DefaultLanguageAdapter"
+      "kotlin": "org.quiltmc.qkl.core.adapter.KotlinAdapter"
     }
   },
   "modmenu": {
