@@ -7,9 +7,9 @@ import org.quiltmc.loader.impl.launch.common.QuiltLauncherBase
 import org.quiltmc.loader.impl.util.DefaultLanguageAdapter
 import java.lang.reflect.Proxy
 import kotlin.reflect.KProperty1
-import kotlin.reflect.full.createInstance
-import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.full.memberFunctions
+import kotlin.reflect.KType
+import kotlin.reflect.full.*
+import kotlin.reflect.jvm.jvmErasure
 
 /**
  * Kotlin Language Adapter
@@ -41,57 +41,65 @@ public open class KotlinAdapter : LanguageAdapter {
         when (splitMethod.size) {
             1 -> {
                 if (type.isAssignableFrom(clazz)) {
-                    return try {
-                        // Can safely ignore these errors, as that's what we're trying against
-                        kotlinClass.objectInstance as T?
-                            ?: kotlinClass.createInstance() as T
-                    } catch (error: Error) {
-                        throw LanguageAdapterException(error)
-                    }
+                    return kotlinClass.objectInstance as? T
+                            ?: try {
+                                kotlinClass.createInstance() as T
+                            } catch (error: Error) {
+                                withDefaultAdapter(mod, value, type)
+                            }
                 }
                 throw LanguageAdapterException(
                     "Class ${clazz.name} cannot be cast to ${type.name}!"
                 )
             }
             2 -> {
-                val instance = kotlinClass.objectInstance
-                    ?: withDefaultAdapter(mod, value, type)
-                val methods = instance::class.memberFunctions.filter {
-                    it.name == splitMethod[1]
-                }
-                kotlinClass.declaredMemberProperties.find {
-                    it.name == splitMethod[1]
-                }?.let { it: KProperty1<out Any, *> ->
-                    val returnType = it.returnType
-                    if (methods.isNotEmpty()) {
-                        return withDefaultAdapter(mod, value, type)
+                try {
+                    val instance = kotlinClass.objectInstance
+                        ?: throw LanguageAdapterException("$kotlinClass is not an object")
+                    val methods = instance::class.memberFunctions.filter {
+                        it.name == splitMethod[1]
                     }
-                    try {
-                        // Can safely ignore these errors, as that's what we're trying against
-                        return it.get(returnType as Nothing) as T
-                    } catch (error: NoSuchFieldException) {
-                        // We just checked so we can safely ignore
-                    } catch (error: Exception) {
-                        return withDefaultAdapter(mod, value, type)
+                    kotlinClass.declaredMemberProperties.find {
+                        it.name == splitMethod[1]
+                    }?.let {
+                        val field: KType = try {
+                            it.returnType
+                        } catch (error: NoSuchFieldException) {
+                            // Ignore it as we don't need it
+                            null
+                        }?: return@let
+
+                        if (methods.isNotEmpty()) {
+                            throw LanguageAdapterException(
+                                "Common field and function name in $value"
+                            )
+                        }
+
+                        if (!type.kotlin.isSuperclassOf(field.jvmErasure)) {
+                            throw LanguageAdapterException(
+                                "Field $value is not a supertype of ${type.name}!"
+                            )
+                        }
+
+                        return (it as KProperty1<Any, T>).get(instance)
                     }
-                }
-                if (methods.size != 1) {
-                    return withDefaultAdapter(mod, value, type)
-                }
-
-                if (!type.isInterface) {
-                    return withDefaultAdapter(mod, value, type)
-                }
-
-                return try {
-                    Proxy.newProxyInstance(
-                        QuiltLauncherBase.getLauncher().targetClassLoader,
-                        arrayOf(type)
+                    if (!type.isInterface) {
+                        throw LanguageAdapterException(
+                            "Cannot proxy method $value to ${type.name}!"
+                        )
+                    }
+                    if (methods.size != 1) {
+                        throw LanguageAdapterException(
+                            "Cannot find method, as there's not only one type"
+                        )
+                    }
+                    return Proxy.newProxyInstance(
+                        QuiltLauncherBase.getLauncher().targetClassLoader, arrayOf(type)
                     ) { _, _, _ ->
                         methods[0].call(instance)
                     } as T
-                } catch (error: Error) {
-                    withDefaultAdapter(mod, value, type)
+                } catch (error: Exception) {
+                    return withDefaultAdapter(mod, value, type)
                 }
             }
             else -> {
