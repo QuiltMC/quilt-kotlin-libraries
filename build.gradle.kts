@@ -1,25 +1,13 @@
 plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.quilt.loom)
-    alias(libs.plugins.quilt.licenser)
-    alias(libs.plugins.detekt)
 }
 
 group = "org.quiltmc"
 
-license {
-    rule(file("./codeformat/HEADER"))
-
-    include("**/*.kt","**/*.java")
-}
-
 kotlin {
     // Enable explicit API mode, as this is a library
     explicitApi()
-}
-
-detekt {
-    config = files("./detekt.yml")
 }
 
 repositories {

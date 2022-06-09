@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.6.21"
+kotlin = "1.7.0"
 coroutines = "1.6.1"
 serialization = "1.3.2"
 minecraft = "1.19"
@@ -22,5 +22,3 @@ serialization_cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbo
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 quilt_loom = { id = "org.quiltmc.loom", version = "0.12.+" }
-quilt_licenser = { id = "org.quiltmc.gradle.licenser", version = "1.1.+" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.20.0" }
