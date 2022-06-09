@@ -1,5 +1,3 @@
-subprojects {
-    dependencies {
-        implementation(project(":core"))
-    }
+dependencies {
+    implementation(project(":core"))
 }
