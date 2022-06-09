@@ -1,0 +1,3 @@
+dependencies {
+    modApi(project(":core"))
+}

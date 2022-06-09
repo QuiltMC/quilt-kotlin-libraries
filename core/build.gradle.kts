@@ -1,7 +1,6 @@
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
 fun DependencyHandlerScope.includeApi(dependency: Any) {
-    println(dependency)
     include(dependency)?.let { modApi(it) }
 }
 
