@@ -48,9 +48,3 @@ allprojects {
 tasks.remapJar {
     archiveBaseName.set("quilt-kotlin-libraries")
 }
-
-dependencies {
-    include(project(":core"))
-    include(project(":wrapper:main"))
-    include(project(":wrapper:qsl"))
-}
