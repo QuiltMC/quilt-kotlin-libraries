@@ -11,25 +11,27 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    minecraft(rootProject.libs.minecraft)
+    mappings(loom.layered {
+        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
+    })
+
+    modImplementation(rootProject.libs.quilt.loader)
+
+    modImplementation(rootProject.libs.qsl)
+}
+
 allprojects {
     apply(plugin=rootProject.libs.plugins.kotlin.get().pluginId)
-    apply(plugin=rootProject.libs.plugins.quilt.loom.get().pluginId)
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
+
+    repositories {
+        mavenCentral()
+    }
 
     detekt {
         config = files("${rootProject.projectDir}/codeformat/detekt.yml")
-    }
-
-    dependencies {
-        implementation(project(":core"))
-        minecraft(rootProject.libs.minecraft)
-        mappings(loom.layered {
-            addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
-        })
-
-        modImplementation(rootProject.libs.quilt.loader)
-
-        modImplementation(rootProject.libs.qsl)
     }
     kotlin {
         // Enable explicit API mode, as this is a library
@@ -42,14 +44,11 @@ allprojects {
         }
     }
 }
-subprojects {
-    tasks.remapJar {
-        archiveBaseName.set("quilt-kotlin-libraries-${this@subprojects.name}")
-    }
-}
+
 tasks.remapJar {
     archiveBaseName.set("quilt-kotlin-libraries")
 }
+
 dependencies {
     include(project(":core"))
     include(project(":wrapper:main"))
