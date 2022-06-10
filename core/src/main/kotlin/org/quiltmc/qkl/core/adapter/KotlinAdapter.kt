@@ -76,22 +76,24 @@ public open class KotlinAdapter : LanguageAdapter {
                     kotlinClass.objectInstance
                     // Would throw in flk, but we try to run with the default adapter
                         ?: return withDefaultAdapter(mod, value, type)
-                } catch (error: Exception) {
+                } catch (error: UnsupportedOperationException) {
                     // Needed here in case Kotlin reflection decides to throw a fit
                     return withDefaultAdapter(mod, value, type)
                 }
+
+                // Get all the methods with the right name
                 val methods = instance::class.memberFunctions.filter {
                     it.name == splitMethod[1]
                 }
-                kotlinClass.declaredMemberProperties.find {
+
+                // Get the first property with the right name
+                val property = kotlinClass.declaredMemberProperties.find {
                     it.name == splitMethod[1]
-                }?.let {
-                    val field: KType = try {
-                        it.returnType
-                    } catch (error: NoSuchFieldException) {
-                        // Ignore it as we don't need it
-                        return@let
-                    }
+                }
+
+                if (property != null) {
+                    // Get the return type
+                    val field: KType = property.returnType
 
                     // Would throw in flk, but we try to run with the default adapter
                     if (
@@ -101,12 +103,15 @@ public open class KotlinAdapter : LanguageAdapter {
                         return withDefaultAdapter(mod, value, type)
                     }
 
-                    return (it as KProperty1<Any, T>).get(instance)
+                    // Return the property which is an instance of the interface
+                    return (property as KProperty1<Any, T>).get(instance)
                 }
+
                 // Would throw in flk, but we try to run with the default adapter
                 if (!type.isInterface || methods.size != 1) {
                         return withDefaultAdapter(mod, value, type)
                 }
+
                 // Return a proxy of T that calls the method
                 return Proxy.newProxyInstance(
                     QuiltLauncherBase.getLauncher().targetClassLoader,
