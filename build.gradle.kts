@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.quilt.loom)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.licenser)
 }
 
 group = "org.quiltmc"
@@ -25,13 +26,17 @@ dependencies {
 allprojects {
     apply(plugin=rootProject.libs.plugins.kotlin.get().pluginId)
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
+    apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
 
     repositories {
         mavenCentral()
     }
-
     detekt {
         config = files("${rootProject.projectDir}/codeformat/detekt.yml")
+    }
+    license {
+        rule(file("${rootProject.projectDir}/codeformat/HEADER"))
+        include("**/*.kt")
     }
     kotlin {
         // Enable explicit API mode, as this is a library
