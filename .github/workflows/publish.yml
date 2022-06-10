@@ -9,6 +9,7 @@ jobs:
           distribution: "temurin"
           java-version: "17"
       - uses: actions/checkout@v2
+      - run: chmod +x ./gradlew
       - run: ./gradlew checkLicenses --parallel --stacktrace
         env:
           MAVEN_URL: ${{ secrets.MAVEN_URL }}
