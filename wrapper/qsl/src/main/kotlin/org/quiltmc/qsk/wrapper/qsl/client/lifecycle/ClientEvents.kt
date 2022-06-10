@@ -15,7 +15,7 @@ import org.quiltmc.qsl.lifecycle.api.client.event.ClientWorldTickEvents
 
 //region: Client lifecycle events
 
-public typealias GenericClientCallback = (MinecraftClient) -> Unit
+public typealias GenericClientCallback = MinecraftClient.() -> Unit
 
 public fun EventRegistration.onClientReady(callback: GenericClientCallback) {
     ClientLifecycleEvents.READY.register(ClientLifecycleEvents.Ready(callback))
@@ -47,7 +47,7 @@ public fun EventRegistration.onClientTickFinish(callback: GenericClientCallback)
 
 //region: Client world tick events
 
-public typealias WorldTickCallback = (MinecraftClient, World) -> Unit
+public typealias WorldTickCallback = MinecraftClient.(World) -> Unit
 
 @MustRunQuick
 public fun EventRegistration.onWorldTickStart(callback: WorldTickCallback) {

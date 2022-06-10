@@ -16,9 +16,18 @@ import org.quiltmc.qsl.screen.api.client.ScreenKeyboardEvents.*
 
 //region: Mouse events
 
-public typealias MouseClick<T> = (screen: Screen, mouseX: Double, mouseY: Double, button: Int) -> T
-public typealias MouseScroll<T> =
-            (screen: Screen, mouseX: Double, mouseY: Double, scrollX: Double, scrollY: Double) -> T
+public typealias MouseClick<T> = Screen.(
+    mouseX: Double,
+    mouseY: Double,
+    button: Int
+) -> T
+
+public typealias MouseScroll<T> = Screen.(
+    mouseX: Double,
+    mouseY: Double,
+    scrollX: Double,
+    scrollY: Double
+) -> T
 
 public fun EventRegistration.allowMouseClick(callback: MouseClick<TriState>) {
     ALLOW_MOUSE_CLICK.register(AllowMouseClick(callback))
@@ -60,7 +69,11 @@ public fun EventRegistration.afterMouseScroll(callback: MouseScroll<Unit>) {
 
 //region: Keyboard events
 
-public typealias KeyboardKey<T> = (screen: Screen, key: Int, scanCode: Int, modifiers: Int) -> T
+public typealias KeyboardKey<T> = Screen.(
+    key: Int,
+    scanCode: Int,
+    modifiers: Int
+) -> T
 
 public fun EventRegistration.allowKeyPress(callback: KeyboardKey<TriState>) {
     ALLOW_KEY_PRESS.register(AllowKeyPress(callback))
@@ -90,11 +103,19 @@ public fun EventRegistration.afterKeyRelease(callback: KeyboardKey<Unit>) {
 
 //region: General Screen events
 
-public typealias ScreenGenericCallback = (screen: Screen) -> Unit
-public typealias ScreenInitCallback =
-        (screen: Screen, mc: MinecraftClient, scaledWidth: Int, scaledHeight: Int) -> Unit
-public typealias ScreenRenderCallback =
-        (screen: Screen, matrices: MatrixStack, mouseX: Int, mouseY: Int, tickDelta: Float) -> Unit
+public typealias ScreenGenericCallback = Screen.() -> Unit
+public typealias ScreenInitCallback = Screen.(
+    mc: MinecraftClient,
+    scaledWidth: Int,
+    scaledHeight: Int
+) -> Unit
+
+public typealias ScreenRenderCallback = Screen.(
+    matrices: MatrixStack,
+    mouseX: Int,
+    mouseY: Int,
+    tickDelta: Float
+) -> Unit
 
 public fun EventRegistration.beforeScreenInit(callback: ScreenInitCallback) {
     ScreenEvents.BEFORE_INIT.register(ScreenEvents.BeforeInit(callback))

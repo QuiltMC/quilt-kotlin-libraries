@@ -15,8 +15,13 @@ import org.quiltmc.qsk.wrapper.qsl.EventRegistration
 import org.quiltmc.qsl.tooltip.api.client.ItemTooltipCallback
 import org.quiltmc.qsl.tooltip.api.client.TooltipComponentCallback
 
-public typealias TooltipCallback =
-        (stack: ItemStack, player: PlayerEntity?, ctx: TooltipContext, lines: List<Text>) -> Unit
+public typealias TooltipCallback = (
+    stack: ItemStack,
+    player: PlayerEntity?,
+    ctx: TooltipContext,
+    lines: List<Text>
+) -> Unit
+
 public typealias TooltipComponentGenerator = (data: TooltipData) -> TooltipComponent?
 
 public fun EventRegistration.onItemTooltip(callback: TooltipCallback) {

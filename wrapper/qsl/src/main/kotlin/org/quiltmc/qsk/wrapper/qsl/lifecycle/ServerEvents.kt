@@ -13,7 +13,7 @@ import org.quiltmc.qsl.lifecycle.api.event.ServerWorldTickEvents
 
 //region: Server lifecycle events
 
-public typealias GenericServerCallback = (MinecraftServer) -> Unit
+public typealias GenericServerCallback = MinecraftServer.() -> Unit
 
 public fun EventRegistration.onServerStarting(callback: GenericServerCallback) {
     ServerLifecycleEvents.STARTING.register(ServerLifecycleEvents.Starting(callback))
@@ -49,7 +49,7 @@ public fun EventRegistration.onServerTickEnd(callback: GenericServerCallback) {
 
 //region: Server world events
 
-public typealias ServerWorldCallback = (MinecraftServer, ServerWorld) -> Unit
+public typealias ServerWorldCallback = MinecraftServer.(ServerWorld) -> Unit
 
 public fun EventRegistration.onServerWorldLoad(callback: ServerWorldCallback) {
     ServerWorldLoadEvents.LOAD.register(ServerWorldLoadEvents.Load(callback))

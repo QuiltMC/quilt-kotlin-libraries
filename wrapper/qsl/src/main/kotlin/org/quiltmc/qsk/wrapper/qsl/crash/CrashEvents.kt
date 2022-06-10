@@ -15,8 +15,11 @@ import org.quiltmc.qsk.wrapper.qsl.EventRegistration
 import org.quiltmc.qsl.crash.api.CrashReportEvents
 
 public typealias ReportDetails<T> = T.(section: CrashReportSection) -> Unit
-public typealias BlockDetails =
-        HeightLimitView.(pos: BlockPos, state: BlockState?, section: CrashReportSection) -> Unit
+public typealias BlockDetails = HeightLimitView.(
+    pos: BlockPos,
+    state: BlockState?,
+    section: CrashReportSection
+) -> Unit
 
 public fun EventRegistration.addSystemDetails(callback: SystemDetails.() -> Unit) {
     CrashReportEvents.SYSTEM_DETAILS.register(CrashReportEvents.SystemDetails(callback))
