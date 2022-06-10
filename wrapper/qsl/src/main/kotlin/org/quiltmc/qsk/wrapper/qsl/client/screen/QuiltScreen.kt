@@ -1,5 +1,9 @@
+@file:Environment(EnvType.CLIENT)
+
 package org.quiltmc.qsk.wrapper.qsl.client.screen
 
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.font.TextRenderer
 import net.minecraft.client.gui.screen.Screen
