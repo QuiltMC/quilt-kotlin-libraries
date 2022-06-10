@@ -1,12 +1,11 @@
 package org.quiltmc.qkl.wrapper.main.registry
 
-import net.minecraft.block.Block
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
 /**
  * A RegistryObject with a name parameter, registers under your modid
- * @param id The Identifier to register under
+ * @param modid The Identifier to register under
  * @param t The object to register
  *
  * @author Oliver-makes-code (Emma)
