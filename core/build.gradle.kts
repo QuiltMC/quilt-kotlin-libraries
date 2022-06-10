@@ -14,4 +14,6 @@ dependencies {
     includeApi(rootProject.libs.serialization.core.get())
     includeApi(rootProject.libs.serialization.json.get())
     includeApi(rootProject.libs.serialization.cbor.get())
+    includeApi(rootProject.libs.atomic.get())
+    includeApi(rootProject.libs.datetime.get())
 }
