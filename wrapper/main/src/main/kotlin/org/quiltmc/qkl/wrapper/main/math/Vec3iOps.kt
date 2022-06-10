@@ -4,6 +4,7 @@ import net.minecraft.client.util.math.Vector3d
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
 import net.minecraft.util.math.Vec3i
+import kotlin.math.sqrt
 
 //region Standard math operators
 public operator fun Vec3i.plus(other: Vec3i): Vec3i {
@@ -226,5 +227,22 @@ public infix fun Vec3i.dot(other: Vector3d): Int {
 
 public infix fun Vec3i.cross(other: Vector3d): Vec3i {
     return this.crossProduct(Vec3i(other.x, other.y, other.z))
+}
+
+public fun Vec3i.normalize(): Vec3i {
+    val len = length()
+    return if (len < EPSILON) {
+        Vec3i.ZERO
+    } else {
+        Vec3i(x / len, y / len, z / len)
+    }
+}
+
+public fun Vec3i.length(): Double {
+    return sqrt((x * x + y * y + z * z).toDouble())
+}
+
+public fun Vec3i.lengthSquared(): Int {
+    return x * x + y * y + z * z
 }
 //endregion

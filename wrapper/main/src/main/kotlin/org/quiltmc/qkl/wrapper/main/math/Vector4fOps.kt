@@ -1,5 +1,6 @@
 package org.quiltmc.qkl.wrapper.main.math
 
+import net.minecraft.util.math.MathHelper.sqrt
 import net.minecraft.util.math.Vector4f
 
 //region Standard math operators
@@ -91,5 +92,28 @@ public operator fun Vector4f.timesAssign(other: Vector4f) {
 //region Vector specific operators
 public infix fun Vector4f.dot(other: Vector4f): Float {
     return this.dotProduct(other)
+}
+
+/**
+ * Must break convention here and name this `normalized` instead of `normalize`
+ * Because Vector4f.normalize() is an existing, mutating function
+ *
+ * @author SilverAndro
+ */
+public fun Vector4f.normalized(): Vector4f {
+    val len = length()
+    if (len < EPSILON) {
+        return Vector4f(0f, 0f, 0f, 0f)
+    } else {
+        return Vector4f(this.x / len, this.y / len, this.z / len, this.w / len)
+    }
+}
+
+public fun Vector4f.length(): Float {
+    return sqrt(this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w)
+}
+
+public fun Vector4f.lengthSquared(): Float {
+    return this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w
 }
 //endregion

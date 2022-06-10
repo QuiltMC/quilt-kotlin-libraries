@@ -1,6 +1,7 @@
 package org.quiltmc.qkl.wrapper.main.math
 
 import net.minecraft.client.util.math.Vector3d
+import net.minecraft.util.math.MathHelper.sqrt
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
 import net.minecraft.util.math.Vec3i
@@ -242,5 +243,13 @@ public infix fun Vec3f.cross(other: Vector3d): Vec3f {
         (this.z * other.x - this.x * other.z).toFloat(),
         (this.x * other.y - this.y * other.x).toFloat()
     )
+}
+
+public fun Vec3f.length(): Float {
+    return sqrt(x * x + y * y + z * z)
+}
+
+public fun Vec3f.lengthSquared(): Float {
+    return x * x + y * y + z * z
 }
 //endregion

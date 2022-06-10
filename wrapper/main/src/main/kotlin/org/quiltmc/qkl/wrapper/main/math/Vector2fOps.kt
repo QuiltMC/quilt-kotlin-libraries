@@ -1,6 +1,7 @@
 package org.quiltmc.qkl.wrapper.main.math
 
 import net.minecraft.client.util.math.Vector2f
+import net.minecraft.util.math.MathHelper.sqrt
 import net.minecraft.util.math.Vec2f
 
 //region Standard math operators
@@ -119,5 +120,22 @@ public infix fun Vector2f.dot(other: Vec2f): Float {
 
 public infix fun Vector2f.dot(other: Vector2f): Float {
     return this.x * other.x + this.y * other.y
+}
+
+public fun Vector2f.normalize(): Vector2f {
+    val len = length()
+    return if (len < EPSILON){
+        Vector2f(0f, 0f)
+    } else {
+        Vector2f(this.x / len, this.y / len)
+    }
+}
+
+public fun Vector2f.length(): Float {
+    return sqrt(this.x * this.x + this.y * this.y)
+}
+
+public fun Vector2f.lengthSquared(): Float {
+    return this.x * this.x + this.y * this.y
 }
 //endregion

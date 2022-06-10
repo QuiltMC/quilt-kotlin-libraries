@@ -1,9 +1,8 @@
 package org.quiltmc.qkl.wrapper.main.math
 
 import net.minecraft.client.util.math.Vector3d
-import net.minecraft.util.math.Vec3d
-import net.minecraft.util.math.Vec3f
-import net.minecraft.util.math.Vec3i
+import net.minecraft.util.math.*
+import kotlin.math.sqrt
 
 //region Standard math operators
 public operator fun Vector3d.plus(other: Vector3d): Vector3d {
@@ -243,5 +242,22 @@ public infix fun Vector3d.cross(other: Vector3d): Vector3d {
         this.z * other.x - this.x * other.z,
         this.x * other.y - this.y * other.x
     )
+}
+
+public fun Vector3d.normalize(): Vector3d {
+    val len = length()
+    return if (len < EPSILON) {
+        Vector3d(0.0, 0.0, 0.0)
+    } else {
+        Vector3d(this.x / len, this.y / len, this.z / len)
+    }
+}
+
+public fun Vector3d.length(): Double {
+    return sqrt(this.x * this.x + this.y * this.y + this.z * this.z)
+}
+
+public fun Vector3d.lengthSquared(): Double {
+    return this.x * this.x + this.y * this.y + this.z * this.z
 }
 //endregion
