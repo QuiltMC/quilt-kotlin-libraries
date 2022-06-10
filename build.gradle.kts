@@ -77,6 +77,9 @@ subprojects {
                     groupId = "org.quiltmc.quilt-kotlin-libraries"
                     artifactId = "quilt-kotlin-libraries-${project.name}"
                     this.version = projectVersion
+                    if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) {
+                        version += "-SNAPSHOT"
+                    }
                     from(components["java"])
                 }
             }
