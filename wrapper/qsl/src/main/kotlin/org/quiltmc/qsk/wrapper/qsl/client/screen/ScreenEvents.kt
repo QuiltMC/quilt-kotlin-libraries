@@ -10,46 +10,43 @@ import org.quiltmc.qsl.screen.api.client.ScreenKeyboardEvents.*
 
 //region: Mouse events
 
-public typealias MouseClickCallback = (screen: Screen, mouseX: Double, mouseY: Double, button: Int) -> Unit
-public typealias MouseClickCheck = (screen: Screen, mouseX: Double, mouseY: Double, button: Int) -> TriState
-public typealias MouseScrollCallback =
-            (screen: Screen, mouseX: Double, mouseY: Double, scrollX: Double, scrollY: Double) -> Unit
-public typealias MouseScrollCheck =
-            (screen: Screen, mouseX: Double, mouseY: Double, scrollX: Double, scrollY: Double) -> TriState
+public typealias MouseClick<T> = (screen: Screen, mouseX: Double, mouseY: Double, button: Int) -> T
+public typealias MouseScroll<T> =
+            (screen: Screen, mouseX: Double, mouseY: Double, scrollX: Double, scrollY: Double) -> T
 
-public fun allowMouseClick(callback: MouseClickCheck) {
+public fun allowMouseClick(callback: MouseClick<TriState>) {
     ALLOW_MOUSE_CLICK.register(AllowMouseClick(callback))
 }
 
-public fun beforeMouseClick(callback: MouseClickCallback) {
+public fun beforeMouseClick(callback: MouseClick<Unit>) {
     BEFORE_MOUSE_CLICK.register(BeforeMouseClick(callback))
 }
 
-public fun afterMouseClick(callback: MouseClickCallback) {
+public fun afterMouseClick(callback: MouseClick<Unit>) {
     AFTER_MOUSE_CLICK.register(AfterMouseClick(callback))
 }
 
-public fun allowMouseRelease(callback: MouseClickCheck) {
+public fun allowMouseRelease(callback: MouseClick<TriState>) {
     ALLOW_MOUSE_RELEASE.register(AllowMouseRelease(callback))
 }
 
-public fun beforeMouseRelease(callback: MouseClickCallback) {
+public fun beforeMouseRelease(callback: MouseClick<Unit>) {
     BEFORE_MOUSE_RELEASE.register(BeforeMouseRelease(callback))
 }
 
-public fun afterMouseRelease(callback: MouseClickCallback) {
+public fun afterMouseRelease(callback: MouseClick<Unit>) {
     AFTER_MOUSE_RELEASE.register(AfterMouseRelease(callback))
 }
 
-public fun allowMouseScroll(callback: MouseScrollCheck) {
+public fun allowMouseScroll(callback: MouseScroll<TriState>) {
     ALLOW_MOUSE_SCROLL.register(AllowMouseScroll(callback))
 }
 
-public fun beforeMouseScroll(callback: MouseScrollCallback) {
+public fun beforeMouseScroll(callback: MouseScroll<Unit>) {
     BEFORE_MOUSE_SCROLL.register(BeforeMouseScroll(callback))
 }
 
-public fun afterMouseScroll(callback: MouseScrollCallback) {
+public fun afterMouseScroll(callback: MouseScroll<Unit>) {
     AFTER_MOUSE_SCROLL.register(AfterMouseScroll(callback))
 }
 
@@ -57,30 +54,29 @@ public fun afterMouseScroll(callback: MouseScrollCallback) {
 
 //region: Keyboard events
 
-public typealias KeyboardKeyCallback = (screen: Screen, key: Int, scanCode: Int, modifiers: Int) -> Unit
-public typealias KeyboardKeyCheck = (screen: Screen, key: Int, scanCode: Int, modifiers: Int) -> TriState
+public typealias KeyboardKey<T> = (screen: Screen, key: Int, scanCode: Int, modifiers: Int) -> T
 
-public fun allowKeyPress(callback: KeyboardKeyCheck) {
+public fun allowKeyPress(callback: KeyboardKey<TriState>) {
     ALLOW_KEY_PRESS.register(AllowKeyPress(callback))
 }
 
-public fun beforeKeyPress(callback: KeyboardKeyCallback) {
+public fun beforeKeyPress(callback: KeyboardKey<Unit>) {
     BEFORE_KEY_PRESS.register(BeforeKeyPress(callback))
 }
 
-public fun afterKeyPress(callback: KeyboardKeyCallback) {
+public fun afterKeyPress(callback: KeyboardKey<Unit>) {
     AFTER_KEY_PRESS.register(AfterKeyPress(callback))
 }
 
-public fun allowKeyRelease(callback: KeyboardKeyCheck) {
+public fun allowKeyRelease(callback: KeyboardKey<TriState>) {
     ALLOW_KEY_RELEASE.register(AllowKeyRelease(callback))
 }
 
-public fun beforeKeyRelease(callback: KeyboardKeyCallback) {
+public fun beforeKeyRelease(callback: KeyboardKey<Unit>) {
     BEFORE_KEY_RELEASE.register(BeforeKeyRelease(callback))
 }
 
-public fun afterKeyRelease(callback: KeyboardKeyCallback) {
+public fun afterKeyRelease(callback: KeyboardKey<Unit>) {
     AFTER_KEY_RELEASE.register(AfterKeyRelease(callback))
 }
 
