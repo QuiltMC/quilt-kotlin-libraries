@@ -1,4 +1,4 @@
-package org.quiltmc.qsk.wrapper.qsl.lifecycle
+package org.quiltmc.qsk.wrapper.qsl
 
 /**
  * If an event is marked by this annotation, subscribers should
