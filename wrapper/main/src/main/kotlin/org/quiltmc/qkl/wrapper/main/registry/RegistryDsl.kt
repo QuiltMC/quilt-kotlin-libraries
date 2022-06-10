@@ -24,7 +24,7 @@ public data class RegistryObject<T>(val modid: String, val name: String, val t: 
 }
 
 /**
- * Represent an action with a registry
+ * Represents an action with a registry
  * @param modid The modid to register under
  * @param registry The registry to register to
  *
@@ -43,6 +43,8 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
 
     /**
      * Registers an object with a given name
+     *
+     * If no modid is present, it uses `"modid:name"` format
      * @param name The name to register under
      *
      * @author Oliver-makes-code (Emma)
@@ -57,7 +59,7 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
 }
 
 /**
- * Registry DSL class, used to register object more cleanly
+ * Registry DSL class, used to register objects more cleanly
  * @param modid The modid you want to register under
  * @param action The DSL action
  *
