@@ -1,0 +1,199 @@
+package org.quiltmc.qkl.wrapper.main.math
+
+import net.minecraft.client.util.math.Vector3d
+import net.minecraft.util.math.Vec3d
+import net.minecraft.util.math.Vec3f
+import net.minecraft.util.math.Vec3i
+
+//region Standard math operators
+public operator fun Vec3f.plus(other: Vec3f): Vec3f {
+    return Vec3f(
+        this.x + other.x,
+        this.y + other.y,
+        this.z + other.z
+    )
+}
+
+public operator fun Vec3f.plus(other: Float): Vec3f {
+    return Vec3f(
+        this.x + other,
+        this.y + other,
+        this.z + other
+    )
+}
+
+public operator fun Vec3f.minus(other: Vec3f): Vec3f {
+    return Vec3f(
+        this.x - other.x,
+        this.y - other.y,
+        this.z - other.z
+    )
+}
+
+public operator fun Vec3f.minus(other: Float): Vec3f {
+    return Vec3f(
+        this.x - other,
+        this.y - other,
+        this.z - other
+    )
+}
+
+public operator fun Vec3f.times(other: Vec3f): Vec3f {
+    return Vec3f(
+        this.x * other.x,
+        this.y * other.y,
+        this.z * other.z
+    )
+}
+
+public operator fun Vec3f.times(other: Float): Vec3f {
+    return Vec3f(
+        this.x * other,
+        this.y * other,
+        this.z * other
+    )
+}
+
+public operator fun Vec3f.unaryMinus(): Vec3f {
+    return this.times(-1f)
+}
+//endregion
+
+//region xAssign math operators
+public operator fun Vec3f.plusAssign(other: Float) {
+    this.plus(other)
+}
+
+public operator fun Vec3f.minusAssign(other: Float) {
+    this.minus(other)
+}
+
+public operator fun Vec3f.timesAssign(other: Float) {
+    this.times(other)
+}
+//endregion
+
+//region Type compatibility operator variations
+public operator fun Vec3f.plus(other: Vec3d): Vec3f {
+    return Vec3f(
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
+        this.z + other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.plus(other: Vec3i): Vec3f {
+    return Vec3f(
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
+        this.z + other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.plus(other: Vector3d): Vec3f {
+    return Vec3f(
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
+        this.z + other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.minus(other: Vec3d): Vec3f {
+    return Vec3f(
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
+        this.z - other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.minus(other: Vec3i): Vec3f {
+    return Vec3f(
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
+        this.z - other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.minus(other: Vector3d): Vec3f {
+    return Vec3f(
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
+        this.z - other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.times(other: Vec3d): Vec3f {
+    return Vec3f(
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
+        this.z * other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.times(other: Vec3i): Vec3f {
+    return Vec3f(
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
+        this.z * other.z.toFloat()
+    )
+}
+
+public operator fun Vec3f.times(other: Vector3d): Vec3f {
+    return Vec3f(
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
+        this.z * other.z.toFloat()
+    )
+}
+
+//endregion
+
+//region Vector specific operators
+public infix fun Vec3f.dot(other: Vec3d): Float {
+    return this.dot(Vec3f(other))
+}
+
+public infix fun Vec3f.cross(other: Vec3d): Vec3f {
+    return Vec3f(
+        (this.y * other.z - this.z * other.y).toFloat(),
+        (this.z * other.x - this.x * other.z).toFloat(),
+        (this.x * other.y - this.y * other.x).toFloat()
+    )
+}
+
+public infix fun Vec3f.dot(other: Vec3f): Float {
+    return this.dot(other)
+}
+
+public infix fun Vec3f.cross(other: Vec3f): Vec3f {
+    return Vec3f(
+        this.y * other.z - this.z * other.y,
+        this.z * other.x - this.x * other.z,
+        this.x * other.y - this.y * other.x
+    )
+}
+
+public infix fun Vec3f.dot(other: Vec3i): Float {
+    return this.dot(Vec3f(other.x.toFloat(), other.y.toFloat(), other.z.toFloat()))
+}
+
+public infix fun Vec3f.cross(other: Vec3i): Vec3f {
+    return Vec3f(
+        this.y * other.z - this.z * other.y,
+        this.z * other.x - this.x * other.z,
+        this.x * other.y - this.y * other.x
+    )
+}
+
+public infix fun Vec3f.dot(other: Vector3d): Float {
+    return this.dot(Vec3f(other.x.toFloat(), other.y.toFloat(), other.z.toFloat()))
+}
+
+public infix fun Vec3f.cross(other: Vector3d): Vec3f {
+    return Vec3f(
+        (this.y * other.z - this.z * other.y).toFloat(),
+        (this.z * other.x - this.x * other.z).toFloat(),
+        (this.x * other.y - this.y * other.x).toFloat()
+    )
+}
+//endregion
