@@ -5,7 +5,8 @@ import net.minecraft.util.registry.Registry
 
 /**
  * A RegistryObject with a name parameter, registers under your modid
- * @param modid The Identifier to register under
+ * @param modid The modid to register under
+ * @param name The name to register under
  * @param t The object to register
  *
  * @author Oliver-makes-code (Emma)
