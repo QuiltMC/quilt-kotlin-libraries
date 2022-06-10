@@ -56,11 +56,35 @@ public operator fun Vec2f.plusAssign(other: Float) {
     this.plus(other)
 }
 
+public operator fun Vec2f.plusAssign(other: Vec2f) {
+    this.plus(other)
+}
+
+public operator fun Vec2f.plusAssign(other: Vector2f) {
+    this.plus(other)
+}
+
 public operator fun Vec2f.minusAssign(other: Float) {
     this.minus(other)
 }
 
+public operator fun Vec2f.minusAssign(other: Vec2f) {
+    this.minus(other)
+}
+
+public operator fun Vec2f.minusAssign(other: Vector2f) {
+    this.minus(other)
+}
+
 public operator fun Vec2f.timesAssign(other: Float) {
+    this.times(other)
+}
+
+public operator fun Vec2f.timesAssign(other: Vec2f) {
+    this.times(other)
+}
+
+public operator fun Vec2f.timesAssign(other: Vector2f) {
     this.times(other)
 }
 //endregion
@@ -86,7 +110,6 @@ public operator fun Vec2f.times(other: Vector2f): Vec2f {
         this.y * other.y
     )
 }
-
 //endregion
 
 //region Vector specific operators

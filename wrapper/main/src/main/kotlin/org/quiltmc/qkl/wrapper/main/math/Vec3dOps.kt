@@ -64,11 +64,59 @@ public operator fun Vec3d.plusAssign(other: Double) {
     this.plus(other)
 }
 
+public operator fun Vec3d.plusAssign(other: Vec3d) {
+    this.plus(other)
+}
+
+public operator fun Vec3d.plusAssign(other: Vec3f) {
+    this.plus(other)
+}
+
+public operator fun Vec3d.plusAssign(other: Vec3i) {
+    this.plus(other)
+}
+
+public operator fun Vec3d.plusAssign(other: Vector3d) {
+    this.plus(other)
+}
+
 public operator fun Vec3d.minusAssign(other: Double) {
     this.minus(other)
 }
 
+public operator fun Vec3d.minusAssign(other: Vec3d) {
+    this.minus(other)
+}
+
+public operator fun Vec3d.minusAssign(other: Vec3f) {
+    this.minus(other)
+}
+
+public operator fun Vec3d.minusAssign(other: Vec3i) {
+    this.minus(other)
+}
+
+public operator fun Vec3d.minusAssign(other: Vector3d) {
+    this.minus(other)
+}
+
 public operator fun Vec3d.timesAssign(other: Double) {
+    this.times(other)
+}
+
+public operator fun Vec3d.timesAssign(other: Vec3d) {
+    this.times(other)
+}
+
+public operator fun Vec3d.timesAssign(other: Vec3f) {
+    this.times(other)
+}
+
+public operator fun Vec3d.timesAssign(other: Vec3i) {
+    this.times(other)
+}
+
+public operator fun Vec3d.timesAssign(other: Vector3d) {
     this.times(other)
 }
 //endregion
@@ -145,7 +193,6 @@ public operator fun Vec3d.times(other: Vector3d): Vec3d {
         this.z * other.z
     )
 }
-
 //endregion
 
 //region Vector specific operators

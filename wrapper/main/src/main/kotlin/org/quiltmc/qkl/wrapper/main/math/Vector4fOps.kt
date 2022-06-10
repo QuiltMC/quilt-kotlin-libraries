@@ -67,11 +67,23 @@ public operator fun Vector4f.plusAssign(other: Float) {
     this.plus(other)
 }
 
+public operator fun Vector4f.plusAssign(other: Vector4f) {
+    this.plus(other)
+}
+
 public operator fun Vector4f.minusAssign(other: Float) {
     this.minus(other)
 }
 
+public operator fun Vector4f.minusAssign(other: Vector4f) {
+    this.minus(other)
+}
+
 public operator fun Vector4f.timesAssign(other: Float) {
+    this.times(other)
+}
+
+public operator fun Vector4f.timesAssign(other: Vector4f) {
     this.times(other)
 }
 //endregion
