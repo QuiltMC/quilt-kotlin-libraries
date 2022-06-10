@@ -67,7 +67,7 @@ subprojects {
     }
 
     tasks.remapJar {
-        archiveBaseName.set("quilt-kotlin-libraries-${name}")
+        archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
     }
 
     publishing {
@@ -76,7 +76,10 @@ subprojects {
                 create<MavenPublication>("Maven") {
                     groupId = "org.quiltmc.quilt-kotlin-libraries"
                     artifactId = "quilt-kotlin-libraries-${project.name}"
-                    this.version = projectVersion
+                    if (project.name == "fatjar") {
+                        artifactId = "quilt-kotlin-libraries"
+                    }
+                    version = projectVersion
                     if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) {
                         version += "-SNAPSHOT"
                     }
