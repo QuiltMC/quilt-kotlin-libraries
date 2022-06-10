@@ -89,9 +89,10 @@ public fun afterKeyRelease(callback: KeyboardKey<Unit>) {
 //region: General Screen events
 
 public typealias ScreenGenericCallback = (screen: Screen) -> Unit
-public typealias ScreenInitCallback = (screen: Screen, mc: MinecraftClient, scaledWidth: Int, scaledHeight: Int) -> Unit
+public typealias ScreenInitCallback =
+        (screen: Screen, mc: MinecraftClient, scaledWidth: Int, scaledHeight: Int) -> Unit
 public typealias ScreenRenderCallback =
-            (screen: Screen, matrices: MatrixStack, mouseX: Int, mouseY: Int, tickDelta: Float) -> Unit
+        (screen: Screen, matrices: MatrixStack, mouseX: Int, mouseY: Int, tickDelta: Float) -> Unit
 
 public fun beforeScreenInit(callback: ScreenInitCallback) {
     ScreenEvents.BEFORE_INIT.register(ScreenEvents.BeforeInit(callback))

@@ -12,6 +12,8 @@ import net.minecraft.world.World
 import org.quiltmc.qsl.crash.api.CrashReportEvents
 
 public typealias ReportDetails<T> = T.(section: CrashReportSection) -> Unit
+public typealias BlockDetails =
+        HeightLimitView.(pos: BlockPos, state: BlockState?, section: CrashReportSection) -> Unit
 
 public fun addSystemDetails(callback: SystemDetails.() -> Unit) {
     CrashReportEvents.SYSTEM_DETAILS.register(CrashReportEvents.SystemDetails(callback))
@@ -21,9 +23,7 @@ public fun addAffectedWorldDetails(callback: ReportDetails<World>) {
     CrashReportEvents.WORLD_DETAILS.register(CrashReportEvents.WorldDetails(callback))
 }
 
-public fun addBlockDetails(
-    callback: HeightLimitView.(pos: BlockPos, state: BlockState?, section: CrashReportSection) -> Unit
-) {
+public fun addBlockDetails(callback: BlockDetails) {
     CrashReportEvents.BLOCK_DETAILS.register(CrashReportEvents.BlockDetails(callback))
 }
 
@@ -36,5 +36,6 @@ public fun addBlockEntityDetails(callback: ReportDetails<BlockEntity>) {
 }
 
 public fun crashReportCreation(callback: CrashReport.() -> Unit) {
-    CrashReportEvents.CRASH_REPORT_CREATION.register(CrashReportEvents.CrashReportCreation(callback))
+    CrashReportEvents.CRASH_REPORT_CREATION
+        .register(CrashReportEvents.CrashReportCreation(callback))
 }

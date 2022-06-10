@@ -13,9 +13,10 @@ import net.minecraft.text.Text
 import org.quiltmc.qsl.tooltip.api.client.ItemTooltipCallback
 import org.quiltmc.qsl.tooltip.api.client.TooltipComponentCallback
 
-public fun onItemTooltip(
-    callback: (stack: ItemStack, player: PlayerEntity?, ctx: TooltipContext, lines: List<Text>) -> Unit
-) {
+public typealias TooltipCallback =
+        (stack: ItemStack, player: PlayerEntity?, ctx: TooltipContext, lines: List<Text>) -> Unit
+
+public fun onItemTooltip(callback: TooltipCallback) {
     ItemTooltipCallback.EVENT.register(ItemTooltipCallback(callback))
 }
 
