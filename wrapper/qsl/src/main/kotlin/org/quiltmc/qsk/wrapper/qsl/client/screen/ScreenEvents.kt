@@ -101,7 +101,7 @@ public fun afterScreenInit(callback: ScreenInitCallback) {
     ScreenEvents.AFTER_INIT.register(ScreenEvents.AfterInit(callback))
 }
 
-public fun screenRemoved(callback: ScreenGenericCallback) {
+public fun onScreenRemoved(callback: ScreenGenericCallback) {
     ScreenEvents.REMOVE.register(ScreenEvents.Remove(callback))
 }
 
