@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-package org.quiltmc.qkl.wrapper.main.math
+package org.quiltmc.qkl.wrapper.minecraft.math
 
 internal const val EPSILON = 1.0E-4

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.quiltmc.qkl.wrapper.main.math
+package org.quiltmc.qkl.wrapper.minecraft.math
 
 import net.minecraft.client.util.math.Vector2f
 import net.minecraft.util.math.MathHelper.sqrt
