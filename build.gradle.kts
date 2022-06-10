@@ -21,6 +21,7 @@ allprojects {
     }
 
     dependencies {
+        implementation(project(":core"))
         minecraft(rootProject.libs.minecraft)
         mappings(loom.layered {
             addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
@@ -40,4 +41,17 @@ allprojects {
             expand(Pair("version", version))
         }
     }
+}
+subprojects {
+    tasks.remapJar {
+        archiveBaseName.set("quilt-kotlin-libraries-${this@subprojects.name}")
+    }
+}
+tasks.remapJar {
+    archiveBaseName.set("quilt-kotlin-libraries")
+}
+dependencies {
+    include(project(":core"))
+    include(project(":wrapper:main"))
+    include(project(":wrapper:qsl"))
 }
