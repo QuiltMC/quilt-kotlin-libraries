@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.quiltmc.qkl.wrapper.main.registry
+package org.quiltmc.qkl.wrapper.minecraft.registry
 
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
