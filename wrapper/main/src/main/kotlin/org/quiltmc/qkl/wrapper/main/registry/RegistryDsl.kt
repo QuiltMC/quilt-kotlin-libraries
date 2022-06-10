@@ -40,6 +40,7 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
     public infix fun T.withId(id: Identifier) {
         Registry.register(registry, id, this)
     }
+
     /**
      * Registers an object with a given name
      * @param name The name to register under
@@ -76,6 +77,7 @@ public class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Un
     public infix fun <T> T.withName(name: String): RegistryObject<T> {
         return RegistryObject(modid, name, this)
     }
+
     /**
      * Applies a RegistryAction
      * @param action The action
@@ -107,6 +109,7 @@ public operator fun <T> Registry<T>.invoke(modid: String, action: RegistryAction
 public operator fun <T> Registry<T>.invoke(action: RegistryAction<T>.() -> Unit) {
     RegistryAction(null, this).apply(action)
 }
+
 /**
  * Creates a RegistryObject
  * @param id The Identifier to register under
