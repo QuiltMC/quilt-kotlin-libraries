@@ -68,6 +68,14 @@ subprojects {
 
     tasks.remapJar {
         archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+        dependsOn(tasks.remapSourcesJar)
+    }
+    tasks.remapSourcesJar {
+        archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+    }
+    java {
+
+        withSourcesJar()
     }
 
     publishing {
@@ -83,7 +91,9 @@ subprojects {
                     if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) {
                         version += "-SNAPSHOT"
                     }
-                    from(components["java"])
+                    artifact(tasks.remapSourcesJar.get().archiveFile) {
+                        builtBy(tasks.remapSourcesJar)
+                    }
                 }
             }
         }
