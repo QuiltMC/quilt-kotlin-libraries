@@ -86,6 +86,8 @@ subprojects {
                     artifactId = "quilt-kotlin-libraries-${project.name}"
                     if (project.name == "fatjar") {
                         artifactId = "quilt-kotlin-libraries"
+                    } else if (project.name != "core") {
+                        groupId += ".wrapper"
                     }
                     version = projectVersion
                     if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) {
