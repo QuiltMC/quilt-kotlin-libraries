@@ -8,7 +8,7 @@ plugins {
 
 group = "org.quiltmc"
 version = project.version
-val projectVersion = project.version as String
+val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 repositories {
     mavenCentral()
@@ -55,7 +55,7 @@ subprojects {
     apply(plugin="maven-publish")
     apply(plugin=rootProject.libs.plugins.quilt.loom.get().pluginId)
     group = "org.quiltmc.quilt-kotlin-libraries"
-
+    version = projectVersion
     dependencies {
         minecraft(rootProject.libs.minecraft)
         mappings(loom.layered {
@@ -87,9 +87,6 @@ subprojects {
                         artifactId = "quilt-kotlin-libraries"
                     }
                     version = projectVersion
-                    if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) {
-                        version += "-SNAPSHOT"
-                    }
 
                     artifact(tasks.remapSourcesJar.get().archiveFile) {
                         builtBy(tasks.remapSourcesJar)
