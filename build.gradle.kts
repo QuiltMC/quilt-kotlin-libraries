@@ -54,6 +54,7 @@ allprojects {
 subprojects {
     apply(plugin="maven-publish")
     apply(plugin=rootProject.libs.plugins.quilt.loom.get().pluginId)
+    group = "org.quiltmc.quilt-kotlin-libraries"
 
     dependencies {
         minecraft(rootProject.libs.minecraft)
@@ -74,7 +75,6 @@ subprojects {
         archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
     }
     java {
-
         withSourcesJar()
     }
 
@@ -82,17 +82,15 @@ subprojects {
         publications {
             if (project.name != "wrapper") {
                 create<MavenPublication>("Maven") {
-                    groupId = "org.quiltmc.quilt-kotlin-libraries"
-                    artifactId = "${project.name}"
+                    artifactId = project.name
                     if (project.name == "fatjar") {
                         artifactId = "quilt-kotlin-libraries"
-                    } else if (project.name != "core") {
-                        groupId += ".wrapper"
                     }
                     version = projectVersion
                     if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) {
                         version += "-SNAPSHOT"
                     }
+
                     artifact(tasks.remapSourcesJar.get().archiveFile) {
                         builtBy(tasks.remapSourcesJar)
                     }
