@@ -67,7 +67,15 @@ subprojects {
     }
 
     tasks.remapJar {
-        archiveBaseName.set("quilt-kotlin-libraries-${name}")
+        archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+        dependsOn(tasks.remapSourcesJar)
+    }
+    tasks.remapSourcesJar {
+        archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+    }
+    java {
+
+        withSourcesJar()
     }
 
     publishing {
@@ -76,11 +84,16 @@ subprojects {
                 create<MavenPublication>("Maven") {
                     groupId = "org.quiltmc.quilt-kotlin-libraries"
                     artifactId = "quilt-kotlin-libraries-${project.name}"
-                    this.version = projectVersion
+                    if (project.name == "fatjar") {
+                        artifactId = "quilt-kotlin-libraries"
+                    }
+                    version = projectVersion
                     if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) {
                         version += "-SNAPSHOT"
                     }
-                    from(components["java"])
+                    artifact(tasks.remapSourcesJar.get().archiveFile) {
+                        builtBy(tasks.remapSourcesJar)
+                    }
                 }
             }
         }
