@@ -72,54 +72,53 @@ public open class KotlinAdapter : LanguageAdapter {
                 )
             }
             2 -> {
-                try {
-                    val instance = kotlinClass.objectInstance
-                        ?: throw LanguageAdapterException("$kotlinClass is not an object")
-                    val methods = instance::class.memberFunctions.filter {
-                        it.name == splitMethod[1]
-                    }
-                    kotlinClass.declaredMemberProperties.find {
-                        it.name == splitMethod[1]
-                    }?.let {
-                        val field: KType = try {
-                            it.returnType
-                        } catch (error: NoSuchFieldException) {
-                            // Ignore it as we don't need it
-                            null
-                        }?: return@let
-
-                        if (methods.isNotEmpty()) {
-                            throw LanguageAdapterException(
-                                "Common field and function name in $value"
-                            )
-                        }
-
-                        if (!type.kotlin.isSuperclassOf(field.jvmErasure)) {
-                            throw LanguageAdapterException(
-                                "Field $value is not a supertype of ${type.name}!"
-                            )
-                        }
-
-                        return (it as KProperty1<Any, T>).get(instance)
-                    }
-                    if (!type.isInterface) {
-                        throw LanguageAdapterException(
-                            "Cannot proxy method $value to ${type.name}!"
-                        )
-                    }
-                    if (methods.size != 1) {
-                        throw LanguageAdapterException(
-                            "Cannot find method, as there's not only one type"
-                        )
-                    }
-                    return Proxy.newProxyInstance(
-                        QuiltLauncherBase.getLauncher().targetClassLoader, arrayOf(type)
-                    ) { _, _, _ ->
-                        methods[0].call(instance)
-                    } as T
-                } catch (error: Exception) {
+                val instance = try {
+                    kotlinClass.objectInstance
+                    // Would throw in flk, but we try to run with the default adapter
+                        ?: return withDefaultAdapter(mod, value, type)
+                } catch (error: UnsupportedOperationException) {
+                    // Needed here in case Kotlin reflection decides to throw a fit
                     return withDefaultAdapter(mod, value, type)
                 }
+
+                // Get all the methods with the right name
+                val methods = instance::class.memberFunctions.filter {
+                    it.name == splitMethod[1]
+                }
+
+                // Get the first property with the right name
+                val property = kotlinClass.declaredMemberProperties.find {
+                    it.name == splitMethod[1]
+                }
+
+                if (property != null) {
+                    // Get the return type
+                    val field: KType = property.returnType
+
+                    // Would throw in flk, but we try to run with the default adapter
+                    if (
+                        methods.isNotEmpty()
+                        || !type.kotlin.isSuperclassOf(field.jvmErasure)
+                    ) {
+                        return withDefaultAdapter(mod, value, type)
+                    }
+
+                    // Return the property which is an instance of the interface
+                    return (property as KProperty1<Any, T>).get(instance)
+                }
+
+                // Would throw in flk, but we try to run with the default adapter
+                if (!type.isInterface || methods.size != 1) {
+                        return withDefaultAdapter(mod, value, type)
+                }
+
+                // Return a proxy of T that calls the method
+                return Proxy.newProxyInstance(
+                    QuiltLauncherBase.getLauncher().targetClassLoader,
+                    arrayOf(type)
+                ) { _, _, _ ->
+                    methods[0].call(instance)
+                } as T
             }
             else -> {
                 throw LanguageAdapterException("Invalid handle format: $value")
