@@ -83,7 +83,7 @@ subprojects {
             if (project.name != "wrapper") {
                 create<MavenPublication>("Maven") {
                     groupId = "org.quiltmc.quilt-kotlin-libraries"
-                    artifactId = "quilt-kotlin-libraries-${project.name}"
+                    artifactId = "${project.name}"
                     if (project.name == "fatjar") {
                         artifactId = "quilt-kotlin-libraries"
                     } else if (project.name != "core") {
