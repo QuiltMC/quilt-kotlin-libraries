@@ -33,14 +33,26 @@ import org.quiltmc.qsl.lifecycle.api.client.event.ClientWorldTickEvents
 
 public typealias GenericClientCallback = MinecraftClient.() -> Unit
 
+/**
+ * @see ClientLifecycleEvents.READY
+ * @see ClientLifecycleEvents.Ready.readyClient
+ */
 public fun EventRegistration.onClientReady(callback: GenericClientCallback) {
     ClientLifecycleEvents.READY.register(ClientLifecycleEvents.Ready(callback))
 }
 
+/**
+ * @see ClientLifecycleEvents.STOPPING
+ * @see ClientLifecycleEvents.Stopping.stoppingClient
+ */
 public fun EventRegistration.onClientStopping(callback: GenericClientCallback) {
     ClientLifecycleEvents.STOPPING.register(ClientLifecycleEvents.Stopping(callback))
 }
 
+/**
+ * @see ClientLifecycleEvents.STOPPED
+ * @see ClientLifecycleEvents.Stopped.stoppedClient
+ */
 public fun EventRegistration.onClientStopped(callback: GenericClientCallback) {
     ClientLifecycleEvents.STOPPED.register(ClientLifecycleEvents.Stopped(callback))
 }
@@ -49,11 +61,23 @@ public fun EventRegistration.onClientStopped(callback: GenericClientCallback) {
 
 //region: Client tick events
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ClientTickEvents.START
+ * @see ClientTickEvents.Start.startClientTick
+ */
 @MustRunQuick
 public fun EventRegistration.onClientTickStart(callback: GenericClientCallback) {
     ClientTickEvents.START.register(ClientTickEvents.Start(callback))
 }
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ClientTickEvents.END
+ * @see ClientTickEvents.End.endClientTick
+ */
 @MustRunQuick
 public fun EventRegistration.onClientTickFinish(callback: GenericClientCallback) {
     ClientTickEvents.END.register(ClientTickEvents.End(callback))
@@ -65,11 +89,23 @@ public fun EventRegistration.onClientTickFinish(callback: GenericClientCallback)
 
 public typealias WorldTickCallback = MinecraftClient.(World) -> Unit
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ClientWorldTickEvents.START
+ * @see ClientWorldTickEvents.Start.startWorldTick
+ */
 @MustRunQuick
 public fun EventRegistration.onWorldTickStart(callback: WorldTickCallback) {
     ClientWorldTickEvents.START.register(ClientWorldTickEvents.Start(callback))
 }
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ClientWorldTickEvents.END
+ * @see ClientWorldTickEvents.End.endWorldTick
+ */
 @MustRunQuick
 public fun EventRegistration.onWorldTickFinish(callback: WorldTickCallback) {
     ClientWorldTickEvents.END.register(ClientWorldTickEvents.End(callback))

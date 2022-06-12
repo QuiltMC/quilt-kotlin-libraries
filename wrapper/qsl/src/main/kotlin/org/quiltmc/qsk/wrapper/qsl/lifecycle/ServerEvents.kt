@@ -31,18 +31,34 @@ import org.quiltmc.qsl.lifecycle.api.event.ServerWorldTickEvents
 
 public typealias GenericServerCallback = MinecraftServer.() -> Unit
 
+/**
+ * @see ServerLifecycleEvents.STARTING
+ * @see ServerLifecycleEvents.Starting.startingServer
+ */
 public fun EventRegistration.onServerStarting(callback: GenericServerCallback) {
     ServerLifecycleEvents.STARTING.register(ServerLifecycleEvents.Starting(callback))
 }
 
+/**
+ * @see ServerLifecycleEvents.READY
+ * @see ServerLifecycleEvents.Ready.readyServer
+ */
 public fun EventRegistration.onServerReady(callback: GenericServerCallback) {
     ServerLifecycleEvents.READY.register(ServerLifecycleEvents.Ready(callback))
 }
 
+/**
+ * @see ServerLifecycleEvents.STOPPING
+ * @see ServerLifecycleEvents.Stopping.stoppingServer
+ */
 public fun EventRegistration.onServerStopping(callback: GenericServerCallback) {
     ServerLifecycleEvents.STOPPING.register(ServerLifecycleEvents.Stopping(callback))
 }
 
+/**
+ * @see ServerLifecycleEvents.STOPPED
+ * @see ServerLifecycleEvents.Stopped.exitServer
+ */
 public fun EventRegistration.onServerStopped(callback: GenericServerCallback) {
     ServerLifecycleEvents.STOPPED.register(ServerLifecycleEvents.Stopped(callback))
 }
@@ -51,11 +67,23 @@ public fun EventRegistration.onServerStopped(callback: GenericServerCallback) {
 
 //region: Server tick events
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ServerTickEvents.START
+ * @see ServerTickEvents.Start.startServerTick
+ */
 @MustRunQuick
 public fun EventRegistration.onServerTickStart(callback: GenericServerCallback) {
     ServerTickEvents.START.register(ServerTickEvents.Start(callback))
 }
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ServerTickEvents.END
+ * @see ServerTickEvents.End.endServerTick
+ */
 @MustRunQuick
 public fun EventRegistration.onServerTickEnd(callback: GenericServerCallback) {
     ServerTickEvents.END.register(ServerTickEvents.End(callback))
@@ -67,10 +95,18 @@ public fun EventRegistration.onServerTickEnd(callback: GenericServerCallback) {
 
 public typealias ServerWorldCallback = MinecraftServer.(ServerWorld) -> Unit
 
+/**
+ * @see ServerWorldLoadEvents.LOAD
+ * @see ServerWorldLoadEvents.Load.loadWorld
+ */
 public fun EventRegistration.onServerWorldLoad(callback: ServerWorldCallback) {
     ServerWorldLoadEvents.LOAD.register(ServerWorldLoadEvents.Load(callback))
 }
 
+/**
+ * @see ServerWorldLoadEvents.UNLOAD
+ * @see ServerWorldLoadEvents.Unload.unloadWorld
+ */
 public fun EventRegistration.onServerWorldUnload(callback: ServerWorldCallback) {
     ServerWorldLoadEvents.UNLOAD.register(ServerWorldLoadEvents.Unload(callback))
 }
@@ -79,11 +115,23 @@ public fun EventRegistration.onServerWorldUnload(callback: ServerWorldCallback) 
 
 //region: Server world tick events
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ServerWorldTickEvents.START
+ * @see ServerWorldTickEvents.Start.startWorldTick
+ */
 @MustRunQuick
 public fun EventRegistration.onServerWorldTickStart(callback: ServerWorldCallback) {
     ServerWorldTickEvents.START.register(ServerWorldTickEvents.Start(callback))
 }
 
+/**
+ * This is annotated with [MustRunQuick] because it runs every tick,
+ * which tends to be a code hotspot.
+ * @see ServerWorldTickEvents.END
+ * @see ServerWorldTickEvents.End.endWorldTick
+ */
 @MustRunQuick
 public fun EventRegistration.onServerWorldTickEnd(callback: ServerWorldCallback) {
     ServerWorldTickEvents.END.register(ServerWorldTickEvents.End(callback))

@@ -38,12 +38,20 @@ public typealias ReloadFinish = (
     error: Throwable?
 ) -> Unit
 
+/**
+ * @see ClientResourceLoaderEvents.START_RESOURCE_PACK_RELOAD
+ * @see ClientResourceLoaderEvents.StartResourcePackReload.onStartResourcePackReload
+ */
 public fun onResourcePackReloadStart(callback: ReloadStart) {
     ClientResourceLoaderEvents.START_RESOURCE_PACK_RELOAD.register(
         ClientResourceLoaderEvents.StartResourcePackReload(callback)
     )
 }
 
+/**
+ * @see ClientResourceLoaderEvents.END_RESOURCE_PACK_RELOAD
+ * @see ClientResourceLoaderEvents.EndResourcePackReload.onEndResourcePackReload
+ */
 public fun onResourcePackReloadFinish(callback: ReloadFinish) {
     ClientResourceLoaderEvents.END_RESOURCE_PACK_RELOAD.register(
         ClientResourceLoaderEvents.EndResourcePackReload(callback)

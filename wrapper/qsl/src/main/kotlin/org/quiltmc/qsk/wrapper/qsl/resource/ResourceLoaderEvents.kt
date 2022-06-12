@@ -23,17 +23,51 @@ import net.minecraft.server.MinecraftServer
 import org.quiltmc.qsk.wrapper.qsl.EventRegistration
 import org.quiltmc.qsl.resource.loader.api.ResourceLoaderEvents
 
-public fun EventRegistration.onDataPackReloadStart(
-    callback: (server: MinecraftServer?, manager: ResourceManager?) -> Unit
-) {
+public typealias DataPackReloadStart = (
+    /**
+     * The current server, or `null` if this is the first load.
+     */
+    server: MinecraftServer?,
+    /**
+     * The resource manager that is being reloaded, or `null` if this is the first load.
+     */
+    resourceManager: ResourceManager?,
+) -> Unit
+
+public typealias DataPackReloadFinish = (
+    /**
+     * The current server, or `null` if this is the first load.
+     */
+    server: MinecraftServer?,
+    /**
+     * The resource manager that is being reloaded, or `null` if this is the first load.
+     */
+    resourceManager: ResourceManager?,
+    /**
+     * An error that occurred during the reload, or `null` if no error occurred.
+     */
+    error: Throwable?,
+) -> Unit
+
+/**
+ * Called when data pack reloading is about to begin.
+ * The [callback]'s parameters will only be `null` on the first load.
+ * @see ResourceLoaderEvents.START_DATA_PACK_RELOAD
+ * @see ResourceLoaderEvents.StartDataPackReload.onStartDataPackReload
+ */
+public fun EventRegistration.onDataPackReloadStart(callback: DataPackReloadStart) {
     ResourceLoaderEvents.START_DATA_PACK_RELOAD.register(
         ResourceLoaderEvents.StartDataPackReload(callback)
     )
 }
 
-public fun EventRegistration.onDataPackReloadFinish(
-    callback: (server: MinecraftServer?, manager: ResourceManager?, error: Throwable?) -> Unit
-) {
+/**
+ * Called when data pack reloading has finished.
+ * The [callback]'s parameters will only be `null` on the first load.
+ * @see ResourceLoaderEvents.END_DATA_PACK_RELOAD
+ * @see ResourceLoaderEvents.EndDataPackReload.onEndDataPackReload
+ */
+public fun EventRegistration.onDataPackReloadFinish(callback: DataPackReloadFinish) {
     ResourceLoaderEvents.END_DATA_PACK_RELOAD.register(
         ResourceLoaderEvents.EndDataPackReload(callback)
     )

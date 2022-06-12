@@ -27,14 +27,27 @@ import net.minecraft.client.gui.widget.ClickableWidget
 import net.minecraft.client.render.item.ItemRenderer
 import org.quiltmc.qsl.screen.api.client.QuiltScreen
 
-public val Screen.buttons: List<ClickableWidget>
+/**
+ * All buttons on the screen. Adding and removing buttons can be done by
+ * modifying this list, and doing so in a different way is not recommended.
+ */
+public val Screen.buttons: MutableList<ClickableWidget>
     get() = (this as QuiltScreen).buttons
 
+/**
+ * The current item renderer.
+ */
 public val Screen.itemRenderer: ItemRenderer
     get() = (this as QuiltScreen).itemRenderer
 
+/**
+ * The current text renderer.
+ */
 public val Screen.textRenderer: TextRenderer
     get() = (this as QuiltScreen).textRenderer
 
+/**
+ * The current Minecraft client instance.
+ */
 public val Screen.client: MinecraftClient
     get() = (this as QuiltScreen).client

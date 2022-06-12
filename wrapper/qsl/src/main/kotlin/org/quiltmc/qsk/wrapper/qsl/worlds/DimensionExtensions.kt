@@ -21,5 +21,15 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.TeleportTarget
 import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
 
+/**
+ * Teleport this entity to the given [location] in the [destination] dimension.
+ * If [location] is null, the entity will not be teleported.
+ */
 public fun <E : Entity> Entity.teleport(destination: ServerWorld, location: TeleportTarget?): E? =
+    QuiltDimensions.teleport(this, destination, location)
+
+/**
+ * Convenience function for [teleport] which returns an instance of the same type.
+ */
+public fun <E : Entity> E.teleportSelf(destination: ServerWorld, location: TeleportTarget?): E? =
     QuiltDimensions.teleport(this, destination, location)

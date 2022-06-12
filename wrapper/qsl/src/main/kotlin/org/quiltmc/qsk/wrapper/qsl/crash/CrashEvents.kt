@@ -37,27 +37,51 @@ public typealias BlockDetails = HeightLimitView.(
     section: CrashReportSection
 ) -> Unit
 
-public fun EventRegistration.addSystemDetails(callback: SystemDetails.() -> Unit) {
+/**
+ * @see CrashReportEvents.SYSTEM_DETAILS
+ * @see CrashReportEvents.SystemDetails.addDetails
+ */
+public fun EventRegistration.onAddSystemDetails(callback: SystemDetails.() -> Unit) {
     CrashReportEvents.SYSTEM_DETAILS.register(CrashReportEvents.SystemDetails(callback))
 }
 
-public fun EventRegistration.addAffectedWorldDetails(callback: ReportDetails<World>) {
+/**
+ * @see CrashReportEvents.WORLD_DETAILS
+ * @see CrashReportEvents.WorldDetails.addDetails
+ */
+public fun EventRegistration.onAddAffectedWorldDetails(callback: ReportDetails<World>) {
     CrashReportEvents.WORLD_DETAILS.register(CrashReportEvents.WorldDetails(callback))
 }
 
-public fun EventRegistration.addBlockDetails(callback: BlockDetails) {
+/**
+ * @see CrashReportEvents.BLOCK_DETAILS
+ * @see CrashReportEvents.BlockDetails.addDetails
+ */
+public fun EventRegistration.onAddBlockDetails(callback: BlockDetails) {
     CrashReportEvents.BLOCK_DETAILS.register(CrashReportEvents.BlockDetails(callback))
 }
 
-public fun EventRegistration.addEntityDetails(callback: ReportDetails<Entity>) {
+/**
+ * @see CrashReportEvents.ENTITY_DETAILS
+ * @see CrashReportEvents.EntityDetails.addDetails
+ */
+public fun EventRegistration.onAddEntityDetails(callback: ReportDetails<Entity>) {
     CrashReportEvents.ENTITY_DETAILS.register(CrashReportEvents.EntityDetails(callback))
 }
 
-public fun EventRegistration.addBlockEntityDetails(callback: ReportDetails<BlockEntity>) {
+/**
+ * @see CrashReportEvents.BLOCKENTITY_DETAILS
+ * @see CrashReportEvents.BlockEntityDetails.addDetails
+ */
+public fun EventRegistration.onAddBlockEntityDetails(callback: ReportDetails<BlockEntity>) {
     CrashReportEvents.BLOCKENTITY_DETAILS.register(CrashReportEvents.BlockEntityDetails(callback))
 }
 
-public fun EventRegistration.crashReportCreation(callback: CrashReport.() -> Unit) {
+/**
+ * @see CrashReportEvents.CRASH_REPORT_CREATION
+ * @see CrashReportEvents.CrashReportCreation.onCreate
+ */
+public fun EventRegistration.onCrashReportCreation(callback: CrashReport.() -> Unit) {
     CrashReportEvents.CRASH_REPORT_CREATION
         .register(CrashReportEvents.CrashReportCreation(callback))
 }

@@ -40,10 +40,18 @@ public typealias TooltipCallback = (
 
 public typealias TooltipComponentGenerator = (data: TooltipData) -> TooltipComponent?
 
+/**
+ * @see ItemTooltipCallback.EVENT
+ * @see ItemTooltipCallback.onTooltipRequest
+ */
 public fun EventRegistration.onItemTooltip(callback: TooltipCallback) {
     ItemTooltipCallback.EVENT.register(ItemTooltipCallback(callback))
 }
 
+/**
+ * @see TooltipComponentCallback.EVENT
+ * @see TooltipComponentCallback.getComponent
+ */
 public fun EventRegistration.onTooltipComponent(callback: TooltipComponentGenerator) {
     TooltipComponentCallback.EVENT.register(TooltipComponentCallback(callback))
 }
