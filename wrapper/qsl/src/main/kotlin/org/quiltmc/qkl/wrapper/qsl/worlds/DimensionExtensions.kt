@@ -28,6 +28,8 @@ import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
  * and is not null, an exception will be thrown. Otherwise,
  * the teleported entity (or null) will be returned.
  *
+ * If the entity is unable to be teleported, this returns null.
+ *
  * Every entity put into the world is a new copy of the entity,
  * unless the given entity is already in the world or is the player.
  */
