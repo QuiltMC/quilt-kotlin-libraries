@@ -22,14 +22,30 @@ import net.minecraft.world.TeleportTarget
 import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
 
 /**
- * Teleport this entity to the given [location] in the [destination] dimension.
+ * Teleport this entity to the [dimension] at the given [location].
  * If [location] is null, the entity will not be teleported.
+ * If the entity in the teleported location is not the same type
+ * and is not null, an exception will be thrown. Otherwise,
+ * the teleported entity (or null) will be returned.
+ *
+ * Every entity put into the world is a new copy of the entity,
+ * unless the given entity is already in the world or is the player.
  */
-public fun <E : Entity> Entity.teleport(destination: ServerWorld, location: TeleportTarget?): E? =
-    QuiltDimensions.teleport(this, destination, location)
+public inline fun <reified E : Entity> E.teleport(
+    dimension: ServerWorld,
+    location: TeleportTarget? = null
+): E? = when (val teleported = QuiltDimensions.teleport<Entity>(this, dimension, location)) {
+    null -> null
+    is E -> teleported
+    else -> error("Unexpected teleported entity type: " +
+            "${teleported::class.java.name} instead of ${E::class.java.name}")
+}
 
 /**
- * Convenience function for [teleport] which returns an instance of the same type.
+ * A class-safe version of [teleport], where the type of the teleported entity
+ * is not specified and therefore should be checked by the calling code.
  */
-public fun <E : Entity> E.teleportSelf(destination: ServerWorld, location: TeleportTarget?): E? =
-    QuiltDimensions.teleport(this, destination, location)
+public fun Entity.teleportSafe(
+    dimension: ServerWorld,
+    location: TeleportTarget? = null
+): Entity? = QuiltDimensions.teleport(this, dimension, location)
