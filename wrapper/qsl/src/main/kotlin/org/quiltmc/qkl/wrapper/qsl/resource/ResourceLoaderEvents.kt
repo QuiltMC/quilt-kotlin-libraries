@@ -51,7 +51,6 @@ public typealias DataPackReloadFinish = (
 
 /**
  * Called when data pack reloading is about to begin.
- * The [callback]'s parameters will only be `null` on the first load.
  * @see ResourceLoaderEvents.START_DATA_PACK_RELOAD
  * @see ResourceLoaderEvents.StartDataPackReload.onStartDataPackReload
  */
@@ -63,7 +62,6 @@ public fun EventRegistration.onDataPackReloadStart(callback: DataPackReloadStart
 
 /**
  * Called when data pack reloading has finished.
- * The [callback]'s parameters will only be `null` on the first load.
  * @see ResourceLoaderEvents.END_DATA_PACK_RELOAD
  * @see ResourceLoaderEvents.EndDataPackReload.onEndDataPackReload
  */

@@ -31,12 +31,23 @@ import org.quiltmc.qsl.recipe.api.builder.VanillaRecipeBuilders.*
 
 /**
  * Currently Kotlin does not have union types, so this is a workaround.
+ * An IngredientLike is one of the following:
+ * - [Ingredient]
+ * - [ItemStack], [Array&lt;ItemStack&gt;][ItemStack], or [Collection&lt;ItemStack&gt;][ItemStack]
+ * - [ItemConvertible], [Array&lt;ItemConvertible&gt;][ItemConvertible],
+ *   or [Collection&lt;ItemConvertible&gt;][ItemConvertible]
+ * - [TagKey&lt;Item&gt;][TagKey]
  */
 public typealias IngredientLike = Any
 
+/**
+ * Coerce the given [ingredient] to an [Ingredient] object.
+ */
 @Suppress("UNCHECKED_CAST")
 public fun coerceIngredient(ingredient: IngredientLike): Ingredient = when (ingredient) {
     is Ingredient -> ingredient
+    is ItemStack -> Ingredient.ofStacks(ingredient)
+    is ItemConvertible -> Ingredient.ofItems(ingredient)
     is Array<*> -> coerceArrayToIngredient(ingredient)
     is Collection<*> -> coerceArrayToIngredient(ingredient.toTypedArray())
     is TagKey<*> -> if (ingredient.isOfRegistry(Registry.ITEM_KEY)) {

@@ -25,14 +25,12 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.resource.ResourceManager
 import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents
 
-public typealias ReloadStart = (
-    client: MinecraftClient,
+public typealias ReloadStart = MinecraftClient.(
     manager: ResourceManager,
     isFirstLoad: Boolean
 ) -> Unit
 
-public typealias ReloadFinish = (
-    client: MinecraftClient,
+public typealias ReloadFinish = MinecraftClient.(
     manager: ResourceManager,
     isFirstLoad: Boolean,
     error: Throwable?
