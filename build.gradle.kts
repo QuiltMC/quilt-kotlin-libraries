@@ -3,10 +3,12 @@ plugins {
     alias(libs.plugins.quilt.loom)
     alias(libs.plugins.detekt)
     alias(libs.plugins.licenser)
+    id("maven-publish")
 }
 
 group = "org.quiltmc"
 version = project.version
+val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 repositories {
     mavenCentral()
@@ -46,6 +48,73 @@ allprojects {
         inputs.property("version", version)
         filesMatching("quilt.mod.json") {
             expand(Pair("version", version))
+        }
+    }
+}
+subprojects {
+    apply(plugin="maven-publish")
+    apply(plugin=rootProject.libs.plugins.quilt.loom.get().pluginId)
+    group = "org.quiltmc.quilt-kotlin-libraries"
+    version = projectVersion
+    dependencies {
+        minecraft(rootProject.libs.minecraft)
+        mappings(loom.layered {
+            addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
+        })
+
+        modImplementation(rootProject.libs.quilt.loader)
+
+        modImplementation(rootProject.libs.qsl)
+    }
+
+    tasks.remapJar {
+        archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+        dependsOn(tasks.remapSourcesJar)
+    }
+    tasks.remapSourcesJar {
+        archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+    }
+    java {
+        withSourcesJar()
+    }
+
+    publishing {
+        publications {
+            if (project.name != "wrapper") {
+                create<MavenPublication>("Maven") {
+                    artifactId = project.name
+                    if (project.name == "fatjar") {
+                        artifactId = "quilt-kotlin-libraries"
+                    }
+                    version = projectVersion
+
+                    artifact(tasks.remapSourcesJar.get().archiveFile) {
+                        builtBy(tasks.remapSourcesJar)
+                    }
+                }
+            }
+        }
+        repositories {
+            mavenLocal()
+            if (System.getenv("MAVEN_URL") != null) {
+                maven {
+                    setUrl(System.getenv("MAVEN_URL"))
+                    credentials {
+                        username = System.getenv("MAVEN_USERNAME")
+                        password = System.getenv("MAVEN_PASSWORD")
+                    }
+                    name = "Maven"
+                }
+            } else if (System.getenv("SNAPSHOTS_URL") != null) {
+                maven {
+                    setUrl(System.getenv("SNAPSHOTS_URL"))
+                    credentials {
+                        username = System.getenv("SNAPSHOTS_USERNAME")
+                        password = System.getenv("SNAPSHOTS_PASSWORD")
+                    }
+                    name = "Maven"
+                }
+            }
         }
     }
 }
