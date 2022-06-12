@@ -90,6 +90,10 @@ subprojects {
 
                     artifact(tasks.remapSourcesJar.get().archiveFile) {
                         builtBy(tasks.remapSourcesJar)
+                        this.classifier = "sources"
+                    }
+                    artifact(tasks.remapJar.get().archiveFile) {
+                        builtBy(tasks.remapJar)
                     }
                 }
             }
