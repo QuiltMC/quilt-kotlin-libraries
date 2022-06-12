@@ -38,15 +38,21 @@ public fun materialOf(
     isReplaceable: Boolean = false,
     isSolid: Boolean = true,
     isOpaque: Boolean = true,
-): Material = QuiltMaterialBuilder(color).also {
-    it.pistonBehavior(pistonBehavior)
-    if (!blocksMovement) it.allowsMovement()
-    if (isBurnable) it.burnable()
-    if (isLiquid) it.liquid()
-    if (isReplaceable) it.replaceable()
-    if (!isSolid) it.notSolid()
-    if (!isOpaque) it.lightPassesThrough()
-}.build()
+): Material = buildMaterial(color) {
+    pistonBehavior(pistonBehavior)
+    if (!blocksMovement) allowsMovement()
+    if (isBurnable) burnable()
+    if (isLiquid) liquid()
+    if (isReplaceable) replaceable()
+    if (!isSolid) notSolid()
+    if (!isOpaque) lightPassesThrough()
+}
+
+public fun buildMaterial(color: MapColor, block: QuiltMaterialBuilder.() -> Unit): Material {
+    val builder = QuiltMaterialBuilder(color)
+    builder.block()
+    return builder.build()
+}
 
 public typealias Test = (
     state: BlockState,
@@ -90,33 +96,43 @@ public fun blockSettingsOf(
     blocksVision: Test? = null,
     shouldPostProcess: Test? = null,
     isEmissive: Test? = null,
-): AbstractBlock.Settings = QuiltBlockSettings.of(material, color).also {
-    it.collidable(isCollidable)
-    it.sounds(soundGroup)
+): AbstractBlock.Settings = buildBlockSettings(material, color) {
+    collidable(isCollidable)
+    sounds(soundGroup)
     if (luminanceFunction == null) {
-        it.luminance(luminance)
+        luminance(luminance)
     } else {
-        it.luminance(luminanceFunction)
+        luminance(luminanceFunction)
     }
-    it.resistance(resistance)
-    it.hardness(hardness ?: resistance)
-    if (requiresTool) it.requiresTool()
-    if (ticksRandomly) it.ticksRandomly()
-    it.slipperiness(slipperiness)
-    it.velocityMultiplier(velocityMultiplier)
-    it.jumpVelocityMultiplier(jumpVelocityMultiplier)
+    resistance(resistance)
+    hardness(hardness ?: resistance)
+    if (requiresTool) requiresTool()
+    if (ticksRandomly) ticksRandomly()
+    slipperiness(slipperiness)
+    velocityMultiplier(velocityMultiplier)
+    jumpVelocityMultiplier(jumpVelocityMultiplier)
     when (lootTableId) {
-        is Identifier -> it.drops(lootTableId)
-        is Block -> it.dropsLike(lootTableId)
-        else -> it.dropsNothing()
+        is Identifier -> drops(lootTableId)
+        is Block -> dropsLike(lootTableId)
+        else -> dropsNothing()
     }
-    if (!isOpaque) it.nonOpaque()
-    if (isAir) it.air()
+    if (!isOpaque) nonOpaque()
+    if (isAir) air()
 
-    if (spawnCheck != null) it.allowsSpawning(spawnCheck)
-    if (isSolid != null) it.solidBlock(isSolid)
-    if (causesSuffocation != null) it.suffocates(causesSuffocation)
-    if (blocksVision != null) it.blockVision(blocksVision)
-    if (shouldPostProcess != null) it.postProcess(shouldPostProcess)
-    if (isEmissive != null) it.emissiveLighting(isEmissive)
+    if (spawnCheck != null) allowsSpawning(spawnCheck)
+    if (isSolid != null) solidBlock(isSolid)
+    if (causesSuffocation != null) suffocates(causesSuffocation)
+    if (blocksVision != null) blockVision(blocksVision)
+    if (shouldPostProcess != null) postProcess(shouldPostProcess)
+    if (isEmissive != null) emissiveLighting(isEmissive)
+}
+
+public fun buildBlockSettings(
+    material: Material,
+    color: MapColor,
+    block: QuiltBlockSettings.() -> Unit
+): AbstractBlock.Settings {
+    val settings = QuiltBlockSettings.of(material, color)
+    settings.block()
+    return settings
 }
