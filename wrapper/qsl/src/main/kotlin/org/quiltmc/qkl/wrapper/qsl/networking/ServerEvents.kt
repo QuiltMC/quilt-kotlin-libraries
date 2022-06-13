@@ -28,7 +28,10 @@ import org.quiltmc.qkl.wrapper.qsl.EventRegistration
 import org.quiltmc.qsl.networking.api.*
 
 //region: Server login events
-public typealias GenericLoginCallback = ServerLoginNetworkHandler.(MinecraftServer) -> Unit
+public typealias GenericLoginCallback = ServerLoginNetworkHandler.(
+    server: MinecraftServer
+) -> Unit
+
 public typealias LoginQueryStartCallback = ServerLoginNetworkHandler.(
     server: MinecraftServer,
     packetSender: PacketSender,
@@ -62,7 +65,10 @@ public fun EventRegistration.onLoginDisconnect(callback: GenericLoginCallback) {
 //endregion
 
 //region: Server play connection events
-public typealias GenericPlayCallback = ServerPlayNetworkHandler.(MinecraftServer) -> Unit
+public typealias GenericPlayCallback = ServerPlayNetworkHandler.(
+    server: MinecraftServer
+) -> Unit
+
 public typealias S2CPlayReadyCallback = ServerPlayNetworkHandler.(
     packetSender: PacketSender,
     server: MinecraftServer,

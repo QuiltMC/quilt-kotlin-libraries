@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalContracts::class)
+
 package org.quiltmc.qkl.wrapper.qsl
+
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 /**
  * A "containing" object to make event registration callbacks less polluting to the
@@ -27,6 +33,10 @@ public object EventRegistration
  * not have to repeatedly type `EventRegistration.onEventName` when registering
  * many events.
  */
-public fun registerEvents(func: EventRegistration.() -> Unit) {
-    EventRegistration.func()
+public fun registerEvents(action: EventRegistration.() -> Unit) {
+    contract {
+        callsInPlace(action, InvocationKind.EXACTLY_ONCE)
+    }
+
+    EventRegistration.action()
 }
