@@ -22,7 +22,7 @@ import net.minecraft.world.TeleportTarget
 import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
 
 /**
- * Teleport this entity to the [dimension] at the given [location].
+ * Teleport this entity to the [targetWorld] at the given [location].
  * If [location] is null, the entity will not be teleported.
  * If the entity in the teleported location is not the same type
  * and is not null, an exception will be thrown. Otherwise,
@@ -34,9 +34,9 @@ import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
  * unless the given entity is already in the world or is the player.
  */
 public inline fun <reified E : Entity> E.teleport(
-    dimension: ServerWorld,
+    targetWorld: ServerWorld,
     location: TeleportTarget? = null
-): E? = when (val teleported = QuiltDimensions.teleport<Entity>(this, dimension, location)) {
+): E? = when (val teleported = QuiltDimensions.teleport<Entity>(this, targetWorld, location)) {
     null -> null
     is E -> teleported
     else -> error("Unexpected teleported entity type: " +
@@ -48,6 +48,6 @@ public inline fun <reified E : Entity> E.teleport(
  * is not specified and therefore should be checked by the calling code.
  */
 public fun Entity.teleportSafe(
-    dimension: ServerWorld,
+    targetWorld: ServerWorld,
     location: TeleportTarget? = null
-): Entity? = QuiltDimensions.teleport(this, dimension, location)
+): Entity? = QuiltDimensions.teleport(this, targetWorld, location)

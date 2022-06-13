@@ -33,6 +33,9 @@ public typealias ReloadStart = MinecraftClient.(
 public typealias ReloadFinish = MinecraftClient.(
     manager: ResourceManager,
     isFirstLoad: Boolean,
+    /**
+     * The error if the reload failed, or `null` if it succeeded.
+     */
     error: Throwable?
 ) -> Unit
 
