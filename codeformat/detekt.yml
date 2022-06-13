@@ -24,6 +24,12 @@ style:
     active: true
   NewLineAtEndOfFile:
     active: true
+  UnusedImports:
+    active: true
+  UnusedPrivateMember:
+    active: true
+  UnusedPrivateClass:
+    active: true
 
 naming:
   ClassNaming:
