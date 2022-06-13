@@ -32,6 +32,8 @@ import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
  *
  * Every entity put into the world is a new copy of the entity,
  * unless the given entity is already in the world or is the player.
+ *
+ * @author sschr15
  */
 public inline fun <reified E : Entity> E.teleport(
     targetWorld: ServerWorld,
@@ -46,6 +48,8 @@ public inline fun <reified E : Entity> E.teleport(
 /**
  * A class-safe version of [teleport], where the type of the teleported entity
  * is not specified and therefore should be checked by the calling code.
+ *
+ * @author sschr15
  */
 public fun Entity.teleportSafe(
     targetWorld: ServerWorld,

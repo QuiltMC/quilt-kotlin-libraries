@@ -40,6 +40,8 @@ public typealias LoginQueryStartCallback = ServerLoginNetworkHandler.(
 
 /**
  * @see ServerLoginConnectionEvents.INIT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onLoginInit(callback: GenericLoginCallback) {
     ServerLoginConnectionEvents.INIT.register(ServerLoginConnectionEvents.Init(callback))
@@ -47,6 +49,8 @@ public fun EventRegistration.onLoginInit(callback: GenericLoginCallback) {
 
 /**
  * @see ServerLoginConnectionEvents.QUERY_START
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onLoginQueryStart(callback: LoginQueryStartCallback) {
     ServerLoginConnectionEvents.QUERY_START.register(
@@ -56,6 +60,8 @@ public fun EventRegistration.onLoginQueryStart(callback: LoginQueryStartCallback
 
 /**
  * @see ServerLoginConnectionEvents.DISCONNECT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onLoginDisconnect(callback: GenericLoginCallback) {
     ServerLoginConnectionEvents.DISCONNECT.register(
@@ -76,6 +82,8 @@ public typealias S2CPlayReadyCallback = ServerPlayNetworkHandler.(
 
 /**
  * @see ServerPlayConnectionEvents.INIT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayInit(callback: GenericPlayCallback) {
     ServerPlayConnectionEvents.INIT.register(ServerPlayConnectionEvents.Init(callback))
@@ -83,6 +91,8 @@ public fun EventRegistration.onPlayInit(callback: GenericPlayCallback) {
 
 /**
  * @see ServerPlayConnectionEvents.JOIN
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayReady(callback: S2CPlayReadyCallback) {
     ServerPlayConnectionEvents.JOIN.register(ServerPlayConnectionEvents.Join(callback))
@@ -90,6 +100,8 @@ public fun EventRegistration.onPlayReady(callback: S2CPlayReadyCallback) {
 
 /**
  * @see ServerPlayConnectionEvents.DISCONNECT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayDisconnect(callback: GenericPlayCallback) {
     ServerPlayConnectionEvents.DISCONNECT.register(
@@ -107,6 +119,8 @@ public typealias S2CPlayChannelCallback = ServerPlayNetworkHandler.(
 
 /**
  * @see S2CPlayChannelEvents.REGISTER
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayChannelRegister(callback: S2CPlayChannelCallback) {
     S2CPlayChannelEvents.REGISTER.register(S2CPlayChannelEvents.Register(callback))
@@ -114,6 +128,8 @@ public fun EventRegistration.onPlayChannelRegister(callback: S2CPlayChannelCallb
 
 /**
  * @see S2CPlayChannelEvents.UNREGISTER
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayChannelUnregister(callback: S2CPlayChannelCallback) {
     S2CPlayChannelEvents.UNREGISTER.register(S2CPlayChannelEvents.Unregister(callback))
@@ -132,6 +148,8 @@ public typealias EntityTrackingCallback = (
  * to the player to be seen.
  *
  * @see EntityTrackingEvents.START_TRACKING
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onEntityTrackingStart(callback: EntityTrackingCallback) {
     EntityTrackingEvents.START_TRACKING.register(EntityTrackingEvents.StartTracking(callback))
@@ -143,6 +161,8 @@ public fun EventRegistration.onEntityTrackingStart(callback: EntityTrackingCallb
  * to destroy the entity instance, but the entity is still on the server.
  *
  * @see EntityTrackingEvents.STOP_TRACKING
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onEntityTrackingStop(callback: EntityTrackingCallback) {
     EntityTrackingEvents.STOP_TRACKING.register(EntityTrackingEvents.StopTracking(callback))

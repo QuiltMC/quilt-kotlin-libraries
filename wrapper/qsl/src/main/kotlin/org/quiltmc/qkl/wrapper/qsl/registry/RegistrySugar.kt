@@ -29,6 +29,11 @@ import org.quiltmc.qsl.registry.attachment.api.RegistryExtensions
 import org.quiltmc.qsl.registry.attachment.api.RegistryExtensions.BuiltinAttachmentBuilder
 import kotlin.reflect.KClass
 
+/**
+ * Get a callback when a given [registry] gets a new entry.
+ *
+ * @author sschr15
+ */
 public fun <V> EventRegistration.onRegistryEntryAdded(
     registry: Registry<V>,
     callback: (RegistryEntryContext<V>) -> Unit
@@ -36,6 +41,11 @@ public fun <V> EventRegistration.onRegistryEntryAdded(
     RegistryEvents.getEntryAddEvent(registry).register(callback)
 }
 
+/**
+ * Register a [value] with the given [id] in this registry.
+ *
+ * @author sschr15
+ */
 public fun <V> Registry<in V>.register(
     id: Identifier,
     value: V,

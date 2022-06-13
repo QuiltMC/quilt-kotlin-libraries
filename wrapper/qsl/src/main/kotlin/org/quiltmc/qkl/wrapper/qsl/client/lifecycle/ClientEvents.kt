@@ -36,6 +36,8 @@ public typealias GenericClientCallback = MinecraftClient.() -> Unit
 /**
  * @see ClientLifecycleEvents.READY
  * @see ClientLifecycleEvents.Ready.readyClient
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onClientReady(callback: GenericClientCallback) {
     ClientLifecycleEvents.READY.register(ClientLifecycleEvents.Ready(callback))
@@ -44,6 +46,8 @@ public fun EventRegistration.onClientReady(callback: GenericClientCallback) {
 /**
  * @see ClientLifecycleEvents.STOPPING
  * @see ClientLifecycleEvents.Stopping.stoppingClient
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onClientStopping(callback: GenericClientCallback) {
     ClientLifecycleEvents.STOPPING.register(ClientLifecycleEvents.Stopping(callback))
@@ -52,6 +56,8 @@ public fun EventRegistration.onClientStopping(callback: GenericClientCallback) {
 /**
  * @see ClientLifecycleEvents.STOPPED
  * @see ClientLifecycleEvents.Stopped.stoppedClient
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onClientStopped(callback: GenericClientCallback) {
     ClientLifecycleEvents.STOPPED.register(ClientLifecycleEvents.Stopped(callback))
@@ -66,6 +72,8 @@ public fun EventRegistration.onClientStopped(callback: GenericClientCallback) {
  * which tends to be a code hotspot.
  * @see ClientTickEvents.START
  * @see ClientTickEvents.Start.startClientTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onClientTickStart(callback: GenericClientCallback) {
@@ -77,6 +85,8 @@ public fun EventRegistration.onClientTickStart(callback: GenericClientCallback) 
  * which tends to be a code hotspot.
  * @see ClientTickEvents.END
  * @see ClientTickEvents.End.endClientTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onClientTickFinish(callback: GenericClientCallback) {
@@ -94,6 +104,8 @@ public typealias WorldTickCallback = MinecraftClient.(World) -> Unit
  * which tends to be a code hotspot.
  * @see ClientWorldTickEvents.START
  * @see ClientWorldTickEvents.Start.startWorldTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onWorldTickStart(callback: WorldTickCallback) {
@@ -105,6 +117,8 @@ public fun EventRegistration.onWorldTickStart(callback: WorldTickCallback) {
  * which tends to be a code hotspot.
  * @see ClientWorldTickEvents.END
  * @see ClientWorldTickEvents.End.endWorldTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onWorldTickFinish(callback: WorldTickCallback) {

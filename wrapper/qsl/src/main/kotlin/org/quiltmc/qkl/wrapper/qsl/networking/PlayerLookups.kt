@@ -28,24 +28,32 @@ import org.quiltmc.qsl.networking.api.PlayerLookup
 
 /**
  * All players currently on the server.
+ *
+ * @author sschr15
  */
 public val MinecraftServer.allPlayers: Collection<ServerPlayerEntity>
     get() = PlayerLookup.all(this)
 
 /**
  * All players currently in the world or dimension.
+ *
+ * @author sschr15
  */
 public val ServerWorld.playersInWorld: Collection<ServerPlayerEntity>
     get() = PlayerLookup.world(this)
 
 /**
  * Returns the players who are currently "tracking" the chunk, i.e. who have the chunk loaded.
+ *
+ * @author sschr15
  */
 public fun ServerWorld.getPlayersTrackingChunk(pos: ChunkPos): Collection<ServerPlayerEntity> =
     PlayerLookup.tracking(this, pos)
 
 /**
  * The players who are currently "tracking" the entity, i.e. who have the entity loaded.
+ *
+ * @author sschr15
  */
 public val Entity.playersTracking: Collection<ServerPlayerEntity>
     get() = PlayerLookup.tracking(this)
@@ -53,18 +61,24 @@ public val Entity.playersTracking: Collection<ServerPlayerEntity>
 /**
  * The players who are currently "tracking" the block entity,
  * i.e. who have the block entity loaded.
+ *
+ * @author sschr15
  */
 public val BlockEntity.playersTracking: Collection<ServerPlayerEntity>
     get() = PlayerLookup.tracking(this)
 
 /**
  * Returns the players who are a max of [radius] blocks away from the [pos].
+ *
+ * @author sschr15
  */
 public fun ServerWorld.getPlayersNear(pos: Vec3d, radius: Double): Collection<ServerPlayerEntity> =
     PlayerLookup.around(this, pos, radius)
 
 /**
  * Returns the players who are a max of [radius] blocks away from the [pos].
+ *
+ * @author sschr15
  */
 public fun ServerWorld.getPlayersNear(pos: Vec3i, radius: Double): Collection<ServerPlayerEntity> =
     PlayerLookup.around(this, pos, radius)

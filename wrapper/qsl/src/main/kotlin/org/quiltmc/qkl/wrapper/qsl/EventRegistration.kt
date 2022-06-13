@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalContracts::class)
-
 package org.quiltmc.qkl.wrapper.qsl
-
-import kotlin.contracts.ExperimentalContracts
 
 /**
  * A "containing" object to make event registration callbacks less polluting to the
  * global namespace.
+ *
+ * @author sschr15
  */
 public object EventRegistration
 
@@ -30,6 +28,8 @@ public object EventRegistration
  * When registering events through QKL, this function gives a context allowing you to
  * not have to repeatedly type `EventRegistration.onEventName` when registering
  * many events.
+ *
+ * @author sschr15
  */
 public fun registerEvents(action: EventRegistration.() -> Unit) {
     EventRegistration.apply(action)

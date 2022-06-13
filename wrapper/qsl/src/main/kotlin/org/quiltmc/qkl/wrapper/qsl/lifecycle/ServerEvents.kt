@@ -34,6 +34,8 @@ public typealias GenericServerCallback = MinecraftServer.() -> Unit
 /**
  * @see ServerLifecycleEvents.STARTING
  * @see ServerLifecycleEvents.Starting.startingServer
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onServerStarting(callback: GenericServerCallback) {
     ServerLifecycleEvents.STARTING.register(ServerLifecycleEvents.Starting(callback))
@@ -42,6 +44,8 @@ public fun EventRegistration.onServerStarting(callback: GenericServerCallback) {
 /**
  * @see ServerLifecycleEvents.READY
  * @see ServerLifecycleEvents.Ready.readyServer
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onServerReady(callback: GenericServerCallback) {
     ServerLifecycleEvents.READY.register(ServerLifecycleEvents.Ready(callback))
@@ -50,6 +54,8 @@ public fun EventRegistration.onServerReady(callback: GenericServerCallback) {
 /**
  * @see ServerLifecycleEvents.STOPPING
  * @see ServerLifecycleEvents.Stopping.stoppingServer
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onServerStopping(callback: GenericServerCallback) {
     ServerLifecycleEvents.STOPPING.register(ServerLifecycleEvents.Stopping(callback))
@@ -58,6 +64,8 @@ public fun EventRegistration.onServerStopping(callback: GenericServerCallback) {
 /**
  * @see ServerLifecycleEvents.STOPPED
  * @see ServerLifecycleEvents.Stopped.exitServer
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onServerStopped(callback: GenericServerCallback) {
     ServerLifecycleEvents.STOPPED.register(ServerLifecycleEvents.Stopped(callback))
@@ -72,6 +80,8 @@ public fun EventRegistration.onServerStopped(callback: GenericServerCallback) {
  * which tends to be a code hotspot.
  * @see ServerTickEvents.START
  * @see ServerTickEvents.Start.startServerTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onServerTickStart(callback: GenericServerCallback) {
@@ -83,6 +93,8 @@ public fun EventRegistration.onServerTickStart(callback: GenericServerCallback) 
  * which tends to be a code hotspot.
  * @see ServerTickEvents.END
  * @see ServerTickEvents.End.endServerTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onServerTickEnd(callback: GenericServerCallback) {
@@ -98,6 +110,8 @@ public typealias ServerWorldCallback = MinecraftServer.(ServerWorld) -> Unit
 /**
  * @see ServerWorldLoadEvents.LOAD
  * @see ServerWorldLoadEvents.Load.loadWorld
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onServerWorldLoad(callback: ServerWorldCallback) {
     ServerWorldLoadEvents.LOAD.register(ServerWorldLoadEvents.Load(callback))
@@ -106,6 +120,8 @@ public fun EventRegistration.onServerWorldLoad(callback: ServerWorldCallback) {
 /**
  * @see ServerWorldLoadEvents.UNLOAD
  * @see ServerWorldLoadEvents.Unload.unloadWorld
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onServerWorldUnload(callback: ServerWorldCallback) {
     ServerWorldLoadEvents.UNLOAD.register(ServerWorldLoadEvents.Unload(callback))
@@ -120,6 +136,8 @@ public fun EventRegistration.onServerWorldUnload(callback: ServerWorldCallback) 
  * which tends to be a code hotspot.
  * @see ServerWorldTickEvents.START
  * @see ServerWorldTickEvents.Start.startWorldTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onServerWorldTickStart(callback: ServerWorldCallback) {
@@ -131,6 +149,8 @@ public fun EventRegistration.onServerWorldTickStart(callback: ServerWorldCallbac
  * which tends to be a code hotspot.
  * @see ServerWorldTickEvents.END
  * @see ServerWorldTickEvents.End.endWorldTick
+ *
+ * @author sschr15
  */
 @MustRunQuick
 public fun EventRegistration.onServerWorldTickEnd(callback: ServerWorldCallback) {

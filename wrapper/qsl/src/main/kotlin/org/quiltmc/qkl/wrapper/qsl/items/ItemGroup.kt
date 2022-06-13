@@ -28,6 +28,8 @@ import org.quiltmc.qsl.item.group.api.QuiltItemGroup
  * - If [iconSupplier] is not null, it will be used to create the icon for the group.
  * - If [itemListModifier] is not null, it will be used to modify the items
  *   shown in the group.
+ *
+ * @author sschr15
  */
 public fun itemGroupOf(
     id: Identifier,

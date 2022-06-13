@@ -34,12 +34,22 @@ public typealias CommandRegisterCallback<S> = CommandDispatcher<S>.(
     environment: CommandManager.RegistrationEnvironment
 ) -> Unit
 
+/**
+ * @see CommandRegistrationCallback.EVENT
+ *
+ * @author sschr15
+ */
 public fun EventRegistration.onCommandRegistration(
     callback: CommandRegisterCallback<ServerCommandSource>
 ) {
     CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback(callback))
 }
 
+/**
+ * @see ClientCommandRegistrationCallback.EVENT
+ *
+ * @author sschr15
+ */
 @Environment(EnvType.CLIENT)
 public fun EventRegistration.onClientCommandRegistration(
     callback: CommandRegisterCallback<QuiltClientCommandSource>

@@ -42,6 +42,8 @@ public typealias ReloadFinish = MinecraftClient.(
 /**
  * @see ClientResourceLoaderEvents.START_RESOURCE_PACK_RELOAD
  * @see ClientResourceLoaderEvents.StartResourcePackReload.onStartResourcePackReload
+ *
+ * @author sschr15
  */
 public fun onResourcePackReloadStart(callback: ReloadStart) {
     ClientResourceLoaderEvents.START_RESOURCE_PACK_RELOAD.register(
@@ -52,6 +54,8 @@ public fun onResourcePackReloadStart(callback: ReloadStart) {
 /**
  * @see ClientResourceLoaderEvents.END_RESOURCE_PACK_RELOAD
  * @see ClientResourceLoaderEvents.EndResourcePackReload.onEndResourcePackReload
+ *
+ * @author sschr15
  */
 public fun onResourcePackReloadFinish(callback: ReloadFinish) {
     ClientResourceLoaderEvents.END_RESOURCE_PACK_RELOAD.register(

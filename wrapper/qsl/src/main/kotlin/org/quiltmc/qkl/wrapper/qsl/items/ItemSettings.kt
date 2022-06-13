@@ -26,6 +26,13 @@ import org.quiltmc.qsl.item.setting.api.CustomDamageHandler
 import org.quiltmc.qsl.item.setting.api.CustomItemSetting
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings
 
+/**
+ * Create a [QuiltItemSettings] with the given information.
+ * Calling without specifying any parameters will create the default settings.
+ * This is enough for many items.
+ *
+ * @author sschr15
+ */
 public fun itemSettingsOf(
     maxCount: Int = 64,
     maxDamage: Int = 0,

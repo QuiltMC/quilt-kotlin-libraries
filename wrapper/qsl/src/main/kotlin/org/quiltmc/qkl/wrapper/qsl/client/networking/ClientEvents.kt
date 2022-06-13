@@ -38,6 +38,8 @@ public typealias ClientLoginCallback = ClientLoginNetworkHandler.(
 
 /**
  * @see ClientLoginConnectionEvents.INIT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onLoginInit(callback: ClientLoginCallback) {
     ClientLoginConnectionEvents.INIT.register(ClientLoginConnectionEvents.Init(callback))
@@ -45,6 +47,8 @@ public fun EventRegistration.onLoginInit(callback: ClientLoginCallback) {
 
 /**
  * @see ClientLoginConnectionEvents.QUERY_START
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onLoginQueryStart(callback: ClientLoginCallback) {
     ClientLoginConnectionEvents.QUERY_START.register(
@@ -54,6 +58,8 @@ public fun EventRegistration.onLoginQueryStart(callback: ClientLoginCallback) {
 
 /**
  * @see ClientLoginConnectionEvents.DISCONNECT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onLoginDisconnect(callback: ClientLoginCallback) {
     ClientLoginConnectionEvents.DISCONNECT.register(
@@ -74,6 +80,8 @@ public typealias ClientPlayJoinCallback = ClientPlayNetworkHandler.(
 
 /**
  * @see ClientPlayConnectionEvents.INIT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayConnectionInit(callback: ClientPlayCallback) {
     ClientPlayConnectionEvents.INIT.register(ClientPlayConnectionEvents.Init(callback))
@@ -81,6 +89,8 @@ public fun EventRegistration.onPlayConnectionInit(callback: ClientPlayCallback) 
 
 /**
  * @see ClientPlayConnectionEvents.JOIN
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayConnectionReady(callback: ClientPlayJoinCallback) {
     ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join(callback))
@@ -88,6 +98,8 @@ public fun EventRegistration.onPlayConnectionReady(callback: ClientPlayJoinCallb
 
 /**
  * @see ClientPlayConnectionEvents.DISCONNECT
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onPlayConnectionDisconnect(callback: ClientPlayCallback) {
     ClientPlayConnectionEvents.DISCONNECT.register(
@@ -105,6 +117,8 @@ public typealias C2SPlayCallback = ClientPlayNetworkHandler.(
 
 /**
  * @see C2SPlayChannelEvents.REGISTER
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onClientPlayChannelRegister(callback: C2SPlayCallback) {
     C2SPlayChannelEvents.REGISTER.register(C2SPlayChannelEvents.Register(callback))
@@ -112,6 +126,8 @@ public fun EventRegistration.onClientPlayChannelRegister(callback: C2SPlayCallba
 
 /**
  * @see C2SPlayChannelEvents.UNREGISTER
+ *
+ * @author sschr15
  */
 public fun EventRegistration.onClientPlayChannelUnregister(callback: C2SPlayCallback) {
     C2SPlayChannelEvents.UNREGISTER.register(C2SPlayChannelEvents.Unregister(callback))

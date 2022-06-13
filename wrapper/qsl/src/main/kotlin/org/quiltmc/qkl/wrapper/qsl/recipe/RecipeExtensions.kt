@@ -37,11 +37,15 @@ import org.quiltmc.qsl.recipe.api.builder.VanillaRecipeBuilders.*
  * - [ItemConvertible], [Array&lt;ItemConvertible&gt;][ItemConvertible],
  *   or [Collection&lt;ItemConvertible&gt;][ItemConvertible]
  * - [TagKey&lt;Item&gt;][TagKey]
+ *
+ * @author sschr15
  */
 public typealias IngredientLike = Any
 
 /**
  * Coerce the given [ingredient] to an [Ingredient] object.
+ *
+ * @author sschr15
  */
 @Suppress("UNCHECKED_CAST")
 public fun coerceIngredient(ingredient: IngredientLike): Ingredient = when (ingredient) {
@@ -109,6 +113,8 @@ public fun shapelessRecipe(
  *   It defaults to half the [cookTime], rounded down.
  * - [campfireCookTime] is the time in ticks it takes to cook the item in a campfire.
  *   It defaults to triple the [cookTime].
+ *
+ * @author sschr15
  */
 @Suppress("MagicNumber")
 public fun foodCookingRecipe(
@@ -159,6 +165,8 @@ public fun foodCookingRecipe(
 
 /**
  * @see RecipeManagerHelper.registerStaticRecipe
+ *
+ * @author sschr15
  */
 public fun registerStaticRecipes(vararg recipes: Recipe<*>) {
     recipes.forEach(RecipeManagerHelper::registerStaticRecipe)
@@ -166,6 +174,8 @@ public fun registerStaticRecipes(vararg recipes: Recipe<*>) {
 
 /**
  * @see RecipeManagerHelper.registerStaticRecipe
+ *
+ * @author sschr15
  */
 @Suppress("UNCHECKED_CAST") // The implementation is defined as returning the input
 public fun <C : Inventory, R : Recipe<C>> registerStaticRecipe(recipe: R): R =

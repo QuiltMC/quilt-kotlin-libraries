@@ -28,6 +28,8 @@ import org.quiltmc.qsl.block.extensions.api.QuiltMaterialBuilder
 
 /**
  * Creates a [Material] with the given settings.
+ *
+ * @author sschr15
  */
 public fun materialOf(
     color: MapColor,
@@ -72,6 +74,8 @@ public typealias EntityTest = (
  * - If [luminanceFunction] is null, [luminance] is used.
  * - If [hardness] is null, [resistance] is used.
  * - If any of the predicates are null, their default values are used.
+ *
+ * @author sschr15
  */
 public fun blockSettingsOf(
     material: Material,
