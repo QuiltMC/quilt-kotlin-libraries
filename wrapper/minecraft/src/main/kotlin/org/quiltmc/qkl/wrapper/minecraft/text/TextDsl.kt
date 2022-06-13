@@ -21,104 +21,190 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.text.data.TextData
-import net.minecraft.util.Formatting
-import java.util.*
+import org.quiltmc.qkl.core.annotations.QklDslMarker
+import java.util.Optional
 import java.util.stream.Stream
 
-public class TextDsl(action: TextDsl.() -> Unit) {
+/**
+ * This class contains the functions for building a [Text] object.
+ * To use the DSL use [buildText].
+ *
+ *
+ * @author NoComment1105
+ */
+@QklDslMarker("This is the TextDsl which is used for building Text with many options")
+public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     init {
         apply(action)
     }
 
-    public fun createTranslatable(text: String, vararg args: Any): MutableText {
-        return Text.translatable(text, args)
+    private val text: MutableText = Text.empty()
+
+    /**
+     * Adds a translatable text
+     *
+     * @param value The translation key of the text.
+     * @param args Any arguments to apply to the translatable text. Can be left
+     * empty for no arguments.
+     * @see MutableStyle for action
+     *
+     * @author NoComment1105
+     */
+    public fun translatable(
+        value: String,
+        vararg args: Any,
+        action: MutableStyle.() -> Unit = { }
+    ) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.translatable(value, args)))
     }
 
-    public fun createTranslatable(text: String): MutableText {
-        return Text.translatable(text)
+    /**
+     * Adds a literal text
+     *
+     * @param value The text.
+     * @see MutableStyle for action
+     *
+     * @author NoComment1105
+     */
+    public fun literal(value: String, action: MutableStyle.() -> Unit = { }) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.literal(value)))
     }
 
-    public fun createLiteral(text: String): MutableText {
-        return Text.literal(text)
-    }
-
-    public fun createKeyBind(key: String): MutableText {
-        return Text.keyBind(key)
-    }
-
-    public fun createNbt(
-        pathPattern: String,
-        interpreting: Boolean,
-        separator: Optional<Text>,
-        nbt: TextData
-    ): MutableText {
-        return Text.nbt(pathPattern, interpreting, separator, nbt)
-    }
-
-    public fun createNbt(
-        pathPattern: String,
-        interpreting: Boolean,
-        seperator: Optional<Text>,
-        nbt: ((ServerCommandSource) -> Stream<NbtCompound>)
-    ): MutableText {
-        return Text.nbt(pathPattern, interpreting, seperator, nbt)
-    }
-
-    public fun createText(text: String): Text {
-        return Text.of(text)
-    }
-
-    public fun createScoreboardText(name: String, objective: String): MutableText {
-        return Text.score(name, objective)
-    }
-
-    public fun createSelectorText(selector: String, separator: Optional<Text>): MutableText {
-        return Text.selector(selector, separator)
+    /**
+     * Adds a translatable text
+     *
+     * @param key The key of the Key bind
+     * @see MutableStyle for action
+     *
+     * @author NoComment1105
+     */
+    public fun keyBind(key: String, action: MutableStyle.() -> Unit = { }) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.keyBind(key)))
     }
 
 
-    public fun createEmpty(): MutableText {
-        return Text.empty()
-    }
-
-
-    public fun createFormattedTranslatable(text: String, formatting: Formatting): MutableText {
-        return createTranslatable(text).formatted(formatting)
-    }
-
-    public fun createFormattedTranslatable(
-        text: String,
-        formatting: Formatting,
-        vararg args: Any
-    ): MutableText {
-        return createTranslatable(text, args).formatted(formatting)
-    }
-
-    public fun createFormattedLiteral(text: String, formatting: Formatting): MutableText {
-        return createLiteral(text).formatted(formatting)
-    }
-
-    public fun createFormattedKeyBind(key: String, formatting: Formatting): MutableText {
-        return createKeyBind(key).formatted(formatting)
-    }
-
-    public fun createFormattedNbt(
+    /**
+     * @see Text.nbt
+     *
+     * @author NoComment1105
+     */
+    public fun nbt(
         pathPattern: String,
         interpreting: Boolean,
         separator: Optional<Text>,
         nbt: TextData,
-        formatting: Formatting
-    ): MutableText {
-        return createNbt(pathPattern, interpreting, separator, nbt).formatted(formatting)
+        action: MutableStyle.() -> Unit = { }
+    ) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.nbt(pathPattern, interpreting, separator, nbt)))
     }
 
-    public fun createFormattedNbt(
+    /**
+     * @see Text.nbt
+     *
+     * @author NoComment1105
+     */
+    public fun nbt(
         pathPattern: String,
         interpreting: Boolean,
-        seperator: Optional<Text>,
+        separator: Optional<Text>,
         nbt: ((ServerCommandSource) -> Stream<NbtCompound>),
-        formatting: Formatting
-    ): MutableText {
-        return createNbt(pathPattern, interpreting, seperator, nbt).formatted(formatting)
+        action: MutableStyle.() -> Unit = { }
+    ) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.nbt(pathPattern, interpreting, separator, nbt)))
     }
+
+    /**
+     * Add a plain text
+     *
+     * @param value The text to add
+     * @see MutableStyle for action
+     *
+     * @author NoComment1105
+     */
+    public fun text(value: String, action: MutableStyle.() -> Unit = { }) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.empty().append(value)))
+    }
+
+    /**
+     * Adds a scoreboard
+     *
+     * @param name The name to add to the scoreboard
+     * @param objective The objective of the scoreboard
+     * @see MutableStyle for action
+     *
+     * @author NoComment1105
+     */
+    public fun scoreboardText(
+        name: String,
+        objective: String,
+        action: MutableStyle.() -> Unit = { }
+    ) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.score(name, objective)))
+    }
+
+    /**
+     * Adds a resolvable entity selector
+     *
+     * @param separator the optional separator if there's multiple matches issued from the selector
+     * @param selector the selector
+     * @see MutableStyle for action
+     *
+     * @author NoComment1105
+     */
+    public fun selectorText(
+        selector: String,
+        separator: Optional<Text>,
+        action: MutableStyle.() -> Unit = { }
+    ) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        this.text.append(mutableStyle.applyTo(Text.selector(selector, separator)))
+    }
+
+    /**
+     * Adds a mutable empty text
+     *
+     * @see MutableStyle for action
+     *
+     * @author NoComment1105
+     */
+    public fun empty(action: MutableStyle.() -> Unit = { }) {
+        val mutableStyle = MutableStyle()
+        mutableStyle.apply(action)
+        text.append(mutableStyle.applyTo(Text.empty()))
+    }
+
+    /**
+     * Gets the text from the DSL
+     *
+     * @author NoComment1105
+     */
+    public fun getText(): Text {
+        return text
+    }
+}
+
+/**
+ * The DSL for building a [Text] object.
+ *
+ * @see TextDsl for action
+ *
+ * @author NoComment1105
+ */
+public fun buildText(action: TextDsl.() -> Unit): Text {
+    return TextDsl(action).getText()
 }
