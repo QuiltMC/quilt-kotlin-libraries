@@ -17,10 +17,12 @@ style:
     ignoreEnums: true
   MaxLineLength:
     active: true
-    maxLineLength: 100
+    maxLineLength: 120
   MandatoryBracesIfStatements:
     active: true
   MandatoryBracesLoops:
+    active: true
+  NewLineAtEndOfFile:
     active: true
 
 naming:
@@ -32,4 +34,14 @@ naming:
 coroutines:
   active: true
   RedundantSuspendModifier:
+    active: true
+
+comments:
+  UndocumentedPublicClass:
+    active: true
+  UndocumentedPublicFunction:
+    active: true
+  UndocumentedPublicProperty:
+    active: true
+  EndOfSentenceFormat:
     active: true
