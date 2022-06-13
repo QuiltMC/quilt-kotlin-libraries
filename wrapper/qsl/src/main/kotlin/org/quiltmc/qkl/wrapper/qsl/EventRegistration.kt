@@ -19,8 +19,6 @@
 package org.quiltmc.qkl.wrapper.qsl
 
 import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.InvocationKind
-import kotlin.contracts.contract
 
 /**
  * A "containing" object to make event registration callbacks less polluting to the
@@ -34,9 +32,5 @@ public object EventRegistration
  * many events.
  */
 public fun registerEvents(action: EventRegistration.() -> Unit) {
-    contract {
-        callsInPlace(action, InvocationKind.EXACTLY_ONCE)
-    }
-
-    EventRegistration.action()
+    EventRegistration.apply(action)
 }
