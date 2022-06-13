@@ -31,7 +31,7 @@ import org.quiltmc.qkl.core.annotations.QklDslMarker
  *
  * @author NoComment1105
  */
-@QklDslMarker("This is a utility class for TextDSL")
+@QklDslMarker
 public class MutableColor(public var rgb: Int) {
     public companion object {
         /**
@@ -79,7 +79,7 @@ public class MutableColor(public var rgb: Int) {
  *
  * @author NoComment1105
  */
-@QklDslMarker("This is a utility class for TextDSL")
+@QklDslMarker
 @Suppress("MagicNumber")
 public class MutableStyle {
     public var color: MutableColor? = null
@@ -116,12 +116,12 @@ public class MutableStyle {
     /**
      * Converts a string color to a [MutableColor]
      *
-     * @param color The color to convert
+     * @param colorCode The color to convert.
      *
      * @author NoComment1105
      */
-    public fun color(color: String) {
-        this.color = MutableColor(color.toColor())
+    public fun color(colorCode: String) {
+        this.color = MutableColor(colorCode.toColor())
     }
 
     /**

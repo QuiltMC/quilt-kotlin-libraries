@@ -21,4 +21,4 @@ package org.quiltmc.qkl.core.annotations
  * to specify that they are DSLs
  */
 @DslMarker
-public annotation class QklDslMarker(val reason: String)
+public annotation class QklDslMarker

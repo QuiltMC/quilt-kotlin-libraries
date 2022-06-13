@@ -32,13 +32,13 @@ import java.util.stream.Stream
  *
  * @author NoComment1105
  */
-@QklDslMarker("This is the TextDsl which is used for building Text with many options")
+@QklDslMarker
 public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     init {
         apply(action)
     }
 
-    private val text: MutableText = Text.empty()
+    public val text: MutableText = Text.empty()
 
     /**
      * Adds a translatable text
@@ -50,7 +50,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun translatable(
+    public inline fun translatable(
         value: String,
         vararg args: Any,
         action: MutableStyle.() -> Unit = { }
@@ -68,7 +68,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun literal(value: String, action: MutableStyle.() -> Unit = { }) {
+    public inline fun literal(value: String, action: MutableStyle.() -> Unit = { }) {
         val mutableStyle = MutableStyle()
         mutableStyle.apply(action)
         text.append(mutableStyle.applyTo(Text.literal(value)))
@@ -82,7 +82,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun keyBind(key: String, action: MutableStyle.() -> Unit = { }) {
+    public inline fun keyBind(key: String, action: MutableStyle.() -> Unit = { }) {
         val mutableStyle = MutableStyle()
         mutableStyle.apply(action)
         text.append(mutableStyle.applyTo(Text.keyBind(key)))
@@ -94,7 +94,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun nbt(
+    public inline fun nbt(
         pathPattern: String,
         interpreting: Boolean,
         separator: Optional<Text>,
@@ -111,11 +111,11 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun nbt(
+    public inline fun nbt(
         pathPattern: String,
         interpreting: Boolean,
         separator: Optional<Text>,
-        nbt: ((ServerCommandSource) -> Stream<NbtCompound>),
+        noinline nbt: ((ServerCommandSource) -> Stream<NbtCompound>),
         action: MutableStyle.() -> Unit = { }
     ) {
         val mutableStyle = MutableStyle()
@@ -131,7 +131,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun text(value: String, action: MutableStyle.() -> Unit = { }) {
+    public inline fun text(value: String, action: MutableStyle.() -> Unit = { }) {
         val mutableStyle = MutableStyle()
         mutableStyle.apply(action)
         text.append(mutableStyle.applyTo(Text.empty().append(value)))
@@ -146,7 +146,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun scoreboardText(
+    public inline fun scoreboardText(
         name: String,
         objective: String,
         action: MutableStyle.() -> Unit = { }
@@ -165,7 +165,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun selectorText(
+    public inline fun selectorText(
         selector: String,
         separator: Optional<Text>,
         action: MutableStyle.() -> Unit = { }
@@ -182,7 +182,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun empty(action: MutableStyle.() -> Unit = { }) {
+    public inline fun empty(action: MutableStyle.() -> Unit = { }) {
         val mutableStyle = MutableStyle()
         mutableStyle.apply(action)
         text.append(mutableStyle.applyTo(Text.empty()))
