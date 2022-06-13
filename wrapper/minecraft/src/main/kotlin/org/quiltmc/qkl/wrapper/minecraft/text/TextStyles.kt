@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package org.quiltmc.qkl.wrapper.minecraft.text
 
 import net.minecraft.text.MutableText
