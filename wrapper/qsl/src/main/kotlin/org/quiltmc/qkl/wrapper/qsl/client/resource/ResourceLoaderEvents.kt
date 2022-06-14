@@ -26,12 +26,12 @@ import net.minecraft.resource.ResourceManager
 import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents
 
 public typealias ReloadStart = MinecraftClient.(
-    manager: ResourceManager?,
+    manager: ResourceManager,
     isFirstLoad: Boolean
 ) -> Unit
 
 public typealias ReloadFinish = MinecraftClient.(
-    manager: ResourceManager?,
+    manager: ResourceManager,
     isFirstLoad: Boolean,
     /**
      * The error if the reload failed, or `null` if it succeeded.
