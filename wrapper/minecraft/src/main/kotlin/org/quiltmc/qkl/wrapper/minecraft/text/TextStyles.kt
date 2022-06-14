@@ -18,9 +18,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.text
 
-import net.minecraft.text.MutableText
-import net.minecraft.text.Style
-import net.minecraft.text.TextColor
+import net.minecraft.text.*
 import net.minecraft.util.Formatting
 import org.quiltmc.qkl.core.annotations.QklDslMarker
 
@@ -66,7 +64,6 @@ public class MutableColor(public var rgb: Int) {
      * @return A [TextColor] created from the [rgb] value
      *
      * @author NoComment1105
-     *
      */
     public fun toTextColor(): TextColor {
         return TextColor.fromRgb(rgb)
@@ -82,12 +79,22 @@ public class MutableColor(public var rgb: Int) {
 @QklDslMarker
 @Suppress("MagicNumber")
 public class MutableStyle {
+    /** A [MutableColor] to apply to the text. */
     public var color: MutableColor? = null
+    /** Whether to obfuscate the text or not. */
     public var obfuscated: Boolean = false
+    /** Whether to format the text in bold or not. */
     public var bold: Boolean = false
+    /** Whether to format the text in italics or not. */
     public var italic: Boolean = false
+    /** Whether to format the text with a strikethrough or not. */
     public var strikethrough: Boolean = false
+    /** Whether to format the text with an underline or not. */
     public var underline: Boolean = false
+    /** A [HoverEvent] to apply to the text. */
+    public var hoverEvent: HoverEvent? = null
+    /** A [ClickEvent] to apply to the text. */
+    public var clickEvent: ClickEvent? = null
 
     /**
      * Converts 3 separate RGB values to a [MutableColor].
@@ -165,6 +172,8 @@ public class MutableStyle {
                 withItalic(italic)
                 withStrikethrough(strikethrough)
                 withUnderline(underline)
+                withHoverEvent(this@MutableStyle.hoverEvent)
+                withClickEvent(this@MutableStyle.clickEvent)
             }
         )
     }

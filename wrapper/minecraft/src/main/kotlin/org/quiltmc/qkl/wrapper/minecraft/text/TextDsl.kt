@@ -75,7 +75,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     }
 
     /**
-     * Adds a translatable text
+     * Adds a mutable key bind text
      *
      * @param key The key of the Key bind
      * @see MutableStyle for action
@@ -193,7 +193,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public fun getText(): Text {
+    internal fun getText(): Text {
         return text
     }
 }
