@@ -126,8 +126,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.boolean(
 
 /**
  * Adds a double with [name] as the parameter name.
- * @param min the minimum value
- * @param max the maximum value
+ * @param min the minimum value.
+ * @param max the maximum value.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -147,8 +147,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.double(
 
 /**
  * Adds a float with [name] as the parameter name.
- * @param min the minimum value
- * @param max the maximum value
+ * @param min the minimum value.
+ * @param max the maximum value.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -168,8 +168,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.float(
 
 /**
  * Adds a integer with [name] as the parameter name.
- * @param min the minimum value
- * @param max the maximum value
+ * @param min the minimum value.
+ * @param max the maximum value.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -189,8 +189,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.integer(
 
 /**
  * Adds a long with [name] as the parameter name.
- * @param min the minimum value
- * @param max the maximum value
+ * @param min the minimum value.
+ * @param max the maximum value.
  *
  * @author Oliver-makes-code (Emma)
  */
