@@ -25,7 +25,8 @@ import com.mojang.brigadier.context.CommandContext
 
 public typealias RequiredArgumentAction<S> = RequiredArgumentBuilder<S, *>.() -> Unit
 public typealias LiteralArgumentAction<S> = LiteralArgumentBuilder<S>.() -> Unit
-public typealias CommandAction<S> = CommandContext<S>.() -> Int
+public typealias CommandActionReturn<S> = CommandContext<S>.() -> Int
+public typealias CommandAction<S> = CommandContext<S>.() -> Unit
 
 /**
  * Registers a command under [command] as the name.
@@ -212,8 +213,27 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.long(
  *
  * @author Oliver-makes-code (Emma)
  */
+@JvmName("executesReturn")
+public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.executes(
+    action: CommandActionReturn<S>
+) {
+    executes(action)
+}
+
+/**
+ * Adds an executor to the command tree.
+ *
+ * @author Oliver-makes-code (Emma)
+ */
 public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.executes(
     action: CommandAction<S>
 ) {
-    executes(action)
+    executes {
+        try {
+            it.action()
+            1
+        } catch (error: Throwable) {
+            0
+        }
+    }
 }
