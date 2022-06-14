@@ -187,15 +187,6 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
         mutableStyle.apply(action)
         text.append(mutableStyle.applyTo(Text.empty()))
     }
-
-    /**
-     * Gets the text from the DSL
-     *
-     * @author NoComment1105
-     */
-    internal fun getText(): Text {
-        return text
-    }
 }
 
 /**
@@ -206,5 +197,5 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
  * @author NoComment1105
  */
 public fun buildText(action: TextDsl.() -> Unit): Text {
-    return TextDsl(action).getText()
+    return TextDsl(action).text
 }
