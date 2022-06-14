@@ -125,18 +125,20 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.boolean(
 
 /**
  * Adds a double with [name] as the parameter name.
+ * @param min the minimum value
+ * @param max the maximum value
  *
  * @author Oliver-makes-code (Emma)
  */
 public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.double(
     name: String,
-    min: Double? = null,
-    max: Double? = null,
+    min: Double = -Double.MAX_VALUE,
+    max: Double = Double.MAX_VALUE,
     action: RequiredArgumentAction<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Double>(
         name,
-        DoubleArgumentType.doubleArg(min ?: -Double.MAX_VALUE, max ?: Double.MAX_VALUE)
+        DoubleArgumentType.doubleArg(min, max)
     )
     argument.apply(action)
     then(argument)
@@ -144,18 +146,20 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.double(
 
 /**
  * Adds a float with [name] as the parameter name.
+ * @param min the minimum value
+ * @param max the maximum value
  *
  * @author Oliver-makes-code (Emma)
  */
 public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.float(
     name: String,
-    min: Float? = null,
-    max: Float? = null,
+    min: Float = -Float.MAX_VALUE,
+    max: Float = Float.MAX_VALUE,
     action: RequiredArgumentAction<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Float>(
         name,
-        FloatArgumentType.floatArg(min ?: -Float.MAX_VALUE, max ?: Float.MAX_VALUE)
+        FloatArgumentType.floatArg(min, max)
     )
     argument.apply(action)
     then(argument)
@@ -163,18 +167,20 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.float(
 
 /**
  * Adds a integer with [name] as the parameter name.
+ * @param min the minimum value
+ * @param max the maximum value
  *
  * @author Oliver-makes-code (Emma)
  */
 public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.integer(
     name: String,
-    min: Int? = null,
-    max: Int? = null,
+    min: Int = -Int.MAX_VALUE,
+    max: Int = Int.MAX_VALUE,
     action: RequiredArgumentAction<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Int>(
         name,
-        IntegerArgumentType.integer(min ?: -Int.MAX_VALUE, max ?: Int.MAX_VALUE)
+        IntegerArgumentType.integer(min, max)
     )
     argument.apply(action)
     then(argument)
@@ -182,18 +188,20 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.integer(
 
 /**
  * Adds a long with [name] as the parameter name.
+ * @param min the minimum value
+ * @param max the maximum value
  *
  * @author Oliver-makes-code (Emma)
  */
 public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.long(
     name: String,
-    min: Long? = null,
-    max: Long? = null,
+    min: Long = -Long.MAX_VALUE,
+    max: Long = Long.MAX_VALUE,
     action: RequiredArgumentAction<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Long>(
         name,
-        LongArgumentType.longArg(min ?: -Long.MAX_VALUE, max ?: Long.MAX_VALUE)
+        LongArgumentType.longArg(min, max)
     )
     argument.apply(action)
     then(argument)
