@@ -56,7 +56,7 @@ public fun buildMaterial(color: MapColor, block: QuiltMaterialBuilder.() -> Unit
     return builder.build()
 }
 
-public typealias Test = (
+public typealias BlockTest = (
     state: BlockState,
     view: BlockView,
     pos: BlockPos
@@ -95,11 +95,11 @@ public fun blockSettingsOf(
     isOpaque: Boolean = true,
     isAir: Boolean = false,
     spawnCheck: EntityTest? = null,
-    isSolid: Test? = null,
-    causesSuffocation: Test? = null,
-    blocksVision: Test? = null,
-    shouldPostProcess: Test? = null,
-    isEmissive: Test? = null,
+    isSolid: BlockTest? = null,
+    causesSuffocation: BlockTest? = null,
+    blocksVision: BlockTest? = null,
+    shouldPostProcess: BlockTest? = null,
+    isEmissive: BlockTest? = null,
 ): AbstractBlock.Settings = buildBlockSettings(material, color) {
     collidable(isCollidable)
     sounds(soundGroup)
