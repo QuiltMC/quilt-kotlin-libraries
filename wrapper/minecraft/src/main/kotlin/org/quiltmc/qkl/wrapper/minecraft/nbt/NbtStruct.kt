@@ -255,6 +255,7 @@ public abstract class NbtStruct(protected val nbt: NbtCompound) {
         }
     }
 }
+private const val COMPOUND: Byte = 10
 
 /**
  * Interface containing the two operators for getting and setting via
