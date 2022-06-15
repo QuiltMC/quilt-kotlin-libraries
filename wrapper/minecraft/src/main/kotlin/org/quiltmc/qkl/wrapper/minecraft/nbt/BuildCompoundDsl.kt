@@ -26,7 +26,7 @@ import java.util.UUID
 
 /**
  * This class contains the functions for building a [NbtCompound] object.
- * To use the DSL use [nbtCompound].
+ * To use the DSL use [buildNbtCompound].
  *
  * @author leocth
  */
@@ -188,7 +188,7 @@ public class NbtCompoundDsl {
      * @author leocth
      */
     public inline fun putCompound(key: String, action: NbtCompoundDsl.() -> Unit) {
-        put(key, nbtCompound(action))
+        put(key, buildNbtCompound(action))
     }
     //endregion Primitive put methods
 
@@ -438,6 +438,6 @@ public class NbtCompoundDsl {
     }
     //endregion
 }
-public inline fun nbtCompound(action: NbtCompoundDsl.() -> Unit): NbtCompound {
+public inline fun buildNbtCompound(action: NbtCompoundDsl.() -> Unit): NbtCompound {
     return NbtCompoundDsl().apply(action).compound
 }
