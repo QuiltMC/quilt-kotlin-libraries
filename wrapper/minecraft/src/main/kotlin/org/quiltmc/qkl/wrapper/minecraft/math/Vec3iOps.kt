@@ -28,20 +28,9 @@ import kotlin.math.sqrt
  */
 public operator fun Vec3i.plus(other: Vec3i): Vec3i {
     return Vec3i(
-        this.x + other.x, 
-        this.y + other.y, 
+        this.x + other.x,
+        this.y + other.y,
         this.z + other.z
-    )
-}
-
-/**
- * Adds an Int to a [Vec3i].
- */
-public operator fun Vec3i.plus(other: Int): Vec3i {
-    return Vec3i(
-        this.x + other, 
-        this.y + other, 
-        this.z + other
     )
 }
 
@@ -50,20 +39,9 @@ public operator fun Vec3i.plus(other: Int): Vec3i {
  */
 public operator fun Vec3i.minus(other: Vec3i): Vec3i {
     return Vec3i(
-        this.x - other.x, 
-        this.y - other.y, 
+        this.x - other.x,
+        this.y - other.y,
         this.z - other.z
-    )
-}
-
-/**
- * Subtracts an Int from a [Vec3i].
- */
-public operator fun Vec3i.minus(other: Int): Vec3i {
-    return Vec3i(
-        this.x - other, 
-        this.y - other, 
-        this.z - other
     )
 }
 
@@ -72,20 +50,9 @@ public operator fun Vec3i.minus(other: Int): Vec3i {
  */
 public operator fun Vec3i.times(other: Vec3i): Vec3i {
     return Vec3i(
-        this.x * other.x, 
-        this.y * other.y, 
+        this.x * other.x,
+        this.y * other.y,
         this.z * other.z
-    )
-}
-
-/**
- * Multiplies a [Vec3i] and an Int.
- */
-public operator fun Vec3i.times(other: Int): Vec3i {
-    return Vec3i(
-        this.x * other, 
-        this.y * other, 
-        this.z * other
     )
 }
 
@@ -93,7 +60,11 @@ public operator fun Vec3i.times(other: Int): Vec3i {
  * Negates a [Vec3i].
  */
 public operator fun Vec3i.unaryMinus(): Vec3i {
-    return this.times(-1)
+    return Vec3i(
+        this.x * -1,
+        this.y * -1,
+        this.z * -1
+    )
 }
 //endregion
 
@@ -103,8 +74,8 @@ public operator fun Vec3i.unaryMinus(): Vec3i {
  */
 public operator fun Vec3i.plus(other: Vec3d): Vec3i {
     return Vec3i(
-        this.x + other.x.toInt(), 
-        this.y + other.y.toInt(), 
+        this.x + other.x.toInt(),
+        this.y + other.y.toInt(),
         this.z + other.z.toInt()
     )
 }
@@ -114,8 +85,8 @@ public operator fun Vec3i.plus(other: Vec3d): Vec3i {
  */
 public operator fun Vec3i.plus(other: Vec3f): Vec3i {
     return Vec3i(
-        this.x + other.x.toInt(), 
-        this.y + other.y.toInt(), 
+        this.x + other.x.toInt(),
+        this.y + other.y.toInt(),
         this.z + other.z.toInt()
     )
 }
@@ -125,8 +96,8 @@ public operator fun Vec3i.plus(other: Vec3f): Vec3i {
  */
 public operator fun Vec3i.plus(other: Vector3d): Vec3i {
     return Vec3i(
-        this.x + other.x.toInt(), 
-        this.y + other.y.toInt(), 
+        this.x + other.x.toInt(),
+        this.y + other.y.toInt(),
         this.z + other.z.toInt()
     )
 }
@@ -136,8 +107,8 @@ public operator fun Vec3i.plus(other: Vector3d): Vec3i {
  */
 public operator fun Vec3i.minus(other: Vec3d): Vec3i {
     return Vec3i(
-        this.x - other.x.toInt(), 
-        this.y - other.y.toInt(), 
+        this.x - other.x.toInt(),
+        this.y - other.y.toInt(),
         this.z - other.z.toInt()
     )
 }
@@ -147,8 +118,8 @@ public operator fun Vec3i.minus(other: Vec3d): Vec3i {
  */
 public operator fun Vec3i.minus(other: Vec3f): Vec3i {
     return Vec3i(
-        this.x - other.x.toInt(), 
-        this.y - other.y.toInt(), 
+        this.x - other.x.toInt(),
+        this.y - other.y.toInt(),
         this.z - other.z.toInt()
     )
 }
@@ -158,8 +129,8 @@ public operator fun Vec3i.minus(other: Vec3f): Vec3i {
  */
 public operator fun Vec3i.minus(other: Vector3d): Vec3i {
     return Vec3i(
-        this.x - other.x.toInt(), 
-        this.y - other.y.toInt(), 
+        this.x - other.x.toInt(),
+        this.y - other.y.toInt(),
         this.z - other.z.toInt()
     )
 }
@@ -169,8 +140,8 @@ public operator fun Vec3i.minus(other: Vector3d): Vec3i {
  */
 public operator fun Vec3i.times(other: Vec3d): Vec3i {
     return Vec3i(
-        this.x * other.x.toInt(), 
-        this.y * other.y.toInt(), 
+        this.x * other.x.toInt(),
+        this.y * other.y.toInt(),
         this.z * other.z.toInt()
     )
 }
@@ -180,8 +151,8 @@ public operator fun Vec3i.times(other: Vec3d): Vec3i {
  */
 public operator fun Vec3i.times(other: Vec3f): Vec3i {
     return Vec3i(
-        this.x * other.x.toInt(), 
-        this.y * other.y.toInt(), 
+        this.x * other.x.toInt(),
+        this.y * other.y.toInt(),
         this.z * other.z.toInt()
     )
 }
@@ -191,8 +162,8 @@ public operator fun Vec3i.times(other: Vec3f): Vec3i {
  */
 public operator fun Vec3i.times(other: Vector3d): Vec3i {
     return Vec3i(
-        this.x * other.x.toInt(), 
-        this.y * other.y.toInt(), 
+        this.x * other.x.toInt(),
+        this.y * other.y.toInt(),
         this.z * other.z.toInt()
     )
 }

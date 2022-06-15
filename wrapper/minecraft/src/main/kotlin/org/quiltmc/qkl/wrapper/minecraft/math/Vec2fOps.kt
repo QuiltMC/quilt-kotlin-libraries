@@ -25,18 +25,8 @@ import net.minecraft.client.util.math.Vector2f
  */
 public operator fun Vec2f.plus(other: Vec2f): Vec2f {
     return Vec2f(
-        this.x + other.x, 
+        this.x + other.x,
         this.y + other.y
-    )
-}
-
-/**
- * Adds a Float to a [Vec2f].
- */
-public operator fun Vec2f.plus(other: Float): Vec2f {
-    return Vec2f(
-        this.x + other, 
-        this.y + other
     )
 }
 
@@ -45,18 +35,8 @@ public operator fun Vec2f.plus(other: Float): Vec2f {
  */
 public operator fun Vec2f.minus(other: Vec2f): Vec2f {
     return Vec2f(
-        this.x - other.x, 
+        this.x - other.x,
         this.y - other.y
-    )
-}
-
-/**
- * Subtracts a Float from a [Vec2f].
- */
-public operator fun Vec2f.minus(other: Float): Vec2f {
-    return Vec2f(
-        this.x - other, 
-        this.y - other
     )
 }
 
@@ -65,18 +45,8 @@ public operator fun Vec2f.minus(other: Float): Vec2f {
  */
 public operator fun Vec2f.times(other: Vec2f): Vec2f {
     return Vec2f(
-        this.x * other.x, 
+        this.x * other.x,
         this.y * other.y
-    )
-}
-
-/**
- * Multiplies a [Vec2f] and a Float.
- */
-public operator fun Vec2f.times(other: Float): Vec2f {
-    return Vec2f(
-        this.x * other, 
-        this.y * other
     )
 }
 
@@ -84,7 +54,10 @@ public operator fun Vec2f.times(other: Float): Vec2f {
  * Negates a [Vec2f].
  */
 public operator fun Vec2f.unaryMinus(): Vec2f {
-    return this.times(-1f)
+    return Vec2f(
+        this.x * -1f,
+        this.y * -1f
+    )
 }
 //endregion
 
@@ -94,7 +67,7 @@ public operator fun Vec2f.unaryMinus(): Vec2f {
  */
 public operator fun Vec2f.plus(other: Vector2f): Vec2f {
     return Vec2f(
-        this.x + other.x, 
+        this.x + other.x,
         this.y + other.y
     )
 }
@@ -104,7 +77,7 @@ public operator fun Vec2f.plus(other: Vector2f): Vec2f {
  */
 public operator fun Vec2f.minus(other: Vector2f): Vec2f {
     return Vec2f(
-        this.x - other.x, 
+        this.x - other.x,
         this.y - other.y
     )
 }
@@ -114,7 +87,7 @@ public operator fun Vec2f.minus(other: Vector2f): Vec2f {
  */
 public operator fun Vec2f.times(other: Vector2f): Vec2f {
     return Vec2f(
-        this.x * other.x, 
+        this.x * other.x,
         this.y * other.y
     )
 }

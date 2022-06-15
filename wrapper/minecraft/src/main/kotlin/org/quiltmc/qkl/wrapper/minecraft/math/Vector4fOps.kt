@@ -25,22 +25,10 @@ import net.minecraft.util.math.Vector4f
  */
 public operator fun Vector4f.plus(other: Vector4f): Vector4f {
     return Vector4f(
-        this.x + other.x, 
-        this.y + other.y, 
-        this.z + other.z, 
+        this.x + other.x,
+        this.y + other.y,
+        this.z + other.z,
         this.w + other.w
-    )
-}
-
-/**
- * Adds a Float to a [Vector4f].
- */
-public operator fun Vector4f.plus(other: Float): Vector4f {
-    return Vector4f(
-        this.x + other, 
-        this.y + other, 
-        this.z + other, 
-        this.w + other
     )
 }
 
@@ -49,22 +37,10 @@ public operator fun Vector4f.plus(other: Float): Vector4f {
  */
 public operator fun Vector4f.minus(other: Vector4f): Vector4f {
     return Vector4f(
-        this.x - other.x, 
-        this.y - other.y, 
-        this.z - other.z, 
+        this.x - other.x,
+        this.y - other.y,
+        this.z - other.z,
         this.w - other.w
-    )
-}
-
-/**
- * Subtracts a Float from a [Vector4f].
- */
-public operator fun Vector4f.minus(other: Float): Vector4f {
-    return Vector4f(
-        this.x - other, 
-        this.y - other, 
-        this.z - other, 
-        this.w - other
     )
 }
 
@@ -73,22 +49,10 @@ public operator fun Vector4f.minus(other: Float): Vector4f {
  */
 public operator fun Vector4f.times(other: Vector4f): Vector4f {
     return Vector4f(
-        this.x * other.x, 
-        this.y * other.y, 
-        this.z * other.z, 
+        this.x * other.x,
+        this.y * other.y,
+        this.z * other.z,
         this.w * other.w
-    )
-}
-
-/**
- * Multiplies a [Vector4f] and a Float.
- */
-public operator fun Vector4f.times(other: Float): Vector4f {
-    return Vector4f(
-        this.x * other, 
-        this.y * other, 
-        this.z * other, 
-        this.w * other
     )
 }
 
@@ -96,7 +60,12 @@ public operator fun Vector4f.times(other: Float): Vector4f {
  * Negates a [Vector4f].
  */
 public operator fun Vector4f.unaryMinus(): Vector4f {
-    return this.times(-1f)
+    return Vector4f(
+        this.x * -1f,
+        this.y * -1f,
+        this.z * -1f,
+        this.w * -1f
+    )
 }
 //endregion
 
@@ -106,36 +75,12 @@ public operator fun Vector4f.unaryMinus(): Vector4f {
 /**
  * Adds a [Vector4f] to a [Vector4f].
  */
-public operator fun Vector4f.plusAssign(other: Float) {
-    this.set(
-        this.x + other, 
-        this.y + other, 
-        this.z + other, 
-        this.w + other
-    )
-}
-
-/**
- * Adds a [Vector4f] to a [Vector4f].
- */
 public operator fun Vector4f.plusAssign(other: Vector4f) {
     this.set(
-        this.x + other.x, 
-        this.y + other.y, 
-        this.z + other.z, 
+        this.x + other.x,
+        this.y + other.y,
+        this.z + other.z,
         this.w + other.w
-    )
-}
-
-/**
- * Subtracts a [Vector4f] from a [Vector4f].
- */
-public operator fun Vector4f.minusAssign(other: Float) {
-    this.set(
-        this.x - other, 
-        this.y - other, 
-        this.z - other, 
-        this.w - other
     )
 }
 
@@ -144,22 +89,10 @@ public operator fun Vector4f.minusAssign(other: Float) {
  */
 public operator fun Vector4f.minusAssign(other: Vector4f) {
     this.set(
-        this.x - other.x, 
-        this.y - other.y, 
-        this.z - other.z, 
+        this.x - other.x,
+        this.y - other.y,
+        this.z - other.z,
         this.w - other.w
-    )
-}
-
-/**
- * Multiplies a [Vector4f] and a [Vector4f].
- */
-public operator fun Vector4f.timesAssign(other: Float) {
-    this.set(
-        this.x * other, 
-        this.y * other, 
-        this.z * other, 
-        this.w * other
     )
 }
 
@@ -168,9 +101,9 @@ public operator fun Vector4f.timesAssign(other: Float) {
  */
 public operator fun Vector4f.timesAssign(other: Vector4f) {
     this.set(
-        this.x * other.x, 
-        this.y * other.y, 
-        this.z * other.z, 
+        this.x * other.x,
+        this.y * other.y,
+        this.z * other.z,
         this.w * other.w
     )
 }
