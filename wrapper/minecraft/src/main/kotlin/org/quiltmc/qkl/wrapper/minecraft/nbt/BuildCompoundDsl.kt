@@ -45,9 +45,9 @@ public class NbtCompoundDsl {
         compound.put(key, value)
     }
     /**
-     * Inserts a new boolean tag with the given key and value.
+     * Inserts a new [Boolean] tag with the given key and value.
      * A new [NbtByte][net.minecraft.nbt.NbtByte] will be created, and its value
-     * will be 1 if the value is true, and 0 if it is false.
+     * will be 1 if the boolean is true, and 0 if it is false.
      *
      * @author leocth
      */
@@ -55,7 +55,7 @@ public class NbtCompoundDsl {
         compound.putBoolean(key, value)
     }
     /**
-     * Inserts a new 8-bit integer number tag with the given key and value.
+     * Inserts a new [Byte] tag with the given key and value.
      * A new [NbtByte][net.minecraft.nbt.NbtByte] will be created.
      *
      * @author leocth
@@ -64,7 +64,7 @@ public class NbtCompoundDsl {
         compound.putByte(key, value)
     }
     /**
-     * Inserts a new 16-bit integer number tag with the given key and value.
+     * Inserts a new [Short] tag with the given key and value.
      * A new [NbtShort][net.minecraft.nbt.NbtShort] will be created.
      *
      * @author leocth
@@ -73,7 +73,7 @@ public class NbtCompoundDsl {
         compound.putShort(key, value)
     }
     /**
-     * Inserts a new 32-bit integer number tag with the given key and value.
+     * Inserts a new [Int] tag with the given key and value.
      * A new [NbtInt][net.minecraft.nbt.NbtInt] will be created.
      *
      * @author leocth
@@ -82,7 +82,7 @@ public class NbtCompoundDsl {
         compound.putInt(key, value)
     }
     /**
-     * Inserts a new 64-bit integer number tag with the given key and value.
+     * Inserts a new [Long] tag with the given key and value.
      * A new [NbtLong][net.minecraft.nbt.NbtLong] will be created.
      *
      * @author leocth
@@ -91,7 +91,7 @@ public class NbtCompoundDsl {
         compound.putLong(key, value)
     }
     /**
-     * Inserts a new 32-bit floating-point number tag with the given key and value.
+     * Inserts a new [Float] tag with the given key and value.
      * A new [NbtFloat][net.minecraft.nbt.NbtFloat] will be created.
      *
      * @author leocth
@@ -100,7 +100,7 @@ public class NbtCompoundDsl {
         compound.putFloat(key, value)
     }
     /**
-     * Inserts a new 64-bit floating-point number tag with the given key and value.
+     * Inserts a new [Double] tag with the given key and value.
      * A new [NbtDouble][net.minecraft.nbt.NbtDouble] will be created.
      *
      * @author leocth
@@ -109,7 +109,7 @@ public class NbtCompoundDsl {
         compound.putDouble(key, value)
     }
     /**
-     * Inserts a new string tag with the given key and value.
+     * Inserts a new [String] tag with the given key and value.
      * A new [NbtString][net.minecraft.nbt.NbtString] will be created.
      *
      * @author leocth
@@ -118,7 +118,7 @@ public class NbtCompoundDsl {
         compound.putString(key, value)
     }
     /**
-     * Inserts a new 8-bit integer array tag with the given key and value.
+     * Inserts a new [ByteArray] tag with the given key and value.
      * A new [NbtByteArray][net.minecraft.nbt.NbtByteArray] will be created.
      *
      * @author leocth
@@ -127,7 +127,7 @@ public class NbtCompoundDsl {
         compound.putByteArray(key, value)
     }
     /**
-     * Inserts a new 8-bit integer array tag with the given key and value.
+     * Inserts a new [ByteArray] tag with the given key and value.
      * A new [NbtByteArray][net.minecraft.nbt.NbtByteArray] will be created.
      *
      * @author leocth
@@ -137,7 +137,7 @@ public class NbtCompoundDsl {
         compound.putByteArray(key, value)
     }
     /**
-     * Inserts a new 32-bit integer array tag with the given key and value.
+     * Inserts a new [IntArray] tag with the given key and value.
      * A new [NbtIntArray][net.minecraft.nbt.NbtIntArray] will be created.
      *
      * @author leocth
@@ -146,9 +146,9 @@ public class NbtCompoundDsl {
         compound.putIntArray(key, value)
     }
     /**
-     * Inserts a new 32-bit integer array tag with the given key and value.
+     * Inserts a new [IntArray] tag with the given key and value.
      * A new [NbtIntArray][net.minecraft.nbt.NbtIntArray] will be created.
-     *List
+     *
      * @author leocth
      */
     @JvmName("putIntList")
@@ -156,7 +156,7 @@ public class NbtCompoundDsl {
         compound.putIntArray(key, value)
     }
     /**
-     * Inserts a new 64-bit integer array tag with the given key and value.
+     * Inserts a new [LongArray] tag with the given key and value.
      * A new [NbtLongArray][net.minecraft.nbt.NbtLongArray] will be created.
      *
      * @author leocth
@@ -165,7 +165,7 @@ public class NbtCompoundDsl {
         compound.putLongArray(key, value)
     }
     /**
-     * Inserts a new 64-bit integer array tag with the given key and value.
+     * Inserts a new [LongArray] tag with the given key and value.
      * A new [NbtLongArray][net.minecraft.nbt.NbtLongArray] will be created.
      *
      * @author leocth
@@ -179,11 +179,11 @@ public class NbtCompoundDsl {
      *
      * @author leocth
      */
-    public inline fun <T> putList(key: String, action: NbtListDsl<T>.() -> Unit) {
-        put(key, nbtList(action))
+    public inline fun putList(key: String, action: NbtListDsl.() -> Unit) {
+        put(key, buildNbtList(action))
     }
     /**
-     * Builds and inserts a new list tag with the given key.
+     * Builds and inserts a new compound tag with the given key.
      *
      * @author leocth
      */
@@ -203,8 +203,9 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 8-bit integer number tag with the given key and value.
-     * A new [NbtByte][net.minecraft.nbt.NbtByte] will be created.
+     * Inserts a new [Boolean] tag with the given key and value.
+     * A new [NbtByte][net.minecraft.nbt.NbtByte] will be created, and its value
+     * will be 1 if the boolean is true, and 0 if it is false.
      *
      * @author leocth
      */
@@ -212,9 +213,8 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new boolean tag with the given key and value.
-     * A new [NbtByte][net.minecraft.nbt.NbtByte] will be created, and its value
-     * will be 1 if the value is true, and 0 if it is false.
+     * Inserts a new [Byte] tag with the given key and value.
+     * A new [NbtByte][net.minecraft.nbt.NbtByte] will be created.
      *
      * @author leocth
      */
@@ -222,7 +222,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 16-bit integer number tag with the given key and value.
+     * Inserts a new [Short] tag with the given key and value.
      * A new [NbtShort][net.minecraft.nbt.NbtShort] will be created.
      *
      * @author leocth
@@ -231,7 +231,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 32-bit integer number tag with the given key and value.
+     * Inserts a new [Int] tag with the given key and value.
      * A new [NbtInt][net.minecraft.nbt.NbtInt] will be created.
      *
      * @author leocth
@@ -240,7 +240,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 64-bit integer number tag with the given key and value.
+     * Inserts a new [Long] tag with the given key and value.
      * A new [NbtLong][net.minecraft.nbt.NbtLong] will be created.
      *
      * @author leocth
@@ -249,7 +249,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 32-bit floating-point number tag with the given key and value.
+     * Inserts a new [Float] tag with the given key and value.
      * A new [NbtFloat][net.minecraft.nbt.NbtFloat] will be created.
      *
      * @author leocth
@@ -258,7 +258,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 64-bit floating-point number tag with the given key and value.
+     * Inserts a new [Double] tag with the given key and value.
      * A new [NbtDouble][net.minecraft.nbt.NbtDouble] will be created.
      *
      * @author leocth
@@ -267,7 +267,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new string tag with the given key and value.
+     * Inserts a new [String] tag with the given key and value.
      * A new [NbtString][net.minecraft.nbt.NbtString] will be created.
      *
      * @author leocth
@@ -276,7 +276,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 8-bit integer array tag with the given key and value.
+     * Inserts a new [ByteArray] tag with the given key and value.
      * A new [NbtByteArray][net.minecraft.nbt.NbtByteArray] will be created.
      *
      * @author leocth
@@ -285,7 +285,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 8-bit integer array tag with the given key and value.
+     * Inserts a new [ByteArray] tag with the given key and value.
      * A new [NbtByteArray][net.minecraft.nbt.NbtByteArray] will be created.
      *List
      * @author leocth
@@ -295,7 +295,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 32-bit integer array tag with the given key and value.
+     * Inserts a new [IntArray] tag with the given key and value.
      * A new [NbtIntArray][net.minecraft.nbt.NbtIntArray] will be created.
      *
      * @author leocth
@@ -304,7 +304,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 32-bit integer array tag with the given key and value.
+     * Inserts a new [IntArray] tag with the given key and value.
      * A new [NbtIntArray][net.minecraft.nbt.NbtIntArray] will be created.
      *List
      * @author leocth
@@ -314,7 +314,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 64-bit integer array tag with the given key and value.
+     * Inserts a new [LongArray] tag with the given key and value.
      * A new [NbtLongArray][net.minecraft.nbt.NbtLongArray] will be created.
      *
      * @author leocth
@@ -323,7 +323,7 @@ public class NbtCompoundDsl {
         put(this, value)
     }
     /**
-     * Inserts a new 64-bit integer array tag with the given key and value.
+     * Inserts a new [LongArray] tag with the given key and value.
      * A new [NbtLongArray][net.minecraft.nbt.NbtLongArray] will be created.
      *
      * @author leocth
@@ -337,15 +337,15 @@ public class NbtCompoundDsl {
      *
      * @author leocth
      */
-    public inline fun <T> String.list(action: NbtListDsl<T>.() -> Unit) {
+    public inline infix fun String.list(action: NbtListDsl.() -> Unit) {
         putList(this, action)
     }
     /**
-     * Builds and inserts a new list tag with the given key.
+     * Builds and inserts a new compound tag with the given key.
      *
      * @author leocth
      */
-    public inline fun String.compound(action: NbtCompoundDsl.() -> Unit) {
+    public inline infix fun String.compound(action: NbtCompoundDsl.() -> Unit) {
         putCompound(this, action)
     }
     //endregion Abbreviated syntax for primitive put methods
@@ -438,6 +438,12 @@ public class NbtCompoundDsl {
     }
     //endregion
 }
+/**
+ * Builds a new [NbtCompound].
+ *
+ * @see NbtCompoundDsl
+ * @author leocth
+ */
 public inline fun buildNbtCompound(action: NbtCompoundDsl.() -> Unit): NbtCompound {
     return NbtCompoundDsl().apply(action).compound
 }

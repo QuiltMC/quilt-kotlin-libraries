@@ -267,6 +267,13 @@ private const val COMPOUND: Byte = 10
  * @author leocth
  */
 public interface NbtDelegate<T> {
+    /**
+     * Gets the value of the property.
+     */
     public operator fun getValue(self: Any?, property: KProperty<*>): T
+
+    /**
+     * Sets the property to the given value.
+     */
     public operator fun setValue(self: Any?, property: KProperty<*>, value: T)
 }
