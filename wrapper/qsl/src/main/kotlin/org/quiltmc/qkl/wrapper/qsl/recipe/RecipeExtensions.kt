@@ -38,6 +38,8 @@ import org.quiltmc.qsl.recipe.api.builder.VanillaRecipeBuilders.*
  *   or [Collection&lt;ItemConvertible&gt;][ItemConvertible]
  * - [TagKey&lt;Item&gt;][TagKey]
  *
+ * TODO: Change into a union type if Kotlin (in the future) supports them.
+ *
  * @author sschr15
  */
 public typealias IngredientLike = Any
