@@ -20,17 +20,17 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
 /**
- * A RegistryObject with a name parameter, registers under your modid
- * @param modid The modid to register under
- * @param name The name to register under
- * @param t The object to register
+ * A RegistryObject with a name parameter, registers under your modid.
+ * @param modid The modid to register under.
+ * @param name The name to register under.
+ * @param t The object to register.
  *
  * @author Oliver-makes-code (Emma)
  * */
 public data class RegistryObject<T>(val modid: String, val name: String, val t: T) {
     /**
-     * Registers a RegistryObject
-     * @param registry The registry to register to
+     * Registers a RegistryObject.
+     * @param registry The registry to register to.
      *
      * @author Oliver-makes-code (Emma)
      * */
@@ -40,16 +40,16 @@ public data class RegistryObject<T>(val modid: String, val name: String, val t: 
 }
 
 /**
- * Represents an action with a registry
- * @param modid The modid to register under
- * @param registry The registry to register to
+ * Represents an action with a registry.
+ * @param modid The modid to register under.
+ * @param registry The registry to register to.
  *
  * @author Oliver-makes-code (Emma)
  * */
 public data class RegistryAction<T>(val modid: String?, val registry: Registry<T>) {
     /**
-     * Registers an object with a given Identifier
-     * @param id The Identifier to register under
+     * Registers an object with a given Identifier.
+     * @param id The Identifier to register under.
      *
      * @author Oliver-makes-code (Emma)
      * */
@@ -58,10 +58,10 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
     }
 
     /**
-     * Registers an object with a given name
+     * Registers an object with a given name.
      *
-     * If no modid is present, it uses `"modid:name"` format
-     * @param name The name to register under
+     * If no modid is present, it uses `"modid:name"` format.
+     * @param name The name to register under.
      *
      * @author Oliver-makes-code (Emma)
      * */
@@ -75,9 +75,9 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
 }
 
 /**
- * Registry DSL class, used to register objects more cleanly
- * @param modid The modid you want to register under
- * @param action The DSL action
+ * Registry DSL class, used to register objects more cleanly.
+ * @param modid The modid you want to register under.
+ * @param action The DSL action.
  *
  * @author Oliver-makes-code (Emma)
  * */
@@ -87,8 +87,8 @@ public class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Un
     }
 
     /**
-     * Creates a RegistryObject
-     * @param name The name to register under
+     * Creates a RegistryObject.
+     * @param name The name to register under.
      *
      * @author Oliver-makes-code (Emma)
      * */
@@ -97,8 +97,8 @@ public class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Un
     }
 
     /**
-     * Applies a RegistryAction
-     * @param action The action
+     * Applies a RegistryAction.
+     * @param action The action.
      *
      * @author Oliver-makes-code (Emma)
      * */
@@ -108,9 +108,9 @@ public class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Un
 }
 
 /**
- * Applies a RegistryAction
- * @param modid The modid to register under
- * @param action The action
+ * Applies a RegistryAction.
+ * @param modid The modid to register under.
+ * @param action The action.
  *
  * @author Oliver-makes-code (Emma)
  * */
@@ -119,8 +119,8 @@ public operator fun <T> Registry<T>.invoke(modid: String, action: RegistryAction
 }
 
 /**
- * Applies a RegistryAction
- * @param action The action
+ * Applies a RegistryAction.
+ * @param action The action.
  *
  * @author Oliver-makes-code (Emma)
  * */
@@ -129,8 +129,8 @@ public operator fun <T> Registry<T>.invoke(action: RegistryAction<T>.() -> Unit)
 }
 
 /**
- * Creates a RegistryObject
- * @param id The Identifier to register under
+ * Creates a RegistryObject.
+ * @param id The Identifier to register under.
  *
  * @author Oliver-makes-code (Emma)
  * */
