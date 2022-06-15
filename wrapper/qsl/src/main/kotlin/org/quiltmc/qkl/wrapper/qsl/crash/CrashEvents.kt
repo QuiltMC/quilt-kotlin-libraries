@@ -30,8 +30,8 @@ import net.minecraft.world.World
 import org.quiltmc.qkl.wrapper.qsl.EventRegistration
 import org.quiltmc.qsl.crash.api.CrashReportEvents
 
-public typealias ReportDetails<T> = T.(section: CrashReportSection) -> Unit
-public typealias BlockDetails = HeightLimitView.(
+public typealias CrashDetailCallback<T> = T.(section: CrashReportSection) -> Unit
+public typealias CrashBlockDetailCallback = HeightLimitView.(
     pos: BlockPos,
     state: BlockState?,
     section: CrashReportSection
@@ -53,7 +53,7 @@ public fun EventRegistration.onAddSystemDetails(callback: SystemDetails.() -> Un
  *
  * @author sschr15
  */
-public fun EventRegistration.onAddAffectedWorldDetails(callback: ReportDetails<World>) {
+public fun EventRegistration.onAddAffectedWorldDetails(callback: CrashDetailCallback<World>) {
     CrashReportEvents.WORLD_DETAILS.register(CrashReportEvents.WorldDetails(callback))
 }
 
@@ -63,7 +63,7 @@ public fun EventRegistration.onAddAffectedWorldDetails(callback: ReportDetails<W
  *
  * @author sschr15
  */
-public fun EventRegistration.onAddBlockDetails(callback: BlockDetails) {
+public fun EventRegistration.onAddBlockDetails(callback: CrashBlockDetailCallback) {
     CrashReportEvents.BLOCK_DETAILS.register(CrashReportEvents.BlockDetails(callback))
 }
 
@@ -73,7 +73,7 @@ public fun EventRegistration.onAddBlockDetails(callback: BlockDetails) {
  *
  * @author sschr15
  */
-public fun EventRegistration.onAddEntityDetails(callback: ReportDetails<Entity>) {
+public fun EventRegistration.onAddEntityDetails(callback: CrashDetailCallback<Entity>) {
     CrashReportEvents.ENTITY_DETAILS.register(CrashReportEvents.EntityDetails(callback))
 }
 
@@ -83,7 +83,7 @@ public fun EventRegistration.onAddEntityDetails(callback: ReportDetails<Entity>)
  *
  * @author sschr15
  */
-public fun EventRegistration.onAddBlockEntityDetails(callback: ReportDetails<BlockEntity>) {
+public fun EventRegistration.onAddBlockEntityDetails(callback: CrashDetailCallback<BlockEntity>) {
     CrashReportEvents.BLOCKENTITY_DETAILS.register(CrashReportEvents.BlockEntityDetails(callback))
 }
 
