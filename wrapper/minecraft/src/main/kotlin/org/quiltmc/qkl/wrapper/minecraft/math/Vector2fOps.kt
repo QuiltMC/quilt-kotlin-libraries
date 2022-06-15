@@ -162,4 +162,3 @@ public fun Vector2f.lengthSquared(): Float {
     return this.x * this.x + this.y * this.y
 }
 //endregion
-

@@ -254,4 +254,3 @@ public infix fun Vec3d.cross(other: Vector3d): Vec3d {
     return this.crossProduct(Vec3d(other.x, other.y, other.z))
 }
 //endregion
-

@@ -203,7 +203,11 @@ public operator fun Vec3f.times(other: Vector3d): Vec3f {
  * Adds a [Vec3f] to a [Vec3f].
  */
 public operator fun Vec3f.plusAssign(other: Float) {
-    this.plus(other)
+    this.set(
+        this.x + other,
+        this.y + other,
+        this.z + other
+    )
 }
 
 /**
@@ -211,8 +215,8 @@ public operator fun Vec3f.plusAssign(other: Float) {
  */
 public operator fun Vec3f.plusAssign(other: Vec3d) {
     this.set(
-        this.x + other.x.toFloat(), 
-        this.y + other.y.toFloat(), 
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
         this.z + other.z.toFloat()
     )
 }
@@ -222,8 +226,8 @@ public operator fun Vec3f.plusAssign(other: Vec3d) {
  */
 public operator fun Vec3f.plusAssign(other: Vec3f) {
     this.set(
-        this.x + other.x, 
-        this.y + other.y, 
+        this.x + other.x,
+        this.y + other.y,
         this.z + other.z
     )
 }
@@ -233,8 +237,8 @@ public operator fun Vec3f.plusAssign(other: Vec3f) {
  */
 public operator fun Vec3f.plusAssign(other: Vec3i) {
     this.set(
-        this.x + other.x.toFloat(), 
-        this.y + other.y.toFloat(), 
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
         this.z + other.z.toFloat()
     )
 }
@@ -244,8 +248,8 @@ public operator fun Vec3f.plusAssign(other: Vec3i) {
  */
 public operator fun Vec3f.plusAssign(other: Vector3d) {
     this.set(
-        this.x + other.x.toFloat(), 
-        this.y + other.y.toFloat(), 
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
         this.z + other.z.toFloat()
     )
 }
@@ -254,7 +258,11 @@ public operator fun Vec3f.plusAssign(other: Vector3d) {
  * Subtracts a [Vec3f] from a [Vec3f].
  */
 public operator fun Vec3f.minusAssign(other: Float) {
-    this.minus(other)
+    this.set(
+        this.x - other,
+        this.y - other,
+        this.z - other
+    )
 }
 
 /**
@@ -262,8 +270,8 @@ public operator fun Vec3f.minusAssign(other: Float) {
  */
 public operator fun Vec3f.minusAssign(other: Vec3d) {
     this.set(
-        this.x - other.x.toFloat(), 
-        this.y - other.y.toFloat(), 
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
         this.z - other.z.toFloat()
     )
 }
@@ -273,8 +281,8 @@ public operator fun Vec3f.minusAssign(other: Vec3d) {
  */
 public operator fun Vec3f.minusAssign(other: Vec3f) {
     this.set(
-        this.x - other.x, 
-        this.y - other.y, 
+        this.x - other.x,
+        this.y - other.y,
         this.z - other.z
     )
 }
@@ -284,8 +292,8 @@ public operator fun Vec3f.minusAssign(other: Vec3f) {
  */
 public operator fun Vec3f.minusAssign(other: Vec3i) {
     this.set(
-        this.x - other.x.toFloat(), 
-        this.y - other.y.toFloat(), 
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
         this.z - other.z.toFloat()
     )
 }
@@ -295,8 +303,8 @@ public operator fun Vec3f.minusAssign(other: Vec3i) {
  */
 public operator fun Vec3f.minusAssign(other: Vector3d) {
     this.set(
-        this.x - other.x.toFloat(), 
-        this.y - other.y.toFloat(), 
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
         this.z - other.z.toFloat()
     )
 }
@@ -305,7 +313,11 @@ public operator fun Vec3f.minusAssign(other: Vector3d) {
  * Multiplies a [Vec3f] and a [Vec3f].
  */
 public operator fun Vec3f.timesAssign(other: Float) {
-    this.times(other)
+    this.set(
+        this.x * other,
+        this.y * other,
+        this.z * other
+    )
 }
 
 /**
@@ -313,8 +325,8 @@ public operator fun Vec3f.timesAssign(other: Float) {
  */
 public operator fun Vec3f.timesAssign(other: Vec3d) {
     this.set(
-        this.x * other.x.toFloat(), 
-        this.y * other.y.toFloat(), 
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
         this.z * other.z.toFloat()
     )
 }
@@ -324,8 +336,8 @@ public operator fun Vec3f.timesAssign(other: Vec3d) {
  */
 public operator fun Vec3f.timesAssign(other: Vec3f) {
     this.set(
-        this.x * other.x, 
-        this.y * other.y, 
+        this.x * other.x,
+        this.y * other.y,
         this.z * other.z
     )
 }
@@ -335,8 +347,8 @@ public operator fun Vec3f.timesAssign(other: Vec3f) {
  */
 public operator fun Vec3f.timesAssign(other: Vec3i) {
     this.set(
-        this.x * other.x.toFloat(), 
-        this.y * other.y.toFloat(), 
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
         this.z * other.z.toFloat()
     )
 }
@@ -346,8 +358,8 @@ public operator fun Vec3f.timesAssign(other: Vec3i) {
  */
 public operator fun Vec3f.timesAssign(other: Vector3d) {
     this.set(
-        this.x * other.x.toFloat(), 
-        this.y * other.y.toFloat(), 
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
         this.z * other.z.toFloat()
     )
 }
@@ -440,4 +452,3 @@ public fun Vec3f.lengthSquared(): Float {
     return x * x + y * y + z * z
 }
 //endregion
-

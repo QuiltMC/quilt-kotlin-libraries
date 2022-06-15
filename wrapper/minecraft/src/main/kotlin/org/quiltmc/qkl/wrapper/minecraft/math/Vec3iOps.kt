@@ -269,4 +269,3 @@ public fun Vec3i.lengthSquared(): Int {
     return x * x + y * y + z * z
 }
 //endregion
-

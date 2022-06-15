@@ -135,4 +135,3 @@ public infix fun Vec2f.dot(other: Vector2f): Float {
     return this.dot(Vec2f(other.x, other.y))
 }
 //endregion
-

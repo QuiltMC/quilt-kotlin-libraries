@@ -203,7 +203,9 @@ public operator fun Vector3d.times(other: Vec3i): Vector3d {
  * Adds a [Vector3d] to a [Vector3d].
  */
 public operator fun Vector3d.plusAssign(other: Double) {
-    this.plus(other)
+    this.x = this.x + other
+    this.y = this.y + other
+    this.z = this.z + other
 }
 
 /**
@@ -246,7 +248,9 @@ public operator fun Vector3d.plusAssign(other: Vector3d) {
  * Subtracts a [Vector3d] from a [Vector3d].
  */
 public operator fun Vector3d.minusAssign(other: Double) {
-    this.minus(other)
+    this.x = this.x - other
+    this.y = this.y - other
+    this.z = this.z - other
 }
 
 /**
@@ -289,7 +293,9 @@ public operator fun Vector3d.minusAssign(other: Vector3d) {
  * Multiplies a [Vector3d] and a [Vector3d].
  */
 public operator fun Vector3d.timesAssign(other: Double) {
-    this.times(other)
+    this.x = this.x * other
+    this.y = this.y * other
+    this.z = this.z * other
 }
 
 /**
@@ -428,4 +434,3 @@ public fun Vector3d.lengthSquared(): Double {
     return this.x * this.x + this.y * this.y + this.z * this.z
 }
 //endregion
-
