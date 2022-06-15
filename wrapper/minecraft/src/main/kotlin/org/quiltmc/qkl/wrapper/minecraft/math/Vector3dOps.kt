@@ -377,4 +377,25 @@ public fun Vector3d.length(): Double {
 public fun Vector3d.lengthSquared(): Double {
     return this.x * this.x + this.y * this.y + this.z * this.z
 }
+
+/**
+ * The first component of a [Vector3d].
+ */
+public operator fun Vector3d.component1(): Double {
+    return this.x
+}
+
+/**
+ * The second component of a [Vector3d].
+ */
+public operator fun Vector3d.component2(): Double {
+    return this.y
+}
+
+/**
+ * The third component of a [Vector3d].
+ */
+public operator fun Vector3d.component3(): Double {
+    return this.z
+}
 //endregion

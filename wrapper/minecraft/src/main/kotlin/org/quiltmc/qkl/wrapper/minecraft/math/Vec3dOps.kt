@@ -224,4 +224,25 @@ public infix fun Vec3d.dot(other: Vector3d): Double {
 public infix fun Vec3d.cross(other: Vector3d): Vec3d {
     return this.crossProduct(Vec3d(other.x, other.y, other.z))
 }
+
+/**
+ * The first component of a [Vec3d].
+ */
+public operator fun Vec3d.component1(): Double {
+    return this.x
+}
+
+/**
+ * The second component of a [Vec3d].
+ */
+public operator fun Vec3d.component2(): Double {
+    return this.y
+}
+
+/**
+ * The third component of a [Vec3d].
+ */
+public operator fun Vec3d.component3(): Double {
+    return this.z
+}
 //endregion

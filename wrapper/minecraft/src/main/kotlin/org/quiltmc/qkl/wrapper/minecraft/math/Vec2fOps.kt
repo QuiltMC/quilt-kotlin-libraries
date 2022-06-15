@@ -107,4 +107,18 @@ public infix fun Vec2f.dot(other: Vec2f): Float {
 public infix fun Vec2f.dot(other: Vector2f): Float {
     return this.dot(Vec2f(other.x, other.y))
 }
+
+/**
+ * The first component of a [Vec2f].
+ */
+public operator fun Vec2f.component1(): Float {
+    return this.x
+}
+
+/**
+ * The second component of a [Vec2f].
+ */
+public operator fun Vec2f.component2(): Float {
+    return this.y
+}
 //endregion

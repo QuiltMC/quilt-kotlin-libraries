@@ -239,4 +239,25 @@ public fun Vec3i.length(): Double {
 public fun Vec3i.lengthSquared(): Int {
     return x * x + y * y + z * z
 }
+
+/**
+ * The first component of a [Vec3i].
+ */
+public operator fun Vec3i.component1(): Int {
+    return this.x
+}
+
+/**
+ * The second component of a [Vec3i].
+ */
+public operator fun Vec3i.component2(): Int {
+    return this.y
+}
+
+/**
+ * The third component of a [Vec3i].
+ */
+public operator fun Vec3i.component3(): Int {
+    return this.z
+}
 //endregion
