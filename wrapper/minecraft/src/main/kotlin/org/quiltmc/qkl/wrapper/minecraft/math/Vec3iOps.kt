@@ -57,14 +57,21 @@ public operator fun Vec3i.times(other: Vec3i): Vec3i {
 }
 
 /**
+ * Multiplies a [Vec3i] and an Int.
+ */
+public operator fun Vec3i.times(other: Int): Vec3i {
+    return Vec3i(
+        this.x * other,
+        this.y * other,
+        this.z * other
+    )
+}
+
+/**
  * Negates a [Vec3i].
  */
 public operator fun Vec3i.unaryMinus(): Vec3i {
-    return Vec3i(
-        this.x * -1,
-        this.y * -1,
-        this.z * -1
-    )
+    return this.times(-1)
 }
 //endregion
 

@@ -51,13 +51,20 @@ public operator fun Vec2f.times(other: Vec2f): Vec2f {
 }
 
 /**
+ * Multiplies a [Vec2f] and a Float.
+ */
+public operator fun Vec2f.times(other: Float): Vec2f {
+    return Vec2f(
+        this.x * other,
+        this.y * other
+    )
+}
+
+/**
  * Negates a [Vec2f].
  */
 public operator fun Vec2f.unaryMinus(): Vec2f {
-    return Vec2f(
-        this.x * -1f,
-        this.y * -1f
-    )
+    return this.times(-1f)
 }
 //endregion
 

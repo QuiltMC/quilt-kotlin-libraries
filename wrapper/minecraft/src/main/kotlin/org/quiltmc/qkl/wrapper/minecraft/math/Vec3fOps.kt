@@ -57,14 +57,21 @@ public operator fun Vec3f.times(other: Vec3f): Vec3f {
 }
 
 /**
+ * Multiplies a [Vec3f] and a Float.
+ */
+public operator fun Vec3f.times(other: Float): Vec3f {
+    return Vec3f(
+        this.x * other,
+        this.y * other,
+        this.z * other
+    )
+}
+
+/**
  * Negates a [Vec3f].
  */
 public operator fun Vec3f.unaryMinus(): Vec3f {
-    return Vec3f(
-        this.x * -1f,
-        this.y * -1f,
-        this.z * -1f
-    )
+    return this.times(-1f)
 }
 //endregion
 
@@ -255,6 +262,17 @@ public operator fun Vec3f.minusAssign(other: Vector3d) {
         this.x - other.x.toFloat(),
         this.y - other.y.toFloat(),
         this.z - other.z.toFloat()
+    )
+}
+
+/**
+ * Multiplies a [Vec3f] and a [Vec3f].
+ */
+public operator fun Vec3f.timesAssign(other: Float) {
+    this.set(
+        this.x * other,
+        this.y * other,
+        this.z * other
     )
 }
 

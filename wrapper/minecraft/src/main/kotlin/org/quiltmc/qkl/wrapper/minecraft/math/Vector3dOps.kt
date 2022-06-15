@@ -57,14 +57,21 @@ public operator fun Vector3d.times(other: Vector3d): Vector3d {
 }
 
 /**
+ * Multiplies a [Vector3d] and a Double.
+ */
+public operator fun Vector3d.times(other: Double): Vector3d {
+    return Vector3d(
+        this.x * other,
+        this.y * other,
+        this.z * other
+    )
+}
+
+/**
  * Negates a [Vector3d].
  */
 public operator fun Vector3d.unaryMinus(): Vector3d {
-    return Vector3d(
-        this.x * -1.0,
-        this.y * -1.0,
-        this.z * -1.0
-    )
+    return this.times(-1.0)
 }
 //endregion
 
@@ -240,6 +247,15 @@ public operator fun Vector3d.minusAssign(other: Vector3d) {
     this.x = this.x - other.x
     this.y = this.y - other.y
     this.z = this.z - other.z
+}
+
+/**
+ * Multiplies a [Vector3d] and a [Vector3d].
+ */
+public operator fun Vector3d.timesAssign(other: Double) {
+    this.x = this.x * other
+    this.y = this.y * other
+    this.z = this.z * other
 }
 
 /**

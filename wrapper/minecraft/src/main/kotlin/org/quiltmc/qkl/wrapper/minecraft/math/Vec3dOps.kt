@@ -56,14 +56,21 @@ public operator fun Vec3d.times(other: Vec3d): Vec3d {
 }
 
 /**
+ * Multiplies a [Vec3d] and a Double.
+ */
+public operator fun Vec3d.times(other: Double): Vec3d {
+    return Vec3d(
+        this.x * other,
+        this.y * other,
+        this.z * other
+    )
+}
+
+/**
  * Negates a [Vec3d].
  */
 public operator fun Vec3d.unaryMinus(): Vec3d {
-    return Vec3d(
-        this.x * -1.0,
-        this.y * -1.0,
-        this.z * -1.0
-    )
+    return this.times(-1.0)
 }
 //endregion
 
