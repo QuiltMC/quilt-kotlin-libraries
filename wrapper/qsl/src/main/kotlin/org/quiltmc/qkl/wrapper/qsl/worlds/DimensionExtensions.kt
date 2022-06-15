@@ -37,7 +37,7 @@ import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
  */
 public inline fun <reified E : Entity> E.teleport(
     targetWorld: ServerWorld,
-    location: TeleportTarget? = null
+    location: TeleportTarget
 ): E? = when (val teleported = QuiltDimensions.teleport<Entity>(this, targetWorld, location)) {
     null -> null
     is E -> teleported
@@ -47,11 +47,11 @@ public inline fun <reified E : Entity> E.teleport(
 
 /**
  * A class-safe version of [teleport], where the type of the teleported entity
- * is not specified and therefore should be checked by the calling code.
+ * is not specified and therefore may have changed when teleported.
  *
  * @author sschr15
  */
-public fun Entity.teleportSafe(
+public fun Entity.teleportGeneral(
     targetWorld: ServerWorld,
-    location: TeleportTarget? = null
+    location: TeleportTarget
 ): Entity? = QuiltDimensions.teleport(this, targetWorld, location)
