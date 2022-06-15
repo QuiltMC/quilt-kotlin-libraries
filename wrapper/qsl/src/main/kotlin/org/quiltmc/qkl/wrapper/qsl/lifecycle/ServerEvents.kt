@@ -21,7 +21,6 @@ package org.quiltmc.qkl.wrapper.qsl.lifecycle
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.world.ServerWorld
 import org.quiltmc.qkl.wrapper.qsl.EventRegistration
-import org.quiltmc.qkl.wrapper.qsl.MustRunQuick
 import org.quiltmc.qsl.lifecycle.api.event.ServerLifecycleEvents
 import org.quiltmc.qsl.lifecycle.api.event.ServerTickEvents
 import org.quiltmc.qsl.lifecycle.api.event.ServerWorldLoadEvents
@@ -76,27 +75,23 @@ public fun EventRegistration.onServerStopped(callback: GenericServerCallback) {
 //region: Server tick events
 
 /**
- * This is annotated with [MustRunQuick] because it runs every tick,
- * which tends to be a code hotspot.
+ * This tends to be a code hotspot, so any code should be sure to run quickly.
  * @see ServerTickEvents.START
  * @see ServerTickEvents.Start.startServerTick
  *
  * @author sschr15
  */
-@MustRunQuick
 public fun EventRegistration.onServerTickStart(callback: GenericServerCallback) {
     ServerTickEvents.START.register(ServerTickEvents.Start(callback))
 }
 
 /**
- * This is annotated with [MustRunQuick] because it runs every tick,
- * which tends to be a code hotspot.
+ * This tends to be a code hotspot, so any code should be sure to run quickly.
  * @see ServerTickEvents.END
  * @see ServerTickEvents.End.endServerTick
  *
  * @author sschr15
  */
-@MustRunQuick
 public fun EventRegistration.onServerTickEnd(callback: GenericServerCallback) {
     ServerTickEvents.END.register(ServerTickEvents.End(callback))
 }
@@ -132,27 +127,23 @@ public fun EventRegistration.onServerWorldUnload(callback: ServerWorldCallback) 
 //region: Server world tick events
 
 /**
- * This is annotated with [MustRunQuick] because it runs every tick,
- * which tends to be a code hotspot.
+ * This tends to be a code hotspot, so any code should be sure to run quickly.
  * @see ServerWorldTickEvents.START
  * @see ServerWorldTickEvents.Start.startWorldTick
  *
  * @author sschr15
  */
-@MustRunQuick
 public fun EventRegistration.onServerWorldTickStart(callback: ServerWorldCallback) {
     ServerWorldTickEvents.START.register(ServerWorldTickEvents.Start(callback))
 }
 
 /**
- * This is annotated with [MustRunQuick] because it runs every tick,
- * which tends to be a code hotspot.
+ * This tends to be a code hotspot, so any code should be sure to run quickly.
  * @see ServerWorldTickEvents.END
  * @see ServerWorldTickEvents.End.endWorldTick
  *
  * @author sschr15
  */
-@MustRunQuick
 public fun EventRegistration.onServerWorldTickEnd(callback: ServerWorldCallback) {
     ServerWorldTickEvents.END.register(ServerWorldTickEvents.End(callback))
 }
