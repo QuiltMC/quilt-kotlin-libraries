@@ -31,7 +31,7 @@ import kotlin.reflect.full.memberFunctions
 import kotlin.reflect.jvm.jvmErasure
 
 /**
- * Kotlin Language Adapter
+ * Kotlin Language Adapter.
  *
  * @author Oliver-makes-code (Emma)
  * */
