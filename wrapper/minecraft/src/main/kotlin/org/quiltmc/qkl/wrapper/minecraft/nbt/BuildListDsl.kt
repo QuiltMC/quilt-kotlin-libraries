@@ -203,7 +203,7 @@ public class NbtListDsl {
      * @throws UnsupportedOperationException if this list has anything other than lists
      * @author leocth
      */
-    public inline fun putList(action: NbtListDsl.() -> Unit) {
+    public inline fun addList(action: NbtListDsl.() -> Unit) {
         list.add(buildNbtList(action))
     }
     /**
@@ -212,7 +212,7 @@ public class NbtListDsl {
      * @throws UnsupportedOperationException if this list has anything other than compounds
      * @author leocth
      */
-    public inline fun putCompound(action: NbtCompoundDsl.() -> Unit) {
+    public inline fun addCompound(action: NbtCompoundDsl.() -> Unit) {
         list.add(buildNbtCompound(action))
     }
 }

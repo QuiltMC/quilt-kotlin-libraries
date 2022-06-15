@@ -32,7 +32,7 @@ import net.minecraft.nbt.*
 // can be identified.
 
 /**
- * Gets a boolean from the NBT compound with the given key, returning `null` if
+ * Gets a [Boolean] from the NBT compound with the given key, returning `null` if
  * the key is not present in the compound, or if the found tag is not of the expected type.
  *
  * @author leocth
@@ -45,7 +45,7 @@ public fun NbtCompound.getBooleanOrNull(key: String): Boolean? {
         }
 }
 /**
- * Gets an 8-bit integer from the NBT compound with the given key, returning `null` if
+ * Gets a [Byte] from the NBT compound with the given key, returning `null` if
  * the key is not present in the compound, or if the found tag is not of the expected type.
  *
  * @author leocth
@@ -54,7 +54,7 @@ public fun NbtCompound.getByteOrNull(key: String): Byte? {
     return get(key)?.let { it as? NbtByte }?.byteValue()
 }
 /**
- * Gets a 16-bit integer from the NBT compound with the given key, returning `null` if
+ * Gets a [Short] from the NBT compound with the given key, returning `null` if
  * the key is not present in the compound, or if the found tag is not of the expected type.
  *
  * @author leocth
@@ -63,7 +63,7 @@ public fun NbtCompound.getShortOrNull(key: String): Short? {
     return get(key)?.let { it as? NbtShort }?.shortValue()
 }
 /**
- * Gets a 32-bit integer from the NBT compound with the given key, returning `null` if
+ * Gets a [Int] from the NBT compound with the given key, returning `null` if
  * the key is not present in the compound, or if the found tag is not of the expected type.
  *
  * @author leocth
@@ -72,7 +72,7 @@ public fun NbtCompound.getIntOrNull(key: String): Int? {
     return get(key)?.let { it as? NbtInt }?.intValue()
 }
 /**
- * Gets a 64-bit integer from the NBT compound with the given key, returning `null` if
+ * Gets a [Long] from the NBT compound with the given key, returning `null` if
  * the key is not present in the compound, or if the found tag is not of the expected type.
  *
  * @author leocth
@@ -81,7 +81,7 @@ public fun NbtCompound.getLongOrNull(key: String): Long? {
     return get(key)?.let { it as? NbtLong }?.longValue()
 }
 /**
- * Gets a 32-bit floating-point number from the NBT compound with the given key,
+ * Gets a [Float] from the NBT compound with the given key,
  * returning `null` if the key is not present in the compound, or if the found tag
  * is not of the expected type.
  *
@@ -91,7 +91,7 @@ public fun NbtCompound.getFloatOrNull(key: String): Float? {
     return get(key)?.let { it as? NbtFloat }?.floatValue()
 }
 /**
- * Gets a 64-bit floating-point number from the NBT compound with the given key,
+ * Gets a [Double] from the NBT compound with the given key,
  * returning `null` if the key is not present in the compound, or if the found tag
  * is not of the expected type.
  *
@@ -101,7 +101,7 @@ public fun NbtCompound.getDoubleOrNull(key: String): Double? {
     return get(key)?.let { it as? NbtDouble }?.doubleValue()
 }
 /**
- * Gets a string from the NBT compound with the given key, returning `null` if
+ * Gets a [String] from the NBT compound with the given key, returning `null` if
  * the key is not present in the compound, or if the found tag is not of the expected type.
  *
  * @author leocth
@@ -110,7 +110,7 @@ public fun NbtCompound.getStringOrNull(key: String): String? {
     return get(key)?.let { it as? NbtString }?.asString()
 }
 /**
- * Gets an NBT compound from the NBT compound with the given key, returning `null` if
+ * Gets an [NbtCompound] from the NBT compound with the given key, returning `null` if
  * the key is not present in the compound, or if the found tag is not of the expected type.
  *
  * @author leocth
