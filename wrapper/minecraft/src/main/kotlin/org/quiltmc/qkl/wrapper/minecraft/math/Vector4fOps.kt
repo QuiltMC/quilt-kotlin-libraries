@@ -46,6 +46,7 @@ public operator fun Vector4f.minus(other: Vector4f): Vector4f {
 
 /**
  * Multiplies a [Vector4f] and a [Vector4f].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vector4f.times(other: Vector4f): Vector4f {
     return Vector4f(
@@ -69,14 +70,24 @@ public operator fun Vector4f.times(other: Float): Vector4f {
 }
 
 /**
+ * Divides a [Vector4f] and a Float.
+ */
+public operator fun Vector4f.div(other: Float): Vector4f {
+    return Vector4f(
+        this.x / other,
+        this.y / other,
+        this.z / other,
+        this.w / other
+    )
+}
+
+/**
  * Negates a [Vector4f].
  */
 public operator fun Vector4f.unaryMinus(): Vector4f {
     return this.times(-1f)
 }
 //endregion
-
-//region Type compatibility operator variations//endregion
 
 //region xAssign math operators
 /**
@@ -105,6 +116,19 @@ public operator fun Vector4f.minusAssign(other: Vector4f) {
 
 /**
  * Multiplies a [Vector4f] and a [Vector4f].
+ * This method is a shorthand for component wise multiplication.
+ */
+public operator fun Vector4f.timesAssign(other: Vector4f) {
+    this.set(
+        this.x * other.x,
+        this.y * other.y,
+        this.z * other.z,
+        this.w * other.w
+    )
+}
+
+/**
+ * Multiplies a [Vector4f] and a Float.
  */
 public operator fun Vector4f.timesAssign(other: Float) {
     this.set(
@@ -116,14 +140,14 @@ public operator fun Vector4f.timesAssign(other: Float) {
 }
 
 /**
- * Multiplies a [Vector4f] and a [Vector4f].
+ * Divides a [Vector4f] and a Float.
  */
-public operator fun Vector4f.timesAssign(other: Vector4f) {
+public operator fun Vector4f.divAssign(other: Float) {
     this.set(
-        this.x * other.x,
-        this.y * other.y,
-        this.z * other.z,
-        this.w * other.w
+        this.x / other,
+        this.y / other,
+        this.z / other,
+        this.w / other
     )
 }
 //endregion

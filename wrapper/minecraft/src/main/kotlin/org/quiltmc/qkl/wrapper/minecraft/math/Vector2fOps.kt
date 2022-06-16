@@ -43,6 +43,7 @@ public operator fun Vector2f.minus(other: Vector2f): Vector2f {
 
 /**
  * Multiplies a [Vector2f] and a [Vector2f].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vector2f.times(other: Vector2f): Vector2f {
     return Vector2f(
@@ -58,6 +59,16 @@ public operator fun Vector2f.times(other: Float): Vector2f {
     return Vector2f(
         this.x * other,
         this.y * other
+    )
+}
+
+/**
+ * Divides a [Vector2f] and a Float.
+ */
+public operator fun Vector2f.div(other: Float): Vector2f {
+    return Vector2f(
+        this.x / other,
+        this.y / other
     )
 }
 
@@ -92,6 +103,7 @@ public operator fun Vector2f.minus(other: Vec2f): Vector2f {
 
 /**
  * Multiplies a [Vector2f] and a [Vec2f].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vector2f.times(other: Vec2f): Vector2f {
     return Vector2f(

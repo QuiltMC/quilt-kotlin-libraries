@@ -47,6 +47,7 @@ public operator fun Vec3f.minus(other: Vec3f): Vec3f {
 
 /**
  * Multiplies a [Vec3f] and a [Vec3f].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.times(other: Vec3f): Vec3f {
     return Vec3f(
@@ -64,6 +65,17 @@ public operator fun Vec3f.times(other: Float): Vec3f {
         this.x * other,
         this.y * other,
         this.z * other
+    )
+}
+
+/**
+ * Divides a [Vec3f] and a Float.
+ */
+public operator fun Vec3f.div(other: Float): Vec3f {
+    return Vec3f(
+        this.x / other,
+        this.y / other,
+        this.z / other
     )
 }
 
@@ -144,6 +156,7 @@ public operator fun Vec3f.minus(other: Vector3d): Vec3f {
 
 /**
  * Multiplies a [Vec3f] and a [Vec3d].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.times(other: Vec3d): Vec3f {
     return Vec3f(
@@ -155,6 +168,7 @@ public operator fun Vec3f.times(other: Vec3d): Vec3f {
 
 /**
  * Multiplies a [Vec3f] and a [Vec3i].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.times(other: Vec3i): Vec3f {
     return Vec3f(
@@ -166,6 +180,7 @@ public operator fun Vec3f.times(other: Vec3i): Vec3f {
 
 /**
  * Multiplies a [Vec3f] and a [Vector3d].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.times(other: Vector3d): Vec3f {
     return Vec3f(
@@ -266,18 +281,8 @@ public operator fun Vec3f.minusAssign(other: Vector3d) {
 }
 
 /**
- * Multiplies a [Vec3f] and a [Vec3f].
- */
-public operator fun Vec3f.timesAssign(other: Float) {
-    this.set(
-        this.x * other,
-        this.y * other,
-        this.z * other
-    )
-}
-
-/**
  * Multiplies a [Vec3f] and a [Vec3d].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.timesAssign(other: Vec3d) {
     this.set(
@@ -289,6 +294,7 @@ public operator fun Vec3f.timesAssign(other: Vec3d) {
 
 /**
  * Multiplies a [Vec3f] and a [Vec3f].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.timesAssign(other: Vec3f) {
     this.set(
@@ -300,6 +306,7 @@ public operator fun Vec3f.timesAssign(other: Vec3f) {
 
 /**
  * Multiplies a [Vec3f] and a [Vec3i].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.timesAssign(other: Vec3i) {
     this.set(
@@ -311,12 +318,35 @@ public operator fun Vec3f.timesAssign(other: Vec3i) {
 
 /**
  * Multiplies a [Vec3f] and a [Vector3d].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.timesAssign(other: Vector3d) {
     this.set(
         this.x * other.x.toFloat(),
         this.y * other.y.toFloat(),
         this.z * other.z.toFloat()
+    )
+}
+
+/**
+ * Multiplies a [Vec3f] and a Float.
+ */
+public operator fun Vec3f.timesAssign(other: Float) {
+    this.set(
+        this.x * other,
+        this.y * other,
+        this.z * other
+    )
+}
+
+/**
+ * Divides a [Vec3f] and a Float.
+ */
+public operator fun Vec3f.divAssign(other: Float) {
+    this.set(
+        this.x / other,
+        this.y / other,
+        this.z / other
     )
 }
 //endregion

@@ -47,6 +47,7 @@ public operator fun Vec3i.minus(other: Vec3i): Vec3i {
 
 /**
  * Multiplies a [Vec3i] and a [Vec3i].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3i.times(other: Vec3i): Vec3i {
     return Vec3i(
@@ -64,6 +65,17 @@ public operator fun Vec3i.times(other: Int): Vec3i {
         this.x * other,
         this.y * other,
         this.z * other
+    )
+}
+
+/**
+ * Divides a [Vec3i] and a Int.
+ */
+public operator fun Vec3i.div(other: Int): Vec3i {
+    return Vec3i(
+        this.x / other,
+        this.y / other,
+        this.z / other
     )
 }
 
@@ -144,6 +156,7 @@ public operator fun Vec3i.minus(other: Vector3d): Vec3i {
 
 /**
  * Multiplies a [Vec3i] and a [Vec3d].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3i.times(other: Vec3d): Vec3i {
     return Vec3i(
@@ -155,6 +168,7 @@ public operator fun Vec3i.times(other: Vec3d): Vec3i {
 
 /**
  * Multiplies a [Vec3i] and a [Vec3f].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3i.times(other: Vec3f): Vec3i {
     return Vec3i(
@@ -166,6 +180,7 @@ public operator fun Vec3i.times(other: Vec3f): Vec3i {
 
 /**
  * Multiplies a [Vec3i] and a [Vector3d].
+ * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3i.times(other: Vector3d): Vec3i {
     return Vec3i(
