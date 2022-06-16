@@ -77,6 +77,8 @@ subprojects {
     group = "org.quiltmc.quilt-kotlin-libraries"
     version = projectVersion
 
+    val samples by sourceSets.creating
+
     dependencies {
         minecraft(rootProject.libs.minecraft)
         mappings(loom.layered {
@@ -86,6 +88,21 @@ subprojects {
         modImplementation(rootProject.libs.quilt.loader)
 
         modImplementation(rootProject.libs.qsl)
+
+        // Get samples to depend on main and its dependencies
+        val main = sourceSets.main.get()
+        "samplesImplementation"(main.output)
+        "samplesImplementation"(main.compileClasspath)
+    }
+
+    // Fix weird IDEA error when trying to work with samples
+    afterEvaluate {
+        if (System.getProperty("idea.sync.active") != null) {
+            println("Creating sample source set folders to circumvent IDEA error")
+            samples.allSource.srcDirs.forEach {
+                it.mkdirs()
+            }
+        }
     }
 
     tasks {
