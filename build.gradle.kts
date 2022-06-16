@@ -98,7 +98,6 @@ subprojects {
     // Fix weird IDEA error when trying to work with samples
     afterEvaluate {
         if (System.getProperty("idea.sync.active") != null) {
-            println("Creating sample source set folders to circumvent IDEA error")
             samples.allSource.srcDirs.forEach {
                 it.mkdirs()
             }
