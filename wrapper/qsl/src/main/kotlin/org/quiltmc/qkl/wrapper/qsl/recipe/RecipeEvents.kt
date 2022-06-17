@@ -21,18 +21,30 @@ package org.quiltmc.qkl.wrapper.qsl.recipe
 import org.quiltmc.qkl.wrapper.qsl.EventRegistration
 import org.quiltmc.qsl.recipe.api.RecipeLoadingEvents.*
 
+/**
+ * Called when recipes are loaded. This is the time to register your own recipes.
+ * It is called before [onModifyRecipes] and [onRemoveRecipes].
+ */
 public fun EventRegistration.onAddRecipes(
     consumer: (handler: AddRecipesCallback.RecipeHandler) -> Unit
 ) {
     ADD.register(AddRecipesCallback(consumer))
 }
 
+/**
+ * Called when recipes are modified. This is the time to modify any recipes.
+ * It is called after [onAddRecipes] but before [onRemoveRecipes].
+ */
 public fun EventRegistration.onModifyRecipes(
     consumer: (handler: ModifyRecipesCallback.RecipeHandler) -> Unit
 ) {
     MODIFY.register(ModifyRecipesCallback(consumer))
 }
 
+/**
+ * Called when recipes are removed. This is the time to remove any recipes.
+ * It is called after [onAddRecipes] and [onModifyRecipes].
+ */
 public fun EventRegistration.onRemoveRecipes(
     consumer: (handler: RemoveRecipesCallback.RecipeHandler) -> Unit
 ) {

@@ -60,9 +60,15 @@ public fun itemSettingsOf(
     }
 }
 
+/**
+ * Build a [QuiltItemSettings] with builder-style syntax.
+ */
 public fun buildItemSettings(block: QuiltItemSettings.() -> Unit): QuiltItemSettings =
     QuiltItemSettings().apply(block)
 
+/**
+ * Add a [CustomItemSetting] to this item settings.
+ */
 public fun <T> QuiltItemSettings.customSetting(value: T, setting: CustomItemSetting<T>) {
     customSetting(setting, value)
 }

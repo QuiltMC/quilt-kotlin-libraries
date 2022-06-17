@@ -75,19 +75,61 @@ private fun coerceArrayToIngredient(array: Array<*>): Ingredient = if (array.isE
     }
 }
 
+/**
+ * Create a new [ShapedRecipe] with the given information.
+ * The [group] string is used for finding the recipe in the recipe book.
+ * The [pattern] is a newline-separated string of rows.
+ * The [result] is the resulting [ItemStack] of the recipe.
+ * Any [ingredients] can be listed in the form `char to ingredient`
+ *
+ * Example representing the hopper recipe:
+ * ```kt
+ * shapedRecipe(
+ *     Identifier("minecraft", "hopper"),
+ *     "", // group is defaulted to empty string
+ *     """
+ *         I I
+ *         ICI
+ *          IZ
+ *     """.trimIndent(),
+ *     ItemStack(Item.HOPPER, 1),
+ *     'I' to Items.IRON_INGOT,
+ *     'C' to Items.CHEST,
+ *     'Z' to Items.EMPTY // Prevent trailing whitespace
+ * )
+ * ```
+ */
 public fun shapedRecipe(
     id: Identifier,
     group: String,
     pattern: String,
+    result: ItemStack,
     vararg ingredients: Pair<Char, IngredientLike>
 ): ShapedRecipe {
     val builder = ShapedRecipeBuilder(*pattern.split("\n").toTypedArray())
     ingredients.forEach { (key, ingredient) ->
         builder.ingredient(key, coerceIngredient(ingredient))
     }
+    builder.output(result)
     return builder.build(id, group)
 }
 
+/**
+ * Create a new [ShapelessRecipe] with the given information.
+ * The [group] string is used for finding the recipe in the recipe book.
+ * The [result] is the resulting [ItemStack] of the recipe.
+ * The [ingredients] are any number of [IngredientLike] objects.
+ *
+ * Example representing flint and steel:
+ * ```kt
+ * shapelessRecipe(
+ *     Identifier("minecraft", "flint_and_steel"),
+ *     "", // group is defaulted to empty string
+ *     ItemStack(Item.FLINT_AND_STEEL, 1),
+ *     Items.IRON_INGOT,
+ *     Items.FLINT
+ * )
+ */
 public fun shapelessRecipe(
     id: Identifier,
     group: String,
@@ -107,6 +149,13 @@ public fun shapelessRecipe(
  * - SmeltingRecipe
  * - SmokingRecipe
  * - CampfireCookingRecipe
+ *
+ * The [baseId] is a base identifier for the recipe, with `smelting`, `smoking`, and `campfire`
+ * appended to it to create the three recipe identifiers.
+ * The [group] string is used for finding the recipe in the recipe book.
+ * The [input] is the input [ingredient][IngredientLike] of the recipe.
+ * The [result] is the resulting [ItemStack] of the recipe.
+ * The [experience] is the amount of experience gained when cooking the recipe.
  *
  * The cook time parameters are calculated in a special way:
  * - [cookTime] is the time in ticks it takes to cook the item in a furnace.

@@ -23,9 +23,18 @@ import org.quiltmc.qsl.tag.api.TagRegistry
 import org.quiltmc.qsl.tag.api.TagRegistry.TagValues
 import org.quiltmc.qsl.tag.api.TagType
 
+/**
+ * Get all tags for a given registry.
+ */
 public fun <T> Registry<T>.getTags(type: TagType = TagType.NORMAL): List<TagValues<T>> =
     TagRegistry.stream(key, type).toList()
 
+/**
+ * Get all instances of objects registered with the given tag.
+ */
 public fun <T> getTag(key: TagKey<T>): Collection<Holder<T>> = TagRegistry.getTag(key)
 
+/**
+ * Get a particular tag value for a given tag.
+ */
 public operator fun <T> TagValues<T>.get(index: Int): Holder<T> = values.toList()[index]

@@ -54,62 +54,84 @@ public fun <V> Registry<in V>.register(
     RegistryExtensions.register(this, id, value, block)
 }
 
+/**
+ * Create a new [RegistryEntryAttachment] for the given [registry] with the given information.
+ * Shorthands are available for primitive types and [String]s.
+ */
 public fun <R, V : Any> buildRegistryEntryAttachment(
     registry: Registry<R>,
     id: Identifier,
     valueClass: KClass<V>,
     codec: Codec<V>,
-    block: RegistryEntryAttachment.Builder<R, V>.() -> Unit
+    block: RegistryEntryAttachment.Builder<R, V>.() -> Unit = {}
 ): RegistryEntryAttachment<R, V> {
     val builder = RegistryEntryAttachment.builder(registry, id, valueClass.java, codec)
     builder.block()
     return builder.build()
 }
 
+/**
+ * Create a new boolean [RegistryEntryAttachment] for the given [registry] with the given information.
+ */
 public fun <R> buildBooleanRegistryEntryAttachment(
     registry: Registry<R>,
     id: Identifier,
-    block: RegistryEntryAttachment.Builder<R, Boolean>.() -> Unit
+    block: RegistryEntryAttachment.Builder<R, Boolean>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Boolean> {
     return buildRegistryEntryAttachment(registry, id, Boolean::class, Codec.BOOL, block)
 }
 
+/**
+ * Create a new int [RegistryEntryAttachment] for the given [registry] with the given information.
+ */
 public fun <R> buildIntRegistryEntryAttachment(
     registry: Registry<R>,
     id: Identifier,
-    block: RegistryEntryAttachment.Builder<R, Int>.() -> Unit
+    block: RegistryEntryAttachment.Builder<R, Int>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Int> {
     return buildRegistryEntryAttachment(registry, id, Int::class, Codec.INT, block)
 }
 
+/**
+ * Create a new String [RegistryEntryAttachment] for the given [registry] with the given information.
+ */
 public fun <R> buildStringRegistryEntryAttachment(
     registry: Registry<R>,
     id: Identifier,
-    block: RegistryEntryAttachment.Builder<R, String>.() -> Unit
+    block: RegistryEntryAttachment.Builder<R, String>.() -> Unit = {}
 ): RegistryEntryAttachment<R, String> {
     return buildRegistryEntryAttachment(registry, id, String::class, Codec.STRING, block)
 }
 
+/**
+ * Create a new long [RegistryEntryAttachment] for the given [registry] with the given information.
+ */
 public fun <R> buildLongRegistryEntryAttachment(
     registry: Registry<R>,
     id: Identifier,
-    block: RegistryEntryAttachment.Builder<R, Long>.() -> Unit
+    block: RegistryEntryAttachment.Builder<R, Long>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Long> {
     return buildRegistryEntryAttachment(registry, id, Long::class, Codec.LONG, block)
 }
 
+/**
+ * Create a new float [RegistryEntryAttachment] for the given [registry] with the given information.
+ */
 public fun <R> buildFloatRegistryEntryAttachment(
     registry: Registry<R>,
     id: Identifier,
-    block: RegistryEntryAttachment.Builder<R, Float>.() -> Unit
+    block: RegistryEntryAttachment.Builder<R, Float>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Float> {
     return buildRegistryEntryAttachment(registry, id, Float::class, Codec.FLOAT, block)
 }
 
+/**
+ * Create a new double [RegistryEntryAttachment] for the given [registry] with the given information.
+ */
 public fun <R> buildDoubleRegistryEntryAttachment(
     registry: Registry<R>,
     id: Identifier,
-    block: RegistryEntryAttachment.Builder<R, Double>.() -> Unit
+    block: RegistryEntryAttachment.Builder<R, Double>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Double> {
     return buildRegistryEntryAttachment(registry, id, Double::class, Codec.DOUBLE, block)
 }

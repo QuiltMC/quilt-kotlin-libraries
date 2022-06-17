@@ -57,9 +57,7 @@ public typealias DataPackReloadFinish = (
  * @author sschr15
  */
 public fun EventRegistration.onDataPackReloadStart(callback: DataPackReloadStart) {
-    ResourceLoaderEvents.START_DATA_PACK_RELOAD.register(
-        ResourceLoaderEvents.StartDataPackReload(callback)
-    )
+    ResourceLoaderEvents.START_DATA_PACK_RELOAD.register(ResourceLoaderEvents.StartDataPackReload(callback))
 }
 
 /**
@@ -70,7 +68,5 @@ public fun EventRegistration.onDataPackReloadStart(callback: DataPackReloadStart
  * @author sschr15
  */
 public fun EventRegistration.onDataPackReloadFinish(callback: DataPackReloadFinish) {
-    ResourceLoaderEvents.END_DATA_PACK_RELOAD.register(
-        ResourceLoaderEvents.EndDataPackReload(callback)
-    )
+    ResourceLoaderEvents.END_DATA_PACK_RELOAD.register(ResourceLoaderEvents.EndDataPackReload(callback))
 }

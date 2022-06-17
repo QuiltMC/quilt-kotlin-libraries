@@ -48,6 +48,9 @@ public fun itemGroupOf(
     }
 }
 
+/**
+ * [Build][QuiltItemGroup.Builder] an [ItemGroup] with the given [id].
+ */
 public fun buildItemGroup(id: Identifier, block: QuiltItemGroup.Builder.() -> Unit): ItemGroup {
     val builder = QuiltItemGroup.builder(id)
     builder.block()

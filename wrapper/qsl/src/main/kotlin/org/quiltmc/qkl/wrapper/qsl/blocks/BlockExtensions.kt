@@ -27,7 +27,7 @@ import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings
 import org.quiltmc.qsl.block.extensions.api.QuiltMaterialBuilder
 
 /**
- * Creates a [Material] with the given settings.
+ * Create a [Material] with the given settings.
  *
  * @author sschr15
  */
@@ -50,6 +50,9 @@ public fun materialOf(
     if (!isOpaque) lightPassesThrough()
 }
 
+/**
+ * [Build][QuiltMaterialBuilder] a [Material] with the given [color].
+ */
 public fun buildMaterial(color: MapColor, block: QuiltMaterialBuilder.() -> Unit): Material {
     val builder = QuiltMaterialBuilder(color)
     builder.block()
@@ -70,7 +73,7 @@ public typealias EntityTest = (
 ) -> Boolean
 
 /**
- * Creates a new [AbstractBlock.Settings] with the given settings.
+ * Create a new [AbstractBlock.Settings] with the given settings.
  * - If [luminanceFunction] is null, [luminance] is used.
  * - If [hardness] is null, [resistance] is used.
  * - If any of the predicates are null, their default values are used.
@@ -131,6 +134,10 @@ public fun blockSettingsOf(
     if (isEmissive != null) emissiveLighting(isEmissive)
 }
 
+/**
+ * Build a [Block settings object][AbstractBlock.Settings] with the given [material] and [color],
+ * using builder-style syntax.
+ */
 public fun buildBlockSettings(
     material: Material,
     color: MapColor,
