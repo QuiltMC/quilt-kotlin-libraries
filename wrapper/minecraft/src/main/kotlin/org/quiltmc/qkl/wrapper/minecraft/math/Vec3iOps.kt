@@ -263,21 +263,21 @@ public fun Vec3i.lengthSquared(): Int {
 }
 
 /**
- * The first component of a [Vec3i].
+ * The [`x`][Vec3i.x] component of a [Vec3i].
  */
 public operator fun Vec3i.component1(): Int {
     return this.x
 }
 
 /**
- * The second component of a [Vec3i].
+ * The [`y`][Vec3i.y] component of a [Vec3i].
  */
 public operator fun Vec3i.component2(): Int {
     return this.y
 }
 
 /**
- * The third component of a [Vec3i].
+ * The [`z`][Vec3i.z] component of a [Vec3i].
  */
 public operator fun Vec3i.component3(): Int {
     return this.z

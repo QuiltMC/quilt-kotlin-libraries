@@ -185,35 +185,35 @@ public fun Vector4f.length(): Float {
 }
 
 /**
- * The length squared  of a [Vector4f].
+ * The length squared of a [Vector4f].
  */
 public fun Vector4f.lengthSquared(): Float {
     return this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w
 }
 
 /**
- * The first component of a [Vector4f].
+ * The [`x`][Vector4f.x] component of a [Vector4f].
  */
 public operator fun Vector4f.component1(): Float {
     return this.x
 }
 
 /**
- * The second component of a [Vector4f].
+ * The [`y`][Vector4f.y] component of a [Vector4f].
  */
 public operator fun Vector4f.component2(): Float {
     return this.y
 }
 
 /**
- * The third component of a [Vector4f].
+ * The [`z`][Vector4f.z] component of a [Vector4f].
  */
 public operator fun Vector4f.component3(): Float {
     return this.z
 }
 
 /**
- * The fourth component of a [Vector4f].
+ * The [`w`][Vector4f.w] component of a [Vector4f].
  */
 public operator fun Vector4f.component4(): Float {
     return this.w

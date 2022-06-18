@@ -128,14 +128,14 @@ public infix fun Vec2f.dot(other: Vector2f): Float {
 }
 
 /**
- * The first component of a [Vec2f].
+ * The [`x`][Vec2f.x] component of a [Vec2f].
  */
 public operator fun Vec2f.component1(): Float {
     return this.x
 }
 
 /**
- * The second component of a [Vec2f].
+ * The [`y`][Vec2f.y] component of a [Vec2f].
  */
 public operator fun Vec2f.component2(): Float {
     return this.y

@@ -155,14 +155,14 @@ public fun Vector2f.lengthSquared(): Float {
 }
 
 /**
- * The first component of a [Vector2f].
+ * The [`x`][Vector2f.x] component of a [Vector2f].
  */
 public operator fun Vector2f.component1(): Float {
     return this.x
 }
 
 /**
- * The second component of a [Vector2f].
+ * The [`y`][Vector2f.y] component of a [Vector2f].
  */
 public operator fun Vector2f.component2(): Float {
     return this.y

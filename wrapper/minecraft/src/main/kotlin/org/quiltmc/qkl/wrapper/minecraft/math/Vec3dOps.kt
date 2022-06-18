@@ -248,21 +248,21 @@ public infix fun Vec3d.cross(other: Vector3d): Vec3d {
 }
 
 /**
- * The first component of a [Vec3d].
+ * The [`x`][Vec3d.x] component of a [Vec3d].
  */
 public operator fun Vec3d.component1(): Double {
     return this.x
 }
 
 /**
- * The second component of a [Vec3d].
+ * The [`y`][Vec3d.y] component of a [Vec3d].
  */
 public operator fun Vec3d.component2(): Double {
     return this.y
 }
 
 /**
- * The third component of a [Vec3d].
+ * The [`z`][Vec3d.z] component of a [Vec3d].
  */
 public operator fun Vec3d.component3(): Double {
     return this.z

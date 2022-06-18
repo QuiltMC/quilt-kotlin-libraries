@@ -423,21 +423,21 @@ public fun Vector3d.lengthSquared(): Double {
 }
 
 /**
- * The first component of a [Vector3d].
+ * The [`x`][Vector3d.x] component of a [Vector3d].
  */
 public operator fun Vector3d.component1(): Double {
     return this.x
 }
 
 /**
- * The second component of a [Vector3d].
+ * The [`y`][Vector3d.y] component of a [Vector3d].
  */
 public operator fun Vector3d.component2(): Double {
     return this.y
 }
 
 /**
- * The third component of a [Vector3d].
+ * The [`z`][Vector3d.z] component of a [Vector3d].
  */
 public operator fun Vector3d.component3(): Double {
     return this.z

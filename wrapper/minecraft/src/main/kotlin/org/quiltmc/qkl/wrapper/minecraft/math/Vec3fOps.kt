@@ -439,21 +439,21 @@ public fun Vec3f.lengthSquared(): Float {
 }
 
 /**
- * The first component of a [Vec3f].
+ * The [`x`][Vec3f.x] component of a [Vec3f].
  */
 public operator fun Vec3f.component1(): Float {
     return this.x
 }
 
 /**
- * The second component of a [Vec3f].
+ * The [`y`][Vec3f.y] component of a [Vec3f].
  */
 public operator fun Vec3f.component2(): Float {
     return this.y
 }
 
 /**
- * The third component of a [Vec3f].
+ * The [`z`][Vec3f.z] component of a [Vec3f].
  */
 public operator fun Vec3f.component3(): Float {
     return this.z
