@@ -1,4 +1,8 @@
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.time.Year
 
 plugins {
     alias(libs.plugins.kotlin)
@@ -6,7 +10,14 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.licenser)
     alias(libs.plugins.git.hooks)
+    alias(libs.plugins.dokka)
     `maven-publish`
+}
+
+buildscript {
+    dependencies {
+        classpath(libs.dokka.base)
+    }
 }
 
 group = "org.quiltmc"
@@ -34,6 +45,7 @@ allprojects {
     apply(plugin=rootProject.libs.plugins.kotlin.get().pluginId)
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
     apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
+    apply(plugin=rootProject.libs.plugins.dokka.get().pluginId)
 
     repositories {
         mavenCentral()
@@ -61,10 +73,21 @@ allprojects {
             }
         }
 
-        withType<KotlinCompile>() {
+        withType<KotlinCompile> {
             kotlinOptions {
                 jvmTarget = javaVersion.toString()
                 languageVersion = rootProject.libs.plugins.kotlin.get().version.strictVersion
+            }
+        }
+
+        withType<AbstractDokkaTask> {
+            pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+                val rootPath = "${rootProject.projectDir.absolutePath}/codeformat/dokka"
+                customStyleSheets = file("$rootPath/styles").listFiles()!!.toList()
+                customAssets = file("$rootPath/images").listFiles()!!.toList()
+                templatesDir = file("$rootPath/templates")
+
+                footerMessage = "© ${Year.now().value} QuiltMC"
             }
         }
     }

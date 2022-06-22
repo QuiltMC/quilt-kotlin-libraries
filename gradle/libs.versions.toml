@@ -2,6 +2,7 @@
 atomic = "0.17.3"
 coroutines = "1.6.1"
 datetime = "0.3.3"
+dokka = "1.7.0"
 kotlin = "1.7.0"
 minecraft = "1.19"
 qsl = "2.0.0-beta.2+1.19"
@@ -15,6 +16,7 @@ coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines_jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
 coroutines_jvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm", version.ref = "coroutines" }
 datetime = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
+dokka_base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
 qsl = { module = "org.quiltmc:qsl", version.ref = "qsl" }
 quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt_loader" }
@@ -25,6 +27,7 @@ serialization_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-jso
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.20.0" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 licenser = { id = "org.quiltmc.gradle.licenser", version = "1.1.2" }
