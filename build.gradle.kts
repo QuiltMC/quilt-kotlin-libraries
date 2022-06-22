@@ -1,6 +1,7 @@
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.AbstractDokkaTask
+import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.Year
 
@@ -80,6 +81,7 @@ allprojects {
             }
         }
 
+        // Every dokka task
         withType<AbstractDokkaTask> {
             pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
                 val rootPath = "${rootProject.projectDir.absolutePath}/codeformat/dokka"
@@ -88,6 +90,25 @@ allprojects {
                 templatesDir = file("$rootPath/templates")
 
                 footerMessage = "© ${Year.now().value} QuiltMC"
+            }
+        }
+
+        // Every `dokkaType` and `dokkaTypePartial` task
+        withType<AbstractDokkaLeafTask> {
+            dokkaSourceSets.configureEach {
+                val quiltMaven = "https://maven.quiltmc.org/repository/release/org/quiltmc"
+
+                // QSL
+                val qslBaseLink = "$quiltMaven/qsl"
+                val qslVersion = rootProject.libs.versions.qsl.get()
+                val qslLink = "$qslBaseLink/$qslVersion/qsl-$qslVersion-fat-javadoc.jar"
+                externalDocumentationLink("$qslLink/", "$qslLink/element-list")
+
+                // Minecraft (mapped with Quilt mappings)
+                val mappingBaseLink = "$quiltMaven/quilt-mappings"
+                val mappingVersion = rootProject.libs.versions.quilt.mappings.get()
+                val mappingLink = "$mappingBaseLink/$mappingVersion/quilt-mappings-$mappingVersion-javadoc.jar"
+                externalDocumentationLink("$mappingLink/", "$mappingLink/element-list")
             }
         }
     }
