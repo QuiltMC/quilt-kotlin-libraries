@@ -59,7 +59,7 @@ public class MutableColor(public var rgb: Int) {
     }
 
     /**
-     * Converts [rgb] to a [TextColor]
+     * Converts [rgb] to a [TextColor].
      *
      * @return A [TextColor] created from the [rgb] value
      *
@@ -110,7 +110,7 @@ public class MutableStyle {
     }
 
     /**
-     * Converts a single RGB value to a [MutableColor]
+     * Converts a single RGB value to a [MutableColor].
      *
      * @param rgb The RGB value to convert
      *
@@ -121,7 +121,7 @@ public class MutableStyle {
     }
 
     /**
-     * Converts a string color to a [MutableColor]
+     * Converts a string color to a [MutableColor].
      *
      * @param colorCode The color to convert.
      *
@@ -132,7 +132,7 @@ public class MutableStyle {
     }
 
     /**
-     * Converts a string color to an [Int]
+     * Converts a string color to an [Int].
      *
      * @return The [Int] converted color
      *
@@ -155,7 +155,7 @@ public class MutableStyle {
     }
 
     /**
-     * Applies the [styles][MutableStyle] to the [text]
+     * Applies the [styles][MutableStyle] to the [text].
      *
      * @param text The text to apply a [style][MutableStyle] to
      *

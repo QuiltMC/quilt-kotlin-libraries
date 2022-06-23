@@ -18,7 +18,7 @@ package org.quiltmc.qkl.core.annotations
 
 /**
  * This marker is for any DSLs that are within the Quilt-Kotlin-Libraries,
- * to specify that they are DSLs
+ * to specify that they are DSLs.
  */
 @DslMarker
 public annotation class QklDslMarker

@@ -38,10 +38,15 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
         apply(action)
     }
 
+    /**
+     * The text object being built.
+     *
+     * @author NoComment1105
+     */
     public val text: MutableText = Text.empty()
 
     /**
-     * Adds a translatable text
+     * Adds a translatable text.
      *
      * @param value The translation key of the text.
      * @param args Any arguments to apply to the translatable text. Can be left
@@ -61,7 +66,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     }
 
     /**
-     * Adds a literal text
+     * Adds a literal text.
      *
      * @param value The text.
      * @see MutableStyle for action
@@ -75,7 +80,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     }
 
     /**
-     * Adds a mutable key bind text
+     * Adds a mutable key bind text.
      *
      * @param key The key of the Key bind
      * @see MutableStyle for action
@@ -124,7 +129,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     }
 
     /**
-     * Add a plain text
+     * Add a plain text.
      *
      * @param value The text to add
      * @see MutableStyle for action
@@ -138,7 +143,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     }
 
     /**
-     * Adds a scoreboard
+     * Adds a scoreboard.
      *
      * @param name The name to add to the scoreboard
      * @param objective The objective of the scoreboard
@@ -157,7 +162,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     }
 
     /**
-     * Adds a resolvable entity selector
+     * Adds a resolvable entity selector.
      *
      * @param separator the optional separator if there's multiple matches issued from the selector
      * @param selector the selector
@@ -176,7 +181,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     }
 
     /**
-     * Adds a mutable empty text
+     * Adds a mutable empty text.
      *
      * @see MutableStyle for action
      *
