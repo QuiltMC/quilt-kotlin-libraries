@@ -207,33 +207,3 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.long(
     argument.apply(action)
     then(argument)
 }
-
-/**
- * Adds an executor to the command tree.
- *
- * @author Oliver-makes-code (Emma)
- */
-@JvmName("executesReturn")
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.executes(
-    action: CommandActionReturn<S>
-) {
-    executes(action)
-}
-
-/**
- * Adds an executor to the command tree.
- *
- * @author Oliver-makes-code (Emma)
- */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.executes(
-    action: CommandAction<S>
-) {
-    executes {
-        try {
-            it.action()
-            1
-        } catch (error: Throwable) {
-            0
-        }
-    }
-}
