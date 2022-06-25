@@ -7,9 +7,9 @@ fun DependencyHandlerScope.includeApi(dependency: Any) {
 }
 
 dependencies {
-    includeApi(project(":core"))
-    includeApi(project(":wrapper:qsl"))
-    includeApi(project(":wrapper:minecraft"))
+    include(modApi(project(":core",              configuration = "namedElements"))!!)
+    include(modApi(project(":wrapper:qsl",       configuration = "namedElements"))!!)
+    include(modApi(project(":wrapper:minecraft", configuration = "namedElements"))!!)
 }
 
 tasks.remapJar {
