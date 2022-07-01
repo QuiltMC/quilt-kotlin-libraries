@@ -69,7 +69,18 @@ public operator fun Vec3i.times(other: Int): Vec3i {
 }
 
 /**
- * Divides a [Vec3i] and a Int.
+ * Multiplies an Int and a [Vec3i].
+ */
+public operator fun Int.times(other: Vec3i): Vec3i {
+    return Vec3i(
+        this * other.x,
+        this * other.y,
+        this * other.z
+    )
+}
+
+/**
+ * Divides a [Vec3i] and an Int.
  */
 public operator fun Vec3i.div(other: Int): Vec3i {
     return Vec3i(

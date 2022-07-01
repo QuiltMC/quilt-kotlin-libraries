@@ -69,6 +69,17 @@ public operator fun Vec3f.times(other: Float): Vec3f {
 }
 
 /**
+ * Multiplies a Float and a [Vec3f].
+ */
+public operator fun Float.times(other: Vec3f): Vec3f {
+    return Vec3f(
+        this * other.x,
+        this * other.y,
+        this * other.z
+    )
+}
+
+/**
  * Divides a [Vec3f] and a Float.
  */
 public operator fun Vec3f.div(other: Float): Vec3f {

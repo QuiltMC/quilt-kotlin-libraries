@@ -16,4 +16,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.math
 
+/**
+ * This value is used in vector operations to return the 0 vector instead when it gets too small
+ */
 internal const val EPSILON = 1.0E-4

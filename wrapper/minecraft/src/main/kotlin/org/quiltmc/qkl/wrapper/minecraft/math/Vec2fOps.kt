@@ -62,6 +62,16 @@ public operator fun Vec2f.times(other: Float): Vec2f {
 }
 
 /**
+ * Multiplies a Float and a [Vec2f].
+ */
+public operator fun Float.times(other: Vec2f): Vec2f {
+    return Vec2f(
+        this * other.x,
+        this * other.y
+    )
+}
+
+/**
  * Divides a [Vec2f] and a Float.
  */
 public operator fun Vec2f.div(other: Float): Vec2f {

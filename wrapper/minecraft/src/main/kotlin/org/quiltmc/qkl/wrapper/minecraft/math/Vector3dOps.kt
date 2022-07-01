@@ -69,6 +69,17 @@ public operator fun Vector3d.times(other: Double): Vector3d {
 }
 
 /**
+ * Multiplies a Double and a [Vector3d].
+ */
+public operator fun Double.times(other: Vector3d): Vector3d {
+    return Vector3d(
+        this * other.x,
+        this * other.y,
+        this * other.z
+    )
+}
+
+/**
  * Divides a [Vector3d] and a Double.
  */
 public operator fun Vector3d.div(other: Double): Vector3d {

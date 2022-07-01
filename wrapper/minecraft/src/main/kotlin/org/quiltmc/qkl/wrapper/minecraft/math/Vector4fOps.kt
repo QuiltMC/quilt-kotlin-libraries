@@ -70,6 +70,18 @@ public operator fun Vector4f.times(other: Float): Vector4f {
 }
 
 /**
+ * Multiplies a Float and a [Vector4f].
+ */
+public operator fun Float.times(other: Vector4f): Vector4f {
+    return Vector4f(
+        this * other.x,
+        this * other.y,
+        this * other.z,
+        this * other.w
+    )
+}
+
+/**
  * Divides a [Vector4f] and a Float.
  */
 public operator fun Vector4f.div(other: Float): Vector4f {
