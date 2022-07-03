@@ -156,6 +156,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.boolean(
 
 /**
  * Adds a double argument with [name] as the parameter name.
+ *
  * @param min the minimum value.
  * @param max the maximum value.
  *
@@ -177,6 +178,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.double(
 
 /**
  * Adds a float argument with [name] as the parameter name.
+ *
  * @param min the minimum value.
  * @param max the maximum value.
  *
@@ -197,7 +199,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.float(
 }
 
 /**
- * Adds a integer argument with [name] as the parameter name.
+ * Adds an integer argument with [name] as the parameter name.
+ *
  * @param min the minimum value.
  * @param max the maximum value.
  *
@@ -219,6 +222,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.integer(
 
 /**
  * Adds a long argument with [name] as the parameter name.
+ *
  * @param min the minimum value.
  * @param max the maximum value.
  *
@@ -243,7 +247,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.long(
 //region Minecraft argument types
 
 /**
- * Adds a angle argument with [name] as the parameter name.
+ * Adds an angle argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -278,7 +282,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockPos(
 
 /**
  * Adds a block predicate argument with [name] as the parameter name.
- * [context] The command build context
+ *
+ * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -297,7 +302,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockPredicate(
 
 /**
  * Adds a block state argument with [name] as the parameter name.
- * [context] The command build context
+ *
+ * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -349,7 +355,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.columnPos(
 }
 
 /**
- * Adds a cmmand function argument with [name] as the parameter name.
+ * Adds a command function argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -403,7 +409,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.enchantment(
 }
 
 /**
- * Adds a entity anchor argument with [name] as the parameter name.
+ * Adds an entity anchor argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -541,7 +547,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.intRange(
 
 /**
  * Adds an item predicate argument with [name] as the parameter name.
- * [context] The command build context
+ *
+ * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -580,7 +587,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.itemSlot(
 
 /**
  * Adds an item slot argument with [name] as the parameter name.
- * [context] The command build context
+ *
+ * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -615,7 +623,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.message(
 }
 
 /**
- * Adds an nbt compound argument with [name] as the parameter name.
+ * Adds a nbt compound argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -632,7 +640,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtCompound(
 }
 
 /**
- * Adds an nbt element argument with [name] as the parameter name.
+ * Adds an NBT element argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -649,7 +657,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtElement(
 }
 
 /**
- * Adds an nbt path argument with [name] as the parameter name.
+ * Adds an NBT path argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -803,7 +811,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreboardSlot(
 
 /**
  * Adds a score holder argument with [name] as the parameter name.
- * [multiple] wheteher there are multiple scores
+ *
+ * @param multiple whether there are multiple scores
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -940,7 +949,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.time(
 }
 
 /**
- * Adds a uuid argument with [name] as the parameter name.
+ * Adds a UUID argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -958,7 +967,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.uuid(
 
 /**
  * Adds a vec2 argument with [name] as the parameter name.
- * [centerIntegers] whether the integers are centered on the block
+ *
+ * @param centerIntegers whether the integers are centered on the block
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -977,7 +987,8 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.vec2(
 
 /**
  * Adds a vec3 argument with [name] as the parameter name.
- * [centerIntegers] whether the integers are centered on the block
+ *
+ * @param centerIntegers whether the integers are centered on the block
  *
  * @author Oliver-makes-code (Emma)
  */
