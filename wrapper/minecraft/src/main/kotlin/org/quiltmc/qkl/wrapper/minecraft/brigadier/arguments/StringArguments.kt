@@ -25,22 +25,29 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.ArgumentValueAccessor
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithAccessor
+
+private fun createStringAccessor(name: String): ArgumentValueAccessor<*, String> = {
+    StringArgumentType.getString(this, name)
+}
 
 /**
  * Adds a string argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
+ * @author Cypher121
  */
 public fun <S> ArgumentBuilder<S, *>.string(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, String>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, String>(
         name,
         StringArgumentType.string()
     )
-    argument.apply(action)
+
+    argument.apply { action(createStringAccessor(name)) }
     then(argument)
 }
 
@@ -51,13 +58,13 @@ public fun <S> ArgumentBuilder<S, *>.string(
  */
 public fun <S> ArgumentBuilder<S, *>.greedyString(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, String>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, String>(
         name,
         StringArgumentType.greedyString()
     )
-    argument.apply(action)
+    argument.apply { action(createStringAccessor(name)) }
     then(argument)
 }
 
@@ -68,12 +75,13 @@ public fun <S> ArgumentBuilder<S, *>.greedyString(
  */
 public fun <S> ArgumentBuilder<S, *>.word(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, String>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, String>(
         name,
         StringArgumentType.word()
     )
-    argument.apply(action)
+
+    argument.action(createStringAccessor(name))
     then(argument)
 }

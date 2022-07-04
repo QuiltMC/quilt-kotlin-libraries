@@ -29,7 +29,7 @@ import net.minecraft.command.argument.MessageArgumentType
 import net.minecraft.command.argument.TextArgumentType
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds a message argument with [name] as the parameter name.
@@ -38,13 +38,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.message(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, MessageArgumentType.MessageFormat>(
         name,
         MessageArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -55,13 +55,13 @@ public fun <S> ArgumentBuilder<S, *>.message(
  */
 public fun <S> ArgumentBuilder<S, *>.color(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Formatting>(
         name,
         ColorArgumentType.color()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -72,12 +72,12 @@ public fun <S> ArgumentBuilder<S, *>.color(
  */
 public fun <S> ArgumentBuilder<S, *>.text(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Text>(
         name,
         TextArgumentType.text()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

@@ -29,7 +29,7 @@ import net.minecraft.command.argument.ItemPredicateArgumentType
 import net.minecraft.command.argument.ItemSlotArgumentType
 import net.minecraft.command.argument.ItemStackArgument
 import net.minecraft.command.argument.ItemStackArgumentType
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds an item predicate argument with [name] as the parameter name.
@@ -41,7 +41,7 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
 public fun <S> ArgumentBuilder<S, *>.itemPredicate(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<
             S,
@@ -50,7 +50,7 @@ public fun <S> ArgumentBuilder<S, *>.itemPredicate(
         name,
         ItemPredicateArgumentType(context)
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -61,13 +61,13 @@ public fun <S> ArgumentBuilder<S, *>.itemPredicate(
  */
 public fun <S> ArgumentBuilder<S, *>.itemSlot(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Int>(
         name,
         ItemSlotArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -81,12 +81,12 @@ public fun <S> ArgumentBuilder<S, *>.itemSlot(
 public fun <S> ArgumentBuilder<S, *>.itemStack(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, ItemStackArgument>(
         name,
         ItemStackArgumentType(context)
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

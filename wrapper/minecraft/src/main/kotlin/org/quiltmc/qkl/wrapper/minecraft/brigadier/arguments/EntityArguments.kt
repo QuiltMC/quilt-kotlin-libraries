@@ -29,7 +29,7 @@ import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.command.argument.EntitySummonArgumentType
 import net.minecraft.util.Identifier
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds an entity anchor argument with [name] as the parameter name.
@@ -38,13 +38,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.entityAnchor(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, EntityAnchorArgumentType.EntityAnchor>(
         name,
         EntityAnchorArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -55,13 +55,13 @@ public fun <S> ArgumentBuilder<S, *>.entityAnchor(
  */
 public fun <S> ArgumentBuilder<S, *>.entities(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, EntitySelector>(
         name,
         EntityArgumentType.entities()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -72,13 +72,13 @@ public fun <S> ArgumentBuilder<S, *>.entities(
  */
 public fun <S> ArgumentBuilder<S, *>.entity(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, EntitySelector>(
         name,
         EntityArgumentType.entity()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -89,12 +89,12 @@ public fun <S> ArgumentBuilder<S, *>.entity(
  */
 public fun <S> ArgumentBuilder<S, *>.entitySummon(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Identifier>(
         name,
         EntitySummonArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

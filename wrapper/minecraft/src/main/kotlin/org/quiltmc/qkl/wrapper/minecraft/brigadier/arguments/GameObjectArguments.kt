@@ -29,7 +29,7 @@ import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.particle.ParticleEffect
 import net.minecraft.util.Identifier
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds a command function argument with [name] as the parameter name.
@@ -38,7 +38,7 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.commandFunction(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<
             S,
@@ -47,7 +47,7 @@ public fun <S> ArgumentBuilder<S, *>.commandFunction(
         name,
         CommandFunctionArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -58,13 +58,13 @@ public fun <S> ArgumentBuilder<S, *>.commandFunction(
  */
 public fun <S> ArgumentBuilder<S, *>.dimension(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Identifier>(
         name,
         DimensionArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -75,13 +75,13 @@ public fun <S> ArgumentBuilder<S, *>.dimension(
  */
 public fun <S> ArgumentBuilder<S, *>.enchantment(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Enchantment>(
         name,
         EnchantmentArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -93,13 +93,13 @@ public fun <S> ArgumentBuilder<S, *>.enchantment(
  */
 public fun <S> ArgumentBuilder<S, *>.identifier(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Identifier>(
         name,
         IdentifierArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -110,13 +110,13 @@ public fun <S> ArgumentBuilder<S, *>.identifier(
  */
 public fun <S> ArgumentBuilder<S, *>.particleEffect(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, ParticleEffect>(
         name,
         ParticleEffectArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -127,12 +127,12 @@ public fun <S> ArgumentBuilder<S, *>.particleEffect(
  */
 public fun <S> ArgumentBuilder<S, *>.statusEffect(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, StatusEffect>(
         name,
         StatusEffectArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

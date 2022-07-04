@@ -28,7 +28,7 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.TimeArgumentType
 import net.minecraft.command.argument.UuidArgumentType
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.LiteralArgumentAction
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 import java.util.*
 
 /**
@@ -41,7 +41,7 @@ public fun <S> ArgumentBuilder<S, *>.literal(
     action: LiteralArgumentAction<S>
 ) {
     val argument = LiteralArgumentBuilder.literal<S>(name)
-    argument.apply(action)
+    argument.action()
     then(argument)
 }
 
@@ -52,13 +52,13 @@ public fun <S> ArgumentBuilder<S, *>.literal(
  */
 public fun <S> ArgumentBuilder<S, *>.time(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Int>(
         name,
         TimeArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -69,12 +69,12 @@ public fun <S> ArgumentBuilder<S, *>.time(
  */
 public fun <S> ArgumentBuilder<S, *>.uuid(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, UUID>(
         name,
         UuidArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

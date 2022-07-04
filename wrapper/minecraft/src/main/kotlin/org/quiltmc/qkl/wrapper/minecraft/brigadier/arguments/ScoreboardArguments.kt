@@ -26,7 +26,7 @@ import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.*
 import net.minecraft.scoreboard.ScoreboardCriterion
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds an operation compound argument with [name] as the parameter name.
@@ -35,13 +35,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.operation(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, OperationArgumentType.Operation>(
         name,
         OperationArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -52,13 +52,13 @@ public fun <S> ArgumentBuilder<S, *>.operation(
  */
 public fun <S> ArgumentBuilder<S, *>.scoreboardCriterion(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, ScoreboardCriterion>(
         name,
         ScoreboardCriterionArgumentType.scoreboardCriterion()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -69,13 +69,13 @@ public fun <S> ArgumentBuilder<S, *>.scoreboardCriterion(
  */
 public fun <S> ArgumentBuilder<S, *>.scoreboardObjective(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, String>(
         name,
         ScoreboardObjectiveArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -86,13 +86,13 @@ public fun <S> ArgumentBuilder<S, *>.scoreboardObjective(
  */
 public fun <S> ArgumentBuilder<S, *>.scoreboardSlot(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Int>(
         name,
         ScoreboardSlotArgumentType.scoreboardSlot()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -106,12 +106,12 @@ public fun <S> ArgumentBuilder<S, *>.scoreboardSlot(
 public fun <S> ArgumentBuilder<S, *>.scoreHolder(
     name: String,
     multiple: Boolean = false,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, ScoreHolderArgumentType.ScoreHolder>(
         name,
         ScoreHolderArgumentType(multiple)
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

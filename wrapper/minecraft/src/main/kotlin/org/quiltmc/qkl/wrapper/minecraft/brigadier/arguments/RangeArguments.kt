@@ -26,7 +26,7 @@ import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.NumberRangeArgumentType
 import net.minecraft.predicate.NumberRange
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds a float range argument with [name] as the parameter name.
@@ -35,13 +35,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.floatRange(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, NumberRange.FloatRange>(
         name,
         NumberRangeArgumentType.floatRange()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -52,12 +52,12 @@ public fun <S> ArgumentBuilder<S, *>.floatRange(
  */
 public fun <S> ArgumentBuilder<S, *>.intRange(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, NumberRange.IntRange>(
         name,
         NumberRangeArgumentType.intRange()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

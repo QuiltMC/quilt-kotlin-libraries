@@ -25,7 +25,7 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
 import com.mojang.brigadier.arguments.*
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithAccessor
 
 /**
  * Adds a boolean argument with [name] as the parameter name.
@@ -34,13 +34,16 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.boolean(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, Boolean>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Boolean>(
         name,
         BoolArgumentType.bool()
     )
-    argument.apply(action)
+
+    argument.action {
+        BoolArgumentType.getBool(this, name)
+    }
     then(argument)
 }
 
@@ -56,13 +59,15 @@ public fun <S> ArgumentBuilder<S, *>.double(
     name: String,
     min: Double = -Double.MAX_VALUE,
     max: Double = Double.MAX_VALUE,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, Double>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Double>(
         name,
         DoubleArgumentType.doubleArg(min, max)
     )
-    argument.apply(action)
+    argument.action {
+        DoubleArgumentType.getDouble(this, name)
+    }
     then(argument)
 }
 
@@ -78,13 +83,15 @@ public fun <S> ArgumentBuilder<S, *>.float(
     name: String,
     min: Float = -Float.MAX_VALUE,
     max: Float = Float.MAX_VALUE,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, Float>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Float>(
         name,
         FloatArgumentType.floatArg(min, max)
     )
-    argument.apply(action)
+    argument.action {
+        FloatArgumentType.getFloat(this, name)
+    }
     then(argument)
 }
 
@@ -100,13 +107,15 @@ public fun <S> ArgumentBuilder<S, *>.integer(
     name: String,
     min: Int = -Int.MAX_VALUE,
     max: Int = Int.MAX_VALUE,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, Int>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Int>(
         name,
         IntegerArgumentType.integer(min, max)
     )
-    argument.apply(action)
+    argument.action {
+        IntegerArgumentType.getInteger(this, name)
+    }
     then(argument)
 }
 
@@ -122,12 +131,14 @@ public fun <S> ArgumentBuilder<S, *>.long(
     name: String,
     min: Long = -Long.MAX_VALUE,
     max: Long = Long.MAX_VALUE,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithAccessor<S, Long>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, Long>(
         name,
         LongArgumentType.longArg(min, max)
     )
-    argument.apply(action)
+    argument.action {
+        LongArgumentType.getLong(this, name)
+    }
     then(argument)
 }

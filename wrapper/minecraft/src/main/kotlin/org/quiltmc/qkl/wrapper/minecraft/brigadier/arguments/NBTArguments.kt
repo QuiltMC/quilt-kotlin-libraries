@@ -29,7 +29,7 @@ import net.minecraft.command.argument.NbtElementArgumentType
 import net.minecraft.command.argument.NbtPathArgumentType
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds a nbt compound argument with [name] as the parameter name.
@@ -38,13 +38,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.nbtCompound(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, NbtCompound>(
         name,
         NbtCompoundArgumentType.nbtCompound()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -55,13 +55,13 @@ public fun <S> ArgumentBuilder<S, *>.nbtCompound(
  */
 public fun <S> ArgumentBuilder<S, *>.nbtElement(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, NbtElement>(
         name,
         NbtElementArgumentType.nbtElement()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -72,12 +72,12 @@ public fun <S> ArgumentBuilder<S, *>.nbtElement(
  */
 public fun <S> ArgumentBuilder<S, *>.nbtPath(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, NbtPathArgumentType.NbtPath>(
         name,
         NbtPathArgumentType.nbtPath()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

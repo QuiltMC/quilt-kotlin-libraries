@@ -27,7 +27,7 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.TestClassArgumentType
 import net.minecraft.command.argument.TestFunctionArgumentType
 import net.minecraft.test.TestFunction
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds a test class argument with [name] as the parameter name.
@@ -36,13 +36,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.testClass(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, String>(
         name,
         TestClassArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -53,12 +53,12 @@ public fun <S> ArgumentBuilder<S, *>.testClass(
  */
 public fun <S> ArgumentBuilder<S, *>.testFunction(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, TestFunction>(
         name,
         TestFunctionArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

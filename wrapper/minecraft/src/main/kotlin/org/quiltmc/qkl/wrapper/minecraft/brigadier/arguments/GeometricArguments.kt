@@ -26,7 +26,7 @@ import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.*
 import net.minecraft.util.math.Direction
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 import java.util.*
 
 /**
@@ -36,13 +36,13 @@ import java.util.*
  */
 public fun <S> ArgumentBuilder<S, *>.angle(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, AngleArgumentType.Angle>(
         name,
         AngleArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -53,13 +53,13 @@ public fun <S> ArgumentBuilder<S, *>.angle(
  */
 public fun <S> ArgumentBuilder<S, *>.rotation(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, PosArgument>(
         name,
         RotationArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -70,13 +70,13 @@ public fun <S> ArgumentBuilder<S, *>.rotation(
  */
 public fun <S> ArgumentBuilder<S, *>.swizzle(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, EnumSet<Direction.Axis>>(
         name,
         SwizzleArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -87,13 +87,13 @@ public fun <S> ArgumentBuilder<S, *>.swizzle(
  */
 public fun <S> ArgumentBuilder<S, *>.blockPos(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, PosArgument>(
         name,
         BlockPosArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -104,13 +104,13 @@ public fun <S> ArgumentBuilder<S, *>.blockPos(
  */
 public fun <S> ArgumentBuilder<S, *>.columnPos(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, PosArgument>(
         name,
         ColumnPosArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -124,13 +124,13 @@ public fun <S> ArgumentBuilder<S, *>.columnPos(
 public fun <S> ArgumentBuilder<S, *>.vec2(
     name: String,
     centerIntegers: Boolean = false,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, PosArgument>(
         name,
         Vec2ArgumentType(centerIntegers)
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -144,12 +144,12 @@ public fun <S> ArgumentBuilder<S, *>.vec2(
 public fun <S> ArgumentBuilder<S, *>.vec3(
     name: String,
     centerIntegers: Boolean = false,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, PosArgument>(
         name,
         Vec3ArgumentType(centerIntegers)
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

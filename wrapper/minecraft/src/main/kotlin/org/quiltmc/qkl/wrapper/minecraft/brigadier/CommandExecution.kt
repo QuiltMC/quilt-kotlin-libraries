@@ -23,6 +23,9 @@ import net.minecraft.command.CommandException
 import net.minecraft.text.Text
 import kotlin.experimental.ExperimentalTypeInference
 
+public typealias CommandActionWithResult<S> = (CommandContext<S>) -> CommandResult
+public typealias CommandAction<S> = (CommandContext<S>) -> Unit
+
 /**
  * Representation of possible results of running a command.
  *
@@ -62,7 +65,7 @@ public sealed class CommandResult {
  */
 @OptIn(ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
-public fun <S> ArgumentBuilder<S, *>.execute(command: (CommandContext<S>) -> CommandResult) {
+public fun <S> ArgumentBuilder<S, *>.execute(command: CommandActionWithResult<S>) {
     executes {
         when (val result = command(it)) {
             is CommandResult.Success -> result.result
@@ -84,7 +87,7 @@ public fun <S> ArgumentBuilder<S, *>.execute(command: (CommandContext<S>) -> Com
 @OptIn(ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
 @JvmName("executeWithoutReturnCode")
-public fun <S> ArgumentBuilder<S, *>.execute(command: (CommandContext<S>) -> Unit) {
+public fun <S> ArgumentBuilder<S, *>.execute(command: CommandAction<S>) {
     execute {
         command(it)
         CommandResult.Success()

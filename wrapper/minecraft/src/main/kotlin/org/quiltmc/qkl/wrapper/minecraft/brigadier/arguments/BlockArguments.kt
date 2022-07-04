@@ -28,7 +28,7 @@ import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.BlockPredicateArgumentType
 import net.minecraft.command.argument.BlockStateArgument
 import net.minecraft.command.argument.BlockStateArgumentType
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds a block predicate argument with [name] as the parameter name.
@@ -40,13 +40,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
 public fun <S> ArgumentBuilder<S, *>.blockPredicate(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, BlockPredicateArgumentType.BlockPredicate>(
         name,
         BlockPredicateArgumentType(context)
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -60,12 +60,12 @@ public fun <S> ArgumentBuilder<S, *>.blockPredicate(
 public fun <S> ArgumentBuilder<S, *>.blockState(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, BlockStateArgument>(
         name,
         BlockStateArgumentType(context)
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

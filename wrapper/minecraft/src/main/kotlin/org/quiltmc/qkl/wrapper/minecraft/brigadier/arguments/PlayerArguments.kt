@@ -28,7 +28,7 @@ import net.minecraft.command.EntitySelector
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.command.argument.GameProfileArgumentType
 import net.minecraft.command.argument.TeamArgumentType
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
 
 /**
  * Adds a game profile argument with [name] as the parameter name.
@@ -37,13 +37,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentAction
  */
 public fun <S> ArgumentBuilder<S, *>.gameProfile(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, GameProfileArgumentType.GameProfileArgument>(
         name,
         GameProfileArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -54,13 +54,13 @@ public fun <S> ArgumentBuilder<S, *>.gameProfile(
  */
 public fun <S> ArgumentBuilder<S, *>.players(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, EntitySelector>(
         name,
         EntityArgumentType.players()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -71,13 +71,13 @@ public fun <S> ArgumentBuilder<S, *>.players(
  */
 public fun <S> ArgumentBuilder<S, *>.player(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, EntitySelector>(
         name,
         EntityArgumentType.player()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }
 
@@ -88,12 +88,12 @@ public fun <S> ArgumentBuilder<S, *>.player(
  */
 public fun <S> ArgumentBuilder<S, *>.team(
     name: String,
-    action: RequiredArgumentAction<S>
+    action: RequiredArgumentActionWithName<S>
 ) {
     val argument = RequiredArgumentBuilder.argument<S, String>(
         name,
         TeamArgumentType()
     )
-    argument.apply(action)
+    argument.action(name)
     then(argument)
 }

@@ -23,10 +23,13 @@ import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.util.registry.DynamicRegistryManager
 
-public typealias RequiredArgumentAction<S> = RequiredArgumentBuilder<S, *>.() -> Unit
+public typealias RequiredArgumentActionWithName<S> = RequiredArgumentBuilder<S, *>.(argumentName: String) -> Unit
+
+public typealias ArgumentValueAccessor<S, T> = CommandContext<S>.() -> T
+public typealias RequiredArgumentActionWithAccessor<S, T> =
+        RequiredArgumentBuilder<S, *>.(getValue: ArgumentValueAccessor<S, T>) -> Unit
+
 public typealias LiteralArgumentAction<S> = LiteralArgumentBuilder<S>.() -> Unit
-public typealias CommandActionReturn<S> = CommandContext<S>.() -> Int
-public typealias CommandAction<S> = CommandContext<S>.() -> Unit
 
 /**
  * Registers a command under [command] as the name.
