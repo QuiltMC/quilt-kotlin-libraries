@@ -77,7 +77,7 @@ public fun commandBuildContext(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.literal(
+public fun <S> ArgumentBuilder<S, *>.literal(
     name: String,
     action: LiteralArgumentAction<S>
 ) {
@@ -91,7 +91,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.literal(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.string(
+public fun <S> ArgumentBuilder<S, *>.string(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -108,7 +108,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.string(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.greedyString(
+public fun <S> ArgumentBuilder<S, *>.greedyString(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -125,7 +125,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.greedyString(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.word(
+public fun <S> ArgumentBuilder<S, *>.word(
     name: String,
     action: RequiredArgumentBuilder<S, String>.() -> Unit = { }
 ) {
@@ -142,7 +142,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.word(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.boolean(
+public fun <S> ArgumentBuilder<S, *>.boolean(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -162,7 +162,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.boolean(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.double(
+public fun <S> ArgumentBuilder<S, *>.double(
     name: String,
     min: Double = -Double.MAX_VALUE,
     max: Double = Double.MAX_VALUE,
@@ -184,7 +184,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.double(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.float(
+public fun <S> ArgumentBuilder<S, *>.float(
     name: String,
     min: Float = -Float.MAX_VALUE,
     max: Float = Float.MAX_VALUE,
@@ -206,7 +206,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.float(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.integer(
+public fun <S> ArgumentBuilder<S, *>.integer(
     name: String,
     min: Int = -Int.MAX_VALUE,
     max: Int = Int.MAX_VALUE,
@@ -228,7 +228,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.integer(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.long(
+public fun <S> ArgumentBuilder<S, *>.long(
     name: String,
     min: Long = -Long.MAX_VALUE,
     max: Long = Long.MAX_VALUE,
@@ -251,7 +251,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.long(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.angle(
+public fun <S> ArgumentBuilder<S, *>.angle(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -268,7 +268,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.angle(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockPos(
+public fun <S> ArgumentBuilder<S, *>.blockPos(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -287,7 +287,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockPos(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockPredicate(
+public fun <S> ArgumentBuilder<S, *>.blockPredicate(
     name: String,
     context: CommandBuildContext,
     action: RequiredArgumentAction<S>
@@ -307,7 +307,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockPredicate(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockState(
+public fun <S> ArgumentBuilder<S, *>.blockState(
     name: String,
     context: CommandBuildContext,
     action: RequiredArgumentAction<S>
@@ -325,7 +325,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.blockState(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.color(
+public fun <S> ArgumentBuilder<S, *>.color(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -342,7 +342,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.color(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.columnPos(
+public fun <S> ArgumentBuilder<S, *>.columnPos(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -359,7 +359,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.columnPos(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.commandFunction(
+public fun <S> ArgumentBuilder<S, *>.commandFunction(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -379,7 +379,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.commandFunction
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.dimension(
+public fun <S> ArgumentBuilder<S, *>.dimension(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -396,7 +396,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.dimension(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.enchantment(
+public fun <S> ArgumentBuilder<S, *>.enchantment(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -413,7 +413,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.enchantment(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entityAnchor(
+public fun <S> ArgumentBuilder<S, *>.entityAnchor(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -431,7 +431,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entityAnchor(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entities(
+public fun <S> ArgumentBuilder<S, *>.entities(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -448,7 +448,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entities(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entity(
+public fun <S> ArgumentBuilder<S, *>.entity(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -465,7 +465,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entity(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entitySummon(
+public fun <S> ArgumentBuilder<S, *>.entitySummon(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -482,7 +482,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.entitySummon(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.floatRange(
+public fun <S> ArgumentBuilder<S, *>.floatRange(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -499,7 +499,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.floatRange(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.gameProfile(
+public fun <S> ArgumentBuilder<S, *>.gameProfile(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -516,7 +516,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.gameProfile(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.identifier(
+public fun <S> ArgumentBuilder<S, *>.identifier(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -533,7 +533,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.identifier(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.intRange(
+public fun <S> ArgumentBuilder<S, *>.intRange(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -552,7 +552,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.intRange(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.itemPredicate(
+public fun <S> ArgumentBuilder<S, *>.itemPredicate(
     name: String,
     context: CommandBuildContext,
     action: RequiredArgumentAction<S>
@@ -573,7 +573,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.itemPredicate(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.itemSlot(
+public fun <S> ArgumentBuilder<S, *>.itemSlot(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -592,7 +592,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.itemSlot(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.itemStack(
+public fun <S> ArgumentBuilder<S, *>.itemStack(
     name: String,
     context: CommandBuildContext,
     action: RequiredArgumentAction<S>
@@ -610,7 +610,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.itemStack(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.message(
+public fun <S> ArgumentBuilder<S, *>.message(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -627,7 +627,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.message(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtCompound(
+public fun <S> ArgumentBuilder<S, *>.nbtCompound(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -644,7 +644,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtCompound(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtElement(
+public fun <S> ArgumentBuilder<S, *>.nbtElement(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -661,7 +661,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtElement(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtPath(
+public fun <S> ArgumentBuilder<S, *>.nbtPath(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -678,7 +678,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.nbtPath(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.operation(
+public fun <S> ArgumentBuilder<S, *>.operation(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -695,7 +695,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.operation(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.particleEffect(
+public fun <S> ArgumentBuilder<S, *>.particleEffect(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -712,7 +712,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.particleEffect(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.players(
+public fun <S> ArgumentBuilder<S, *>.players(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -729,7 +729,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.players(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.player(
+public fun <S> ArgumentBuilder<S, *>.player(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -746,7 +746,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.player(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.rotation(
+public fun <S> ArgumentBuilder<S, *>.rotation(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -763,7 +763,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.rotation(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreboardCriterion(
+public fun <S> ArgumentBuilder<S, *>.scoreboardCriterion(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -780,7 +780,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreboardCrite
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreboardObjective(
+public fun <S> ArgumentBuilder<S, *>.scoreboardObjective(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -797,7 +797,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreboardObjec
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreboardSlot(
+public fun <S> ArgumentBuilder<S, *>.scoreboardSlot(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -816,7 +816,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreboardSlot(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreHolder(
+public fun <S> ArgumentBuilder<S, *>.scoreHolder(
     name: String,
     multiple: Boolean = false,
     action: RequiredArgumentAction<S>
@@ -834,7 +834,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.scoreHolder(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.statusEffect(
+public fun <S> ArgumentBuilder<S, *>.statusEffect(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -851,7 +851,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.statusEffect(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.swizzle(
+public fun <S> ArgumentBuilder<S, *>.swizzle(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -868,7 +868,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.swizzle(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.team(
+public fun <S> ArgumentBuilder<S, *>.team(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -885,7 +885,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.team(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.testClass(
+public fun <S> ArgumentBuilder<S, *>.testClass(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -902,7 +902,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.testClass(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.testFunction(
+public fun <S> ArgumentBuilder<S, *>.testFunction(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -919,7 +919,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.testFunction(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.text(
+public fun <S> ArgumentBuilder<S, *>.text(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -936,7 +936,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.text(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.time(
+public fun <S> ArgumentBuilder<S, *>.time(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -953,7 +953,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.time(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.uuid(
+public fun <S> ArgumentBuilder<S, *>.uuid(
     name: String,
     action: RequiredArgumentAction<S>
 ) {
@@ -972,7 +972,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.uuid(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.vec2(
+public fun <S> ArgumentBuilder<S, *>.vec2(
     name: String,
     centerIntegers: Boolean = false,
     action: RequiredArgumentAction<S>
@@ -992,7 +992,7 @@ public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.vec2(
  *
  * @author Oliver-makes-code (Emma)
  */
-public fun <S, T : ArgumentBuilder<S, T>?> ArgumentBuilder<S, T>.vec3(
+public fun <S> ArgumentBuilder<S, *>.vec3(
     name: String,
     centerIntegers: Boolean = false,
     action: RequiredArgumentAction<S>
