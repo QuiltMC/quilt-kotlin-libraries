@@ -30,7 +30,7 @@ import kotlin.experimental.ExperimentalTypeInference
  */
 public sealed class CommandResult {
     /**
-     * Representation of successful completion with the return value of [result]
+     * Representation of successful completion with the return value of [result].
      *
      * @author Cypher121
      */
@@ -39,7 +39,7 @@ public sealed class CommandResult {
     ) : CommandResult()
 
     /**
-     * Representation of the command failing with the specified error [message]
+     * Representation of the command failing with the specified error [message].
      *
      * @author Cypher121
      */
@@ -54,7 +54,7 @@ public sealed class CommandResult {
  * If [command] returns [CommandResult.Success], the command will return with [CommandResult.Success.result].
  *
  * If [command] returns [CommandResult.Failure],
- * the command will throw a [CommandException] containing the returned [CommandResult.Failure.message]
+ * the command will throw a [CommandException] containing the returned [CommandResult.Failure.message].
  *
  * @see ArgumentBuilder.executes
  *
