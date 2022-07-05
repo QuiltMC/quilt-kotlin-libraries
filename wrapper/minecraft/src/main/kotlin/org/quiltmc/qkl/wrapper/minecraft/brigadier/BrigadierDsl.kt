@@ -60,3 +60,17 @@ public fun commandBuildContext(
     context.apply(action)
     return context
 }
+
+/**
+ * Casts the context to a different source.
+ * This is needed due to MC arg types requiring
+ * a specific command source to resolve, even though
+ * they have no need for it at all.
+ *
+ * @see net.minecraft.command.argument.NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument
+ *
+ * @author Cypher121
+ */
+@Suppress("UNCHECKED_CAST")
+internal fun <S> CommandContext<*>.assumeSourceNotUsed() =
+    this as CommandContext<S>
