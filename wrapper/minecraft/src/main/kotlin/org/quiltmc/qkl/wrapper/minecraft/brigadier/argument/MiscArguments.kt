@@ -20,22 +20,32 @@
 @file:JvmMultifileClass
 @file:JvmName("ArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
+import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.TimeArgumentType
 import net.minecraft.command.argument.UuidArgumentType
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.LiteralArgumentAction
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import java.util.*
+
+@JvmName("valueTimeArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<TimeArgumentType>>.value(): Int =
+    IntegerArgumentType.getInteger(context, name) // TimeArgumentType does not provide an accessor, defaulting to int
+
+@JvmName("valueUuidArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(): UUID =
+    UuidArgumentType.getUuid(context.assumeSourceNotUsed(), name)
 
 /**
  * Adds a literal argument with [name] as the literal.
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.literal(
     name: String,
     action: LiteralArgumentAction<S>
@@ -50,16 +60,12 @@ public fun <S> ArgumentBuilder<S, *>.literal(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.time(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TimeArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, Int>(
-        name,
-        TimeArgumentType()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, TimeArgumentType.time(), action)
 }
 
 /**
@@ -67,14 +73,10 @@ public fun <S> ArgumentBuilder<S, *>.time(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.uuid(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<UuidArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, UUID>(
-        name,
-        UuidArgumentType()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, UuidArgumentType.uuid(), action)
 }

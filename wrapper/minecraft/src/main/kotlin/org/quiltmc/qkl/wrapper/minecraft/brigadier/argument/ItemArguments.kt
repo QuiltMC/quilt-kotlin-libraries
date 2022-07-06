@@ -20,16 +20,32 @@
 @file:JvmMultifileClass
 @file:JvmName("ArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.ItemPredicateArgumentType
 import net.minecraft.command.argument.ItemSlotArgumentType
 import net.minecraft.command.argument.ItemStackArgument
 import net.minecraft.command.argument.ItemStackArgumentType
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
+import net.minecraft.item.ItemStack
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
+import java.util.function.Predicate
+
+@JvmName("valueItemPredicateArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemPredicateArgumentType>>.value(): Predicate<ItemStack> =
+    ItemPredicateArgumentType.getItemPredicate(context.assumeSourceNotUsed(), name)
+
+@JvmName("valueItemSlotArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemSlotArgumentType>>.value(): Int =
+    ItemSlotArgumentType.getItemSlot(context.assumeSourceNotUsed(), name)
+
+@JvmName("valueItemStackArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.value(): ItemStackArgument =
+    ItemStackArgumentType.getItemStackArgument(context, name)
 
 /**
  * Adds an item predicate argument with [name] as the parameter name.
@@ -38,20 +54,13 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithNam
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.itemPredicate(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ItemPredicateArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<
-            S,
-            ItemPredicateArgumentType.ItemPredicateArgument
-            >(
-        name,
-        ItemPredicateArgumentType(context)
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, ItemPredicateArgumentType.itemPredicate(context), action)
 }
 
 /**
@@ -59,16 +68,12 @@ public fun <S> ArgumentBuilder<S, *>.itemPredicate(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.itemSlot(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ItemSlotArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, Int>(
-        name,
-        ItemSlotArgumentType()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, ItemSlotArgumentType.itemSlot(), action)
 }
 
 /**
@@ -78,15 +83,11 @@ public fun <S> ArgumentBuilder<S, *>.itemSlot(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.itemStack(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ItemStackArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, ItemStackArgument>(
-        name,
-        ItemStackArgumentType(context)
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, ItemStackArgumentType.itemStack(context), action)
 }

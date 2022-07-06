@@ -20,68 +20,63 @@
 @file:JvmMultifileClass
 @file:JvmName("ArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.ArgumentValueAccessor
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithAccessor
+import com.mojang.brigadier.context.CommandContext
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
-private fun createStringAccessor(name: String): ArgumentValueAccessor<*, String> = {
-    StringArgumentType.getString(this, name)
-}
+@JvmName("valueStringArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<StringArgumentType>>.value(): String =
+    StringArgumentType.getString(context, name)
 
 /**
  * Adds a string argument with [name] as the parameter name.
  *
+ * An accessor is passed to [action] allowing type-safe
+ * retrieval from [CommandContext] during execution.
+ *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.string(
     name: String,
-    action: RequiredArgumentActionWithAccessor<S, String>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<StringArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, String>(
-        name,
-        StringArgumentType.string()
-    )
-
-    argument.apply { action(createStringAccessor(name)) }
-    then(argument)
+    argument(name, StringArgumentType.string(), action)
 }
 
 /**
  * Adds a greedy string argument with [name] as the parameter name.
  *
+ * An accessor is passed to [action] allowing type-safe
+ * retrieval from [CommandContext] during execution.
+ *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.greedyString(
     name: String,
-    action: RequiredArgumentActionWithAccessor<S, String>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<StringArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, String>(
-        name,
-        StringArgumentType.greedyString()
-    )
-    argument.apply { action(createStringAccessor(name)) }
-    then(argument)
+    argument(name, StringArgumentType.greedyString(), action)
 }
 
 /**
  * Adds a word argument with [name] as the parameter name.
  *
+ * An accessor is passed to [action] allowing type-safe
+ * retrieval from [CommandContext] during execution.
+ *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.word(
     name: String,
-    action: RequiredArgumentActionWithAccessor<S, String>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<StringArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, String>(
-        name,
-        StringArgumentType.word()
-    )
-
-    argument.action(createStringAccessor(name))
-    then(argument)
+    argument(name, StringArgumentType.word(), action)
 }

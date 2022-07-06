@@ -20,52 +20,65 @@
 @file:JvmMultifileClass
 @file:JvmName("ArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
+import net.minecraft.block.pattern.CachedBlockPosition
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.BlockPredicateArgumentType
 import net.minecraft.command.argument.BlockStateArgument
 import net.minecraft.command.argument.BlockStateArgumentType
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
+import java.util.function.Predicate
+
+@JvmName("valueBlockPredicateArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockPredicateArgumentType>>.value(): Predicate<CachedBlockPosition> =
+    BlockPredicateArgumentType.getBlockPredicate(context.assumeSourceNotUsed(), name)
+
+@JvmName("valueBlockStateArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockStateArgumentType>>.value(): BlockStateArgument =
+    BlockStateArgumentType.getBlockState(context.assumeSourceNotUsed(), name)
 
 /**
  * Adds a block predicate argument with [name] as the parameter name.
  *
+ * An accessor is passed to [action] allowing type-safe
+ * retrieval from [CommandContext] during execution.
+ *
  * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
+ * @author Cypher121
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.blockPredicate(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<BlockPredicateArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, BlockPredicateArgumentType.BlockPredicate>(
-        name,
-        BlockPredicateArgumentType(context)
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, BlockPredicateArgumentType.blockPredicate(context), action)
 }
 
 /**
  * Adds a block state argument with [name] as the parameter name.
  *
+ * An accessor is passed to [action] allowing type-safe
+ * retrieval from [CommandContext] during execution.
+ *
  * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
+ * @author Cypher121
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.blockState(
     name: String,
     context: CommandBuildContext,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<BlockStateArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, BlockStateArgument>(
-        name,
-        BlockStateArgumentType(context)
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, BlockStateArgumentType.blockState(context), action)
 }

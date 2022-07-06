@@ -17,25 +17,30 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier
 
 import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.arguments.ArgumentType
+import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.util.registry.DynamicRegistryManager
 
-public typealias RequiredArgumentActionWithName<S> = RequiredArgumentBuilder<S, *>.(argumentName: String) -> Unit
-
-public typealias ArgumentValueAccessor<S, T> = CommandContext<S>.() -> T
-public typealias RequiredArgumentActionWithAccessor<S, T> =
-        RequiredArgumentBuilder<S, *>.(getValue: ArgumentValueAccessor<S, T>) -> Unit
+public typealias ArgumentValueAccessor<S, D> =
+        CommandContext<S>.() -> ArgumentReader<S, D>
+public typealias RequiredArgumentAction<S, D> =
+        RequiredArgumentBuilder<S, *>.(getValue: ArgumentValueAccessor<S, D>) -> Unit
 
 public typealias LiteralArgumentAction<S> = LiteralArgumentBuilder<S>.() -> Unit
+
+@DslMarker
+public annotation class BrigadierDsl
 
 /**
  * Registers a command under [command] as the name.
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> CommandDispatcher<S>.register(
     command: String,
     action: LiteralArgumentAction<S>
@@ -62,15 +67,39 @@ public fun commandBuildContext(
 }
 
 /**
- * Casts the context to a different source.
- * This is needed due to MC arg types requiring
- * a specific command source to resolve, even though
- * they have no need for it at all.
+ * Adds an argument of the specified [argumentType] with [name]
+ * as the parameter name.
  *
- * @see net.minecraft.command.argument.NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument
+ * The accessor passed to [action] can be used
+ * on [CommandContext] during execution to create
+ * an [ArgumentReader] for this argument.
  *
  * @author Cypher121
  */
-@Suppress("UNCHECKED_CAST")
-internal fun <S> CommandContext<*>.assumeSourceNotUsed() =
-    this as CommandContext<S>
+@BrigadierDsl
+public fun <S, D : ArgumentDescriptor<A>, AT, A : ArgumentType<AT>> ArgumentBuilder<S, *>.argument(
+    name: String,
+    argumentType: A,
+    argumentDescriptor: D,
+    action: RequiredArgumentAction<S, D>
+) {
+    val builder = RequiredArgumentBuilder.argument<S, AT>(
+        name,
+        argumentType
+    )
+
+    builder.action {
+        ArgumentReader(this, name, argumentDescriptor)
+    }
+
+    then(builder)
+}
+
+@BrigadierDsl
+public fun <S, AT, A : ArgumentType<AT>> ArgumentBuilder<S, *>.argument(
+    name: String,
+    argumentType: A,
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<A>>
+) {
+    argument(name, argumentType, DefaultArgumentDescriptor(), action)
+}

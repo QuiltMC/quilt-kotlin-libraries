@@ -20,31 +20,49 @@
 @file:JvmMultifileClass
 @file:JvmName("ArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.arguments.*
 import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithAccessor
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
+
+@JvmName("valueBoolArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<BoolArgumentType>>.value(): Boolean =
+    BoolArgumentType.getBool(context, name)
+
+@JvmName("valueDoubleArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<DoubleArgumentType>>.value(): Double =
+    DoubleArgumentType.getDouble(context, name)
+
+@JvmName("valueFloatArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<FloatArgumentType>>.value(): Float =
+    FloatArgumentType.getFloat(context, name)
+
+@JvmName("valueIntArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<IntegerArgumentType>>.value(): Int =
+    IntegerArgumentType.getInteger(context, name)
+
+@JvmName("valueLongArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(): Long =
+    LongArgumentType.getLong(context, name)
 
 /**
  * Adds a boolean argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
+ * @author Cypher121
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.boolean(
     name: String,
-    action: RequiredArgumentActionWithAccessor<S, Boolean>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<BoolArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, Boolean>(
-        name,
-        BoolArgumentType.bool()
-    )
-
-    argument.action {
-        BoolArgumentType.getBool(this, name)
-    }
-    then(argument)
+    argument(name, BoolArgumentType.bool(), action)
 }
 
 /**
@@ -55,20 +73,14 @@ public fun <S> ArgumentBuilder<S, *>.boolean(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.double(
     name: String,
     min: Double = -Double.MAX_VALUE,
     max: Double = Double.MAX_VALUE,
-    action: RequiredArgumentActionWithAccessor<S, Double>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<DoubleArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, Double>(
-        name,
-        DoubleArgumentType.doubleArg(min, max)
-    )
-    argument.action {
-        DoubleArgumentType.getDouble(this, name)
-    }
-    then(argument)
+    argument(name, DoubleArgumentType.doubleArg(min, max), action)
 }
 
 /**
@@ -79,20 +91,14 @@ public fun <S> ArgumentBuilder<S, *>.double(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.float(
     name: String,
     min: Float = -Float.MAX_VALUE,
     max: Float = Float.MAX_VALUE,
-    action: RequiredArgumentActionWithAccessor<S, Float>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<FloatArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, Float>(
-        name,
-        FloatArgumentType.floatArg(min, max)
-    )
-    argument.action {
-        FloatArgumentType.getFloat(this, name)
-    }
-    then(argument)
+    argument(name, FloatArgumentType.floatArg(min, max), action)
 }
 
 /**
@@ -103,20 +109,14 @@ public fun <S> ArgumentBuilder<S, *>.float(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.integer(
     name: String,
     min: Int = -Int.MAX_VALUE,
     max: Int = Int.MAX_VALUE,
-    action: RequiredArgumentActionWithAccessor<S, Int>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<IntegerArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, Int>(
-        name,
-        IntegerArgumentType.integer(min, max)
-    )
-    argument.action {
-        IntegerArgumentType.getInteger(this, name)
-    }
-    then(argument)
+    argument(name, IntegerArgumentType.integer(min, max), action)
 }
 
 /**
@@ -127,18 +127,12 @@ public fun <S> ArgumentBuilder<S, *>.integer(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.long(
     name: String,
     min: Long = -Long.MAX_VALUE,
     max: Long = Long.MAX_VALUE,
-    action: RequiredArgumentActionWithAccessor<S, Long>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<LongArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, Long>(
-        name,
-        LongArgumentType.longArg(min, max)
-    )
-    argument.action {
-        LongArgumentType.getLong(this, name)
-    }
-    then(argument)
+    argument(name, LongArgumentType.longArg(min, max), action)
 }

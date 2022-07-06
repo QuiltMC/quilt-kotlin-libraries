@@ -20,30 +20,36 @@
 @file:JvmMultifileClass
 @file:JvmName("ArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.TestClassArgumentType
 import net.minecraft.command.argument.TestFunctionArgumentType
 import net.minecraft.test.TestFunction
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
+
+@JvmName("valueTestClassArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<TestClassArgumentType>>.value(): String =
+    TestClassArgumentType.getTestClass(context.assumeSourceNotUsed(), name)
+
+@JvmName("valueTestFunctionArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<TestFunctionArgumentType>>.value(): TestFunction =
+    TestFunctionArgumentType.getFunction(context.assumeSourceNotUsed(), name)
 
 /**
  * Adds a test class argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.testClass(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TestClassArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, String>(
-        name,
-        TestClassArgumentType()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, TestClassArgumentType.testClass(), action)
 }
 
 /**
@@ -51,14 +57,10 @@ public fun <S> ArgumentBuilder<S, *>.testClass(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.testFunction(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TestFunctionArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, TestFunction>(
-        name,
-        TestFunctionArgumentType()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, TestFunctionArgumentType.testFunction(), action)
 }

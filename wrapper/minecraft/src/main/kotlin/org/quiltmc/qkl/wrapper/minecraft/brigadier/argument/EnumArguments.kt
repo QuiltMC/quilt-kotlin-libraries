@@ -23,15 +23,41 @@
 @file:JvmMultifileClass
 @file:JvmName("QuiltArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithAccessor
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qsl.command.api.EnumArgumentType
 import kotlin.reflect.KClass
+
+@JvmName("valueEnumClassArg")
+@BrigadierDsl
+public fun <T : Enum<T>> ArgumentReader<*, TypedEnumArgumentDescriptor<T>>.value(): T =
+    EnumArgumentType.getEnumConstant(
+        context.assumeSourceNotUsed(),
+        name,
+        argumentDescriptor.type
+    )
+
+@JvmName("valueEnumStringArg")
+@BrigadierDsl
+public fun ArgumentReader<*, StringEnumArgumentDescriptor>.value(): String =
+    EnumArgumentType.getEnum(
+        context.assumeSourceNotUsed(),
+        name
+    )
+
+@JvmName("valueEnumMappedArg")
+@BrigadierDsl
+public fun <T> ArgumentReader<*, MappedStringEnumArgumentDescriptor<T>>.value(): T {
+    val key = EnumArgumentType.getEnum(
+        context.assumeSourceNotUsed(),
+        name
+    )
+
+    return argumentDescriptor.map.getValue(key.lowercase())
+}
 
 /**
  * Adds an enum argument allowing all values of the
@@ -45,23 +71,18 @@ import kotlin.reflect.KClass
  *
  * @author Cypher121
  */
+@BrigadierDsl
 public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
     name: String,
     type: KClass<T>,
-    action: RequiredArgumentActionWithAccessor<S, T>
+    action: RequiredArgumentAction<S, TypedEnumArgumentDescriptor<T>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, String>(
+    argument(
         name,
-        EnumArgumentType.enumConstant(type.java)
+        EnumArgumentType.enumConstant(type.java),
+        TypedEnumArgumentDescriptor(type.java),
+        action
     )
-    argument.action {
-        EnumArgumentType.getEnumConstant(
-            assumeSourceNotUsed(),
-            name,
-            type.java
-        )
-    }
-    then(argument)
 }
 
 /**
@@ -76,19 +97,18 @@ public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
  *
  * @author Cypher121
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.enum(
     name: String,
     values: List<String>,
-    action: RequiredArgumentActionWithAccessor<S, String>
+    action: RequiredArgumentAction<S, StringEnumArgumentDescriptor>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, String>(
+    argument(
         name,
-        EnumArgumentType(*values.toTypedArray())
+        EnumArgumentType(*values.toTypedArray()),
+        StringEnumArgumentDescriptor,
+        action
     )
-    argument.action {
-        EnumArgumentType.getEnum(assumeSourceNotUsed(), name)
-    }
-    then(argument)
 }
 
 /**
@@ -99,15 +119,16 @@ public fun <S> ArgumentBuilder<S, *>.enum(
  * retrieval from [CommandContext] during execution.
  *
  * All elements of [values] must have [names][Enum.name]
- * that are distinct when case is ignored
+ * that are distinct when case is ignored.
  *
  * @author Cypher121
  */
 @JvmName("enumAllowedSublist")
+@BrigadierDsl
 public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
     name: String,
     values: List<T>,
-    action: RequiredArgumentActionWithAccessor<S, T>
+    action: RequiredArgumentAction<S, MappedStringEnumArgumentDescriptor<T>>
 ) {
     enum(name, values.associateBy(Enum<*>::name), action)
 }
@@ -118,23 +139,30 @@ public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
  *
  * An accessor is passed to [action] allowing type-safe
  * retrieval from [CommandContext] during execution.
+ *
  * The accessor returns the value from [values] matching
- * the key provided to the command
+ * the key provided to the command.
  *
  * Keys of [values] must be distinct when case is ignored.
  *
  * @author Cypher121
  */
+@BrigadierDsl
 public fun <S, T> ArgumentBuilder<S, *>.enum(
     name: String,
     values: Map<String, T>,
-    action: RequiredArgumentActionWithAccessor<S, T>
+    action: RequiredArgumentAction<S, MappedStringEnumArgumentDescriptor<T>>
 ) {
     val lowercaseValues = values.mapKeys { it.key.lowercase() }
 
-    enum(name, values.keys.toList()) { getKey ->
-        action {
-            lowercaseValues.getValue(getKey().lowercase())
-        }
-    }
+    argument(
+        name,
+        EnumArgumentType(*values.keys.toTypedArray()),
+        MappedStringEnumArgumentDescriptor(lowercaseValues),
+        action
+    )
 }
+
+public object StringEnumArgumentDescriptor : ArgumentDescriptor<EnumArgumentType>
+public class TypedEnumArgumentDescriptor<T : Enum<T>>(public val type: Class<T>) : ArgumentDescriptor<EnumArgumentType>
+public class MappedStringEnumArgumentDescriptor<T>(public val map: Map<String, T>) : ArgumentDescriptor<EnumArgumentType>

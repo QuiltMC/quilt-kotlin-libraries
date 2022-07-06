@@ -20,32 +20,44 @@
 @file:JvmMultifileClass
 @file:JvmName("ArgumentsKt")
 
-package org.quiltmc.qkl.wrapper.minecraft.brigadier.arguments
+package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.command.argument.NbtCompoundArgumentType
 import net.minecraft.command.argument.NbtElementArgumentType
 import net.minecraft.command.argument.NbtPathArgumentType
+import net.minecraft.command.argument.NbtPathArgumentType.NbtPath
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.RequiredArgumentActionWithName
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
+
+@JvmName("valueNbtCompoundArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtCompoundArgumentType>>.value(): NbtCompound =
+    NbtCompoundArgumentType.getNbtCompound(context, name)
+
+@JvmName("valueNbtElementArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtElementArgumentType>>.value(): NbtElement =
+    NbtElementArgumentType.getNbtElement(context, name)
+
+@JvmName("valueNbtPathArg")
+@BrigadierDsl
+public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.value(): NbtPath =
+    NbtPathArgumentType.getNbtPath(context.assumeSourceNotUsed(), name)
 
 /**
  * Adds a nbt compound argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.nbtCompound(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NbtCompoundArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, NbtCompound>(
-        name,
-        NbtCompoundArgumentType.nbtCompound()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, NbtCompoundArgumentType.nbtCompound(), action)
 }
 
 /**
@@ -53,16 +65,12 @@ public fun <S> ArgumentBuilder<S, *>.nbtCompound(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.nbtElement(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NbtElementArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, NbtElement>(
-        name,
-        NbtElementArgumentType.nbtElement()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, NbtElementArgumentType.nbtElement(), action)
 }
 
 /**
@@ -70,14 +78,10 @@ public fun <S> ArgumentBuilder<S, *>.nbtElement(
  *
  * @author Oliver-makes-code (Emma)
  */
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.nbtPath(
     name: String,
-    action: RequiredArgumentActionWithName<S>
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NbtPathArgumentType>>
 ) {
-    val argument = RequiredArgumentBuilder.argument<S, NbtPathArgumentType.NbtPath>(
-        name,
-        NbtPathArgumentType.nbtPath()
-    )
-    argument.action(name)
-    then(argument)
+    argument(name, NbtPathArgumentType.nbtPath(), action)
 }
