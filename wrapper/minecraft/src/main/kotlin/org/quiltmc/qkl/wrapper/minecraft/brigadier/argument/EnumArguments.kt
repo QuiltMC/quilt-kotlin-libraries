@@ -89,8 +89,8 @@ public fun <T> ArgumentReader<*, MappedStringEnumArgumentDescriptor<T>>.value():
  * Adds an enum argument allowing all values of the
  * specified enum [type] [T] with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * Enum values of [T] must have [names][Enum.name] that
  * are distinct when case is ignored.
@@ -115,8 +115,8 @@ public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
  * Adds a string argument allowing only values specified
  * in [values] with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * All elements of [values] must be distinct
  * when case is ignored.
@@ -141,8 +141,8 @@ public fun <S> ArgumentBuilder<S, *>.enum(
  * Adds an enum argument allowing only values specified
  * in [values] with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * All elements of [values] must have [names][Enum.name]
  * that are distinct when case is ignored.
@@ -163,10 +163,9 @@ public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
  * Adds an enum argument allowing values specified by
  * keys of [values] with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
- *
- * The accessor returns the value from [values] matching
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument,
+ * on which the [value] extension returns the value from [values] matching
  * the key provided to the command.
  *
  * Keys of [values] must be distinct when case is ignored.

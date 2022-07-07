@@ -110,8 +110,8 @@ public fun ArgumentReader<ServerCommandSource, SingleEntityArgumentDescriptor>.v
 /**
  * Adds an entity anchor argument with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
@@ -127,6 +127,9 @@ public fun <S> ArgumentBuilder<S, *>.entityAnchor(
 /**
  * Adds multiple entity selectors argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -139,6 +142,9 @@ public fun <S> ArgumentBuilder<S, *>.entities(
 
 /**
  * Adds an entity selector argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -153,8 +159,8 @@ public fun <S> ArgumentBuilder<S, *>.entity(
 /**
  * Adds an entity summon argument with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121

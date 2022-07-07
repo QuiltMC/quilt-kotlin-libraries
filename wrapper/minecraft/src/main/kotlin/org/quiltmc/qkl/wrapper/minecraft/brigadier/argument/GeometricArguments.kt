@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.*
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.math.*
@@ -65,6 +66,7 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<RotationArgumentType>>.va
  *
  * @author Cypher121
  */
+@JvmName("absoluteRotationArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<RotationArgumentType>>.absolute(): Vec2f =
     RotationArgumentType.getRotation(context, name).toAbsoluteRotation(context.source)
@@ -169,6 +171,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<Vec3ArgumentType>>.posArg
 /**
  * Adds an angle argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -181,6 +186,9 @@ public fun <S> ArgumentBuilder<S, *>.angle(
 
 /**
  * Adds a rotation argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -195,6 +203,9 @@ public fun <S> ArgumentBuilder<S, *>.rotation(
 /**
  * Adds a swizzle argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -207,6 +218,9 @@ public fun <S> ArgumentBuilder<S, *>.swizzle(
 
 /**
  * Adds a block pos argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -221,6 +235,9 @@ public fun <S> ArgumentBuilder<S, *>.blockPos(
 /**
  * Adds a column pos argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -233,6 +250,9 @@ public fun <S> ArgumentBuilder<S, *>.columnPos(
 
 /**
  * Adds a vec2 argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @param centerIntegers whether the integers are centered on the block
  *
@@ -249,6 +269,9 @@ public fun <S> ArgumentBuilder<S, *>.vec2(
 
 /**
  * Adds a vec3 argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @param centerIntegers whether the integers are centered on the block
  *

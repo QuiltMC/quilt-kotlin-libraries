@@ -68,8 +68,8 @@ public fun ArgumentReader<
 /**
  * Adds a float range argument with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
@@ -85,8 +85,8 @@ public fun <S> ArgumentBuilder<S, *>.floatRange(
 /**
  * Adds an int range argument with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121

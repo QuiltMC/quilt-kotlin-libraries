@@ -64,8 +64,8 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockStateArgumentType>>.
 /**
  * Adds a block predicate argument with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @param context The command build context
  *
@@ -84,8 +84,8 @@ public fun <S> ArgumentBuilder<S, *>.blockPredicate(
 /**
  * Adds a block state argument with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @param context The command build context
  *

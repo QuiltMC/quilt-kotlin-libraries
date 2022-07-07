@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.*
 import net.minecraft.scoreboard.ScoreboardCriterion
 import net.minecraft.scoreboard.ScoreboardObjective
@@ -173,6 +174,9 @@ public fun <S> ArgumentBuilder<S, *>.operation(
 /**
  * Adds a scoreboard criterion argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -185,6 +189,9 @@ public fun <S> ArgumentBuilder<S, *>.scoreboardCriterion(
 
 /**
  * Adds a scoreboard objective argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -199,6 +206,9 @@ public fun <S> ArgumentBuilder<S, *>.scoreboardObjective(
 /**
  * Adds a scoreboard slot argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -212,6 +222,8 @@ public fun <S> ArgumentBuilder<S, *>.scoreboardSlot(
 /**
  * Adds a score holder argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -225,6 +237,9 @@ public fun <S> ArgumentBuilder<S, *>.scoreHolder(
 
 /**
  * Adds a multiple score holders argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */

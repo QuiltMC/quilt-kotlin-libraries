@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.NbtCompoundArgumentType
 import net.minecraft.command.argument.NbtElementArgumentType
 import net.minecraft.command.argument.NbtPathArgumentType
@@ -73,6 +74,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.val
 /**
  * Adds a nbt compound argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -86,6 +90,9 @@ public fun <S> ArgumentBuilder<S, *>.nbtCompound(
 /**
  * Adds an NBT element argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -98,6 +105,9 @@ public fun <S> ArgumentBuilder<S, *>.nbtElement(
 
 /**
  * Adds an NBT path argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */

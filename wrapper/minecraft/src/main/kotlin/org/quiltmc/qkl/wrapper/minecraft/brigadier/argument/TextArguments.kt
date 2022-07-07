@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.ColorArgumentType
 import net.minecraft.command.argument.MessageArgumentType
 import net.minecraft.command.argument.TextArgumentType
@@ -89,6 +90,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TextArgumentType>>.value(
 /**
  * Adds a message argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -102,6 +106,9 @@ public fun <S> ArgumentBuilder<S, *>.message(
 /**
  * Adds a color argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -114,6 +121,9 @@ public fun <S> ArgumentBuilder<S, *>.color(
 
 /**
  * Adds a text argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */

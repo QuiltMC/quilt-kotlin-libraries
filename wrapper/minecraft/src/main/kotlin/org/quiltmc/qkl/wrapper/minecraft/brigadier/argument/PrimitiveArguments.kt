@@ -24,6 +24,7 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.arguments.*
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
 /**
@@ -94,6 +95,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(
 /**
  * Adds a boolean argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
@@ -107,6 +111,9 @@ public fun <S> ArgumentBuilder<S, *>.boolean(
 
 /**
  * Adds a double argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @param min the minimum value.
  * @param max the maximum value.
@@ -126,6 +133,9 @@ public fun <S> ArgumentBuilder<S, *>.double(
 /**
  * Adds a float argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @param min the minimum value.
  * @param max the maximum value.
  *
@@ -144,6 +154,9 @@ public fun <S> ArgumentBuilder<S, *>.float(
 /**
  * Adds an integer argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @param min the minimum value.
  * @param max the maximum value.
  *
@@ -161,6 +174,9 @@ public fun <S> ArgumentBuilder<S, *>.integer(
 
 /**
  * Adds a long argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @param min the minimum value.
  * @param max the maximum value.

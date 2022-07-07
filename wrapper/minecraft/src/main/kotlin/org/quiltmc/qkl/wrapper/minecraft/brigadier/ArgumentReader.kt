@@ -43,7 +43,7 @@ public class ArgumentReader<S, out D : ArgumentDescriptor<*>>(
 )
 
 /**
- * A marker interface for any object or class that describes a subinstance
+ * A marker interface for any object or class that describes a subtype
  * of the argument type [A]. The descriptor is used to find the [ArgumentReader]
  * extensions applicable to the argument being described, and possibly to
  * provide additional data for those extensions.

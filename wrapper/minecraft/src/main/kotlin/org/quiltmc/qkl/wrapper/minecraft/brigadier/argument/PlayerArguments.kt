@@ -24,6 +24,7 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.authlib.GameProfile
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.command.argument.GameProfileArgumentType
 import net.minecraft.command.argument.TeamArgumentType
@@ -113,6 +114,9 @@ public fun ArgumentReader<
 /**
  * Adds a game profile argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -125,6 +129,9 @@ public fun <S> ArgumentBuilder<S, *>.gameProfile(
 
 /**
  * Adds a team argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */
@@ -139,6 +146,9 @@ public fun <S> ArgumentBuilder<S, *>.team(
 /**
  * Adds a player selector argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -151,6 +161,9 @@ public fun <S> ArgumentBuilder<S, *>.player(
 
 /**
  * Adds a multiple player selector argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */

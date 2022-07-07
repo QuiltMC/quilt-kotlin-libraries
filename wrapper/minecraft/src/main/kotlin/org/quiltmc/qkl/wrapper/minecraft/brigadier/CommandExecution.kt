@@ -59,12 +59,15 @@ public sealed class CommandResult {
  * If [command] returns [CommandResult.Failure],
  * the command will throw a [CommandException] containing the returned [CommandResult.Failure.message].
  *
+ * @sample samples.qkl.brigadier.BrigadierDslSamples.sampleCommandWithResult
+ *
  * @see ArgumentBuilder.executes
  *
  * @author Cypher121
  */
 @OptIn(ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.execute(command: CommandActionWithResult<S>) {
     executes {
         when (val result = command(it)) {
@@ -87,6 +90,7 @@ public fun <S> ArgumentBuilder<S, *>.execute(command: CommandActionWithResult<S>
 @OptIn(ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
 @JvmName("executeWithoutReturnCode")
+@BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.execute(command: CommandAction<S>) {
     execute {
         command(it)

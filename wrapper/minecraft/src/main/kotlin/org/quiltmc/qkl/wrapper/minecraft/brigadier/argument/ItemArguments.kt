@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.ItemPredicateArgumentType
 import net.minecraft.command.argument.ItemSlotArgumentType
@@ -74,6 +75,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.v
 /**
  * Adds an item predicate argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
@@ -90,6 +94,9 @@ public fun <S> ArgumentBuilder<S, *>.itemPredicate(
 /**
  * Adds an item slot argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -102,6 +109,9 @@ public fun <S> ArgumentBuilder<S, *>.itemSlot(
 
 /**
  * Adds an item slot argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @param context The command build context
  *

@@ -127,6 +127,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<StatusEffectArgumentType>
 /**
  * Adds a command function argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -143,6 +146,9 @@ public fun <S> ArgumentBuilder<S, *>.commandFunction(
 /**
  * Adds a dimension argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -156,8 +162,8 @@ public fun <S> ArgumentBuilder<S, *>.dimension(
 /**
  * Adds an enchantment argument with [name] as the parameter name.
  *
- * An accessor is passed to [action] allowing type-safe
- * retrieval from [CommandContext] during execution.
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  * @author
@@ -174,6 +180,9 @@ public fun <S> ArgumentBuilder<S, *>.enchantment(
 /**
  * Adds a particle effect argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -186,6 +195,9 @@ public fun <S> ArgumentBuilder<S, *>.particleEffect(
 
 /**
  * Adds a status effect argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */

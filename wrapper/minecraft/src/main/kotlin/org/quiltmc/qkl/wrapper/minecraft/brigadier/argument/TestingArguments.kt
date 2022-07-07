@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.builder.ArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.TestClassArgumentType
 import net.minecraft.command.argument.TestFunctionArgumentType
 import net.minecraft.test.TestFunction
@@ -57,6 +58,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TestFunctionArgumentType>
 /**
  * Adds a test class argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -69,6 +73,9 @@ public fun <S> ArgumentBuilder<S, *>.testClass(
 
 /**
  * Adds a test function argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */

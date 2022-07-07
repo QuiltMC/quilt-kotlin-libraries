@@ -27,6 +27,7 @@ import net.minecraft.util.registry.DynamicRegistryManager
 
 public typealias ArgumentValueAccessor<S, D> =
         CommandContext<S>.() -> ArgumentReader<S, D>
+
 public typealias RequiredArgumentAction<S, D> =
         RequiredArgumentBuilder<S, *>.(getValue: ArgumentValueAccessor<S, D>) -> Unit
 

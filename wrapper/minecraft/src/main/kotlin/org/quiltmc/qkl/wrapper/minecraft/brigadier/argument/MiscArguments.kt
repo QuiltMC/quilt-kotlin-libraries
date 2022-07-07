@@ -25,6 +25,7 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.ItemPredicateArgumentType
 import net.minecraft.command.argument.TimeArgumentType
 import net.minecraft.command.argument.UuidArgumentType
@@ -60,6 +61,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(
 /**
  * Adds a literal argument with [name] as the literal.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -75,6 +79,9 @@ public fun <S> ArgumentBuilder<S, *>.literal(
 /**
  * Adds a time argument with [name] as the parameter name.
  *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
@@ -87,6 +94,9 @@ public fun <S> ArgumentBuilder<S, *>.time(
 
 /**
  * Adds a UUID argument with [name] as the parameter name.
+ *
+ * Accessor passed to [action] can be used on a [CommandContext]
+ * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * @author Oliver-makes-code (Emma)
  */

@@ -23,11 +23,8 @@ import net.minecraft.network.MessageType
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 import net.minecraft.util.math.Vec3d
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.ArgumentReader
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.DefaultArgumentDescriptor
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.argument.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.execute
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.register
 
 /**
  * Container for samples. Functions can be referenced
@@ -71,7 +68,8 @@ private object BrigadierDslSamples {
             abstract fun useVec3ForSomething(vec: Vec3d)
         }
 
-        //can use any name including `value, `custom` added for clarity
+        //can use any name including `value`
+        //`custom` added for clarity
         fun ArgumentReader<CustomSource, DefaultArgumentDescriptor<Vec3ArgumentType>>.customValue(): Vec3d =
             context.source.calculateVec3(posArgument())
 
@@ -83,6 +81,28 @@ private object BrigadierDslSamples {
                     val vec = it.getPos().customValue()
 
                     it.source.useVec3ForSomething(vec)
+                }
+            }
+        }
+    }
+
+    fun sampleCommandWithResult(dispatcher: CommandDispatcher<Any>) {
+        dispatcher.register("repeat") {
+            string("string") { getString ->
+                integer("times") { getTimes ->
+                    execute {
+                        val times = it.getTimes().value()
+
+                        if (times % 2 == 1) {
+                            CommandResult.Failure(Text.literal("times must be even"))
+                        } else {
+                            repeat(times) { _ ->
+                                println(it.getString().value())
+                            }
+
+                            CommandResult.Success(times)
+                        }
+                    }
                 }
             }
         }
