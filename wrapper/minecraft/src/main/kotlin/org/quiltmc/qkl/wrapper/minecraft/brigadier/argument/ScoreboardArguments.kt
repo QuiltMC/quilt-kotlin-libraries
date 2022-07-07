@@ -28,18 +28,44 @@ import net.minecraft.scoreboard.ScoreboardCriterion
 import net.minecraft.scoreboard.ScoreboardObjective
 import net.minecraft.server.command.ServerCommandSource
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
 
+/**
+ * Reads the [OperationArgumentType.Operation] value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see OperationArgumentType.getOperation
+ *
+ * @author Cypher121
+ */
 @JvmName("valueOperationArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<OperationArgumentType>>.value(): OperationArgumentType.Operation =
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<OperationArgumentType>
+        >.value(): OperationArgumentType.Operation =
     OperationArgumentType.getOperation(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [ScoreboardCriterion] value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see ScoreboardCriterionArgumentType.getCriterion
+ *
+ * @author Cypher121
+ */
 @JvmName("valueScoreboardCriterionArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardCriterionArgumentType>>.value(): ScoreboardCriterion =
     ScoreboardCriterionArgumentType.getCriterion(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [ScoreboardObjective] value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see ScoreboardObjectiveArgumentType.getObjective
+ *
+ * @author Cypher121
+ */
 @JvmName("valueScoreboardObjectiveArg")
 @BrigadierDsl
 public fun ArgumentReader<
@@ -48,11 +74,46 @@ public fun ArgumentReader<
         >.value(): ScoreboardObjective =
     ScoreboardObjectiveArgumentType.getObjective(context, name)
 
+/**
+ * Reads the [ScoreboardObjective] value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Throws an exception if the [criterion][ScoreboardObjective.getCriterion]
+ * for the selected objective is [read-only][ScoreboardCriterion.isReadOnly].
+ *
+ * @see ScoreboardObjectiveArgumentType.getWritableObjective
+ *
+ * @author Cypher121
+ */
+@JvmName("writableScoreboardObjectiveArg")
+@BrigadierDsl
+public fun ArgumentReader<
+        ServerCommandSource,
+        DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>
+        >.writable(): ScoreboardObjective =
+    ScoreboardObjectiveArgumentType.getWritableObjective(context, name)
+
+/**
+ * Reads the integer slot value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see ScoreboardSlotArgumentType.getScoreboardSlot
+ *
+ * @author Cypher121
+ */
 @JvmName("valueScoreboardSlotArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardSlotArgumentType>>.value(): Int =
     ScoreboardSlotArgumentType.getScoreboardSlot(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the score holder name from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see ScoreHolderArgumentType.getScoreHolder
+ *
+ * @author Cypher121
+ */
 @JvmName("valueSingleScoreHolderArg")
 @BrigadierDsl
 public fun ArgumentReader<
@@ -61,11 +122,33 @@ public fun ArgumentReader<
         >.value(): String =
     ScoreHolderArgumentType.getScoreHolder(context, name)
 
+/**
+ * Reads all score holder names from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Throws an exception if no score holders are
+ * found for this argument.
+ *
+ * @see ScoreHolderArgumentType.getScoreHolders
+ *
+ * @author Cypher121
+ */
 @JvmName("valueListScoreHolderArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, ListScoreHolderArgumentDescriptor>.value(): Collection<String> =
     ScoreHolderArgumentType.getScoreHolders(context, name)
 
+/**
+ * Reads all score holder names from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Returns the names of all known players on the scoreboard
+ * if no score holders are found for this argument.
+ *
+ * @see ScoreHolderArgumentType.getScoreHolders
+ *
+ * @author Cypher121
+ */
 @JvmName("defaultToAllKnownListScoreHolderArg")
 @BrigadierDsl
 public fun ArgumentReader<
@@ -153,5 +236,24 @@ public fun <S> ArgumentBuilder<S, *>.scoreHolders(
     argument(name, ScoreHolderArgumentType.scoreHolder(), ListScoreHolderArgumentDescriptor, action)
 }
 
+/**
+ * [ArgumentDescriptor] for an [ScoreHolderArgumentType]
+ * allowing a single score holder to be selected.
+ *
+ * @see scoreHolder
+ * @see ScoreHolderArgumentType.scoreHolder
+ *
+ * @author Cypher121
+ */
 public object SingleScoreHolderArgumentDescriptor : ArgumentDescriptor<ScoreHolderArgumentType>
+
+/**
+ * [ArgumentDescriptor] for an [ScoreHolderArgumentType]
+ * allowing multiple score holders to be selected.
+ *
+ * @see scoreHolders
+ * @see ScoreHolderArgumentType.scoreHolders
+ *
+ * @author Cypher121
+ */
 public object ListScoreHolderArgumentDescriptor : ArgumentDescriptor<ScoreHolderArgumentType>

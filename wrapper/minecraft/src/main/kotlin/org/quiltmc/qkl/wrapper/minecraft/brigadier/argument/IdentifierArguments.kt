@@ -32,11 +32,28 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
+/**
+ * Reads the [Identifier] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see IdentifierArgumentType.getIdentifier
+ *
+ * @author Cypher121
+ */
 @JvmName("valueIdentifierArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<IdentifierArgumentType>>.value(): Identifier =
     IdentifierArgumentType.getIdentifier(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [Identifier] value from the
+ * argument in the receiver [ArgumentReader]
+ * as an [Advancement].
+ *
+ * @see IdentifierArgumentType.getAdvancementArgument
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
@@ -44,6 +61,15 @@ public fun ArgumentReader<
         >.asAdvancement(): Advancement =
     IdentifierArgumentType.getAdvancementArgument(context, name)
 
+/**
+ * Reads the [Identifier] value from the
+ * argument in the receiver [ArgumentReader]
+ * as a [LootCondition].
+ *
+ * @see IdentifierArgumentType.getPredicateArgument
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
@@ -51,6 +77,15 @@ public fun ArgumentReader<
         >.asPredicate(): LootCondition =
     IdentifierArgumentType.getPredicateArgument(context, name)
 
+/**
+ * Reads the [Identifier] value from the
+ * argument in the receiver [ArgumentReader]
+ * as a [LootFunction].
+ *
+ * @see IdentifierArgumentType.getItemModifierArgument
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
@@ -58,6 +93,15 @@ public fun ArgumentReader<
         >.asItemModifier(): LootFunction =
     IdentifierArgumentType.getItemModifierArgument(context, name)
 
+/**
+ * Reads the [Identifier] value from the
+ * argument in the receiver [ArgumentReader]
+ * as a [Recipe].
+ *
+ * @see IdentifierArgumentType.getRecipeArgument
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,

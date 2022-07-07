@@ -31,6 +31,14 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qsl.command.api.EnumArgumentType
 import kotlin.reflect.KClass
 
+/**
+ * Reads the enum value of type [T] from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see EnumArgumentType.getEnumConstant
+ *
+ * @author Cypher121
+ */
 @JvmName("valueEnumClassArg")
 @BrigadierDsl
 public fun <T : Enum<T>> ArgumentReader<*, TypedEnumArgumentDescriptor<T>>.value(): T =
@@ -40,6 +48,14 @@ public fun <T : Enum<T>> ArgumentReader<*, TypedEnumArgumentDescriptor<T>>.value
         argumentDescriptor.type
     )
 
+/**
+ * Reads the string value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see EnumArgumentType.getEnum
+ *
+ * @author Cypher121
+ */
 @JvmName("valueEnumStringArg")
 @BrigadierDsl
 public fun ArgumentReader<*, StringEnumArgumentDescriptor>.value(): String =
@@ -48,6 +64,16 @@ public fun ArgumentReader<*, StringEnumArgumentDescriptor>.value(): String =
         name
     )
 
+/**
+ * Reads the string value from the argument in
+ * the receiver [ArgumentReader] and converts it
+ * to a value of type [T] according to the map
+ * provided when creating the argument.
+ *
+ * @see EnumArgumentType.getEnum
+ *
+ * @author Cypher121
+ */
 @JvmName("valueEnumMappedArg")
 @BrigadierDsl
 public fun <T> ArgumentReader<*, MappedStringEnumArgumentDescriptor<T>>.value(): T {
@@ -163,6 +189,33 @@ public fun <S, T> ArgumentBuilder<S, *>.enum(
     )
 }
 
+/**
+ * [ArgumentDescriptor] for [EnumArgumentType]
+ * allowing a set of specified strings.
+ *
+ * @see EnumArgumentType
+ *
+ * @author Cypher121
+ */
 public object StringEnumArgumentDescriptor : ArgumentDescriptor<EnumArgumentType>
+
+/**
+ * [ArgumentDescriptor] for [EnumArgumentType]
+ * allowing all enum constants of [T].
+ *
+ * @see EnumArgumentType.enumConstant
+ *
+ * @author Cypher121
+ */
 public class TypedEnumArgumentDescriptor<T : Enum<T>>(public val type: Class<T>) : ArgumentDescriptor<EnumArgumentType>
-public class MappedStringEnumArgumentDescriptor<T>(public val map: Map<String, T>) : ArgumentDescriptor<EnumArgumentType>
+
+/**
+ * [ArgumentDescriptor] for [EnumArgumentType]
+ * allowing a set of specified strings, and
+ * containing values of [T] matching every
+ * allowed string.
+ *
+ * @author Cypher121
+ */
+public class MappedStringEnumArgumentDescriptor<T>(public val map: Map<String, T>) :
+    ArgumentDescriptor<EnumArgumentType>

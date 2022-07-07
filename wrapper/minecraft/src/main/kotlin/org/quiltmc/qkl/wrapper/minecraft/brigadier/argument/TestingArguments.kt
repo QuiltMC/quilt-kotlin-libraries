@@ -27,13 +27,28 @@ import net.minecraft.command.argument.TestClassArgumentType
 import net.minecraft.command.argument.TestFunctionArgumentType
 import net.minecraft.test.TestFunction
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
 
+/**
+ * Reads the test class name from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see TestClassArgumentType.getTestClass
+ *
+ * @author Cypher121
+ */
 @JvmName("valueTestClassArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<TestClassArgumentType>>.value(): String =
     TestClassArgumentType.getTestClass(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [TestFunction] value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see TestFunctionArgumentType.getFunction
+ *
+ * @author Cypher121
+ */
 @JvmName("valueTestFunctionArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<TestFunctionArgumentType>>.value(): TestFunction =

@@ -32,16 +32,40 @@ import net.minecraft.item.ItemStack
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import java.util.function.Predicate
 
+/**
+ * Reads the [ItemStack] predicate value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see ItemPredicateArgumentType.getItemPredicate
+ *
+ * @author Cypher121
+ */
 @JvmName("valueItemPredicateArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemPredicateArgumentType>>.value(): Predicate<ItemStack> =
     ItemPredicateArgumentType.getItemPredicate(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the integer value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see ItemSlotArgumentType.getItemSlot
+ *
+ * @author Cypher121
+ */
 @JvmName("valueItemSlotArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemSlotArgumentType>>.value(): Int =
     ItemSlotArgumentType.getItemSlot(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [ItemStackArgument] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see ItemStackArgumentType.getItemStackArgument
+ *
+ * @author Cypher121
+ */
 @JvmName("valueItemStackArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.value(): ItemStackArgument =

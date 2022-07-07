@@ -30,14 +30,32 @@ import net.minecraft.command.argument.BlockPredicateArgumentType
 import net.minecraft.command.argument.BlockStateArgument
 import net.minecraft.command.argument.BlockStateArgumentType
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
 import java.util.function.Predicate
 
+/**
+ * Reads the block predicate value of the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see BlockPredicateArgumentType.getBlockPredicate
+ *
+ * @author Cypher121
+ */
 @JvmName("valueBlockPredicateArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockPredicateArgumentType>>.value(): Predicate<CachedBlockPosition> =
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<BlockPredicateArgumentType>
+        >.value(): Predicate<CachedBlockPosition> =
     BlockPredicateArgumentType.getBlockPredicate(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [BlockStateArgument] value of the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see BlockStateArgumentType.getBlockState
+ *
+ * @author Cypher121
+ */
 @JvmName("valueBlockStateArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockStateArgumentType>>.value(): BlockStateArgument =

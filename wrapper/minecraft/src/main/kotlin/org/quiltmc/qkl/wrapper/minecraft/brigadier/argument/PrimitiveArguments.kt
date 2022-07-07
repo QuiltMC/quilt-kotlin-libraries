@@ -26,26 +26,66 @@ import com.mojang.brigadier.arguments.*
 import com.mojang.brigadier.builder.ArgumentBuilder
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
+/**
+ * Reads the boolean value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see BoolArgumentType.getBool
+ *
+ * @author Cypher121
+ */
 @JvmName("valueBoolArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<BoolArgumentType>>.value(): Boolean =
     BoolArgumentType.getBool(context, name)
 
+/**
+ * Reads the boolean value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see BoolArgumentType.getBool
+ *
+ * @author Cypher121
+ */
 @JvmName("valueDoubleArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<DoubleArgumentType>>.value(): Double =
     DoubleArgumentType.getDouble(context, name)
 
+/**
+ * Reads the float value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see FloatArgumentType.getFloat
+ *
+ * @author Cypher121
+ */
 @JvmName("valueFloatArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<FloatArgumentType>>.value(): Float =
     FloatArgumentType.getFloat(context, name)
 
+/**
+ * Reads the integer value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see IntegerArgumentType.getInteger
+ *
+ * @author Cypher121
+ */
 @JvmName("valueIntArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<IntegerArgumentType>>.value(): Int =
     IntegerArgumentType.getInteger(context, name)
 
+/**
+ * Reads the long value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see LongArgumentType.getLong
+ *
+ * @author Cypher121
+ */
 @JvmName("valueLongArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(): Long =

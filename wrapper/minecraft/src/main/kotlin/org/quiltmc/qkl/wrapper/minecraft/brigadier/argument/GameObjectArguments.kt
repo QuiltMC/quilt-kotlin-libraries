@@ -36,6 +36,14 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
+/**
+ * Reads the collection of [CommandFunction]s from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see CommandFunctionArgumentType.getFunctions
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
@@ -43,6 +51,19 @@ public fun ArgumentReader<
         >.functions(): Collection<CommandFunction> =
     CommandFunctionArgumentType.getFunctions(context, name)
 
+/**
+ * Reads the matched [CommandFunction]s from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * Return pair contains the selected [Identifier] and
+ * either the matched [CommandFunction] if the function was
+ * matched, or a collection of [CommandFunction]s if
+ * a tag containing those functions was matched.
+ *
+ * @see CommandFunctionArgumentType.getFunctionOrTag
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
@@ -50,22 +71,54 @@ public fun ArgumentReader<
         >.functionOrTag(): Pair<Identifier, Either<CommandFunction, Collection<CommandFunction>>> =
     CommandFunctionArgumentType.getFunctionOrTag(context, name)
 
+/**
+ * Reads the [ServerWorld] value for the selected dimension
+ * from the argument in the receiver [ArgumentReader].
+ *
+ * @see DimensionArgumentType.getDimensionArgument
+ *
+ * @author Cypher121
+ */
 @JvmName("valueDimensionArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource,
         DefaultArgumentDescriptor<DimensionArgumentType>>.value(): ServerWorld =
     DimensionArgumentType.getDimensionArgument(context, name)
 
+/**
+ * Reads the [Enchantment] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see EnchantmentArgumentType.getEnchantment
+ *
+ * @author Cypher121
+ */
 @JvmName("valueEnchantmentArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<EnchantmentArgumentType>>.value(): Enchantment =
     EnchantmentArgumentType.getEnchantment(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [ParticleEffect] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see ParticleEffectArgumentType.getParticle
+ *
+ * @author Cypher121
+ */
 @JvmName("valueParticleEffectArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<ParticleEffectArgumentType>>.value(): ParticleEffect =
     ParticleEffectArgumentType.getParticle(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [StatusEffect] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see StatusEffectArgumentType.getStatusEffect
+ *
+ * @author Cypher121
+ */
 @JvmName("valueStatusEffectArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<StatusEffectArgumentType>>.value(): StatusEffect =

@@ -30,18 +30,41 @@ import net.minecraft.command.argument.NbtPathArgumentType.NbtPath
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
 
+/**
+ * Reads the [NbtCompound] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see NbtCompoundArgumentType.getNbtCompound
+ *
+ * @author Cypher121
+ */
 @JvmName("valueNbtCompoundArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtCompoundArgumentType>>.value(): NbtCompound =
     NbtCompoundArgumentType.getNbtCompound(context, name)
 
+/**
+ * Reads the [NbtElement] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see NbtElementArgumentType.getNbtElement
+ *
+ * @author Cypher121
+ */
 @JvmName("valueNbtElementArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtElementArgumentType>>.value(): NbtElement =
     NbtElementArgumentType.getNbtElement(context, name)
 
+/**
+ * Reads the [NbtPath] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see NbtPathArgumentType.getNbtPath
+ *
+ * @author Cypher121
+ */
 @JvmName("valueNbtPathArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.value(): NbtPath =

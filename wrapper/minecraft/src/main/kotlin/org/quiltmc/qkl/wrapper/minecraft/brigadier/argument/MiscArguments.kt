@@ -25,16 +25,33 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import net.minecraft.command.argument.ItemPredicateArgumentType
 import net.minecraft.command.argument.TimeArgumentType
 import net.minecraft.command.argument.UuidArgumentType
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import java.util.*
 
+/**
+ * Reads the integer value in ticks from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see ItemPredicateArgumentType.getItemPredicate
+ *
+ * @author Cypher121
+ */
 @JvmName("valueTimeArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<TimeArgumentType>>.value(): Int =
     IntegerArgumentType.getInteger(context, name) // TimeArgumentType does not provide an accessor, defaulting to int
 
+/**
+ * Reads the [UUID] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see UuidArgumentType.getUuid
+ *
+ * @author Cypher121
+ */
 @JvmName("valueUuidArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(): UUID =

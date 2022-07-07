@@ -35,20 +35,52 @@ import net.minecraft.command.argument.MessageArgumentType.method_43770 as getSig
 
 //TODO remove the named imports above once caught up on mappings
 
+/**
+ * Reads the message's [Text] value from
+ * the argument in the receiver [ArgumentReader].
+ *
+ * @see MessageArgumentType.getMessage
+ *
+ * @author Cypher121
+ */
 @JvmName("valueMessageArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.value(): Text =
     MessageArgumentType.getMessage(context, name)
 
+/**
+ * Reads the [SignedMessage] value from
+ * the argument in the receiver [ArgumentReader].
+ *
+ * @see getSignedMessage
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.signed(): SignedMessage =
     getSignedMessage(context, name)
 
+/**
+ * Reads the selected color's [Formatting] value from
+ * the argument in the receiver [ArgumentReader].
+ *
+ * @see ColorArgumentType.getColor
+ *
+ * @author Cypher121
+ */
 @JvmName("valueColorArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<ColorArgumentType>>.value(): Formatting =
     ColorArgumentType.getColor(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the [Text] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see TextArgumentType.getTextArgument
+ *
+ * @author Cypher121
+ */
 @JvmName("valueTextArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<TextArgumentType>>.value(): Text =

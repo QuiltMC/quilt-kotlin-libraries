@@ -32,6 +32,14 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
+/**
+ * Reads the [entity anchor][EntityAnchorArgumentType.EntityAnchor] value
+ * of the argument in the receiver [ArgumentReader].
+ *
+ * @see EntityAnchorArgumentType.getEntityAnchor
+ *
+ * @author Cypher121
+ */
 @JvmName("valueEntityAnchorArg")
 @BrigadierDsl
 public fun ArgumentReader<*,
@@ -43,21 +51,57 @@ public fun ArgumentReader<*,
     )
 }
 
+/**
+ * Reads the entity summon [Identifier] value of the argument
+ * in the receiver [ArgumentReader].
+ *
+ * @see EntitySummonArgumentType.getEntitySummon
+ *
+ * @author Cypher121
+ */
 @JvmName("valueEntitySummonArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<EntitySummonArgumentType>>.value(): Identifier =
     EntitySummonArgumentType.getEntitySummon(context.assumeSourceNotUsed(), name)
 
+/**
+ * Reads the collection of entities from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Throws an exception if no entities are matched.
+ *
+ * @see EntityArgumentType.getEntities
+ *
+ * @author Cypher121
+ */
 @JvmName("requiredEntityArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.required(): Collection<Entity> =
     EntityArgumentType.getEntities(context, name)
 
+/**
+ * Reads the collection of entities from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Returns an empty collection if no entities are matched.
+ *
+ * @see EntityArgumentType.getOptionalEntities
+ *
+ * @author Cypher121
+ */
 @JvmName("optionalEntityArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.optional(): Collection<Entity> =
     EntityArgumentType.getOptionalEntities(context, name)
 
+/**
+ * Reads the [Entity] value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see EntityArgumentType.getEntity
+ *
+ * @author Cypher121
+ */
 @JvmName("valueSingleEntityArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, SingleEntityArgumentDescriptor>.value(): Entity =
@@ -75,10 +119,7 @@ public fun ArgumentReader<ServerCommandSource, SingleEntityArgumentDescriptor>.v
 @BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.entityAnchor(
     name: String,
-    action: RequiredArgumentAction<
-            S,
-            DefaultArgumentDescriptor<EntityAnchorArgumentType>
-            >
+    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<EntityAnchorArgumentType>>
 ) {
     argument(name, EntityAnchorArgumentType.entityAnchor(), action)
 }
@@ -91,10 +132,7 @@ public fun <S> ArgumentBuilder<S, *>.entityAnchor(
 @BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.entities(
     name: String,
-    action: RequiredArgumentAction<
-            S,
-            ListEntityArgumentDescriptor
-            >
+    action: RequiredArgumentAction<S, ListEntityArgumentDescriptor>
 ) {
     argument(name, EntityArgumentType.entities(), ListEntityArgumentDescriptor, action)
 }
@@ -107,10 +145,7 @@ public fun <S> ArgumentBuilder<S, *>.entities(
 @BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.entity(
     name: String,
-    action: RequiredArgumentAction<
-            S,
-            SingleEntityArgumentDescriptor
-            >
+    action: RequiredArgumentAction<S, SingleEntityArgumentDescriptor>
 ) {
     argument(name, EntityArgumentType.entity(), SingleEntityArgumentDescriptor, action)
 }
@@ -132,5 +167,24 @@ public fun <S> ArgumentBuilder<S, *>.entitySummon(
     argument(name, EntitySummonArgumentType.entitySummon(), action)
 }
 
+/**
+ * [ArgumentDescriptor] for an [EntityArgumentType]
+ * allowing a single entity to be selected.
+ *
+ * @see entity
+ * @see EntityArgumentType.entity
+ *
+ * @author Cypher121
+ */
 public object SingleEntityArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>
+
+/**
+ * [ArgumentDescriptor] for an [EntityArgumentType]
+ * allowing multiple entities to be selected.
+ *
+ * @see entities
+ * @see EntityArgumentType.entities
+ *
+ * @author Cypher121
+ */
 public object ListEntityArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>

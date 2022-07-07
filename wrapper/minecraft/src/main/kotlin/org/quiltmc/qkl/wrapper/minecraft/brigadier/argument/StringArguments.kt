@@ -27,6 +27,14 @@ import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
+/**
+ * Reads the string value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see StringArgumentType.getString
+ *
+ * @author Cypher121
+ */
 @JvmName("valueStringArg")
 @BrigadierDsl
 public fun ArgumentReader<*, DefaultArgumentDescriptor<StringArgumentType>>.value(): String =

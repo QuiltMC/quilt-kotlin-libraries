@@ -72,7 +72,9 @@ public fun commandBuildContext(
  *
  * The accessor passed to [action] can be used
  * on [CommandContext] during execution to create
- * an [ArgumentReader] for this argument.
+ * an [ArgumentReader] for this argument. This argument reader
+ * will contain the specified [argumentDescriptor] that will be
+ * used to determine the correct extensions for that reader instance.
  *
  * @author Cypher121
  */
@@ -95,6 +97,19 @@ public fun <S, D : ArgumentDescriptor<A>, AT, A : ArgumentType<AT>> ArgumentBuil
     then(builder)
 }
 
+/**
+ * Adds an argument of the specified [argumentType] with [name]
+ * as the parameter name.
+ *
+ * The accessor passed to [action] can be used
+ * on [CommandContext] during execution to create
+ * an [ArgumentReader] for this argument. This argument reader
+ * will contain an instance of [DefaultArgumentDescriptor] for the
+ * given argument type that will be used to determine the correct
+ * extensions for that reader instance.
+ *
+ * @author Cypher121
+ */
 @BrigadierDsl
 public fun <S, AT, A : ArgumentType<AT>> ArgumentBuilder<S, *>.argument(
     name: String,

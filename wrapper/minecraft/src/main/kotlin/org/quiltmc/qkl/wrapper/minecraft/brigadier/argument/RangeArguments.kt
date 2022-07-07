@@ -27,8 +27,15 @@ import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.NumberRangeArgumentType
 import net.minecraft.predicate.NumberRange
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.assumeSourceNotUsed
 
+/**
+ * Reads the [NumberRange.FloatRange] value from
+ * the argument in the receiver [ArgumentReader].
+ *
+ * @see NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument
+ *
+ * @author Cypher121
+ */
 @JvmName("valueFloatRangeArg")
 @BrigadierDsl
 public fun ArgumentReader<*,
@@ -39,6 +46,14 @@ public fun ArgumentReader<*,
         name
     )
 
+/**
+ * Reads the [NumberRange.IntRange] value from
+ * the argument in the receiver [ArgumentReader].
+ *
+ * @see NumberRangeArgumentType.IntRangeArgumentType.getRangeArgument
+ *
+ * @author Cypher121
+ */
 @JvmName("valueIntRangeArg")
 @BrigadierDsl
 public fun ArgumentReader<

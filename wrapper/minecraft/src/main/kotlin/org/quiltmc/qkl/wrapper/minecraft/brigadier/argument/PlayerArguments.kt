@@ -32,6 +32,14 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
+/**
+ * Reads the [GameProfile] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see GameProfileArgumentType.getProfileArgument
+ *
+ * @author Cypher121
+ */
 @JvmName("valueGameProfileArg")
 @BrigadierDsl
 public fun ArgumentReader<
@@ -40,24 +48,66 @@ public fun ArgumentReader<
         >.value(): Collection<GameProfile> =
     GameProfileArgumentType.getProfileArgument(context, name)
 
+/**
+ * Reads the [Team] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see TeamArgumentType.getTeam
+ *
+ * @author Cypher121
+ */
 @JvmName("valueTeamArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<TeamArgumentType>>.value(): Team =
     TeamArgumentType.getTeam(context, name)
 
+/**
+ * Reads the [ServerPlayerEntity] value from the
+ * argument in the receiver [ArgumentReader].
+ *
+ * @see EntityArgumentType.getPlayer
+ *
+ * @author Cypher121
+ */
 @JvmName("valuePlayerArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource, SinglePlayerArgumentDescriptor>.value(): ServerPlayerEntity =
     EntityArgumentType.getPlayer(context, name)
 
+/**
+ * Reads the collection of players from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Throws an exception if no entities are matched.
+ *
+ * @see EntityArgumentType.getPlayers
+ *
+ * @author Cypher121
+ */
 @JvmName("requiredPlayerArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListPlayerArgumentDescriptor>.required(): Collection<ServerPlayerEntity> =
+public fun ArgumentReader<
+        ServerCommandSource,
+        ListPlayerArgumentDescriptor
+        >.required(): Collection<ServerPlayerEntity> =
     EntityArgumentType.getPlayers(context, name)
 
+/**
+ * Reads the collection of players from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Returns an empty collection if no entities are matched.
+ *
+ * @see EntityArgumentType.getOptionalPlayers
+ *
+ * @author Cypher121
+ */
 @JvmName("optionalPlayerArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListPlayerArgumentDescriptor>.optional(): Collection<ServerPlayerEntity> =
+public fun ArgumentReader<
+        ServerCommandSource,
+        ListPlayerArgumentDescriptor
+        >.optional(): Collection<ServerPlayerEntity> =
     EntityArgumentType.getOptionalPlayers(context, name)
 
 /**
@@ -112,5 +162,24 @@ public fun <S> ArgumentBuilder<S, *>.players(
     argument(name, EntityArgumentType.players(), ListPlayerArgumentDescriptor, action)
 }
 
+/**
+ * [ArgumentDescriptor] for an [EntityArgumentType]
+ * allowing a single player to be selected.
+ *
+ * @see player
+ * @see EntityArgumentType.player
+ *
+ * @author Cypher121
+ */
 public object SinglePlayerArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>
+
+/**
+ * [ArgumentDescriptor] for an [EntityArgumentType]
+ * allowing multiple players to be selected.
+ *
+ * @see players
+ * @see EntityArgumentType.players
+ *
+ * @author Cypher121
+ */
 public object ListPlayerArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>
