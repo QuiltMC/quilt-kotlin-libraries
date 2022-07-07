@@ -205,6 +205,8 @@ public object StringEnumArgumentDescriptor : ArgumentDescriptor<EnumArgumentType
  *
  * @see EnumArgumentType.enumConstant
  *
+ * @property type enum class of the argument.
+ *
  * @author Cypher121
  */
 public class TypedEnumArgumentDescriptor<T : Enum<T>>(public val type: Class<T>) : ArgumentDescriptor<EnumArgumentType>
@@ -214,6 +216,9 @@ public class TypedEnumArgumentDescriptor<T : Enum<T>>(public val type: Class<T>)
  * allowing a set of specified strings, and
  * containing values of [T] matching every
  * allowed string.
+ *
+ * @property map map of strings allowed by the
+ * command to values returned to the command code.
  *
  * @author Cypher121
  */

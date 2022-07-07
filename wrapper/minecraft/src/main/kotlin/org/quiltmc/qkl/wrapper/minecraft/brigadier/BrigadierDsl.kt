@@ -32,11 +32,18 @@ public typealias RequiredArgumentAction<S, D> =
 
 public typealias LiteralArgumentAction<S> = LiteralArgumentBuilder<S>.() -> Unit
 
+/**
+ * Marks functions as part of QKL's Brigadier DSL.
+ *
+ * @author Cypher121
+ */
 @DslMarker
 public annotation class BrigadierDsl
 
 /**
  * Registers a command under [command] as the name.
+ *
+ * @sample samples.qkl.brigadier.BrigadierDslSamples.sampleRegisterCommand
  *
  * @author Oliver-makes-code (Emma)
  */

@@ -28,6 +28,12 @@ import com.mojang.brigadier.arguments.IntegerArgumentType
  * allowing reading of arguments with specific [descriptors][argumentDescriptor]
  * from [context]s with specific source types [S]
  *
+ * @sample samples.qkl.brigadier.BrigadierDslSamples.sampleCustomCommandSource
+ *
+ * @property context [CommandContext] on which the command is being executed
+ * @property name name of the argument as declared in the command
+ * @property argumentDescriptor descriptor provided for the argument's declaration
+ *
  * @author Cypher121
  */
 public class ArgumentReader<S, out D : ArgumentDescriptor<*>>(
