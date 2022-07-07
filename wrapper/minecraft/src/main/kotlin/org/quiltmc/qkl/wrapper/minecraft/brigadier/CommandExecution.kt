@@ -104,21 +104,3 @@ public fun <S> ArgumentBuilder<S, *>.execute(command: CommandAction<S>) {
         CommandResult.Success()
     }
 }
-
-public fun test(dispatcher: CommandDispatcher<ServerCommandSource>) {
-    dispatcher.register("funny") {
-        blockPos("pos") { getPos ->
-            boolean("mustBeLoaded") { getMustBeLoaded ->
-                execute {
-                    val pos = if (it.getMustBeLoaded().value()) {
-                        it.getPos().requireLoaded()
-                    } else {
-                        it.getPos().value()
-                    }
-
-                    TntBlock.primeTnt(it.source.world, pos)
-                }
-            }
-        }
-    }
-}

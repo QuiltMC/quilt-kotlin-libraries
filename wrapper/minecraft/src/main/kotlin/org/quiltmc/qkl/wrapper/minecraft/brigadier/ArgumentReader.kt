@@ -28,11 +28,10 @@ public class DefaultArgumentDescriptor<T : ArgumentType<*>> : ArgumentDescriptor
  * a specific command source to resolve, even though
  * they have no need for it at all.
  *
- * @see net.minecraft.command.argument.NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument
+ * @see net.minecraft.command.argument.ItemSlotArgumentType.getItemSlot
  *
  * @author Cypher121
  */
 @Suppress("UNCHECKED_CAST")
-@PublishedApi
 internal fun <S> CommandContext<*>.assumeSourceNotUsed(): CommandContext<S> =
     this as CommandContext<S>
