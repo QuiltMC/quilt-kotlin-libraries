@@ -25,13 +25,15 @@ import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.util.registry.DynamicRegistryManager
 
-public typealias ArgumentValueAccessor<S, D> =
+public typealias ArgumentAccessor<S, D> =
         CommandContext<S>.() -> ArgumentReader<S, D>
 
 public typealias RequiredArgumentAction<S, D> =
-        RequiredArgumentBuilder<S, *>.(getValue: ArgumentValueAccessor<S, D>) -> Unit
+        RequiredArgumentBuilder<S, *>.(getValue: ArgumentAccessor<S, D>) -> Unit
 
 public typealias LiteralArgumentAction<S> = LiteralArgumentBuilder<S>.() -> Unit
+
+public typealias OptionalLiteralAction<S> = ArgumentBuilder<S, *>.(isPresent: Boolean) -> Unit
 
 /**
  * Marks functions as part of QKL's Brigadier DSL.
@@ -125,4 +127,51 @@ public fun <S, AT, A : ArgumentType<AT>> ArgumentBuilder<S, *>.argument(
     action: RequiredArgumentAction<S, DefaultArgumentDescriptor<A>>
 ) {
     argument(name, argumentType, DefaultArgumentDescriptor(), action)
+}
+
+/**
+ * Applies the [accessor] to the receiver [CommandContext].
+ *
+ * Shorthand/alternative to `context.accessor()`.
+ */
+@JvmName("getRequired")
+public operator fun <S, D : ArgumentDescriptor<*>> CommandContext<S>.get(
+    accessor: ArgumentAccessor<S, D>
+): ArgumentReader<S, D> = accessor()
+
+/**
+ * Adds a literal argument with [name] as the literal.
+ *
+ * @author Oliver-makes-code (Emma)
+ */
+@BrigadierDsl
+public fun <S> ArgumentBuilder<S, *>.literal(
+    name: String,
+    action: LiteralArgumentAction<S>
+) {
+    val argument = LiteralArgumentBuilder.literal<S>(name)
+    argument.action()
+    then(argument)
+}
+
+/**
+ * Adds an optional literal argument with [name] as the literal.
+ *
+ * The value passed to action is `true` if the literal
+ * was used in the executed branch, or `false` otherwise.
+ *
+ * @sample samples.qkl.brigadier.BrigadierDslSamples.sampleCommandWithOptionals
+ *
+ * @author Oliver-makes-code (Emma)
+ */
+@BrigadierDsl
+public fun <S> ArgumentBuilder<S, *>.optionalLiteral(
+    name: String,
+    action: OptionalLiteralAction<S>
+) {
+    literal(name) {
+        action(true)
+    }
+
+    action(false)
 }

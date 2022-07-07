@@ -43,16 +43,18 @@ private object BrigadierDslSamples {
         val dispatcher: CommandDispatcher<ServerCommandSource> = stub()
 
         dispatcher.register("echo") {
-            string("message") { getMessage ->
-                boolean("toCaps") { getToCaps ->
-                    execute {
-                        val message = if (it.getToCaps().value()) {
-                            it.getMessage().value().uppercase()
+            //register arguments with extension methods
+            string("message") { message -> // treat the argument as a key
+                boolean("toCaps") { getToCaps -> // or as an accessor
+                    //execute the command with an extension method
+                    execute { context ->
+                        val response = if (context.getToCaps().value()) {
+                            context[message].value().uppercase()
                         } else {
-                            it.getMessage().value()
+                            context[message].value()
                         }
 
-                        it.source.player.sendMessage(Text.literal(message), MessageType.SYSTEM)
+                        context.source.player.sendMessage(Text.literal(response), MessageType.SYSTEM)
                     }
                 }
             }
@@ -91,7 +93,7 @@ private object BrigadierDslSamples {
             string("string") { getString ->
                 integer("times") { getTimes ->
                     execute {
-                        val times = it.getTimes().value()
+                        val times = it[getTimes].value()
 
                         if (times % 2 == 1) {
                             CommandResult.Failure(Text.literal("times must be even"))
@@ -102,6 +104,32 @@ private object BrigadierDslSamples {
 
                             CommandResult.Success(times)
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    fun sampleCommandWithOptionals(dispatcher: CommandDispatcher<ServerCommandSource>) {
+        dispatcher.register("slap") {
+            player("target") { target ->
+                optionalLiteral("repeatedly") { repeatedly ->
+                    execute {
+                        val selfName = it.source.player.displayName
+                        val targetName = it[target].value().displayName
+
+                        it.source.server.playerManager.broadcastSystemMessage(
+                            Text.empty().apply {
+                                append(selfName)
+                                append(Text.literal(" slaps "))
+                                append(targetName)
+
+                                if (repeatedly) {
+                                    append(Text.literal(" repeatedly"))
+                                }
+                            },
+                            MessageType.SAY_COMMAND
+                        )
                     }
                 }
             }

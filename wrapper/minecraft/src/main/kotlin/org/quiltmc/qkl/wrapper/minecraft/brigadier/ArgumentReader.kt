@@ -61,7 +61,6 @@ public interface ArgumentDescriptor<A : ArgumentType<*>>
  */
 public class DefaultArgumentDescriptor<T : ArgumentType<*>> : ArgumentDescriptor<T>
 
-
 /**
  * Casts the context to a different source, assuming that
  * the source is not used, so the source object itself
