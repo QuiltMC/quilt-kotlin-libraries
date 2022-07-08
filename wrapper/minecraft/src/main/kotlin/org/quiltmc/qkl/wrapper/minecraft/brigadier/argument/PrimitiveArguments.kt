@@ -23,8 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.arguments.*
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
 /**
@@ -93,27 +92,20 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(
     LongArgumentType.getLong(context, name)
 
 /**
- * Adds a boolean argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a boolean argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.boolean(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<BoolArgumentType>>
-) {
-    argument(name, BoolArgumentType.bool(), action)
+public fun <S> boolean(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<BoolArgumentType>> {
+    return argument(name, BoolArgumentType.bool())
 }
 
 /**
- * Adds a double argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a double argument with [name] as the parameter name.
  *
  * @param min the minimum value.
  * @param max the maximum value.
@@ -121,20 +113,16 @@ public fun <S> ArgumentBuilder<S, *>.boolean(
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.double(
+public fun <S> double(
     name: String,
     min: Double = -Double.MAX_VALUE,
-    max: Double = Double.MAX_VALUE,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<DoubleArgumentType>>
-) {
-    argument(name, DoubleArgumentType.doubleArg(min, max), action)
+    max: Double = Double.MAX_VALUE
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<DoubleArgumentType>> {
+    return argument(name, DoubleArgumentType.doubleArg(min, max))
 }
 
 /**
- * Adds a float argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a float argument with [name] as the parameter name.
  *
  * @param min the minimum value.
  * @param max the maximum value.
@@ -142,20 +130,16 @@ public fun <S> ArgumentBuilder<S, *>.double(
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.float(
+public fun <S> float(
     name: String,
     min: Float = -Float.MAX_VALUE,
-    max: Float = Float.MAX_VALUE,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<FloatArgumentType>>
-) {
-    argument(name, FloatArgumentType.floatArg(min, max), action)
+    max: Float = Float.MAX_VALUE
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<FloatArgumentType>> {
+    return argument(name, FloatArgumentType.floatArg(min, max))
 }
 
 /**
- * Adds an integer argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an integer argument with [name] as the parameter name.
  *
  * @param min the minimum value.
  * @param max the maximum value.
@@ -163,20 +147,16 @@ public fun <S> ArgumentBuilder<S, *>.float(
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.integer(
+public fun <S> integer(
     name: String,
     min: Int = -Int.MAX_VALUE,
-    max: Int = Int.MAX_VALUE,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<IntegerArgumentType>>
-) {
-    argument(name, IntegerArgumentType.integer(min, max), action)
+    max: Int = Int.MAX_VALUE
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<IntegerArgumentType>> {
+    return argument(name, IntegerArgumentType.integer(min, max))
 }
 
 /**
- * Adds a long argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a long argument with [name] as the parameter name.
  *
  * @param min the minimum value.
  * @param max the maximum value.
@@ -184,11 +164,10 @@ public fun <S> ArgumentBuilder<S, *>.integer(
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.long(
+public fun <S> long(
     name: String,
     min: Long = -Long.MAX_VALUE,
-    max: Long = Long.MAX_VALUE,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<LongArgumentType>>
-) {
-    argument(name, LongArgumentType.longArg(min, max), action)
+    max: Long = Long.MAX_VALUE
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<LongArgumentType>> {
+    return argument(name, LongArgumentType.longArg(min, max))
 }

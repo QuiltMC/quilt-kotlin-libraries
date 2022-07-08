@@ -22,8 +22,6 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.command.argument.EntitySummonArgumentType
@@ -108,69 +106,53 @@ public fun ArgumentReader<ServerCommandSource, SingleEntityArgumentDescriptor>.v
     EntityArgumentType.getEntity(context, name)
 
 /**
- * Adds an entity anchor argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an entity anchor argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.entityAnchor(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<EntityAnchorArgumentType>>
-) {
-    argument(name, EntityAnchorArgumentType.entityAnchor(), action)
+public fun <S> entityAnchor(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<EntityAnchorArgumentType>> {
+    return argument(name, EntityAnchorArgumentType.entityAnchor())
 }
 
 /**
- * Adds multiple entity selectors argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates entity argument allowing multiple entities with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.entities(
-    name: String,
-    action: RequiredArgumentAction<S, ListEntityArgumentDescriptor>
-) {
-    argument(name, EntityArgumentType.entities(), ListEntityArgumentDescriptor, action)
+public fun <S> entities(
+    name: String
+): RequiredArgumentConstructor<S, ListEntityArgumentDescriptor> {
+    return argument(name, EntityArgumentType.entities(), ListEntityArgumentDescriptor)
 }
 
 /**
- * Adds an entity selector argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an entity selector argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.entity(
-    name: String,
-    action: RequiredArgumentAction<S, SingleEntityArgumentDescriptor>
-) {
-    argument(name, EntityArgumentType.entity(), SingleEntityArgumentDescriptor, action)
+public fun <S> entity(
+    name: String
+): RequiredArgumentConstructor<S, SingleEntityArgumentDescriptor> {
+    return argument(name, EntityArgumentType.entity(), SingleEntityArgumentDescriptor)
 }
 
 /**
- * Adds an entity summon argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an entity summon argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.entitySummon(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<EntitySummonArgumentType>>
-) {
-    argument(name, EntitySummonArgumentType.entitySummon(), action)
+public fun <S> entitySummon(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<EntitySummonArgumentType>> {
+    return argument(name, EntitySummonArgumentType.entitySummon())
 }
 
 /**

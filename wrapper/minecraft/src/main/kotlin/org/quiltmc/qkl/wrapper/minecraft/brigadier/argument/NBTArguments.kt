@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.command.argument.NbtCompoundArgumentType
 import net.minecraft.command.argument.NbtElementArgumentType
 import net.minecraft.command.argument.NbtPathArgumentType
@@ -72,49 +71,37 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.val
     NbtPathArgumentType.getNbtPath(context.assumeSourceNotUsed(), name)
 
 /**
- * Adds a nbt compound argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a nbt compound argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.nbtCompound(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NbtCompoundArgumentType>>
-) {
-    argument(name, NbtCompoundArgumentType.nbtCompound(), action)
+public fun <S> nbtCompound(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NbtCompoundArgumentType>> {
+    return argument(name, NbtCompoundArgumentType.nbtCompound())
 }
 
 /**
- * Adds an NBT element argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an NBT element argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.nbtElement(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NbtElementArgumentType>>
-) {
-    argument(name, NbtElementArgumentType.nbtElement(), action)
+public fun <S> nbtElement(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NbtElementArgumentType>> {
+    return argument(name, NbtElementArgumentType.nbtElement())
 }
 
 /**
- * Adds an NBT path argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an NBT path argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.nbtPath(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NbtPathArgumentType>>
-) {
-    argument(name, NbtPathArgumentType.nbtPath(), action)
+public fun <S> nbtPath(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NbtPathArgumentType>> {
+    return argument(name, NbtPathArgumentType.nbtPath())
 }

@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.advancement.Advancement
 import net.minecraft.command.argument.IdentifierArgumentType
 import net.minecraft.loot.condition.LootCondition
@@ -111,17 +110,13 @@ public fun ArgumentReader<
     IdentifierArgumentType.getRecipeArgument(context, name)
 
 /**
- * Adds an identifier argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an identifier argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.identifier(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<IdentifierArgumentType>>
-) {
-    argument(name, IdentifierArgumentType.identifier(), action)
+public fun <S> identifier(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<IdentifierArgumentType>> {
+    return argument(name, IdentifierArgumentType.identifier())
 }

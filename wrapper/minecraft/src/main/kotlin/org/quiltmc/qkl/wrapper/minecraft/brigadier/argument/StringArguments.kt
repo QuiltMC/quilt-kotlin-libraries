@@ -23,8 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.brigadier.arguments.StringArgumentType
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
 /**
@@ -41,50 +40,42 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<StringArgumentType>>.valu
     StringArgumentType.getString(context, name)
 
 /**
- * Adds a string argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a string argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.string(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<StringArgumentType>>
-) {
-    argument(name, StringArgumentType.string(), action)
+public fun <S> string(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<StringArgumentType>> {
+    return argument(name, StringArgumentType.string())
 }
 
 /**
- * Adds a greedy string argument with [name] as the parameter name.
+ * Creates a greedy string argument with [name] as the parameter name.
  *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Note that no further arguments can be added after
+ * a greedy string, as any command text will be treated
+ * as part of the greedy string argument.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.greedyString(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<StringArgumentType>>
-) {
-    argument(name, StringArgumentType.greedyString(), action)
+public fun <S> greedyString(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<StringArgumentType>> {
+    return argument(name, StringArgumentType.greedyString())
 }
 
 /**
- * Adds a word argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a word argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.word(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<StringArgumentType>>
-) {
-    argument(name, StringArgumentType.word(), action)
+public fun <S> word(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<StringArgumentType>> {
+    return argument(name, StringArgumentType.word())
 }

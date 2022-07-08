@@ -22,9 +22,10 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
+import com.mojang.brigadier.arguments.ArgumentType
 import com.mojang.brigadier.arguments.IntegerArgumentType
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
+import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.minecraft.command.argument.ItemPredicateArgumentType
 import net.minecraft.command.argument.TimeArgumentType
 import net.minecraft.command.argument.UuidArgumentType
@@ -58,33 +59,52 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(
     UuidArgumentType.getUuid(context.assumeSourceNotUsed(), name)
 
 /**
- * Adds a time argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a time argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.time(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TimeArgumentType>>
-) {
-    argument(name, TimeArgumentType.time(), action)
+public fun <S> time(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TimeArgumentType>> {
+    return argument(name, TimeArgumentType.time())
 }
 
 /**
- * Adds a UUID argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a UUID argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.uuid(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<UuidArgumentType>>
-) {
-    argument(name, UuidArgumentType.uuid(), action)
+public fun <S> uuid(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<UuidArgumentType>> {
+    return argument(name, UuidArgumentType.uuid())
 }
+
+/**
+ * Creates a literal argument with [name] as the literal.
+ *
+ * Like other arguments, literal arguments create accessors,
+ * which can be checked for presence of [optional] literals.
+ * However, [ArgumentReader]s produced from those accessors
+ * serve no purpose due to the argument not having a value.
+ *
+ * @author Oliver-makes-code (Emma)
+ */
+@BrigadierDsl
+public fun <S> literal(
+    name: String
+): ArgumentConstructor<S, LiteralArgumentBuilder<S>, LiteralDescriptor> {
+    return ArgumentConstructor(LiteralArgumentBuilder.literal(name), name, LiteralDescriptor)
+}
+
+/**
+ * Descriptor for a literal argument.
+ *
+ * Separate from [DefaultArgumentDescriptor]
+ * to stand out more in type hints.
+ *
+ * @author Cypher121
+ */
+public object LiteralDescriptor : ArgumentDescriptor<ArgumentType<*>>

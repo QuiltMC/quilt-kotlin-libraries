@@ -22,8 +22,6 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.TestClassArgumentType
 import net.minecraft.command.argument.TestFunctionArgumentType
 import net.minecraft.test.TestFunction
@@ -56,33 +54,25 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TestFunctionArgumentType>
     TestFunctionArgumentType.getFunction(context.assumeSourceNotUsed(), name)
 
 /**
- * Adds a test class argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a test class argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.testClass(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TestClassArgumentType>>
-) {
-    argument(name, TestClassArgumentType.testClass(), action)
+public fun <S> testClass(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TestClassArgumentType>> {
+    return argument(name, TestClassArgumentType.testClass())
 }
 
 /**
- * Adds a test function argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a test function argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.testFunction(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TestFunctionArgumentType>>
-) {
-    argument(name, TestFunctionArgumentType.testFunction(), action)
+public fun <S> testFunction(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TestFunctionArgumentType>> {
+    return argument(name, TestFunctionArgumentType.testFunction())
 }

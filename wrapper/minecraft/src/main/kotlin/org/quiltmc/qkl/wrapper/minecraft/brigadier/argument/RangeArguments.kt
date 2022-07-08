@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.command.argument.NumberRangeArgumentType
 import net.minecraft.predicate.NumberRange
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
@@ -66,35 +65,27 @@ public fun ArgumentReader<
     )
 
 /**
- * Adds a float range argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a float range argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.floatRange(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NumberRangeArgumentType.FloatRangeArgumentType>>
-) {
-    argument(name, NumberRangeArgumentType.floatRange(), action)
+public fun <S> floatRange(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NumberRangeArgumentType.FloatRangeArgumentType>> {
+    return argument(name, NumberRangeArgumentType.floatRange())
 }
 
 /**
- * Adds an int range argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an int range argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.intRange(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<NumberRangeArgumentType.IntRangeArgumentType>>
-) {
-    argument(name, NumberRangeArgumentType.intRange(), action)
+public fun <S> intRange(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NumberRangeArgumentType.IntRangeArgumentType>> {
+    return argument(name, NumberRangeArgumentType.intRange())
 }

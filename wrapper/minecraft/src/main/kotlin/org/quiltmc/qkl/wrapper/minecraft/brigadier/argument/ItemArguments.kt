@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.ItemPredicateArgumentType
 import net.minecraft.command.argument.ItemSlotArgumentType
@@ -73,55 +72,43 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.v
     ItemStackArgumentType.getItemStackArgument(context, name)
 
 /**
- * Adds an item predicate argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an item predicate argument with [name] as the parameter name.
  *
  * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.itemPredicate(
+public fun <S> itemPredicate(
     name: String,
-    context: CommandBuildContext,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ItemPredicateArgumentType>>
-) {
-    argument(name, ItemPredicateArgumentType.itemPredicate(context), action)
+    context: CommandBuildContext
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ItemPredicateArgumentType>> {
+    return argument(name, ItemPredicateArgumentType.itemPredicate(context))
 }
 
 /**
- * Adds an item slot argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an item slot argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.itemSlot(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ItemSlotArgumentType>>
-) {
-    argument(name, ItemSlotArgumentType.itemSlot(), action)
+public fun <S> itemSlot(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ItemSlotArgumentType>> {
+    return argument(name, ItemSlotArgumentType.itemSlot())
 }
 
 /**
- * Adds an item slot argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an item slot argument with [name] as the parameter name.
  *
  * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.itemStack(
+public fun <S> itemStack(
     name: String,
-    context: CommandBuildContext,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ItemStackArgumentType>>
-) {
-    argument(name, ItemStackArgumentType.itemStack(context), action)
+    context: CommandBuildContext
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ItemStackArgumentType>> {
+    return argument(name, ItemStackArgumentType.itemStack(context))
 }

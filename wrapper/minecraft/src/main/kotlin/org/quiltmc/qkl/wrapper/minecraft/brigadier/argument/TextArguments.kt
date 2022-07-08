@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.command.argument.ColorArgumentType
 import net.minecraft.command.argument.MessageArgumentType
 import net.minecraft.command.argument.TextArgumentType
@@ -88,49 +87,37 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TextArgumentType>>.value(
     TextArgumentType.getTextArgument(context.assumeSourceNotUsed(), name)
 
 /**
- * Adds a message argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a message argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.message(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<MessageArgumentType>>
-) {
-    argument(name, MessageArgumentType.message(), action)
+public fun <S> message(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<MessageArgumentType>> {
+    return argument(name, MessageArgumentType.message())
 }
 
 /**
- * Adds a color argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a color argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.color(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ColorArgumentType>>
-) {
-    argument(name, ColorArgumentType.color(), action)
+public fun <S> color(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ColorArgumentType>> {
+    return argument(name, ColorArgumentType.color())
 }
 
 /**
- * Adds a text argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a text argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.text(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TextArgumentType>>
-) {
-    argument(name, TextArgumentType.text(), action)
+public fun <S> text(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TextArgumentType>> {
+    return argument(name, TextArgumentType.text())
 }

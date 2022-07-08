@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.command.argument.*
 import net.minecraft.scoreboard.ScoreboardCriterion
 import net.minecraft.scoreboard.ScoreboardObjective
@@ -159,96 +158,75 @@ public fun ArgumentReader<
     ScoreHolderArgumentType.getScoreboardScoreHolders(context, name)
 
 /**
- * Adds an operation compound argument with [name] as the parameter name.
+ * Creates an operation compound argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.operation(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<OperationArgumentType>>
-) {
-    argument(name, OperationArgumentType.operation(), action)
+public fun <S> operation(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<OperationArgumentType>> {
+    return argument(name, OperationArgumentType.operation())
 }
 
 /**
- * Adds a scoreboard criterion argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a scoreboard criterion argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.scoreboardCriterion(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ScoreboardCriterionArgumentType>>
-) {
-    argument(name, ScoreboardCriterionArgumentType.scoreboardCriterion(), action)
+public fun <S> scoreboardCriterion(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ScoreboardCriterionArgumentType>> {
+    return argument(name, ScoreboardCriterionArgumentType.scoreboardCriterion())
 }
 
 /**
- * Adds a scoreboard objective argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a scoreboard objective argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.scoreboardObjective(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>>
-) {
-    argument(name, ScoreboardObjectiveArgumentType.scoreboardObjective(), action)
+public fun <S> scoreboardObjective(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>> {
+    return argument(name, ScoreboardObjectiveArgumentType.scoreboardObjective())
 }
 
 /**
- * Adds a scoreboard slot argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a scoreboard slot argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.scoreboardSlot(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ScoreboardSlotArgumentType>>
-) {
-    argument(name, ScoreboardSlotArgumentType.scoreboardSlot(), action)
+public fun <S> scoreboardSlot(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ScoreboardSlotArgumentType>> {
+    return argument(name, ScoreboardSlotArgumentType.scoreboardSlot())
 }
 
 /**
- * Adds a score holder argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a score holder argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.scoreHolder(
-    name: String,
-    action: RequiredArgumentAction<S, SingleScoreHolderArgumentDescriptor>
-) {
-    argument(name, ScoreHolderArgumentType.scoreHolder(), SingleScoreHolderArgumentDescriptor, action)
+public fun <S> scoreHolder(
+    name: String
+): RequiredArgumentConstructor<S, SingleScoreHolderArgumentDescriptor> {
+    return argument(name, ScoreHolderArgumentType.scoreHolder(), SingleScoreHolderArgumentDescriptor)
 }
 
 /**
- * Adds a multiple score holders argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a multiple score holders argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.scoreHolders(
-    name: String,
-    action: RequiredArgumentAction<S, ListScoreHolderArgumentDescriptor>
-) {
-    argument(name, ScoreHolderArgumentType.scoreHolder(), ListScoreHolderArgumentDescriptor, action)
+public fun <S> scoreHolders(
+    name: String
+): RequiredArgumentConstructor<S, ListScoreHolderArgumentDescriptor> {
+    return argument(name, ScoreHolderArgumentType.scoreHolder(), ListScoreHolderArgumentDescriptor)
 }
 
 /**

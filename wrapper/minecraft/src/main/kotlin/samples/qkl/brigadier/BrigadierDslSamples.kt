@@ -25,6 +25,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.math.Vec3d
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.argument.*
+import kotlin.random.Random
 
 /**
  * Container for samples. Functions can be referenced
@@ -44,8 +45,13 @@ private object BrigadierDslSamples {
 
         dispatcher.register("echo") {
             //register arguments with extension methods
-            string("message") { message -> // treat the argument as a key
-                boolean("toCaps") { getToCaps -> // or as an accessor
+            required(string("message")) { message -> // treat the argument as a key
+                required(boolean("toCaps")) { getToCaps -> // or as an accessor
+                    //standard builder methods can be called as normal
+                    requires {
+                        it.player.experienceLevel > Random.nextInt()
+                    }
+
                     //execute the command with an extension method
                     execute { context ->
                         val response = if (context.getToCaps().value()) {
@@ -78,7 +84,7 @@ private object BrigadierDslSamples {
         val dispatcher: CommandDispatcher<CustomSource> = stub()
 
         dispatcher.register("customSourceCommand") {
-            vec3("pos") { getPos ->
+            required(vec3("pos")) { getPos ->
                 execute {
                     val vec = it.getPos().customValue()
 
@@ -90,8 +96,8 @@ private object BrigadierDslSamples {
 
     fun sampleCommandWithResult(dispatcher: CommandDispatcher<Any>) {
         dispatcher.register("repeat") {
-            string("string") { getString ->
-                integer("times") { getTimes ->
+            required(string("string")) { getString ->
+                required(integer("times")) { getTimes ->
                     execute {
                         val times = it[getTimes].value()
 
@@ -112,24 +118,38 @@ private object BrigadierDslSamples {
 
     fun sampleCommandWithOptionals(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register("slap") {
-            player("target") { target ->
-                optionalLiteral("repeatedly") { repeatedly ->
-                    execute {
-                        val selfName = it.source.player.displayName
-                        val targetName = it[target].value().displayName
+            optional(player("target")) { target ->
+                optional(enum(
+                    "weapon",
+                    mapOf(
+                        "fish" to "a fish",
+                        "book" to "an entire book"
+                    )
+                )) { weapon ->
+                    optional(literal("repeatedly")) { repeatedly ->
+                        execute {
+                            //operator access is nullable only for optionals
+                            val targetName = it[target]?.value()?.displayName ?:
+                                Text.literal("themselves")
 
-                        it.source.server.playerManager.broadcastSystemMessage(
-                            Text.empty().apply {
-                                append(selfName)
-                                append(Text.literal(" slaps "))
-                                append(targetName)
+                            it.source.server.playerManager.broadcastSystemMessage(
+                                Text.empty().apply {
+                                    append(it.source.player.displayName)
+                                    append(Text.literal(" slaps "))
+                                    append(targetName)
 
-                                if (repeatedly) {
-                                    append(Text.literal(" repeatedly"))
-                                }
-                            },
-                            MessageType.SAY_COMMAND
-                        )
+                                    //checking the accessor directly works as well
+                                    if (weapon != null) {
+                                        append(Text.literal(" with ${it[weapon].value()}"))
+                                    }
+
+                                    if (repeatedly != null) {
+                                        append(Text.literal(" repeatedly"))
+                                    }
+                                },
+                                MessageType.SAY_COMMAND
+                            )
+                        }
                     }
                 }
             }

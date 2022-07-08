@@ -22,8 +22,6 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
 import net.minecraft.block.pattern.CachedBlockPosition
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.BlockPredicateArgumentType
@@ -42,8 +40,7 @@ import java.util.function.Predicate
  */
 @JvmName("valueBlockPredicateArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
+public fun ArgumentReader<*,
         DefaultArgumentDescriptor<BlockPredicateArgumentType>
         >.value(): Predicate<CachedBlockPosition> =
     BlockPredicateArgumentType.getBlockPredicate(context.assumeSourceNotUsed(), name)
@@ -62,10 +59,7 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockStateArgumentType>>.
     BlockStateArgumentType.getBlockState(context.assumeSourceNotUsed(), name)
 
 /**
- * Adds a block predicate argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a block predicate argument with [name] as the parameter name.
  *
  * @param context The command build context
  *
@@ -73,19 +67,15 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockStateArgumentType>>.
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.blockPredicate(
+public fun <S> blockPredicate(
     name: String,
-    context: CommandBuildContext,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<BlockPredicateArgumentType>>
-) {
-    argument(name, BlockPredicateArgumentType.blockPredicate(context), action)
+    context: CommandBuildContext
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<BlockPredicateArgumentType>> {
+    return argument(name, BlockPredicateArgumentType.blockPredicate(context))
 }
 
 /**
- * Adds a block state argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a block state argument with [name] as the parameter name.
  *
  * @param context The command build context
  *
@@ -93,10 +83,9 @@ public fun <S> ArgumentBuilder<S, *>.blockPredicate(
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.blockState(
+public fun <S> blockState(
     name: String,
-    context: CommandBuildContext,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<BlockStateArgumentType>>
-) {
-    argument(name, BlockStateArgumentType.blockState(context), action)
+    context: CommandBuildContext
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<BlockStateArgumentType>> {
+    return argument(name, BlockStateArgumentType.blockState(context))
 }

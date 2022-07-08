@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.command.argument.*
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.math.*
@@ -169,119 +168,91 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<Vec3ArgumentType>>.posArg
 
 
 /**
- * Adds an angle argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an angle argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.angle(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<AngleArgumentType>>
-) {
-    argument(name, AngleArgumentType.angle(), action)
+public fun <S> angle(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<AngleArgumentType>> {
+    return argument(name, AngleArgumentType.angle())
 }
 
 /**
- * Adds a rotation argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a rotation argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.rotation(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<RotationArgumentType>>
-) {
-    argument(name, RotationArgumentType.rotation(), action)
+public fun <S> rotation(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<RotationArgumentType>> {
+    return argument(name, RotationArgumentType.rotation())
 }
 
 /**
- * Adds a swizzle argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a swizzle argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.swizzle(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<SwizzleArgumentType>>
-) {
-    argument(name, SwizzleArgumentType.swizzle(), action)
+public fun <S> swizzle(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<SwizzleArgumentType>> {
+    return argument(name, SwizzleArgumentType.swizzle())
 }
 
 /**
- * Adds a block pos argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a block pos argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.blockPos(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<BlockPosArgumentType>>
-) {
-    argument(name, BlockPosArgumentType.blockPos(), action)
+public fun <S> blockPos(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<BlockPosArgumentType>> {
+    return argument(name, BlockPosArgumentType.blockPos())
 }
 
 /**
- * Adds a column pos argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a column pos argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.columnPos(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ColumnPosArgumentType>>
-) {
-    argument(name, ColumnPosArgumentType.columnPos(), action)
+public fun <S> columnPos(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ColumnPosArgumentType>> {
+    return argument(name, ColumnPosArgumentType.columnPos())
 }
 
 /**
- * Adds a vec2 argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a vec2 argument with [name] as the parameter name.
  *
  * @param centerIntegers whether the integers are centered on the block
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.vec2(
+public fun <S> vec2(
     name: String,
-    centerIntegers: Boolean = false,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<Vec2ArgumentType>>
-) {
-    argument(name, Vec2ArgumentType.vec2(centerIntegers), action)
+    centerIntegers: Boolean = false
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<Vec2ArgumentType>> {
+    return argument(name, Vec2ArgumentType.vec2(centerIntegers))
 }
 
 /**
- * Adds a vec3 argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a vec3 argument with [name] as the parameter name.
  *
  * @param centerIntegers whether the integers are centered on the block
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.vec3(
+public fun <S> vec3(
     name: String,
-    centerIntegers: Boolean = false,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<Vec3ArgumentType>>
-) {
-    argument(name, Vec3ArgumentType.vec3(centerIntegers), action)
+    centerIntegers: Boolean = false
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<Vec3ArgumentType>> {
+    return argument(name, Vec3ArgumentType.vec3(centerIntegers))
 }

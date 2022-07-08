@@ -22,8 +22,7 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import com.mojang.datafixers.util.Either
 import com.mojang.datafixers.util.Pair
 import net.minecraft.command.argument.*
@@ -125,86 +124,62 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<StatusEffectArgumentType>
     StatusEffectArgumentType.getStatusEffect(context.assumeSourceNotUsed(), name)
 
 /**
- * Adds a command function argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a command function argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.commandFunction(
-    name: String,
-    action: RequiredArgumentAction<
-            S,
-            DefaultArgumentDescriptor<CommandFunctionArgumentType>
-            >
-) {
-    argument(name, CommandFunctionArgumentType.commandFunction(), action)
+public fun <S> commandFunction(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<CommandFunctionArgumentType>> {
+    return argument(name, CommandFunctionArgumentType.commandFunction())
 }
 
 /**
- * Adds a dimension argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a dimension argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.dimension(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<DimensionArgumentType>>
-) {
-    argument(name, DimensionArgumentType.dimension(), action)
+public fun <S> dimension(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<DimensionArgumentType>> {
+    return argument(name, DimensionArgumentType.dimension())
 }
 
 /**
- * Adds an enchantment argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates an enchantment argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
- * @author
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.enchantment(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<EnchantmentArgumentType>>
-) {
-    argument(name, EnchantmentArgumentType.enchantment(), action)
+public fun <S> enchantment(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<EnchantmentArgumentType>> {
+    return argument(name, EnchantmentArgumentType.enchantment())
 }
 
 
 /**
- * Adds a particle effect argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a particle effect argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.particleEffect(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<ParticleEffectArgumentType>>
-) {
-    argument(name, ParticleEffectArgumentType(), action)
+public fun <S> particleEffect(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ParticleEffectArgumentType>> {
+    return argument(name, ParticleEffectArgumentType())
 }
 
 /**
- * Adds a status effect argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a status effect argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.statusEffect(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<StatusEffectArgumentType>>
-) {
-    argument(name, StatusEffectArgumentType(), action)
+public fun <S> statusEffect(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<StatusEffectArgumentType>> {
+    return argument(name, StatusEffectArgumentType())
 }

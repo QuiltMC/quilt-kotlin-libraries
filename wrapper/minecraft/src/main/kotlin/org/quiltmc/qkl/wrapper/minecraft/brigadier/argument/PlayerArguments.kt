@@ -23,8 +23,7 @@
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
 import com.mojang.authlib.GameProfile
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
+
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.command.argument.GameProfileArgumentType
 import net.minecraft.command.argument.TeamArgumentType
@@ -112,67 +111,51 @@ public fun ArgumentReader<
     EntityArgumentType.getOptionalPlayers(context, name)
 
 /**
- * Adds a game profile argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a game profile argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.gameProfile(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<GameProfileArgumentType>>
-) {
-    argument(name, GameProfileArgumentType.gameProfile(), action)
+public fun <S> gameProfile(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<GameProfileArgumentType>> {
+    return argument(name, GameProfileArgumentType.gameProfile())
 }
 
 /**
- * Adds a team argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a team argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.team(
-    name: String,
-    action: RequiredArgumentAction<S, DefaultArgumentDescriptor<TeamArgumentType>>
-) {
-    argument(name, TeamArgumentType.team(), action)
+public fun <S> team(
+    name: String
+): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TeamArgumentType>> {
+    return argument(name, TeamArgumentType.team())
 }
 
 /**
- * Adds a player selector argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a player selector argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.player(
-    name: String,
-    action: RequiredArgumentAction<S, SinglePlayerArgumentDescriptor>
-) {
-    argument(name, EntityArgumentType.player(), SinglePlayerArgumentDescriptor, action)
+public fun <S> player(
+    name: String
+): RequiredArgumentConstructor<S, SinglePlayerArgumentDescriptor> {
+    return argument(name, EntityArgumentType.player(), SinglePlayerArgumentDescriptor)
 }
 
 /**
- * Adds a multiple player selector argument with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
+ * Creates a multiple player selector argument with [name] as the parameter name.
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.players(
-    name: String,
-    action: RequiredArgumentAction<S, ListPlayerArgumentDescriptor>
-) {
-    argument(name, EntityArgumentType.players(), ListPlayerArgumentDescriptor, action)
+public fun <S> players(
+    name: String
+): RequiredArgumentConstructor<S, ListPlayerArgumentDescriptor> {
+    return argument(name, EntityArgumentType.players(), ListPlayerArgumentDescriptor)
 }
 
 /**

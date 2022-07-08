@@ -80,8 +80,11 @@ public fun <S> ArgumentBuilder<S, *>.execute(command: CommandActionWithResult<S>
 /**
  * Sets the action the command will take when executed.
  *
- * Command will always succeed. To indicate possible failure
- * or specify the resulting value, return a [CommandResult] from [command].
+ * If the command does not throw an exception,
+ * it succeeds with [Command.SINGLE_SUCCESS].
+ *
+ * To indicate possible failure more explicitly or
+ * specify the resulting value, return a [CommandResult] from [command].
  *
  * @see ArgumentBuilder.executes
  *
@@ -89,7 +92,7 @@ public fun <S> ArgumentBuilder<S, *>.execute(command: CommandActionWithResult<S>
  */
 @OptIn(ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
-@JvmName("executeWithoutReturnCode")
+@JvmName("executeWithoutReturnValue")
 @BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.execute(command: CommandAction<S>) {
     execute {

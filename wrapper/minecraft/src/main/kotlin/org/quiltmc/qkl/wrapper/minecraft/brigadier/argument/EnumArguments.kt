@@ -25,8 +25,6 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-import com.mojang.brigadier.builder.ArgumentBuilder
-import com.mojang.brigadier.context.CommandContext
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qsl.command.api.EnumArgumentType
 import kotlin.reflect.KClass
@@ -86,11 +84,8 @@ public fun <T> ArgumentReader<*, MappedStringEnumArgumentDescriptor<T>>.value():
 }
 
 /**
- * Adds an enum argument allowing all values of the
+ * Creates an enum argument allowing all values of the
  * specified enum [type] [T] with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * Enum values of [T] must have [names][Enum.name] that
  * are distinct when case is ignored.
@@ -98,25 +93,20 @@ public fun <T> ArgumentReader<*, MappedStringEnumArgumentDescriptor<T>>.value():
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
+public fun <S, T : Enum<T>> enum(
     name: String,
-    type: KClass<T>,
-    action: RequiredArgumentAction<S, TypedEnumArgumentDescriptor<T>>
-) {
-    argument(
+    type: KClass<T>
+): RequiredArgumentConstructor<S, TypedEnumArgumentDescriptor<T>> {
+    return argument(
         name,
         EnumArgumentType.enumConstant(type.java),
-        TypedEnumArgumentDescriptor(type.java),
-        action
+        TypedEnumArgumentDescriptor(type.java)
     )
 }
 
 /**
- * Adds a string argument allowing only values specified
+ * Creates a string argument allowing only values specified
  * in [values] with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * All elements of [values] must be distinct
  * when case is ignored.
@@ -124,25 +114,20 @@ public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.enum(
+public fun <S> enum(
     name: String,
-    values: List<String>,
-    action: RequiredArgumentAction<S, StringEnumArgumentDescriptor>
-) {
-    argument(
+    values: List<String>
+): RequiredArgumentConstructor<S, StringEnumArgumentDescriptor> {
+    return argument(
         name,
         EnumArgumentType(*values.toTypedArray()),
-        StringEnumArgumentDescriptor,
-        action
+        StringEnumArgumentDescriptor
     )
 }
 
 /**
- * Adds an enum argument allowing only values specified
+ * Creates an enum argument allowing only values specified
  * in [values] with [name] as the parameter name.
- *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument.
  *
  * All elements of [values] must have [names][Enum.name]
  * that are distinct when case is ignored.
@@ -151,40 +136,35 @@ public fun <S> ArgumentBuilder<S, *>.enum(
  */
 @JvmName("enumAllowedSublist")
 @BrigadierDsl
-public fun <S, T : Enum<T>> ArgumentBuilder<S, *>.enum(
+public fun <S, T : Enum<T>> enum(
     name: String,
-    values: List<T>,
-    action: RequiredArgumentAction<S, MappedStringEnumArgumentDescriptor<T>>
-) {
-    enum(name, values.associateBy(Enum<*>::name), action)
+    values: List<T>
+): RequiredArgumentConstructor<S, MappedStringEnumArgumentDescriptor<T>> {
+    return enum(name, values.associateBy(Enum<*>::name))
 }
 
 /**
- * Adds an enum argument allowing values specified by
+ * Creates an enum argument allowing values specified by
  * keys of [values] with [name] as the parameter name.
  *
- * Accessor passed to [action] can be used on a [CommandContext]
- * with an [execute] block to obtain an [ArgumentReader] for this argument,
- * on which the [value] extension returns the value from [values] matching
- * the key provided to the command.
+ * When read, the argument will convert the provided
+ * string to its respective value in [values].
  *
  * Keys of [values] must be distinct when case is ignored.
  *
  * @author Cypher121
  */
 @BrigadierDsl
-public fun <S, T> ArgumentBuilder<S, *>.enum(
+public fun <S, T> enum(
     name: String,
-    values: Map<String, T>,
-    action: RequiredArgumentAction<S, MappedStringEnumArgumentDescriptor<T>>
-) {
+    values: Map<String, T>
+): RequiredArgumentConstructor<S, MappedStringEnumArgumentDescriptor<T>> {
     val lowercaseValues = values.mapKeys { it.key.lowercase() }
 
-    argument(
+    return argument(
         name,
         EnumArgumentType(*values.keys.toTypedArray()),
-        MappedStringEnumArgumentDescriptor(lowercaseValues),
-        action
+        MappedStringEnumArgumentDescriptor(lowercaseValues)
     )
 }
 
