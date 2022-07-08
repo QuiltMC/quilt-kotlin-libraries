@@ -36,8 +36,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueBoolArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<BoolArgumentType>>.value(): Boolean =
-    BoolArgumentType.getBool(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<BoolArgumentType>>.value(): Boolean {
+    return BoolArgumentType.getBool(context, name)
+}
 
 /**
  * Reads the boolean value from the argument in
@@ -49,8 +50,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<BoolArgumentType>>.value(
  */
 @JvmName("valueDoubleArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<DoubleArgumentType>>.value(): Double =
-    DoubleArgumentType.getDouble(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<DoubleArgumentType>>.value(): Double {
+    return DoubleArgumentType.getDouble(context, name)
+}
 
 /**
  * Reads the float value from the argument in
@@ -62,8 +64,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<DoubleArgumentType>>.valu
  */
 @JvmName("valueFloatArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<FloatArgumentType>>.value(): Float =
-    FloatArgumentType.getFloat(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<FloatArgumentType>>.value(): Float {
+    return FloatArgumentType.getFloat(context, name)
+}
 
 /**
  * Reads the integer value from the argument in
@@ -75,8 +78,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<FloatArgumentType>>.value
  */
 @JvmName("valueIntArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<IntegerArgumentType>>.value(): Int =
-    IntegerArgumentType.getInteger(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<IntegerArgumentType>>.value(): Int {
+    return IntegerArgumentType.getInteger(context, name)
+}
 
 /**
  * Reads the long value from the argument in
@@ -88,8 +92,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<IntegerArgumentType>>.val
  */
 @JvmName("valueLongArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(): Long =
-    LongArgumentType.getLong(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(): Long {
+    return LongArgumentType.getLong(context, name)
+}
 
 /**
  * Creates a boolean argument with [name] as the parameter name.

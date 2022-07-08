@@ -45,8 +45,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<GameProfileArgumentType>
-        >.value(): Collection<GameProfile> =
-    GameProfileArgumentType.getProfileArgument(context, name)
+        >.value(): Collection<GameProfile> {
+    return GameProfileArgumentType.getProfileArgument(context, name)
+}
 
 /**
  * Reads the [Team] value from the
@@ -58,8 +59,9 @@ public fun ArgumentReader<
  */
 @JvmName("valueTeamArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<TeamArgumentType>>.value(): Team =
-    TeamArgumentType.getTeam(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<TeamArgumentType>>.value(): Team {
+    return TeamArgumentType.getTeam(context, name)
+}
 
 /**
  * Reads the [ServerPlayerEntity] value from the
@@ -71,8 +73,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<TeamArg
  */
 @JvmName("valuePlayerArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, SinglePlayerArgumentDescriptor>.value(): ServerPlayerEntity =
-    EntityArgumentType.getPlayer(context, name)
+public fun ArgumentReader<ServerCommandSource, SinglePlayerArgumentDescriptor>.value(): ServerPlayerEntity {
+    return EntityArgumentType.getPlayer(context, name)
+}
 
 /**
  * Reads the collection of players from the argument in
@@ -89,8 +92,9 @@ public fun ArgumentReader<ServerCommandSource, SinglePlayerArgumentDescriptor>.v
 public fun ArgumentReader<
         ServerCommandSource,
         ListPlayerArgumentDescriptor
-        >.required(): Collection<ServerPlayerEntity> =
-    EntityArgumentType.getPlayers(context, name)
+        >.required(): Collection<ServerPlayerEntity> {
+    return EntityArgumentType.getPlayers(context, name)
+}
 
 /**
  * Reads the collection of players from the argument in
@@ -107,8 +111,9 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         ListPlayerArgumentDescriptor
-        >.optional(): Collection<ServerPlayerEntity> =
-    EntityArgumentType.getOptionalPlayers(context, name)
+        >.optional(): Collection<ServerPlayerEntity> {
+    return EntityArgumentType.getOptionalPlayers(context, name)
+}
 
 /**
  * Creates a game profile argument with [name] as the parameter name.

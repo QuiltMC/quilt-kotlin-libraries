@@ -42,8 +42,9 @@ import java.util.function.Predicate
  */
 @JvmName("valueItemPredicateArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemPredicateArgumentType>>.value(): Predicate<ItemStack> =
-    ItemPredicateArgumentType.getItemPredicate(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemPredicateArgumentType>>.value(): Predicate<ItemStack> {
+    return ItemPredicateArgumentType.getItemPredicate(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the integer value from the
@@ -55,8 +56,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemPredicateArgumentType
  */
 @JvmName("valueItemSlotArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemSlotArgumentType>>.value(): Int =
-    ItemSlotArgumentType.getItemSlot(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemSlotArgumentType>>.value(): Int {
+    return ItemSlotArgumentType.getItemSlot(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [ItemStackArgument] value from the
@@ -68,8 +70,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemSlotArgumentType>>.va
  */
 @JvmName("valueItemStackArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.value(): ItemStackArgument =
-    ItemStackArgumentType.getItemStackArgument(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.value(): ItemStackArgument {
+    return ItemStackArgumentType.getItemStackArgument(context, name)
+}
 
 /**
  * Creates an item predicate argument with [name] as the parameter name.

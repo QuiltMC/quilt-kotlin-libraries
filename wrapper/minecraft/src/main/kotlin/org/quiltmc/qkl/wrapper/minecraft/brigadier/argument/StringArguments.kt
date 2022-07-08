@@ -36,8 +36,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueStringArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<StringArgumentType>>.value(): String =
-    StringArgumentType.getString(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<StringArgumentType>>.value(): String {
+    return StringArgumentType.getString(context, name)
+}
 
 /**
  * Creates a string argument with [name] as the parameter name.

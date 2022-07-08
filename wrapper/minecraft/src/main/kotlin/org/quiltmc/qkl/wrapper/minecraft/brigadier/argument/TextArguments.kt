@@ -45,8 +45,9 @@ import net.minecraft.command.argument.MessageArgumentType.method_43770 as getSig
  */
 @JvmName("valueMessageArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.value(): Text =
-    MessageArgumentType.getMessage(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.value(): Text {
+    return MessageArgumentType.getMessage(context, name)
+}
 
 /**
  * Reads the [SignedMessage] value from
@@ -57,8 +58,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Message
  * @author Cypher121
  */
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.signed(): SignedMessage =
-    getSignedMessage(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.signed(): SignedMessage {
+    return getSignedMessage(context, name)
+}
 
 /**
  * Reads the selected color's [Formatting] value from
@@ -70,8 +72,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Message
  */
 @JvmName("valueColorArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ColorArgumentType>>.value(): Formatting =
-    ColorArgumentType.getColor(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ColorArgumentType>>.value(): Formatting {
+    return ColorArgumentType.getColor(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [Text] value from the
@@ -83,8 +86,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ColorArgumentType>>.value
  */
 @JvmName("valueTextArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<TextArgumentType>>.value(): Text =
-    TextArgumentType.getTextArgument(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<TextArgumentType>>.value(): Text {
+    return TextArgumentType.getTextArgument(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Creates a message argument with [name] as the parameter name.

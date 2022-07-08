@@ -75,5 +75,6 @@ public class DefaultArgumentDescriptor<T : ArgumentType<*>> : ArgumentDescriptor
  * @author Cypher121
  */
 @Suppress("UNCHECKED_CAST")
-internal fun <S> CommandContext<*>.assumeSourceNotUsed(): CommandContext<S> =
-    this as CommandContext<S>
+internal fun <S> CommandContext<*>.assumeSourceNotUsed(): CommandContext<S> {
+    return this as CommandContext<S>
+}

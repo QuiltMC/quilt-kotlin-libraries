@@ -41,8 +41,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueNbtCompoundArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtCompoundArgumentType>>.value(): NbtCompound =
-    NbtCompoundArgumentType.getNbtCompound(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtCompoundArgumentType>>.value(): NbtCompound {
+    return NbtCompoundArgumentType.getNbtCompound(context, name)
+}
 
 /**
  * Reads the [NbtElement] value from the
@@ -54,8 +55,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtCompoundArgumentType>>
  */
 @JvmName("valueNbtElementArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtElementArgumentType>>.value(): NbtElement =
-    NbtElementArgumentType.getNbtElement(context, name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtElementArgumentType>>.value(): NbtElement {
+    return NbtElementArgumentType.getNbtElement(context, name)
+}
 
 /**
  * Reads the [NbtPath] value from the
@@ -67,8 +69,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtElementArgumentType>>.
  */
 @JvmName("valueNbtPathArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.value(): NbtPath =
-    NbtPathArgumentType.getNbtPath(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.value(): NbtPath {
+    return NbtPathArgumentType.getNbtPath(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Creates a nbt compound argument with [name] as the parameter name.

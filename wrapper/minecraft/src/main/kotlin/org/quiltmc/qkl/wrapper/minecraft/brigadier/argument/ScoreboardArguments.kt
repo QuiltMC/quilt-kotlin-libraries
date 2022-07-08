@@ -42,8 +42,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 public fun ArgumentReader<
         *,
         DefaultArgumentDescriptor<OperationArgumentType>
-        >.value(): OperationArgumentType.Operation =
-    OperationArgumentType.getOperation(context.assumeSourceNotUsed(), name)
+        >.value(): OperationArgumentType.Operation {
+    return OperationArgumentType.getOperation(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [ScoreboardCriterion] value from the argument in
@@ -55,8 +56,9 @@ public fun ArgumentReader<
  */
 @JvmName("valueScoreboardCriterionArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardCriterionArgumentType>>.value(): ScoreboardCriterion =
-    ScoreboardCriterionArgumentType.getCriterion(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardCriterionArgumentType>>.value(): ScoreboardCriterion {
+    return ScoreboardCriterionArgumentType.getCriterion(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [ScoreboardObjective] value from the argument in
@@ -71,8 +73,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardCriterionArgume
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>
-        >.value(): ScoreboardObjective =
-    ScoreboardObjectiveArgumentType.getObjective(context, name)
+        >.value(): ScoreboardObjective {
+    return ScoreboardObjectiveArgumentType.getObjective(context, name)
+}
 
 /**
  * Reads the [ScoreboardObjective] value from the argument in
@@ -90,8 +93,9 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>
-        >.writable(): ScoreboardObjective =
-    ScoreboardObjectiveArgumentType.getWritableObjective(context, name)
+        >.writable(): ScoreboardObjective {
+    return ScoreboardObjectiveArgumentType.getWritableObjective(context, name)
+}
 
 /**
  * Reads the integer slot value from the argument in
@@ -103,8 +107,9 @@ public fun ArgumentReader<
  */
 @JvmName("valueScoreboardSlotArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardSlotArgumentType>>.value(): Int =
-    ScoreboardSlotArgumentType.getScoreboardSlot(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardSlotArgumentType>>.value(): Int {
+    return ScoreboardSlotArgumentType.getScoreboardSlot(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the score holder name from the argument in
@@ -119,8 +124,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardSlotArgumentTyp
 public fun ArgumentReader<
         ServerCommandSource,
         SingleScoreHolderArgumentDescriptor
-        >.value(): String =
-    ScoreHolderArgumentType.getScoreHolder(context, name)
+        >.value(): String {
+    return ScoreHolderArgumentType.getScoreHolder(context, name)
+}
 
 /**
  * Reads all score holder names from the argument in
@@ -135,8 +141,9 @@ public fun ArgumentReader<
  */
 @JvmName("valueListScoreHolderArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListScoreHolderArgumentDescriptor>.value(): Collection<String> =
-    ScoreHolderArgumentType.getScoreHolders(context, name)
+public fun ArgumentReader<ServerCommandSource, ListScoreHolderArgumentDescriptor>.value(): Collection<String> {
+    return ScoreHolderArgumentType.getScoreHolders(context, name)
+}
 
 /**
  * Reads all score holder names from the argument in
@@ -154,8 +161,9 @@ public fun ArgumentReader<ServerCommandSource, ListScoreHolderArgumentDescriptor
 public fun ArgumentReader<
         ServerCommandSource,
         ListScoreHolderArgumentDescriptor
-        >.defaultToAllKnown(): Collection<String> =
-    ScoreHolderArgumentType.getScoreboardScoreHolders(context, name)
+        >.defaultToAllKnown(): Collection<String> {
+    return ScoreHolderArgumentType.getScoreboardScoreHolders(context, name)
+}
 
 /**
  * Creates an operation compound argument with [name] as the parameter name.

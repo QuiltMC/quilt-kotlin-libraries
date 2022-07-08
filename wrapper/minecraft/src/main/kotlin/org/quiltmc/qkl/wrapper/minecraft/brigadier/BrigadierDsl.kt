@@ -74,7 +74,9 @@ public fun commandBuildContext(
 @JvmName("getRequired")
 public operator fun <S, D : ArgumentDescriptor<*>> CommandContext<S>.get(
     accessor: ArgumentAccessor<S, D>
-): ArgumentReader<S, D> = accessor()
+): ArgumentReader<S, D> {
+    return accessor()
+}
 
 /**
  * Applies the [accessor] to the receiver [CommandContext].
@@ -86,4 +88,6 @@ public operator fun <S, D : ArgumentDescriptor<*>> CommandContext<S>.get(
 @JvmName("getOptional")
 public operator fun <S, D : ArgumentDescriptor<*>> CommandContext<S>.get(
     accessor: ArgumentAccessor<S, D>?
-): ArgumentReader<S, D>? = accessor?.invoke(this)
+): ArgumentReader<S, D>? {
+    return accessor?.invoke(this)
+}

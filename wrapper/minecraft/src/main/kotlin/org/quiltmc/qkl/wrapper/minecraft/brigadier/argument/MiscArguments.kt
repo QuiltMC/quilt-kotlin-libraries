@@ -42,8 +42,9 @@ import java.util.*
  */
 @JvmName("valueTimeArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<TimeArgumentType>>.value(): Int =
-    IntegerArgumentType.getInteger(context, name) // TimeArgumentType does not provide an accessor, defaulting to int
+public fun ArgumentReader<*, DefaultArgumentDescriptor<TimeArgumentType>>.value(): Int {
+    return IntegerArgumentType.getInteger(context, name)
+} // TimeArgumentType does not provide an accessor, defaulting to int
 
 /**
  * Reads the [UUID] value from the
@@ -55,8 +56,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TimeArgumentType>>.value(
  */
 @JvmName("valueUuidArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(): UUID =
-    UuidArgumentType.getUuid(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(): UUID {
+    return UuidArgumentType.getUuid(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Creates a time argument with [name] as the parameter name.

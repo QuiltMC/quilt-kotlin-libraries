@@ -42,8 +42,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueIdentifierArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<IdentifierArgumentType>>.value(): Identifier =
-    IdentifierArgumentType.getIdentifier(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<IdentifierArgumentType>>.value(): Identifier {
+    return IdentifierArgumentType.getIdentifier(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [Identifier] value from the
@@ -58,8 +59,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<IdentifierArgumentType>>.
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<IdentifierArgumentType>
-        >.asAdvancement(): Advancement =
-    IdentifierArgumentType.getAdvancementArgument(context, name)
+        >.asAdvancement(): Advancement {
+    return IdentifierArgumentType.getAdvancementArgument(context, name)
+}
 
 /**
  * Reads the [Identifier] value from the
@@ -74,8 +76,9 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<IdentifierArgumentType>
-        >.asPredicate(): LootCondition =
-    IdentifierArgumentType.getPredicateArgument(context, name)
+        >.asPredicate(): LootCondition {
+    return IdentifierArgumentType.getPredicateArgument(context, name)
+}
 
 /**
  * Reads the [Identifier] value from the
@@ -90,8 +93,9 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<IdentifierArgumentType>
-        >.asItemModifier(): LootFunction =
-    IdentifierArgumentType.getItemModifierArgument(context, name)
+        >.asItemModifier(): LootFunction {
+    return IdentifierArgumentType.getItemModifierArgument(context, name)
+}
 
 /**
  * Reads the [Identifier] value from the
@@ -106,8 +110,9 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<IdentifierArgumentType>
-        >.asRecipe(): Recipe<*> =
-    IdentifierArgumentType.getRecipeArgument(context, name)
+        >.asRecipe(): Recipe<*> {
+    return IdentifierArgumentType.getRecipeArgument(context, name)
+}
 
 /**
  * Creates an identifier argument with [name] as the parameter name.

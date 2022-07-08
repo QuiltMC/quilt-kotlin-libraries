@@ -39,12 +39,13 @@ import kotlin.reflect.KClass
  */
 @JvmName("valueEnumClassArg")
 @BrigadierDsl
-public fun <T : Enum<T>> ArgumentReader<*, TypedEnumArgumentDescriptor<T>>.value(): T =
-    EnumArgumentType.getEnumConstant(
+public fun <T : Enum<T>> ArgumentReader<*, TypedEnumArgumentDescriptor<T>>.value(): T {
+    return EnumArgumentType.getEnumConstant(
         context.assumeSourceNotUsed(),
         name,
         argumentDescriptor.type
     )
+}
 
 /**
  * Reads the string value from the argument in
@@ -56,11 +57,12 @@ public fun <T : Enum<T>> ArgumentReader<*, TypedEnumArgumentDescriptor<T>>.value
  */
 @JvmName("valueEnumStringArg")
 @BrigadierDsl
-public fun ArgumentReader<*, StringEnumArgumentDescriptor>.value(): String =
-    EnumArgumentType.getEnum(
+public fun ArgumentReader<*, StringEnumArgumentDescriptor>.value(): String {
+    return EnumArgumentType.getEnum(
         context.assumeSourceNotUsed(),
         name
     )
+}
 
 /**
  * Reads the string value from the argument in

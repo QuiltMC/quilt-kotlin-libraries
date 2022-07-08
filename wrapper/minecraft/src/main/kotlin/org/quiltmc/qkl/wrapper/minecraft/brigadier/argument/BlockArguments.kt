@@ -42,8 +42,9 @@ import java.util.function.Predicate
 @BrigadierDsl
 public fun ArgumentReader<*,
         DefaultArgumentDescriptor<BlockPredicateArgumentType>
-        >.value(): Predicate<CachedBlockPosition> =
-    BlockPredicateArgumentType.getBlockPredicate(context.assumeSourceNotUsed(), name)
+        >.value(): Predicate<CachedBlockPosition> {
+    return BlockPredicateArgumentType.getBlockPredicate(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [BlockStateArgument] value of the argument in
@@ -55,8 +56,9 @@ public fun ArgumentReader<*,
  */
 @JvmName("valueBlockStateArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockStateArgumentType>>.value(): BlockStateArgument =
-    BlockStateArgumentType.getBlockState(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<BlockStateArgumentType>>.value(): BlockStateArgument {
+    return BlockStateArgumentType.getBlockState(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Creates a block predicate argument with [name] as the parameter name.

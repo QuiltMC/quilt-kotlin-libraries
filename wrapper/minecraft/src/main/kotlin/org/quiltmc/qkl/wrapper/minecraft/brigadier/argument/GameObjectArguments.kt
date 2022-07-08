@@ -47,8 +47,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<CommandFunctionArgumentType>
-        >.functions(): Collection<CommandFunction> =
-    CommandFunctionArgumentType.getFunctions(context, name)
+        >.functions(): Collection<CommandFunction> {
+    return CommandFunctionArgumentType.getFunctions(context, name)
+}
 
 /**
  * Reads the matched [CommandFunction]s from the
@@ -67,8 +68,9 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<CommandFunctionArgumentType>
-        >.functionOrTag(): Pair<Identifier, Either<CommandFunction, Collection<CommandFunction>>> =
-    CommandFunctionArgumentType.getFunctionOrTag(context, name)
+        >.functionOrTag(): Pair<Identifier, Either<CommandFunction, Collection<CommandFunction>>> {
+    return CommandFunctionArgumentType.getFunctionOrTag(context, name)
+}
 
 /**
  * Reads the [ServerWorld] value for the selected dimension
@@ -81,8 +83,9 @@ public fun ArgumentReader<
 @JvmName("valueDimensionArg")
 @BrigadierDsl
 public fun ArgumentReader<ServerCommandSource,
-        DefaultArgumentDescriptor<DimensionArgumentType>>.value(): ServerWorld =
-    DimensionArgumentType.getDimensionArgument(context, name)
+        DefaultArgumentDescriptor<DimensionArgumentType>>.value(): ServerWorld {
+    return DimensionArgumentType.getDimensionArgument(context, name)
+}
 
 /**
  * Reads the [Enchantment] value from the
@@ -94,8 +97,9 @@ public fun ArgumentReader<ServerCommandSource,
  */
 @JvmName("valueEnchantmentArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<EnchantmentArgumentType>>.value(): Enchantment =
-    EnchantmentArgumentType.getEnchantment(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<EnchantmentArgumentType>>.value(): Enchantment {
+    return EnchantmentArgumentType.getEnchantment(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [ParticleEffect] value from the
@@ -107,8 +111,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<EnchantmentArgumentType>>
  */
 @JvmName("valueParticleEffectArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ParticleEffectArgumentType>>.value(): ParticleEffect =
-    ParticleEffectArgumentType.getParticle(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<ParticleEffectArgumentType>>.value(): ParticleEffect {
+    return ParticleEffectArgumentType.getParticle(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [StatusEffect] value from the
@@ -120,8 +125,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ParticleEffectArgumentTyp
  */
 @JvmName("valueStatusEffectArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<StatusEffectArgumentType>>.value(): StatusEffect =
-    StatusEffectArgumentType.getStatusEffect(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<StatusEffectArgumentType>>.value(): StatusEffect {
+    return StatusEffectArgumentType.getStatusEffect(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Creates a command function argument with [name] as the parameter name.

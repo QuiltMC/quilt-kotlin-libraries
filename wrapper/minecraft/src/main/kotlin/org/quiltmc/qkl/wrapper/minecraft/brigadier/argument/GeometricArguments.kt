@@ -39,8 +39,9 @@ import java.util.*
  */
 @JvmName("valueAngleArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<AngleArgumentType>>.value(): Float =
-    AngleArgumentType.getAngle(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<AngleArgumentType>>.value(): Float {
+    return AngleArgumentType.getAngle(context, name)
+}
 
 /**
  * Reads the raw [PosArgument] value from the
@@ -52,8 +53,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<AngleAr
  */
 @JvmName("valueRotationArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<RotationArgumentType>>.value(): PosArgument =
-    RotationArgumentType.getRotation(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<RotationArgumentType>>.value(): PosArgument {
+    return RotationArgumentType.getRotation(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [Vec2f] value from the argument
@@ -67,8 +69,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<RotationArgumentType>>.va
  */
 @JvmName("absoluteRotationArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<RotationArgumentType>>.absolute(): Vec2f =
-    RotationArgumentType.getRotation(context, name).toAbsoluteRotation(context.source)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<RotationArgumentType>>.absolute(): Vec2f {
+    return RotationArgumentType.getRotation(context, name).toAbsoluteRotation(context.source)
+}
 
 /**
  * Reads the set of [Direction.Axis] from the
@@ -80,8 +83,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Rotatio
  */
 @JvmName("valueSwizzleArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<SwizzleArgumentType>>.value(): EnumSet<Direction.Axis> =
-    SwizzleArgumentType.getSwizzle(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<SwizzleArgumentType>>.value(): EnumSet<Direction.Axis> {
+    return SwizzleArgumentType.getSwizzle(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [BlockPos] value from the
@@ -93,8 +97,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<SwizzleArgumentType>>.val
  */
 @JvmName("valueBlockPosArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<BlockPosArgumentType>>.value(): BlockPos =
-    BlockPosArgumentType.getBlockPos(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<BlockPosArgumentType>>.value(): BlockPos {
+    return BlockPosArgumentType.getBlockPos(context, name)
+}
 
 /**
  * Reads the [BlockPos] value from the
@@ -111,8 +116,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<BlockPo
 public fun ArgumentReader<
         ServerCommandSource,
         DefaultArgumentDescriptor<BlockPosArgumentType>
-        >.requireLoaded(): BlockPos =
-    BlockPosArgumentType.getLoadedBlockPos(context, name)
+        >.requireLoaded(): BlockPos {
+    return BlockPosArgumentType.getLoadedBlockPos(context, name)
+}
 
 /**
  * Reads the [ColumnPos] value from the
@@ -124,8 +130,9 @@ public fun ArgumentReader<
  */
 @JvmName("valueColumnPosArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<ColumnPosArgumentType>>.value(): ColumnPos =
-    ColumnPosArgumentType.getColumnPos(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<ColumnPosArgumentType>>.value(): ColumnPos {
+    return ColumnPosArgumentType.getColumnPos(context, name)
+}
 
 /**
  * Reads the [Vec2f] value from the
@@ -137,8 +144,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<ColumnP
  */
 @JvmName("valueVec2Arg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Vec2ArgumentType>>.value(): Vec2f =
-    Vec2ArgumentType.getVec2(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Vec2ArgumentType>>.value(): Vec2f {
+    return Vec2ArgumentType.getVec2(context, name)
+}
 
 /**
  * Reads the [Vec3d] value from the
@@ -150,8 +158,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Vec2Arg
  */
 @JvmName("valueVec3Arg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Vec3ArgumentType>>.value(): Vec3d =
-    Vec3ArgumentType.getVec3(context, name)
+public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Vec3ArgumentType>>.value(): Vec3d {
+    return Vec3ArgumentType.getVec3(context, name)
+}
 
 /**
  * Reads the raw [PosArgument] value from the
@@ -163,8 +172,9 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Vec3Arg
  */
 @JvmName("posVec3Arg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<Vec3ArgumentType>>.posArgument(): PosArgument =
-    Vec3ArgumentType.getPosArgument(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<Vec3ArgumentType>>.posArgument(): PosArgument {
+    return Vec3ArgumentType.getPosArgument(context.assumeSourceNotUsed(), name)
+}
 
 
 /**

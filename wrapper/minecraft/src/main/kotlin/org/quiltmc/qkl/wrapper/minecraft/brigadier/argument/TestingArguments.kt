@@ -37,8 +37,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueTestClassArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<TestClassArgumentType>>.value(): String =
-    TestClassArgumentType.getTestClass(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<TestClassArgumentType>>.value(): String {
+    return TestClassArgumentType.getTestClass(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the [TestFunction] value from the argument in
@@ -50,8 +51,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TestClassArgumentType>>.v
  */
 @JvmName("valueTestFunctionArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<TestFunctionArgumentType>>.value(): TestFunction =
-    TestFunctionArgumentType.getFunction(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<TestFunctionArgumentType>>.value(): TestFunction {
+    return TestFunctionArgumentType.getFunction(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Creates a test class argument with [name] as the parameter name.

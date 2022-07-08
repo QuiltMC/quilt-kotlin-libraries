@@ -41,8 +41,9 @@ public class ArgumentConstructor<S, B : ArgumentBuilder<S, *>, D : ArgumentDescr
      *
      * @author Cypher121
      */
-    public fun required(): CommandArgument.Required<S, B, D> =
-        CommandArgument.Required(builder, name, descriptor)
+    public fun required(): CommandArgument.Required<S, B, D> {
+        return CommandArgument.Required(builder, name, descriptor)
+    }
 
     /**
      * Converts this constructor into an optional argument.
@@ -52,8 +53,9 @@ public class ArgumentConstructor<S, B : ArgumentBuilder<S, *>, D : ArgumentDescr
      *
      * @author Cypher121
      */
-    public fun optional(): CommandArgument.Optional<S, D> =
-        CommandArgument.Optional(builder, name, descriptor)
+    public fun optional(): CommandArgument.Optional<S, D> {
+        return CommandArgument.Optional(builder, name, descriptor)
+    }
 }
 
 /**

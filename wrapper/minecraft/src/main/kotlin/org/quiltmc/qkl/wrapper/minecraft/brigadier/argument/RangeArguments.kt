@@ -39,11 +39,12 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 @BrigadierDsl
 public fun ArgumentReader<*,
         DefaultArgumentDescriptor<NumberRangeArgumentType.FloatRangeArgumentType>
-        >.value(): NumberRange.FloatRange =
-    NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument(
+        >.value(): NumberRange.FloatRange {
+    return NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument(
         context.assumeSourceNotUsed(),
         name
-    )
+            )
+        }
 
 /**
  * Reads the [NumberRange.IntRange] value from
@@ -58,11 +59,12 @@ public fun ArgumentReader<*,
 public fun ArgumentReader<
         *,
         DefaultArgumentDescriptor<NumberRangeArgumentType.IntRangeArgumentType>
-        >.value(): NumberRange.IntRange =
-    NumberRangeArgumentType.IntRangeArgumentType.getRangeArgument(
+        >.value(): NumberRange.IntRange {
+    return NumberRangeArgumentType.IntRangeArgumentType.getRangeArgument(
         context.assumeSourceNotUsed(),
         name
-    )
+            )
+        }
 
 /**
  * Creates a float range argument with [name] as the parameter name.

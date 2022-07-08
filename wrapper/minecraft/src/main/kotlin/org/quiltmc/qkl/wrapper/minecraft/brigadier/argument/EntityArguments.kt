@@ -59,8 +59,9 @@ public fun ArgumentReader<*,
  */
 @JvmName("valueEntitySummonArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<EntitySummonArgumentType>>.value(): Identifier =
-    EntitySummonArgumentType.getEntitySummon(context.assumeSourceNotUsed(), name)
+public fun ArgumentReader<*, DefaultArgumentDescriptor<EntitySummonArgumentType>>.value(): Identifier {
+    return EntitySummonArgumentType.getEntitySummon(context.assumeSourceNotUsed(), name)
+}
 
 /**
  * Reads the collection of entities from the argument in
@@ -74,8 +75,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<EntitySummonArgumentType>
  */
 @JvmName("requiredEntityArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.required(): Collection<Entity> =
-    EntityArgumentType.getEntities(context, name)
+public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.required(): Collection<Entity> {
+    return EntityArgumentType.getEntities(context, name)
+}
 
 /**
  * Reads the collection of entities from the argument in
@@ -89,8 +91,9 @@ public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.req
  */
 @JvmName("optionalEntityArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.optional(): Collection<Entity> =
-    EntityArgumentType.getOptionalEntities(context, name)
+public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.optional(): Collection<Entity> {
+    return EntityArgumentType.getOptionalEntities(context, name)
+}
 
 /**
  * Reads the [Entity] value from the argument in
@@ -102,8 +105,9 @@ public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.opt
  */
 @JvmName("valueSingleEntityArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, SingleEntityArgumentDescriptor>.value(): Entity =
-    EntityArgumentType.getEntity(context, name)
+public fun ArgumentReader<ServerCommandSource, SingleEntityArgumentDescriptor>.value(): Entity {
+    return EntityArgumentType.getEntity(context, name)
+}
 
 /**
  * Creates an entity anchor argument with [name] as the parameter name.
