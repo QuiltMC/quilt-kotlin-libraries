@@ -33,6 +33,16 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import java.util.*
 
 /**
+ * Descriptor for a literal argument.
+ *
+ * Separate from [DefaultArgumentDescriptor]
+ * to stand out more in type hints.
+ *
+ * @author Cypher121
+ */
+public object LiteralDescriptor : ArgumentDescriptor<ArgumentType<*>>
+
+/**
  * Reads the integer value in ticks from the
  * argument in the receiver [ArgumentReader].
  *
@@ -42,7 +52,12 @@ import java.util.*
  */
 @JvmName("valueTimeArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<TimeArgumentType>>.value(): Int {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                TimeArgumentType
+                >
+        >.value(): Int {
     return IntegerArgumentType.getInteger(context, name)
 } // TimeArgumentType does not provide an accessor, defaulting to int
 
@@ -56,7 +71,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TimeArgumentType>>.value(
  */
 @JvmName("valueUuidArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(): UUID {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                UuidArgumentType
+                >
+        >.value(): UUID {
     return UuidArgumentType.getUuid(context.assumeSourceNotUsed(), name)
 }
 
@@ -68,7 +88,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<UuidArgumentType>>.value(
 @BrigadierDsl
 public fun <S> time(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TimeArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                TimeArgumentType
+                >
+        > {
     return argument(name, TimeArgumentType.time())
 }
 
@@ -80,7 +105,11 @@ public fun <S> time(
 @BrigadierDsl
 public fun <S> uuid(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<UuidArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                UuidArgumentType>
+        > {
     return argument(name, UuidArgumentType.uuid())
 }
 
@@ -97,16 +126,10 @@ public fun <S> uuid(
 @BrigadierDsl
 public fun <S> literal(
     name: String
-): ArgumentConstructor<S, LiteralArgumentBuilder<S>, LiteralDescriptor> {
+): ArgumentConstructor<
+        S,
+        LiteralArgumentBuilder<S>,
+        LiteralDescriptor
+        > {
     return ArgumentConstructor(LiteralArgumentBuilder.literal(name), name, LiteralDescriptor)
 }
-
-/**
- * Descriptor for a literal argument.
- *
- * Separate from [DefaultArgumentDescriptor]
- * to stand out more in type hints.
- *
- * @author Cypher121
- */
-public object LiteralDescriptor : ArgumentDescriptor<ArgumentType<*>>

@@ -41,7 +41,12 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueNbtCompoundArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtCompoundArgumentType>>.value(): NbtCompound {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                NbtCompoundArgumentType
+                >
+        >.value(): NbtCompound {
     return NbtCompoundArgumentType.getNbtCompound(context, name)
 }
 
@@ -55,7 +60,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtCompoundArgumentType>>
  */
 @JvmName("valueNbtElementArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtElementArgumentType>>.value(): NbtElement {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                NbtElementArgumentType
+                >
+        >.value(): NbtElement {
     return NbtElementArgumentType.getNbtElement(context, name)
 }
 
@@ -69,7 +79,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtElementArgumentType>>.
  */
 @JvmName("valueNbtPathArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.value(): NbtPath {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                NbtPathArgumentType
+                >
+        >.value(): NbtPath {
     return NbtPathArgumentType.getNbtPath(context.assumeSourceNotUsed(), name)
 }
 
@@ -81,7 +96,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<NbtPathArgumentType>>.val
 @BrigadierDsl
 public fun <S> nbtCompound(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NbtCompoundArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                NbtCompoundArgumentType
+                >
+        > {
     return argument(name, NbtCompoundArgumentType.nbtCompound())
 }
 
@@ -93,7 +113,12 @@ public fun <S> nbtCompound(
 @BrigadierDsl
 public fun <S> nbtElement(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NbtElementArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                NbtElementArgumentType
+                >
+        > {
     return argument(name, NbtElementArgumentType.nbtElement())
 }
 
@@ -105,6 +130,11 @@ public fun <S> nbtElement(
 @BrigadierDsl
 public fun <S> nbtPath(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NbtPathArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                NbtPathArgumentType
+                >
+        > {
     return argument(name, NbtPathArgumentType.nbtPath())
 }

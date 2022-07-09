@@ -22,12 +22,33 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.brigadier.argument
 
-
 import net.minecraft.command.argument.*
 import net.minecraft.scoreboard.ScoreboardCriterion
 import net.minecraft.scoreboard.ScoreboardObjective
 import net.minecraft.server.command.ServerCommandSource
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
+
+/**
+ * [ArgumentDescriptor] for an [ScoreHolderArgumentType]
+ * allowing a single score holder to be selected.
+ *
+ * @see scoreHolder
+ * @see ScoreHolderArgumentType.scoreHolder
+ *
+ * @author Cypher121
+ */
+public object SingleScoreHolderArgumentDescriptor : ArgumentDescriptor<ScoreHolderArgumentType>
+
+/**
+ * [ArgumentDescriptor] for an [ScoreHolderArgumentType]
+ * allowing multiple score holders to be selected.
+ *
+ * @see scoreHolders
+ * @see ScoreHolderArgumentType.scoreHolders
+ *
+ * @author Cypher121
+ */
+public object ListScoreHolderArgumentDescriptor : ArgumentDescriptor<ScoreHolderArgumentType>
 
 /**
  * Reads the [OperationArgumentType.Operation] value from the argument in
@@ -41,7 +62,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 @BrigadierDsl
 public fun ArgumentReader<
         *,
-        DefaultArgumentDescriptor<OperationArgumentType>
+        DefaultArgumentDescriptor<
+                OperationArgumentType
+                >
         >.value(): OperationArgumentType.Operation {
     return OperationArgumentType.getOperation(context.assumeSourceNotUsed(), name)
 }
@@ -56,7 +79,12 @@ public fun ArgumentReader<
  */
 @JvmName("valueScoreboardCriterionArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardCriterionArgumentType>>.value(): ScoreboardCriterion {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                ScoreboardCriterionArgumentType
+                >
+        >.value(): ScoreboardCriterion {
     return ScoreboardCriterionArgumentType.getCriterion(context.assumeSourceNotUsed(), name)
 }
 
@@ -72,7 +100,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardCriterionArgume
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
-        DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>
+        DefaultArgumentDescriptor<
+                ScoreboardObjectiveArgumentType
+                >
         >.value(): ScoreboardObjective {
     return ScoreboardObjectiveArgumentType.getObjective(context, name)
 }
@@ -92,7 +122,9 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
-        DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>
+        DefaultArgumentDescriptor<
+                ScoreboardObjectiveArgumentType
+                >
         >.writable(): ScoreboardObjective {
     return ScoreboardObjectiveArgumentType.getWritableObjective(context, name)
 }
@@ -107,7 +139,12 @@ public fun ArgumentReader<
  */
 @JvmName("valueScoreboardSlotArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ScoreboardSlotArgumentType>>.value(): Int {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                ScoreboardSlotArgumentType
+                >
+        >.value(): Int {
     return ScoreboardSlotArgumentType.getScoreboardSlot(context.assumeSourceNotUsed(), name)
 }
 
@@ -141,7 +178,10 @@ public fun ArgumentReader<
  */
 @JvmName("valueListScoreHolderArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListScoreHolderArgumentDescriptor>.value(): Collection<String> {
+public fun ArgumentReader<
+        ServerCommandSource,
+        ListScoreHolderArgumentDescriptor
+        >.value(): Collection<String> {
     return ScoreHolderArgumentType.getScoreHolders(context, name)
 }
 
@@ -173,7 +213,12 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> operation(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<OperationArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                OperationArgumentType
+                >
+        > {
     return argument(name, OperationArgumentType.operation())
 }
 
@@ -185,7 +230,12 @@ public fun <S> operation(
 @BrigadierDsl
 public fun <S> scoreboardCriterion(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ScoreboardCriterionArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                ScoreboardCriterionArgumentType
+                >
+        > {
     return argument(name, ScoreboardCriterionArgumentType.scoreboardCriterion())
 }
 
@@ -197,7 +247,12 @@ public fun <S> scoreboardCriterion(
 @BrigadierDsl
 public fun <S> scoreboardObjective(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ScoreboardObjectiveArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                ScoreboardObjectiveArgumentType
+                >
+        > {
     return argument(name, ScoreboardObjectiveArgumentType.scoreboardObjective())
 }
 
@@ -209,7 +264,12 @@ public fun <S> scoreboardObjective(
 @BrigadierDsl
 public fun <S> scoreboardSlot(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ScoreboardSlotArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                ScoreboardSlotArgumentType
+                >
+        > {
     return argument(name, ScoreboardSlotArgumentType.scoreboardSlot())
 }
 
@@ -221,7 +281,10 @@ public fun <S> scoreboardSlot(
 @BrigadierDsl
 public fun <S> scoreHolder(
     name: String
-): RequiredArgumentConstructor<S, SingleScoreHolderArgumentDescriptor> {
+): RequiredArgumentConstructor<
+        S,
+        SingleScoreHolderArgumentDescriptor
+        > {
     return argument(name, ScoreHolderArgumentType.scoreHolder(), SingleScoreHolderArgumentDescriptor)
 }
 
@@ -233,28 +296,9 @@ public fun <S> scoreHolder(
 @BrigadierDsl
 public fun <S> scoreHolders(
     name: String
-): RequiredArgumentConstructor<S, ListScoreHolderArgumentDescriptor> {
+): RequiredArgumentConstructor<
+        S,
+        ListScoreHolderArgumentDescriptor
+        > {
     return argument(name, ScoreHolderArgumentType.scoreHolder(), ListScoreHolderArgumentDescriptor)
 }
-
-/**
- * [ArgumentDescriptor] for an [ScoreHolderArgumentType]
- * allowing a single score holder to be selected.
- *
- * @see scoreHolder
- * @see ScoreHolderArgumentType.scoreHolder
- *
- * @author Cypher121
- */
-public object SingleScoreHolderArgumentDescriptor : ArgumentDescriptor<ScoreHolderArgumentType>
-
-/**
- * [ArgumentDescriptor] for an [ScoreHolderArgumentType]
- * allowing multiple score holders to be selected.
- *
- * @see scoreHolders
- * @see ScoreHolderArgumentType.scoreHolders
- *
- * @author Cypher121
- */
-public object ListScoreHolderArgumentDescriptor : ArgumentDescriptor<ScoreHolderArgumentType>

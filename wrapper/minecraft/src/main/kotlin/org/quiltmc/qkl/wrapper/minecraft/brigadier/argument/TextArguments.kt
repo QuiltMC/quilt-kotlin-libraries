@@ -45,7 +45,12 @@ import net.minecraft.command.argument.MessageArgumentType.method_43770 as getSig
  */
 @JvmName("valueMessageArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.value(): Text {
+public fun ArgumentReader<
+        ServerCommandSource,
+        DefaultArgumentDescriptor<
+                MessageArgumentType
+                >
+        >.value(): Text {
     return MessageArgumentType.getMessage(context, name)
 }
 
@@ -58,7 +63,12 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Message
  * @author Cypher121
  */
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<MessageArgumentType>>.signed(): SignedMessage {
+public fun ArgumentReader<
+        ServerCommandSource,
+        DefaultArgumentDescriptor<
+                MessageArgumentType
+                >
+        >.signed(): SignedMessage {
     return getSignedMessage(context, name)
 }
 
@@ -72,7 +82,12 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<Message
  */
 @JvmName("valueColorArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ColorArgumentType>>.value(): Formatting {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                ColorArgumentType
+                >
+        >.value(): Formatting {
     return ColorArgumentType.getColor(context.assumeSourceNotUsed(), name)
 }
 
@@ -86,7 +101,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ColorArgumentType>>.value
  */
 @JvmName("valueTextArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<TextArgumentType>>.value(): Text {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                TextArgumentType
+                >
+        >.value(): Text {
     return TextArgumentType.getTextArgument(context.assumeSourceNotUsed(), name)
 }
 
@@ -98,7 +118,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<TextArgumentType>>.value(
 @BrigadierDsl
 public fun <S> message(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<MessageArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                MessageArgumentType
+                >
+        > {
     return argument(name, MessageArgumentType.message())
 }
 
@@ -110,7 +135,12 @@ public fun <S> message(
 @BrigadierDsl
 public fun <S> color(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ColorArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                ColorArgumentType
+                >
+        > {
     return argument(name, ColorArgumentType.color())
 }
 
@@ -122,6 +152,11 @@ public fun <S> color(
 @BrigadierDsl
 public fun <S> text(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TextArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                TextArgumentType
+                >
+        > {
     return argument(name, TextArgumentType.text())
 }

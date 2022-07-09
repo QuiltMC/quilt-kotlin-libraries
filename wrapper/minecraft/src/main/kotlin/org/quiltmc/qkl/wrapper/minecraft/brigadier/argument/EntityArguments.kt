@@ -31,135 +31,6 @@ import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
 /**
- * Reads the [entity anchor][EntityAnchorArgumentType.EntityAnchor] value
- * of the argument in the receiver [ArgumentReader].
- *
- * @see EntityAnchorArgumentType.getEntityAnchor
- *
- * @author Cypher121
- */
-@JvmName("valueEntityAnchorArg")
-@BrigadierDsl
-public fun ArgumentReader<*,
-        DefaultArgumentDescriptor<EntityAnchorArgumentType>
-        >.value(): EntityAnchorArgumentType.EntityAnchor {
-    return EntityAnchorArgumentType.getEntityAnchor(
-        context.assumeSourceNotUsed(),
-        name
-    )
-}
-
-/**
- * Reads the entity summon [Identifier] value of the argument
- * in the receiver [ArgumentReader].
- *
- * @see EntitySummonArgumentType.getEntitySummon
- *
- * @author Cypher121
- */
-@JvmName("valueEntitySummonArg")
-@BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<EntitySummonArgumentType>>.value(): Identifier {
-    return EntitySummonArgumentType.getEntitySummon(context.assumeSourceNotUsed(), name)
-}
-
-/**
- * Reads the collection of entities from the argument in
- * the receiver [ArgumentReader].
- *
- * Throws an exception if no entities are matched.
- *
- * @see EntityArgumentType.getEntities
- *
- * @author Cypher121
- */
-@JvmName("requiredEntityArg")
-@BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.required(): Collection<Entity> {
-    return EntityArgumentType.getEntities(context, name)
-}
-
-/**
- * Reads the collection of entities from the argument in
- * the receiver [ArgumentReader].
- *
- * Returns an empty collection if no entities are matched.
- *
- * @see EntityArgumentType.getOptionalEntities
- *
- * @author Cypher121
- */
-@JvmName("optionalEntityArg")
-@BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, ListEntityArgumentDescriptor>.optional(): Collection<Entity> {
-    return EntityArgumentType.getOptionalEntities(context, name)
-}
-
-/**
- * Reads the [Entity] value from the argument in
- * the receiver [ArgumentReader].
- *
- * @see EntityArgumentType.getEntity
- *
- * @author Cypher121
- */
-@JvmName("valueSingleEntityArg")
-@BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, SingleEntityArgumentDescriptor>.value(): Entity {
-    return EntityArgumentType.getEntity(context, name)
-}
-
-/**
- * Creates an entity anchor argument with [name] as the parameter name.
- *
- * @author Oliver-makes-code (Emma)
- * @author Cypher121
- */
-@BrigadierDsl
-public fun <S> entityAnchor(
-    name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<EntityAnchorArgumentType>> {
-    return argument(name, EntityAnchorArgumentType.entityAnchor())
-}
-
-/**
- * Creates entity argument allowing multiple entities with [name] as the parameter name.
- *
- * @author Oliver-makes-code (Emma)
- */
-@BrigadierDsl
-public fun <S> entities(
-    name: String
-): RequiredArgumentConstructor<S, ListEntityArgumentDescriptor> {
-    return argument(name, EntityArgumentType.entities(), ListEntityArgumentDescriptor)
-}
-
-/**
- * Creates an entity selector argument with [name] as the parameter name.
- *
- * @author Oliver-makes-code (Emma)
- */
-@BrigadierDsl
-public fun <S> entity(
-    name: String
-): RequiredArgumentConstructor<S, SingleEntityArgumentDescriptor> {
-    return argument(name, EntityArgumentType.entity(), SingleEntityArgumentDescriptor)
-}
-
-/**
- * Creates an entity summon argument with [name] as the parameter name.
- *
- * @author Oliver-makes-code (Emma)
- * @author Cypher121
- */
-@BrigadierDsl
-public fun <S> entitySummon(
-    name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<EntitySummonArgumentType>> {
-    return argument(name, EntitySummonArgumentType.entitySummon())
-}
-
-/**
  * [ArgumentDescriptor] for an [EntityArgumentType]
  * allowing a single entity to be selected.
  *
@@ -180,3 +51,163 @@ public object SingleEntityArgumentDescriptor : ArgumentDescriptor<EntityArgument
  * @author Cypher121
  */
 public object ListEntityArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>
+
+/**
+ * Reads the [entity anchor][EntityAnchorArgumentType.EntityAnchor] value
+ * of the argument in the receiver [ArgumentReader].
+ *
+ * @see EntityAnchorArgumentType.getEntityAnchor
+ *
+ * @author Cypher121
+ */
+@JvmName("valueEntityAnchorArg")
+@BrigadierDsl
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                EntityAnchorArgumentType
+                >
+        >.value(): EntityAnchorArgumentType.EntityAnchor {
+    return EntityAnchorArgumentType.getEntityAnchor(
+        context.assumeSourceNotUsed(),
+        name
+    )
+}
+
+/**
+ * Reads the entity summon [Identifier] value of the argument
+ * in the receiver [ArgumentReader].
+ *
+ * @see EntitySummonArgumentType.getEntitySummon
+ *
+ * @author Cypher121
+ */
+@JvmName("valueEntitySummonArg")
+@BrigadierDsl
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<EntitySummonArgumentType>
+        >.value(): Identifier {
+    return EntitySummonArgumentType.getEntitySummon(context.assumeSourceNotUsed(), name)
+}
+
+/**
+ * Reads the collection of entities from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Throws an exception if no entities are matched.
+ *
+ * @see EntityArgumentType.getEntities
+ *
+ * @author Cypher121
+ */
+@JvmName("requiredEntityArg")
+@BrigadierDsl
+public fun ArgumentReader<
+        ServerCommandSource,
+        ListEntityArgumentDescriptor
+        >.required(): Collection<Entity> {
+    return EntityArgumentType.getEntities(context, name)
+}
+
+/**
+ * Reads the collection of entities from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * Returns an empty collection if no entities are matched.
+ *
+ * @see EntityArgumentType.getOptionalEntities
+ *
+ * @author Cypher121
+ */
+@JvmName("optionalEntityArg")
+@BrigadierDsl
+public fun ArgumentReader<
+        ServerCommandSource,
+        ListEntityArgumentDescriptor
+        >.optional(): Collection<Entity> {
+    return EntityArgumentType.getOptionalEntities(context, name)
+}
+
+/**
+ * Reads the [Entity] value from the argument in
+ * the receiver [ArgumentReader].
+ *
+ * @see EntityArgumentType.getEntity
+ *
+ * @author Cypher121
+ */
+@JvmName("valueSingleEntityArg")
+@BrigadierDsl
+public fun ArgumentReader<
+        ServerCommandSource,
+        SingleEntityArgumentDescriptor
+        >.value(): Entity {
+    return EntityArgumentType.getEntity(context, name)
+}
+
+/**
+ * Creates an entity anchor argument with [name] as the parameter name.
+ *
+ * @author Oliver-makes-code (Emma)
+ * @author Cypher121
+ */
+@BrigadierDsl
+public fun <S> entityAnchor(
+    name: String
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                EntityAnchorArgumentType
+                >
+        > {
+    return argument(name, EntityAnchorArgumentType.entityAnchor())
+}
+
+/**
+ * Creates entity argument allowing multiple entities with [name] as the parameter name.
+ *
+ * @author Oliver-makes-code (Emma)
+ */
+@BrigadierDsl
+public fun <S> entities(
+    name: String
+): RequiredArgumentConstructor<
+        S,
+        ListEntityArgumentDescriptor
+        > {
+    return argument(name, EntityArgumentType.entities(), ListEntityArgumentDescriptor)
+}
+
+/**
+ * Creates an entity selector argument with [name] as the parameter name.
+ *
+ * @author Oliver-makes-code (Emma)
+ */
+@BrigadierDsl
+public fun <S> entity(
+    name: String
+): RequiredArgumentConstructor<
+        S,
+        SingleEntityArgumentDescriptor
+        > {
+    return argument(name, EntityArgumentType.entity(), SingleEntityArgumentDescriptor)
+}
+
+/**
+ * Creates an entity summon argument with [name] as the parameter name.
+ *
+ * @author Oliver-makes-code (Emma)
+ * @author Cypher121
+ */
+@BrigadierDsl
+public fun <S> entitySummon(
+    name: String
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                EntitySummonArgumentType
+                >
+        > {
+    return argument(name, EntitySummonArgumentType.entitySummon())
+}

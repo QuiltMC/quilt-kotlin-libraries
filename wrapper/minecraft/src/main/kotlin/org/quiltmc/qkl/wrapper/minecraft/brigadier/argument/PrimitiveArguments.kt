@@ -36,7 +36,12 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueBoolArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<BoolArgumentType>>.value(): Boolean {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                BoolArgumentType
+                >
+        >.value(): Boolean {
     return BoolArgumentType.getBool(context, name)
 }
 
@@ -50,7 +55,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<BoolArgumentType>>.value(
  */
 @JvmName("valueDoubleArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<DoubleArgumentType>>.value(): Double {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                DoubleArgumentType
+                >
+        >.value(): Double {
     return DoubleArgumentType.getDouble(context, name)
 }
 
@@ -64,7 +74,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<DoubleArgumentType>>.valu
  */
 @JvmName("valueFloatArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<FloatArgumentType>>.value(): Float {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                FloatArgumentType
+                >
+        >.value(): Float {
     return FloatArgumentType.getFloat(context, name)
 }
 
@@ -78,7 +93,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<FloatArgumentType>>.value
  */
 @JvmName("valueIntArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<IntegerArgumentType>>.value(): Int {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                IntegerArgumentType
+                >
+        >.value(): Int {
     return IntegerArgumentType.getInteger(context, name)
 }
 
@@ -92,7 +112,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<IntegerArgumentType>>.val
  */
 @JvmName("valueLongArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(): Long {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                LongArgumentType
+                >
+        >.value(): Long {
     return LongArgumentType.getLong(context, name)
 }
 
@@ -105,7 +130,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<LongArgumentType>>.value(
 @BrigadierDsl
 public fun <S> boolean(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<BoolArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                BoolArgumentType
+                >
+        > {
     return argument(name, BoolArgumentType.bool())
 }
 
@@ -122,7 +152,12 @@ public fun <S> double(
     name: String,
     min: Double = -Double.MAX_VALUE,
     max: Double = Double.MAX_VALUE
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<DoubleArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                DoubleArgumentType
+                >
+        > {
     return argument(name, DoubleArgumentType.doubleArg(min, max))
 }
 
@@ -139,7 +174,12 @@ public fun <S> float(
     name: String,
     min: Float = -Float.MAX_VALUE,
     max: Float = Float.MAX_VALUE
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<FloatArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                FloatArgumentType
+                >
+        > {
     return argument(name, FloatArgumentType.floatArg(min, max))
 }
 
@@ -156,7 +196,12 @@ public fun <S> integer(
     name: String,
     min: Int = -Int.MAX_VALUE,
     max: Int = Int.MAX_VALUE
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<IntegerArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                IntegerArgumentType
+                >
+        > {
     return argument(name, IntegerArgumentType.integer(min, max))
 }
 
@@ -173,6 +218,11 @@ public fun <S> long(
     name: String,
     min: Long = -Long.MAX_VALUE,
     max: Long = Long.MAX_VALUE
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<LongArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                LongArgumentType
+                >
+        > {
     return argument(name, LongArgumentType.longArg(min, max))
 }

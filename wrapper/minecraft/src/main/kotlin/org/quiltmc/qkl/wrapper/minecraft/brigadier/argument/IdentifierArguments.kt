@@ -42,7 +42,12 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueIdentifierArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<IdentifierArgumentType>>.value(): Identifier {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                IdentifierArgumentType
+                >
+        >.value(): Identifier {
     return IdentifierArgumentType.getIdentifier(context.assumeSourceNotUsed(), name)
 }
 
@@ -58,7 +63,9 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<IdentifierArgumentType>>.
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
-        DefaultArgumentDescriptor<IdentifierArgumentType>
+        DefaultArgumentDescriptor<
+                IdentifierArgumentType
+                >
         >.asAdvancement(): Advancement {
     return IdentifierArgumentType.getAdvancementArgument(context, name)
 }
@@ -75,7 +82,9 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
-        DefaultArgumentDescriptor<IdentifierArgumentType>
+        DefaultArgumentDescriptor<
+                IdentifierArgumentType
+                >
         >.asPredicate(): LootCondition {
     return IdentifierArgumentType.getPredicateArgument(context, name)
 }
@@ -92,7 +101,9 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
-        DefaultArgumentDescriptor<IdentifierArgumentType>
+        DefaultArgumentDescriptor<
+                IdentifierArgumentType
+                >
         >.asItemModifier(): LootFunction {
     return IdentifierArgumentType.getItemModifierArgument(context, name)
 }
@@ -109,7 +120,9 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
-        DefaultArgumentDescriptor<IdentifierArgumentType>
+        DefaultArgumentDescriptor<
+                IdentifierArgumentType
+                >
         >.asRecipe(): Recipe<*> {
     return IdentifierArgumentType.getRecipeArgument(context, name)
 }
@@ -122,6 +135,11 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> identifier(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<IdentifierArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                IdentifierArgumentType
+                >
+        > {
     return argument(name, IdentifierArgumentType.identifier())
 }

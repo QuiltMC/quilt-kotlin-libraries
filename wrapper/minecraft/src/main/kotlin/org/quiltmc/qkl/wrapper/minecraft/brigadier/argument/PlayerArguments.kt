@@ -33,6 +33,28 @@ import net.minecraft.server.network.ServerPlayerEntity
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 
 /**
+ * [ArgumentDescriptor] for an [EntityArgumentType]
+ * allowing a single player to be selected.
+ *
+ * @see player
+ * @see EntityArgumentType.player
+ *
+ * @author Cypher121
+ */
+public object SinglePlayerArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>
+
+/**
+ * [ArgumentDescriptor] for an [EntityArgumentType]
+ * allowing multiple players to be selected.
+ *
+ * @see players
+ * @see EntityArgumentType.players
+ *
+ * @author Cypher121
+ */
+public object ListPlayerArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>
+
+/**
  * Reads the [GameProfile] value from the
  * argument in the receiver [ArgumentReader].
  *
@@ -44,7 +66,9 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 @BrigadierDsl
 public fun ArgumentReader<
         ServerCommandSource,
-        DefaultArgumentDescriptor<GameProfileArgumentType>
+        DefaultArgumentDescriptor<
+                GameProfileArgumentType
+                >
         >.value(): Collection<GameProfile> {
     return GameProfileArgumentType.getProfileArgument(context, name)
 }
@@ -59,7 +83,12 @@ public fun ArgumentReader<
  */
 @JvmName("valueTeamArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<TeamArgumentType>>.value(): Team {
+public fun ArgumentReader<
+        ServerCommandSource,
+        DefaultArgumentDescriptor<
+                TeamArgumentType
+                >
+        >.value(): Team {
     return TeamArgumentType.getTeam(context, name)
 }
 
@@ -73,7 +102,10 @@ public fun ArgumentReader<ServerCommandSource, DefaultArgumentDescriptor<TeamArg
  */
 @JvmName("valuePlayerArg")
 @BrigadierDsl
-public fun ArgumentReader<ServerCommandSource, SinglePlayerArgumentDescriptor>.value(): ServerPlayerEntity {
+public fun ArgumentReader<
+        ServerCommandSource,
+        SinglePlayerArgumentDescriptor
+        >.value(): ServerPlayerEntity {
     return EntityArgumentType.getPlayer(context, name)
 }
 
@@ -123,7 +155,12 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> gameProfile(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<GameProfileArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                GameProfileArgumentType
+                >
+        > {
     return argument(name, GameProfileArgumentType.gameProfile())
 }
 
@@ -135,7 +172,12 @@ public fun <S> gameProfile(
 @BrigadierDsl
 public fun <S> team(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<TeamArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                TeamArgumentType
+                >
+        > {
     return argument(name, TeamArgumentType.team())
 }
 
@@ -147,7 +189,10 @@ public fun <S> team(
 @BrigadierDsl
 public fun <S> player(
     name: String
-): RequiredArgumentConstructor<S, SinglePlayerArgumentDescriptor> {
+): RequiredArgumentConstructor<
+        S,
+        SinglePlayerArgumentDescriptor
+        > {
     return argument(name, EntityArgumentType.player(), SinglePlayerArgumentDescriptor)
 }
 
@@ -159,28 +204,9 @@ public fun <S> player(
 @BrigadierDsl
 public fun <S> players(
     name: String
-): RequiredArgumentConstructor<S, ListPlayerArgumentDescriptor> {
+): RequiredArgumentConstructor<
+        S,
+        ListPlayerArgumentDescriptor
+        > {
     return argument(name, EntityArgumentType.players(), ListPlayerArgumentDescriptor)
 }
-
-/**
- * [ArgumentDescriptor] for an [EntityArgumentType]
- * allowing a single player to be selected.
- *
- * @see player
- * @see EntityArgumentType.player
- *
- * @author Cypher121
- */
-public object SinglePlayerArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>
-
-/**
- * [ArgumentDescriptor] for an [EntityArgumentType]
- * allowing multiple players to be selected.
- *
- * @see players
- * @see EntityArgumentType.players
- *
- * @author Cypher121
- */
-public object ListPlayerArgumentDescriptor : ArgumentDescriptor<EntityArgumentType>

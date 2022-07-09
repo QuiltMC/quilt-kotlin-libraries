@@ -37,14 +37,17 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueFloatRangeArg")
 @BrigadierDsl
-public fun ArgumentReader<*,
-        DefaultArgumentDescriptor<NumberRangeArgumentType.FloatRangeArgumentType>
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                NumberRangeArgumentType.FloatRangeArgumentType
+                >
         >.value(): NumberRange.FloatRange {
     return NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument(
         context.assumeSourceNotUsed(),
         name
-            )
-        }
+    )
+}
 
 /**
  * Reads the [NumberRange.IntRange] value from
@@ -58,13 +61,15 @@ public fun ArgumentReader<*,
 @BrigadierDsl
 public fun ArgumentReader<
         *,
-        DefaultArgumentDescriptor<NumberRangeArgumentType.IntRangeArgumentType>
+        DefaultArgumentDescriptor<
+                NumberRangeArgumentType.IntRangeArgumentType
+                >
         >.value(): NumberRange.IntRange {
     return NumberRangeArgumentType.IntRangeArgumentType.getRangeArgument(
         context.assumeSourceNotUsed(),
         name
-            )
-        }
+    )
+}
 
 /**
  * Creates a float range argument with [name] as the parameter name.
@@ -75,7 +80,12 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> floatRange(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NumberRangeArgumentType.FloatRangeArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                NumberRangeArgumentType.FloatRangeArgumentType
+                >
+        > {
     return argument(name, NumberRangeArgumentType.floatRange())
 }
 
@@ -88,6 +98,11 @@ public fun <S> floatRange(
 @BrigadierDsl
 public fun <S> intRange(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<NumberRangeArgumentType.IntRangeArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                NumberRangeArgumentType.IntRangeArgumentType
+                >
+        > {
     return argument(name, NumberRangeArgumentType.intRange())
 }

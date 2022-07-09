@@ -42,7 +42,12 @@ import java.util.function.Predicate
  */
 @JvmName("valueItemPredicateArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemPredicateArgumentType>>.value(): Predicate<ItemStack> {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                ItemPredicateArgumentType
+                >
+        >.value(): Predicate<ItemStack> {
     return ItemPredicateArgumentType.getItemPredicate(context.assumeSourceNotUsed(), name)
 }
 
@@ -56,7 +61,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemPredicateArgumentType
  */
 @JvmName("valueItemSlotArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemSlotArgumentType>>.value(): Int {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                ItemSlotArgumentType
+                >
+        >.value(): Int {
     return ItemSlotArgumentType.getItemSlot(context.assumeSourceNotUsed(), name)
 }
 
@@ -70,7 +80,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemSlotArgumentType>>.va
  */
 @JvmName("valueItemStackArg")
 @BrigadierDsl
-public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.value(): ItemStackArgument {
+public fun ArgumentReader<
+        *,
+        DefaultArgumentDescriptor<
+                ItemStackArgumentType
+                >
+        >.value(): ItemStackArgument {
     return ItemStackArgumentType.getItemStackArgument(context, name)
 }
 
@@ -85,7 +100,12 @@ public fun ArgumentReader<*, DefaultArgumentDescriptor<ItemStackArgumentType>>.v
 public fun <S> itemPredicate(
     name: String,
     context: CommandBuildContext
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ItemPredicateArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                ItemPredicateArgumentType
+                >
+        > {
     return argument(name, ItemPredicateArgumentType.itemPredicate(context))
 }
 
@@ -97,7 +117,12 @@ public fun <S> itemPredicate(
 @BrigadierDsl
 public fun <S> itemSlot(
     name: String
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ItemSlotArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                ItemSlotArgumentType
+                >
+        > {
     return argument(name, ItemSlotArgumentType.itemSlot())
 }
 
@@ -112,6 +137,11 @@ public fun <S> itemSlot(
 public fun <S> itemStack(
     name: String,
     context: CommandBuildContext
-): RequiredArgumentConstructor<S, DefaultArgumentDescriptor<ItemStackArgumentType>> {
+): RequiredArgumentConstructor<
+        S,
+        DefaultArgumentDescriptor<
+                ItemStackArgumentType
+                >
+        > {
     return argument(name, ItemStackArgumentType.itemStack(context))
 }
