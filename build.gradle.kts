@@ -103,6 +103,14 @@ subprojects {
         remapSourcesJar {
             archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
         }
+
+        processResources {
+            inputs.property("version", rootProject.version)
+
+            filesMatching("quilt.mod.json") {
+                expand(Pair("version", rootProject.version))
+            }
+        }
     }
 
     java {
