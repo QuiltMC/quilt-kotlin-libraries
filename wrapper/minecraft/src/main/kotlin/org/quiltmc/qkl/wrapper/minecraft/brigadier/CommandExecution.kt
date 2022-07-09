@@ -21,7 +21,6 @@ import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandException
 import net.minecraft.text.Text
-import kotlin.experimental.ExperimentalTypeInference
 
 public typealias CommandActionWithResult<S> = (CommandContext<S>) -> CommandResult
 public typealias CommandAction<S> = (CommandContext<S>) -> Unit
@@ -65,10 +64,8 @@ public sealed class CommandResult {
  *
  * @author Cypher121
  */
-@OptIn(ExperimentalTypeInference::class)
-@OverloadResolutionByLambdaReturnType
 @BrigadierDsl
-public fun <S> ArgumentBuilder<S, *>.execute(command: CommandActionWithResult<S>) {
+public fun <S> ArgumentBuilder<S, *>.executeWithResult(command: CommandActionWithResult<S>) {
     executes {
         when (val result = command(it)) {
             is CommandResult.Success -> result.result
@@ -84,18 +81,16 @@ public fun <S> ArgumentBuilder<S, *>.execute(command: CommandActionWithResult<S>
  * it succeeds with [Command.SINGLE_SUCCESS].
  *
  * To indicate possible failure more explicitly or
- * specify the resulting value, return a [CommandResult] from [command].
+ * specify the resulting value, use [executeWithResult]
+ * and return a [CommandResult] from [command].
  *
  * @see ArgumentBuilder.executes
  *
  * @author Cypher121
  */
-@OptIn(ExperimentalTypeInference::class)
-@OverloadResolutionByLambdaReturnType
-@JvmName("executeWithoutReturnValue")
 @BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.execute(command: CommandAction<S>) {
-    execute {
+    executeWithResult {
         command(it)
         CommandResult.Success()
     }

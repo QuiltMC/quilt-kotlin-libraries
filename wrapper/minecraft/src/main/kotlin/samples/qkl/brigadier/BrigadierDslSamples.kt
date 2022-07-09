@@ -98,7 +98,7 @@ private object BrigadierDslSamples {
         dispatcher.register("repeat") {
             required(string("string")) { getString ->
                 required(integer("times")) { getTimes ->
-                    execute {
+                    executeWithResult {
                         val times = it[getTimes].value()
 
                         if (times % 2 == 1) {
