@@ -22,8 +22,8 @@ import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandException
 import net.minecraft.text.Text
 
-public typealias CommandActionWithResult<S> = (CommandContext<S>) -> CommandResult
-public typealias CommandAction<S> = (CommandContext<S>) -> Unit
+public typealias CommandActionWithResult<S> = CommandContext<S>.() -> CommandResult
+public typealias CommandAction<S> = CommandContext<S>.() -> Unit
 
 /**
  * Representation of possible results of running a command.
@@ -91,7 +91,7 @@ public fun <S> ArgumentBuilder<S, *>.executeWithResult(command: CommandActionWit
 @BrigadierDsl
 public fun <S> ArgumentBuilder<S, *>.execute(command: CommandAction<S>) {
     executeWithResult {
-        command(it)
+        command(this)
         CommandResult.Success()
     }
 }

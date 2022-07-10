@@ -25,6 +25,10 @@ import net.minecraft.text.Text
 import net.minecraft.util.math.Vec3d
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.argument.*
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.entity
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.required
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.respond
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.server
 import kotlin.random.Random
 
 /**
@@ -53,14 +57,15 @@ private object BrigadierDslSamples {
                     }
 
                     //execute the command with an extension method
-                    execute { context ->
-                        val response = if (context.getToCaps().value()) {
-                            context[message].value().uppercase()
+                    execute {
+                        val response = if (getToCaps().value()) {
+                            this[message].value().uppercase()
                         } else {
-                            context[message].value()
+                            this[message].value()
                         }
 
-                        context.source.player.sendMessage(Text.literal(response), MessageType.SYSTEM)
+                        //use utility extensions for common actions
+                        respond(Text.literal(response))
                     }
                 }
             }
@@ -86,9 +91,9 @@ private object BrigadierDslSamples {
         dispatcher.register("customSourceCommand") {
             required(vec3("pos")) { getPos ->
                 execute {
-                    val vec = it.getPos().customValue()
+                    val vec = getPos().customValue()
 
-                    it.source.useVec3ForSomething(vec)
+                    source.useVec3ForSomething(vec)
                 }
             }
         }
@@ -96,20 +101,18 @@ private object BrigadierDslSamples {
 
     fun sampleCommandWithResult(dispatcher: CommandDispatcher<Any>) {
         dispatcher.register("repeat") {
-            required(string("string")) { getString ->
-                required(integer("times")) { getTimes ->
-                    executeWithResult {
-                        val times = it[getTimes].value()
+            required(string("string"), integer("times")) { getString, getTimes ->
+                executeWithResult {
+                    val times = getTimes().value()
 
-                        if (times % 2 == 1) {
-                            CommandResult.Failure(Text.literal("times must be even"))
-                        } else {
-                            repeat(times) { _ ->
-                                println(it.getString().value())
-                            }
-
-                            CommandResult.Success(times)
+                    if (times % 2 == 1) {
+                        CommandResult.Failure(Text.literal("times must be even"))
+                    } else {
+                        repeat(times) {
+                            println(getString().value())
                         }
+
+                        CommandResult.Success(times)
                     }
                 }
             }
@@ -119,28 +122,29 @@ private object BrigadierDslSamples {
     fun sampleCommandWithOptionals(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register("slap") {
             optional(player("target")) { target ->
-                optional(enum(
-                    "weapon",
-                    mapOf(
-                        "fish" to "a fish",
-                        "book" to "an entire book"
+                optional(
+                    enum(
+                        "weapon",
+                        mapOf(
+                            "fish" to "a fish",
+                            "book" to "an entire book"
+                        )
                     )
-                )) { weapon ->
+                ) { getWeapon ->
                     optional(literal("repeatedly")) { repeatedly ->
                         execute {
                             //operator access is nullable only for optionals
-                            val targetName = it[target]?.value()?.displayName ?:
-                                Text.literal("themselves")
+                            val targetName = this[target]?.value()?.displayName ?: Text.literal("themselves")
 
-                            it.source.server.playerManager.broadcastSystemMessage(
+                            server.playerManager.broadcastSystemMessage(
                                 Text.empty().apply {
-                                    append(it.source.player.displayName)
+                                    append(entity?.displayName ?: Text.literal("Someone"))
                                     append(Text.literal(" slaps "))
                                     append(targetName)
 
                                     //checking the accessor directly works as well
-                                    if (weapon != null) {
-                                        append(Text.literal(" with ${it[weapon].value()}"))
+                                    if (getWeapon != null) {
+                                        append(Text.literal(" with ${getWeapon().value()}"))
                                     }
 
                                     if (repeatedly != null) {
