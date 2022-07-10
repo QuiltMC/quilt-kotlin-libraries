@@ -48,6 +48,26 @@ public sealed class CommandResult {
     public class Failure(
         public val message: Text
     ) : CommandResult()
+
+    public companion object {
+        /**
+         * Creates a [CommandResult.Success] with the given [result].
+         *
+         * @author Cypher121
+         */
+        public fun success(result: Int = Command.SINGLE_SUCCESS): Success {
+            return Success(result)
+        }
+
+        /**
+         * Creates a [CommandResult.Failure] with the given error [message].
+         *
+         * @author Cypher121
+         */
+        public fun failure(message: Text): Failure {
+            return Failure(message)
+        }
+    }
 }
 
 /**

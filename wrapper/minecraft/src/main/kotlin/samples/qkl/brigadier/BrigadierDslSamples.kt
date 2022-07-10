@@ -106,13 +106,13 @@ private object BrigadierDslSamples {
                     val times = getTimes().value()
 
                     if (times % 2 == 1) {
-                        CommandResult.Failure(Text.literal("times must be even"))
+                        CommandResult.failure(Text.literal("times must be even"))
                     } else {
                         repeat(times) {
                             println(getString().value())
                         }
 
-                        CommandResult.Success(times)
+                        CommandResult.success(times)
                     }
                 }
             }
