@@ -155,12 +155,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> gameProfile(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                GameProfileArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, GameProfileArgumentType> {
     return argument(name, GameProfileArgumentType.gameProfile())
 }
 
@@ -172,12 +167,7 @@ public fun <S> gameProfile(
 @BrigadierDsl
 public fun <S> team(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                TeamArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, TeamArgumentType> {
     return argument(name, TeamArgumentType.team())
 }
 

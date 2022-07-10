@@ -37,12 +37,7 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueTestClassArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                TestClassArgumentType
-                >
-        >.value(): String {
+public fun DefaultArgumentReader<TestClassArgumentType>.value(): String {
     return TestClassArgumentType.getTestClass(context.assumeSourceNotUsed(), name)
 }
 
@@ -56,12 +51,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueTestFunctionArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                TestFunctionArgumentType
-                >
-        >.value(): TestFunction {
+public fun DefaultArgumentReader<TestFunctionArgumentType>.value(): TestFunction {
     return TestFunctionArgumentType.getFunction(context.assumeSourceNotUsed(), name)
 }
 
@@ -73,11 +63,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> testClass(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                TestClassArgumentType>
-        > {
+): DefaultArgumentConstructor<S, TestClassArgumentType> {
     return argument(name, TestClassArgumentType.testClass())
 }
 
@@ -89,11 +75,6 @@ public fun <S> testClass(
 @BrigadierDsl
 public fun <S> testFunction(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                TestFunctionArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, TestFunctionArgumentType> {
     return argument(name, TestFunctionArgumentType.testFunction())
 }

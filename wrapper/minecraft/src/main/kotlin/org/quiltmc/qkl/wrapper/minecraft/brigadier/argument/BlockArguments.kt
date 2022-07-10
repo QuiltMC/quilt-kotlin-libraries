@@ -40,12 +40,7 @@ import java.util.function.Predicate
  */
 @JvmName("valueBlockPredicateArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                BlockPredicateArgumentType
-                >
-        >.value(): Predicate<CachedBlockPosition> {
+public fun DefaultArgumentReader<BlockPredicateArgumentType>.value(): Predicate<CachedBlockPosition> {
     return BlockPredicateArgumentType.getBlockPredicate(context.assumeSourceNotUsed(), name)
 }
 
@@ -59,12 +54,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueBlockStateArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                BlockStateArgumentType
-                >
-        >.value(): BlockStateArgument {
+public fun DefaultArgumentReader<BlockStateArgumentType>.value(): BlockStateArgument {
     return BlockStateArgumentType.getBlockState(context.assumeSourceNotUsed(), name)
 }
 
@@ -80,12 +70,7 @@ public fun ArgumentReader<
 public fun <S> blockPredicate(
     name: String,
     context: CommandBuildContext
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                BlockPredicateArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, BlockPredicateArgumentType> {
     return argument(name, BlockPredicateArgumentType.blockPredicate(context))
 }
 
@@ -101,11 +86,6 @@ public fun <S> blockPredicate(
 public fun <S> blockState(
     name: String,
     context: CommandBuildContext
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                BlockStateArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, BlockStateArgumentType> {
     return argument(name, BlockStateArgumentType.blockState(context))
 }

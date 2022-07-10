@@ -37,12 +37,7 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueFloatRangeArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                NumberRangeArgumentType.FloatRangeArgumentType
-                >
-        >.value(): NumberRange.FloatRange {
+public fun DefaultArgumentReader<NumberRangeArgumentType.FloatRangeArgumentType>.value(): NumberRange.FloatRange {
     return NumberRangeArgumentType.FloatRangeArgumentType.getRangeArgument(
         context.assumeSourceNotUsed(),
         name
@@ -59,12 +54,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueIntRangeArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                NumberRangeArgumentType.IntRangeArgumentType
-                >
-        >.value(): NumberRange.IntRange {
+public fun DefaultArgumentReader<NumberRangeArgumentType.IntRangeArgumentType>.value(): NumberRange.IntRange {
     return NumberRangeArgumentType.IntRangeArgumentType.getRangeArgument(
         context.assumeSourceNotUsed(),
         name
@@ -80,12 +70,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> floatRange(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                NumberRangeArgumentType.FloatRangeArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, NumberRangeArgumentType.FloatRangeArgumentType> {
     return argument(name, NumberRangeArgumentType.floatRange())
 }
 
@@ -98,11 +83,6 @@ public fun <S> floatRange(
 @BrigadierDsl
 public fun <S> intRange(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                NumberRangeArgumentType.IntRangeArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, NumberRangeArgumentType.IntRangeArgumentType> {
     return argument(name, NumberRangeArgumentType.intRange())
 }

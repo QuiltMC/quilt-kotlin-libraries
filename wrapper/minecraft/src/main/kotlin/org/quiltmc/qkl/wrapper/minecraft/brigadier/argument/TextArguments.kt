@@ -82,12 +82,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueColorArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                ColorArgumentType
-                >
-        >.value(): Formatting {
+public fun DefaultArgumentReader<ColorArgumentType>.value(): Formatting {
     return ColorArgumentType.getColor(context.assumeSourceNotUsed(), name)
 }
 
@@ -101,12 +96,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueTextArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                TextArgumentType
-                >
-        >.value(): Text {
+public fun DefaultArgumentReader<TextArgumentType>.value(): Text {
     return TextArgumentType.getTextArgument(context.assumeSourceNotUsed(), name)
 }
 
@@ -118,12 +108,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> message(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                MessageArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, MessageArgumentType> {
     return argument(name, MessageArgumentType.message())
 }
 
@@ -135,12 +120,7 @@ public fun <S> message(
 @BrigadierDsl
 public fun <S> color(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                ColorArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, ColorArgumentType> {
     return argument(name, ColorArgumentType.color())
 }
 
@@ -152,11 +132,6 @@ public fun <S> color(
 @BrigadierDsl
 public fun <S> text(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                TextArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, TextArgumentType> {
     return argument(name, TextArgumentType.text())
 }

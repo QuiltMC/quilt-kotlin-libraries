@@ -111,12 +111,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueEnchantmentArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                EnchantmentArgumentType
-                >
-        >.value(): Enchantment {
+public fun DefaultArgumentReader<EnchantmentArgumentType>.value(): Enchantment {
     return EnchantmentArgumentType.getEnchantment(context.assumeSourceNotUsed(), name)
 }
 
@@ -130,12 +125,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueParticleEffectArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                ParticleEffectArgumentType
-                >
-        >.value(): ParticleEffect {
+public fun DefaultArgumentReader<ParticleEffectArgumentType>.value(): ParticleEffect {
     return ParticleEffectArgumentType.getParticle(context.assumeSourceNotUsed(), name)
 }
 
@@ -149,12 +139,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueStatusEffectArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                StatusEffectArgumentType
-                >
-        >.value(): StatusEffect {
+public fun DefaultArgumentReader<StatusEffectArgumentType>.value(): StatusEffect {
     return StatusEffectArgumentType.getStatusEffect(context.assumeSourceNotUsed(), name)
 }
 
@@ -166,12 +151,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> commandFunction(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                CommandFunctionArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, CommandFunctionArgumentType> {
     return argument(name, CommandFunctionArgumentType.commandFunction())
 }
 
@@ -183,12 +163,7 @@ public fun <S> commandFunction(
 @BrigadierDsl
 public fun <S> dimension(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                DimensionArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, DimensionArgumentType> {
     return argument(name, DimensionArgumentType.dimension())
 }
 
@@ -200,12 +175,7 @@ public fun <S> dimension(
 @BrigadierDsl
 public fun <S> enchantment(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                EnchantmentArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, EnchantmentArgumentType> {
     return argument(name, EnchantmentArgumentType.enchantment())
 }
 
@@ -218,12 +188,7 @@ public fun <S> enchantment(
 @BrigadierDsl
 public fun <S> particleEffect(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                ParticleEffectArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, ParticleEffectArgumentType> {
     return argument(name, ParticleEffectArgumentType())
 }
 
@@ -235,11 +200,6 @@ public fun <S> particleEffect(
 @BrigadierDsl
 public fun <S> statusEffect(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                StatusEffectArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, StatusEffectArgumentType> {
     return argument(name, StatusEffectArgumentType())
 }

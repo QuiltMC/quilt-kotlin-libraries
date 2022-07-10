@@ -36,12 +36,7 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueStringArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                StringArgumentType
-                >
-        >.value(): String {
+public fun DefaultArgumentReader<StringArgumentType>.value(): String {
     return StringArgumentType.getString(context, name)
 }
 
@@ -54,12 +49,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> string(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                StringArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, StringArgumentType> {
     return argument(name, StringArgumentType.string())
 }
 
@@ -75,12 +65,7 @@ public fun <S> string(
 @BrigadierDsl
 public fun <S> greedyString(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                StringArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, StringArgumentType> {
     return argument(name, StringArgumentType.greedyString())
 }
 
@@ -92,11 +77,6 @@ public fun <S> greedyString(
 @BrigadierDsl
 public fun <S> word(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                StringArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, StringArgumentType> {
     return argument(name, StringArgumentType.word())
 }

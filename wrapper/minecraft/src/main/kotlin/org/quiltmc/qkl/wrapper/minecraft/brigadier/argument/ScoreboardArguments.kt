@@ -60,12 +60,7 @@ public object ListScoreHolderArgumentDescriptor : ArgumentDescriptor<ScoreHolder
  */
 @JvmName("valueOperationArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                OperationArgumentType
-                >
-        >.value(): OperationArgumentType.Operation {
+public fun DefaultArgumentReader<OperationArgumentType>.value(): OperationArgumentType.Operation {
     return OperationArgumentType.getOperation(context.assumeSourceNotUsed(), name)
 }
 
@@ -79,12 +74,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueScoreboardCriterionArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                ScoreboardCriterionArgumentType
-                >
-        >.value(): ScoreboardCriterion {
+public fun DefaultArgumentReader<ScoreboardCriterionArgumentType>.value(): ScoreboardCriterion {
     return ScoreboardCriterionArgumentType.getCriterion(context.assumeSourceNotUsed(), name)
 }
 
@@ -139,12 +129,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueScoreboardSlotArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                ScoreboardSlotArgumentType
-                >
-        >.value(): Int {
+public fun DefaultArgumentReader<ScoreboardSlotArgumentType>.value(): Int {
     return ScoreboardSlotArgumentType.getScoreboardSlot(context.assumeSourceNotUsed(), name)
 }
 
@@ -213,12 +198,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> operation(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                OperationArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, OperationArgumentType> {
     return argument(name, OperationArgumentType.operation())
 }
 
@@ -230,12 +210,7 @@ public fun <S> operation(
 @BrigadierDsl
 public fun <S> scoreboardCriterion(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                ScoreboardCriterionArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, ScoreboardCriterionArgumentType> {
     return argument(name, ScoreboardCriterionArgumentType.scoreboardCriterion())
 }
 
@@ -247,12 +222,7 @@ public fun <S> scoreboardCriterion(
 @BrigadierDsl
 public fun <S> scoreboardObjective(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                ScoreboardObjectiveArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, ScoreboardObjectiveArgumentType> {
     return argument(name, ScoreboardObjectiveArgumentType.scoreboardObjective())
 }
 
@@ -264,12 +234,7 @@ public fun <S> scoreboardObjective(
 @BrigadierDsl
 public fun <S> scoreboardSlot(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                ScoreboardSlotArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, ScoreboardSlotArgumentType> {
     return argument(name, ScoreboardSlotArgumentType.scoreboardSlot())
 }
 

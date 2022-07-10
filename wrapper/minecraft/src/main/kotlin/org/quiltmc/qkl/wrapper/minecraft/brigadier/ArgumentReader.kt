@@ -20,6 +20,8 @@ import com.mojang.brigadier.arguments.ArgumentType
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.arguments.IntegerArgumentType
 
+public typealias DefaultArgumentReader<T> = ArgumentReader<*, DefaultArgumentDescriptor<T>>
+
 /**
  * Argument readers are a general access point for obtaining
  * argument values from the command context.

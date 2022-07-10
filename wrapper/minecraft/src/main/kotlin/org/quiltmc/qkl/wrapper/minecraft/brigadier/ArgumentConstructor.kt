@@ -24,6 +24,9 @@ import com.mojang.brigadier.context.CommandContext
 public typealias RequiredArgumentConstructor<S, D> =
         ArgumentConstructor<S, RequiredArgumentBuilder<S, *>, D>
 
+public typealias DefaultArgumentConstructor<S, T> =
+        RequiredArgumentConstructor<S, DefaultArgumentDescriptor<T>>
+
 /**
  * Class containing all data necessary to construct an
  * [optional] or [required] argument.

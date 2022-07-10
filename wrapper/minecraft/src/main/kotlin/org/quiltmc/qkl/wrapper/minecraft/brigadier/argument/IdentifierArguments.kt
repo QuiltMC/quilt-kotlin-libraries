@@ -42,12 +42,7 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
  */
 @JvmName("valueIdentifierArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                IdentifierArgumentType
-                >
-        >.value(): Identifier {
+public fun DefaultArgumentReader<IdentifierArgumentType>.value(): Identifier {
     return IdentifierArgumentType.getIdentifier(context.assumeSourceNotUsed(), name)
 }
 
@@ -135,11 +130,6 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> identifier(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                IdentifierArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, IdentifierArgumentType> {
     return argument(name, IdentifierArgumentType.identifier())
 }

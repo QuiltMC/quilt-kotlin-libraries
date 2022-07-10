@@ -52,12 +52,7 @@ public object LiteralDescriptor : ArgumentDescriptor<ArgumentType<*>>
  */
 @JvmName("valueTimeArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                TimeArgumentType
-                >
-        >.value(): Int {
+public fun DefaultArgumentReader<TimeArgumentType>.value(): Int {
     return IntegerArgumentType.getInteger(context, name)
 } // TimeArgumentType does not provide an accessor, defaulting to int
 
@@ -71,12 +66,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueUuidArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                UuidArgumentType
-                >
-        >.value(): UUID {
+public fun DefaultArgumentReader<UuidArgumentType>.value(): UUID {
     return UuidArgumentType.getUuid(context.assumeSourceNotUsed(), name)
 }
 
@@ -88,12 +78,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> time(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                TimeArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, TimeArgumentType> {
     return argument(name, TimeArgumentType.time())
 }
 

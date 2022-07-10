@@ -62,12 +62,7 @@ public object ListEntityArgumentDescriptor : ArgumentDescriptor<EntityArgumentTy
  */
 @JvmName("valueEntityAnchorArg")
 @BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<
-                EntityAnchorArgumentType
-                >
-        >.value(): EntityAnchorArgumentType.EntityAnchor {
+public fun DefaultArgumentReader<EntityAnchorArgumentType>.value(): EntityAnchorArgumentType.EntityAnchor {
     return EntityAnchorArgumentType.getEntityAnchor(
         context.assumeSourceNotUsed(),
         name
@@ -155,12 +150,7 @@ public fun ArgumentReader<
 @BrigadierDsl
 public fun <S> entityAnchor(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                EntityAnchorArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, EntityAnchorArgumentType> {
     return argument(name, EntityAnchorArgumentType.entityAnchor())
 }
 
@@ -203,11 +193,6 @@ public fun <S> entity(
 @BrigadierDsl
 public fun <S> entitySummon(
     name: String
-): RequiredArgumentConstructor<
-        S,
-        DefaultArgumentDescriptor<
-                EntitySummonArgumentType
-                >
-        > {
+): DefaultArgumentConstructor<S, EntitySummonArgumentType> {
     return argument(name, EntitySummonArgumentType.entitySummon())
 }
