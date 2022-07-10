@@ -18,11 +18,14 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.util
 
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.entity.Entity
+import net.minecraft.network.MessageType
 import net.minecraft.server.MinecraftServer
+import net.minecraft.server.PlayerManager
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
+import net.minecraft.util.registry.RegistryKey
 
 /**
  * Player executing the command or
@@ -80,4 +83,19 @@ public fun CommandContext<ServerCommandSource>.sendFeedback(
     broadcastToOps: Boolean = false
 ) {
     source.sendFeedback(message, broadcastToOps)
+}
+
+/**
+ * Sends [message] to every player on the server,
+ * with [messageType] if one is given.
+ *
+ * @see PlayerManager.broadcastSystemMessage
+ *
+ * @author Cypher121
+ */
+public fun CommandContext<ServerCommandSource>.broadcastSystemMessage(
+    message: Text,
+    messageType: RegistryKey<MessageType> = MessageType.SYSTEM
+) {
+    server.playerManager.broadcastSystemMessage(message, messageType)
 }
