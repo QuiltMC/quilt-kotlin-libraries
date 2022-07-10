@@ -27,7 +27,7 @@ import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.argument.*
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.entity
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.required
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.respond
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.sendFeedback
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.server
 import kotlin.random.Random
 
@@ -65,7 +65,7 @@ private object BrigadierDslSamples {
                         }
 
                         //use utility extensions for common actions
-                        respond(Text.literal(response))
+                        sendFeedback(Text.literal(response))
                     }
                 }
             }

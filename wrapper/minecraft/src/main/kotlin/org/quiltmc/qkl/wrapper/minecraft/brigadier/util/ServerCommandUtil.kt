@@ -18,13 +18,11 @@ package org.quiltmc.qkl.wrapper.minecraft.brigadier.util
 
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.entity.Entity
-import net.minecraft.network.MessageType
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
-import net.minecraft.util.registry.RegistryKey
 
 /**
  * Player executing the command or
@@ -70,16 +68,16 @@ public val CommandContext<ServerCommandSource>.server: MinecraftServer
     get() = source.server
 
 /**
- * Responds to the player executing
- * the command if one exists.
+ * Sends [message] as a system message to the player.
+ * Also sends to operators, if [broadcastToOps] is `true`.
  *
- * @see ServerPlayerEntity.sendMessage
+ * @see ServerCommandSource.sendFeedback
  *
  * @author Cypher121
  */
-public fun CommandContext<ServerCommandSource>.respond(
+public fun CommandContext<ServerCommandSource>.sendFeedback(
     message: Text,
-    messageType: RegistryKey<MessageType> = MessageType.SYSTEM
+    broadcastToOps: Boolean = false
 ) {
-    player?.sendMessage(message, messageType)
+    source.sendFeedback(message, broadcastToOps)
 }
