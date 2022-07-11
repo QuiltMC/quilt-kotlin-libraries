@@ -100,10 +100,7 @@ public fun ArgumentReader<
         *,
         StringEnumArgumentDescriptor
         >.value(): String {
-    return EnumArgumentType.getEnum(
-        context,
-        name
-    )
+    return EnumArgumentType.getEnum(context, name)
 }
 
 /**
@@ -122,10 +119,7 @@ public fun <T> ArgumentReader<
         *,
         MappedStringEnumArgumentDescriptor<T>
         >.value(): T {
-    val key = EnumArgumentType.getEnum(
-        context,
-        name
-    )
+    val key = EnumArgumentType.getEnum(context, name)
 
     return argumentDescriptor.map.getValue(key.lowercase())
 }
