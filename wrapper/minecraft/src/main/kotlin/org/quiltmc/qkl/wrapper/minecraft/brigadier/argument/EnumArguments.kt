@@ -80,7 +80,7 @@ public fun <T : Enum<T>> ArgumentReader<
         TypedEnumArgumentDescriptor<T>
         >.value(): T {
     return EnumArgumentType.getEnumConstant(
-        context.assumeSourceNotUsed(),
+        context,
         name,
         argumentDescriptor.type
     )
@@ -101,7 +101,7 @@ public fun ArgumentReader<
         StringEnumArgumentDescriptor
         >.value(): String {
     return EnumArgumentType.getEnum(
-        context.assumeSourceNotUsed(),
+        context,
         name
     )
 }
@@ -123,7 +123,7 @@ public fun <T> ArgumentReader<
         MappedStringEnumArgumentDescriptor<T>
         >.value(): T {
     val key = EnumArgumentType.getEnum(
-        context.assumeSourceNotUsed(),
+        context,
         name
     )
 
