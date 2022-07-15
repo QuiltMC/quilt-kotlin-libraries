@@ -1,0 +1,7 @@
+contact_links:
+  - name: The Quilt Community
+    url: https://discord.quiltmc.org
+    about: The Quilt Community Discord is the community side of the Quilt organisation, where you can hang out and chat with others!
+  - name: The Quilt Toolchain
+    url: https://discord.quitlmc.org/toolchain
+    about: Come along and join us in the Kotlin category, where you can discuss development, issues and more with the team!

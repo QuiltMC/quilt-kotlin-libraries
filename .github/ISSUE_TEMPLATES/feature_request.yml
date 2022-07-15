@@ -1,0 +1,27 @@
+name: Feature Request
+description: Create a feature request to help us improve Quilt Kotlin Libraries
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: intro
+    attributes:
+      label: Intro
+      description: Provide a brief introduction to the feature you are requesting
+      placeholder: Create a DSL for Registry
+    validations:
+      required: true
+
+  - type: textarea
+    id: existing-work
+    attributes:
+      label: Existing work
+      description: Provide a link to any existing work, based around the feature you are requesting, if there is any.
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Provide some extra notes/information about the request, to help the team complete your request.
