@@ -48,15 +48,15 @@ private object BrigadierDslSamples {
         val dispatcher: CommandDispatcher<ServerCommandSource> = stub()
 
         dispatcher.register("echo") {
-            //register arguments with extension methods
+            // Register arguments with extension methods
             required(string("message")) { message -> // treat the argument as a key
                 required(boolean("toCaps")) { getToCaps -> // or as an accessor
-                    //standard builder methods can be called as normal
+                    // Standard builder methods can be called as normal
                     requires {
                         it.player.experienceLevel > Random.nextInt()
                     }
 
-                    //execute the command with an extension method
+                    // Execute the command with an extension method
                     execute {
                         val response = if (getToCaps().value()) {
                             this[message].value().uppercase()
@@ -64,7 +64,7 @@ private object BrigadierDslSamples {
                             this[message].value()
                         }
 
-                        //use utility extensions for common actions
+                        // Use utility extensions for common actions
                         sendFeedback(Text.literal(response))
                     }
                 }
@@ -73,16 +73,16 @@ private object BrigadierDslSamples {
     }
 
     fun sampleCustomCommandSource() {
-        //some special command source your code needs
-        //e.g. commands coming from external integrations
+        // Some special command source your code needs
+        // e.g. commands coming from external integrations
         abstract class CustomSource {
             abstract fun calculateVec3(pos: PosArgument): Vec3d
 
             abstract fun useVec3ForSomething(vec: Vec3d)
         }
 
-        //can use any name including `value`
-        //`custom` added for clarity
+        // Can use any name including `value`
+        // `custom` added for clarity
         fun ArgumentReader<CustomSource, DefaultArgumentDescriptor<Vec3ArgumentType>>.customValue(): Vec3d =
             context.source.calculateVec3(posArgument())
 
@@ -133,7 +133,7 @@ private object BrigadierDslSamples {
                 ) { getWeapon ->
                     optional(literal("repeatedly")) { repeatedly ->
                         execute {
-                            //operator access is nullable only for optionals
+                            // Operator access is nullable only for optionals
                             val targetName = this[target]?.value()?.displayName ?: Text.literal("themselves")
 
                             server.playerManager.broadcastSystemMessage(
