@@ -19,6 +19,7 @@ package org.quiltmc.qkl.wrapper.minecraft.math
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
 import net.minecraft.util.math.Vec3i
+import net.minecraft.util.math.BlockPos
 import net.minecraft.client.util.math.Vector3d
 import net.minecraft.util.math.MathHelper.sqrt
 
@@ -122,6 +123,17 @@ public operator fun Vec3f.plus(other: Vec3i): Vec3f {
 }
 
 /**
+ * Adds a [BlockPos] to a [Vec3f].
+ */
+public operator fun Vec3f.plus(other: BlockPos): Vec3f {
+    return Vec3f(
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
+        this.z + other.z.toFloat()
+    )
+}
+
+/**
  * Adds a [Vector3d] to a [Vec3f].
  */
 public operator fun Vec3f.plus(other: Vector3d): Vec3f {
@@ -147,6 +159,17 @@ public operator fun Vec3f.minus(other: Vec3d): Vec3f {
  * Subtracts a [Vec3i] from a [Vec3f].
  */
 public operator fun Vec3f.minus(other: Vec3i): Vec3f {
+    return Vec3f(
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
+        this.z - other.z.toFloat()
+    )
+}
+
+/**
+ * Subtracts a [BlockPos] from a [Vec3f].
+ */
+public operator fun Vec3f.minus(other: BlockPos): Vec3f {
     return Vec3f(
         this.x - other.x.toFloat(),
         this.y - other.y.toFloat(),
@@ -182,6 +205,18 @@ public operator fun Vec3f.times(other: Vec3d): Vec3f {
  * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.times(other: Vec3i): Vec3f {
+    return Vec3f(
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
+        this.z * other.z.toFloat()
+    )
+}
+
+/**
+ * Multiplies a [Vec3f] and a [BlockPos].
+ * This method is a shorthand for component wise multiplication.
+ */
+public operator fun Vec3f.times(other: BlockPos): Vec3f {
     return Vec3f(
         this.x * other.x.toFloat(),
         this.y * other.y.toFloat(),
@@ -237,6 +272,17 @@ public operator fun Vec3f.plusAssign(other: Vec3i) {
 }
 
 /**
+ * Adds a [BlockPos] to a [Vec3f].
+ */
+public operator fun Vec3f.plusAssign(other: BlockPos) {
+    this.set(
+        this.x + other.x.toFloat(),
+        this.y + other.y.toFloat(),
+        this.z + other.z.toFloat()
+    )
+}
+
+/**
  * Adds a [Vector3d] to a [Vec3f].
  */
 public operator fun Vec3f.plusAssign(other: Vector3d) {
@@ -273,6 +319,17 @@ public operator fun Vec3f.minusAssign(other: Vec3f) {
  * Subtracts a [Vec3i] from a [Vec3f].
  */
 public operator fun Vec3f.minusAssign(other: Vec3i) {
+    this.set(
+        this.x - other.x.toFloat(),
+        this.y - other.y.toFloat(),
+        this.z - other.z.toFloat()
+    )
+}
+
+/**
+ * Subtracts a [BlockPos] from a [Vec3f].
+ */
+public operator fun Vec3f.minusAssign(other: BlockPos) {
     this.set(
         this.x - other.x.toFloat(),
         this.y - other.y.toFloat(),
@@ -320,6 +377,18 @@ public operator fun Vec3f.timesAssign(other: Vec3f) {
  * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3f.timesAssign(other: Vec3i) {
+    this.set(
+        this.x * other.x.toFloat(),
+        this.y * other.y.toFloat(),
+        this.z * other.z.toFloat()
+    )
+}
+
+/**
+ * Multiplies a [Vec3f] and a [BlockPos].
+ * This method is a shorthand for component wise multiplication.
+ */
+public operator fun Vec3f.timesAssign(other: BlockPos) {
     this.set(
         this.x * other.x.toFloat(),
         this.y * other.y.toFloat(),
@@ -410,6 +479,24 @@ public infix fun Vec3f.dot(other: Vec3i): Float {
  * The cross product of a [Vec3f] and a [Vec3i].
  */
 public infix fun Vec3f.cross(other: Vec3i): Vec3f {
+    return Vec3f(
+        this.y * other.z - this.z * other.y,
+        this.z * other.x - this.x * other.z,
+        this.x * other.y - this.y * other.x
+    )
+}
+
+/**
+ * The dot product of a [Vec3f] and a [BlockPos].
+ */
+public infix fun Vec3f.dot(other: BlockPos): Float {
+    return this.dot(Vec3f(other.x.toFloat(), other.y.toFloat(), other.z.toFloat()))
+}
+
+/**
+ * The cross product of a [Vec3f] and a [BlockPos].
+ */
+public infix fun Vec3f.cross(other: BlockPos): Vec3f {
     return Vec3f(
         this.y * other.z - this.z * other.y,
         this.z * other.x - this.x * other.z,

@@ -19,6 +19,7 @@ package org.quiltmc.qkl.wrapper.minecraft.math
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
 import net.minecraft.util.math.Vec3i
+import net.minecraft.util.math.BlockPos
 import net.minecraft.client.util.math.Vector3d
 import kotlin.math.sqrt
 
@@ -122,6 +123,17 @@ public operator fun Vec3i.plus(other: Vec3f): Vec3i {
 }
 
 /**
+ * Adds a [BlockPos] to a [Vec3i].
+ */
+public operator fun Vec3i.plus(other: BlockPos): Vec3i {
+    return Vec3i(
+        this.x + other.x,
+        this.y + other.y,
+        this.z + other.z
+    )
+}
+
+/**
  * Adds a [Vector3d] to a [Vec3i].
  */
 public operator fun Vec3i.plus(other: Vector3d): Vec3i {
@@ -151,6 +163,17 @@ public operator fun Vec3i.minus(other: Vec3f): Vec3i {
         this.x - other.x.toInt(),
         this.y - other.y.toInt(),
         this.z - other.z.toInt()
+    )
+}
+
+/**
+ * Subtracts a [BlockPos] from a [Vec3i].
+ */
+public operator fun Vec3i.minus(other: BlockPos): Vec3i {
+    return Vec3i(
+        this.x - other.x,
+        this.y - other.y,
+        this.z - other.z
     )
 }
 
@@ -186,6 +209,18 @@ public operator fun Vec3i.times(other: Vec3f): Vec3i {
         this.x * other.x.toInt(),
         this.y * other.y.toInt(),
         this.z * other.z.toInt()
+    )
+}
+
+/**
+ * Multiplies a [Vec3i] and a [BlockPos].
+ * This method is a shorthand for component wise multiplication.
+ */
+public operator fun Vec3i.times(other: BlockPos): Vec3i {
+    return Vec3i(
+        this.x * other.x,
+        this.y * other.y,
+        this.z * other.z
     )
 }
 
@@ -242,6 +277,20 @@ public infix fun Vec3i.dot(other: Vec3i): Int {
  * The cross product of a [Vec3i] and a [Vec3i].
  */
 public infix fun Vec3i.cross(other: Vec3i): Vec3i {
+    return this.crossProduct(other)
+}
+
+/**
+ * The dot product of a [Vec3i] and a [BlockPos].
+ */
+public infix fun Vec3i.dot(other: BlockPos): Int {
+    return this.x * other.x + this.y * other.y + this.z * other.z
+}
+
+/**
+ * The cross product of a [Vec3i] and a [BlockPos].
+ */
+public infix fun Vec3i.cross(other: BlockPos): Vec3i {
     return this.crossProduct(other)
 }
 

@@ -19,6 +19,7 @@ package org.quiltmc.qkl.wrapper.minecraft.math
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
 import net.minecraft.util.math.Vec3i
+import net.minecraft.util.math.BlockPos
 import net.minecraft.client.util.math.Vector3d
 
 //region Standard math operators
@@ -121,6 +122,17 @@ public operator fun Vec3d.plus(other: Vec3i): Vec3d {
 }
 
 /**
+ * Adds a [BlockPos] to a [Vec3d].
+ */
+public operator fun Vec3d.plus(other: BlockPos): Vec3d {
+    return Vec3d(
+        this.x + other.x.toDouble(),
+        this.y + other.y.toDouble(),
+        this.z + other.z.toDouble()
+    )
+}
+
+/**
  * Adds a [Vector3d] to a [Vec3d].
  */
 public operator fun Vec3d.plus(other: Vector3d): Vec3d {
@@ -146,6 +158,17 @@ public operator fun Vec3d.minus(other: Vec3f): Vec3d {
  * Subtracts a [Vec3i] from a [Vec3d].
  */
 public operator fun Vec3d.minus(other: Vec3i): Vec3d {
+    return Vec3d(
+        this.x - other.x.toDouble(),
+        this.y - other.y.toDouble(),
+        this.z - other.z.toDouble()
+    )
+}
+
+/**
+ * Subtracts a [BlockPos] from a [Vec3d].
+ */
+public operator fun Vec3d.minus(other: BlockPos): Vec3d {
     return Vec3d(
         this.x - other.x.toDouble(),
         this.y - other.y.toDouble(),
@@ -181,6 +204,18 @@ public operator fun Vec3d.times(other: Vec3f): Vec3d {
  * This method is a shorthand for component wise multiplication.
  */
 public operator fun Vec3d.times(other: Vec3i): Vec3d {
+    return Vec3d(
+        this.x * other.x.toDouble(),
+        this.y * other.y.toDouble(),
+        this.z * other.z.toDouble()
+    )
+}
+
+/**
+ * Multiplies a [Vec3d] and a [BlockPos].
+ * This method is a shorthand for component wise multiplication.
+ */
+public operator fun Vec3d.times(other: BlockPos): Vec3d {
     return Vec3d(
         this.x * other.x.toDouble(),
         this.y * other.y.toDouble(),
@@ -241,6 +276,20 @@ public infix fun Vec3d.dot(other: Vec3i): Double {
  * The cross product of a [Vec3d] and a [Vec3i].
  */
 public infix fun Vec3d.cross(other: Vec3i): Vec3d {
+    return this.crossProduct(Vec3d.of(other))
+}
+
+/**
+ * The dot product of a [Vec3d] and a [BlockPos].
+ */
+public infix fun Vec3d.dot(other: BlockPos): Double {
+    return this.dotProduct(Vec3d.of(other))
+}
+
+/**
+ * The cross product of a [Vec3d] and a [BlockPos].
+ */
+public infix fun Vec3d.cross(other: BlockPos): Vec3d {
     return this.crossProduct(Vec3d.of(other))
 }
 
