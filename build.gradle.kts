@@ -1,7 +1,8 @@
+
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
+import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.Year
 
@@ -155,6 +156,13 @@ subprojects {
                 expand(Pair("version", rootProject.version))
             }
         }
+
+        val dokkaJavadocJar by creating(Jar::class.java) {
+            group = "documentation"
+            archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+            archiveClassifier.set("javadoc")
+            from(dokkaJavadoc)
+        }
     }
 
     java {
@@ -211,8 +219,18 @@ subprojects {
     }
 }
 
-tasks.remapJar {
-    archiveBaseName.set("quilt-kotlin-libraries")
+tasks {
+    remapJar {
+        archiveBaseName.set("quilt-kotlin-libraries")
+    }
+
+    create("dokkaHtmlJar", Jar::class.java) {
+        group = "documentation"
+        archiveBaseName.set("quilt-kotlin-libraries")
+        archiveClassifier.set("dokka")
+        from(dokkaHtmlMultiModule.get().outputDirectory)
+        duplicatesStrategy = DuplicatesStrategy.FAIL
+    }
 }
 
 gitHooks {
