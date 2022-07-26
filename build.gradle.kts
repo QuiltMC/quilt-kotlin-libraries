@@ -167,7 +167,6 @@ subprojects {
 
     java {
         withSourcesJar()
-        withJavadocJar()
 
         sourceCompatibility = JavaVersion.toVersion(javaVersion)
         targetCompatibility = JavaVersion.toVersion(javaVersion)
@@ -189,6 +188,10 @@ subprojects {
                     }
                     artifact(tasks.remapJar.get().archiveFile) {
                         builtBy(tasks.remapJar)
+                    }
+                    artifact(tasks.getByName<Jar>("dokkaJavadocJar").archiveFile) {
+                        builtBy(tasks.getByName("dokkaJavadocJar"))
+                        this.classifier = "javadoc"
                     }
                 }
             }
