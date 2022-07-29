@@ -23,6 +23,7 @@
         <@content/>
         <@footer.display/>
     </div>
+    <script>cleanSamples()</script>
 </div>
 </body>
 </html>

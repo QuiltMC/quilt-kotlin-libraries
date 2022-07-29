@@ -93,10 +93,20 @@ allprojects {
             pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
                 val rootPath = "${rootProject.projectDir.absolutePath}/codeformat/dokka"
                 customStyleSheets = file("$rootPath/styles").listFiles()!!.toList()
-                customAssets = file("$rootPath/images").listFiles()!!.toList()
+                customAssets = file("$rootPath/assets").listFiles()!!.toList()
                 templatesDir = file("$rootPath/templates")
 
                 footerMessage = "© ${Year.now().value} QuiltMC"
+            }
+
+            doLast {
+                // Script overriding does not work, so we have to do it manually
+                val scriptsOut = outputDirectory.get().resolve("scripts")
+                val scriptsIn = file("${rootProject.projectDir}/codeformat/dokka/scripts")
+                if (project != rootProject) return@doLast
+                scriptsIn.listFiles()!!.forEach {
+                    it.copyTo(scriptsOut.resolve(it.name), overwrite = true)
+                }
             }
         }
 
