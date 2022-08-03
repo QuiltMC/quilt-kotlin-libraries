@@ -16,11 +16,9 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.math
 
-import net.minecraft.util.math.Vec3d
-import net.minecraft.util.math.Vec3f
-import net.minecraft.util.math.Vec3i
-import net.minecraft.util.math.BlockPos
 import net.minecraft.client.util.math.Vector3d
+import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Vec3i
 
 //region Standard math operators
 /**
@@ -100,28 +98,6 @@ public operator fun BlockPos.unaryMinus(): BlockPos {
 
 //region Type compatibility operator variations
 /**
- * Adds a [Vec3d] to a [BlockPos].
- */
-public operator fun BlockPos.plus(other: Vec3d): BlockPos {
-    return BlockPos(
-        this.x + other.x.toInt(),
-        this.y + other.y.toInt(),
-        this.z + other.z.toInt()
-    )
-}
-
-/**
- * Adds a [Vec3f] to a [BlockPos].
- */
-public operator fun BlockPos.plus(other: Vec3f): BlockPos {
-    return BlockPos(
-        this.x + other.x.toInt(),
-        this.y + other.y.toInt(),
-        this.z + other.z.toInt()
-    )
-}
-
-/**
  * Adds a [Vec3i] to a [BlockPos].
  */
 public operator fun BlockPos.plus(other: Vec3i): BlockPos {
@@ -129,39 +105,6 @@ public operator fun BlockPos.plus(other: Vec3i): BlockPos {
         this.x + other.x,
         this.y + other.y,
         this.z + other.z
-    )
-}
-
-/**
- * Adds a [Vector3d] to a [BlockPos].
- */
-public operator fun BlockPos.plus(other: Vector3d): BlockPos {
-    return BlockPos(
-        this.x + other.x.toInt(),
-        this.y + other.y.toInt(),
-        this.z + other.z.toInt()
-    )
-}
-
-/**
- * Subtracts a [Vec3d] from a [BlockPos].
- */
-public operator fun BlockPos.minus(other: Vec3d): BlockPos {
-    return BlockPos(
-        this.x - other.x.toInt(),
-        this.y - other.y.toInt(),
-        this.z - other.z.toInt()
-    )
-}
-
-/**
- * Subtracts a [Vec3f] from a [BlockPos].
- */
-public operator fun BlockPos.minus(other: Vec3f): BlockPos {
-    return BlockPos(
-        this.x - other.x.toInt(),
-        this.y - other.y.toInt(),
-        this.z - other.z.toInt()
     )
 }
 
@@ -177,41 +120,6 @@ public operator fun BlockPos.minus(other: Vec3i): BlockPos {
 }
 
 /**
- * Subtracts a [Vector3d] from a [BlockPos].
- */
-public operator fun BlockPos.minus(other: Vector3d): BlockPos {
-    return BlockPos(
-        this.x - other.x.toInt(),
-        this.y - other.y.toInt(),
-        this.z - other.z.toInt()
-    )
-}
-
-/**
- * Multiplies a [BlockPos] and a [Vec3d].
- * This method is a shorthand for component wise multiplication.
- */
-public operator fun BlockPos.times(other: Vec3d): BlockPos {
-    return BlockPos(
-        this.x * other.x.toInt(),
-        this.y * other.y.toInt(),
-        this.z * other.z.toInt()
-    )
-}
-
-/**
- * Multiplies a [BlockPos] and a [Vec3f].
- * This method is a shorthand for component wise multiplication.
- */
-public operator fun BlockPos.times(other: Vec3f): BlockPos {
-    return BlockPos(
-        this.x * other.x.toInt(),
-        this.y * other.y.toInt(),
-        this.z * other.z.toInt()
-    )
-}
-
-/**
  * Multiplies a [BlockPos] and a [Vec3i].
  * This method is a shorthand for component wise multiplication.
  */
@@ -222,33 +130,14 @@ public operator fun BlockPos.times(other: Vec3i): BlockPos {
         this.z * other.z
     )
 }
-
-/**
- * Multiplies a [BlockPos] and a [Vector3d].
- * This method is a shorthand for component wise multiplication.
- */
-public operator fun BlockPos.times(other: Vector3d): BlockPos {
-    return BlockPos(
-        this.x * other.x.toInt(),
-        this.y * other.y.toInt(),
-        this.z * other.z.toInt()
-    )
-}
 //endregion
 
 //region Vector specific operators
 /**
- * The cross product of a [BlockPos] and a [Vec3d].
+ * The dot product of a [BlockPos] and a [Vec3i].
  */
-public infix fun BlockPos.cross(other: Vec3d): BlockPos {
-    return this.crossProduct(Vec3i(other.x, other.y, other.z))
-}
-
-/**
- * The cross product of a [BlockPos] and a [Vec3f].
- */
-public infix fun BlockPos.cross(other: Vec3f): BlockPos {
-    return this.crossProduct(Vec3i(other.x.toDouble(), other.y.toDouble(), other.z.toDouble()))
+public infix fun BlockPos.dot(other: Vec3i): Int {
+    return x * other.x + y * other.y + z * other.z
 }
 
 /**
@@ -256,6 +145,13 @@ public infix fun BlockPos.cross(other: Vec3f): BlockPos {
  */
 public infix fun BlockPos.cross(other: Vec3i): BlockPos {
     return this.crossProduct(other)
+}
+
+/**
+ * The dot product of a [BlockPos] and a [BlockPos].
+ */
+public infix fun BlockPos.dot(other: BlockPos): Int {
+    return x * other.x + y * other.y + z * other.z
 }
 
 /**
