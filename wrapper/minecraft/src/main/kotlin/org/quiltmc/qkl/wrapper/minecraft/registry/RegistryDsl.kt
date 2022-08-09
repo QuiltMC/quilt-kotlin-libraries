@@ -20,27 +20,39 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
 /**
- * A RegistryObject with a name parameter, registers under your modid.
+ * Marks functions as part of QKL Registry DSL.
+ *
+ * @author Peanuuutz
+ */
+@DslMarker
+public annotation class RegistryDsl
+
+/**
+ * A RegistryObject with a path, which will be registered under a modid.
+ *
  * @param modid The modid to register under.
- * @param name The name to register under.
+ * @param path The path to register under.
  * @param t The object to register.
  *
  * @author Oliver-makes-code (Emma)
  * */
-public data class RegistryObject<T>(val modid: String, val name: String, val t: T) {
+public data class RegistryObject<T>(val modid: String, val path: String, val t: T) {
     /**
      * Registers a RegistryObject.
+     *
      * @param registry The registry to register to.
      *
      * @author Oliver-makes-code (Emma)
      * */
+    @RegistryDsl
     public infix fun toRegistry(registry: Registry<T>): T {
-        return Registry.register(registry, Identifier(modid, name), this.t)
+        return Registry.register(registry, Identifier(modid, path), t)
     }
 }
 
 /**
  * Represents an action with a registry.
+ *
  * @param modid The modid to register under.
  * @param registry The registry to register to.
  *
@@ -49,91 +61,128 @@ public data class RegistryObject<T>(val modid: String, val name: String, val t: 
 public data class RegistryAction<T>(val modid: String?, val registry: Registry<T>) {
     /**
      * Registers an object with a given Identifier.
+     *
      * @param id The Identifier to register under.
      *
      * @author Oliver-makes-code (Emma)
      * */
+    @RegistryDsl
     public infix fun T.withId(id: Identifier) {
         Registry.register(registry, id, this)
     }
 
     /**
-     * Registers an object with a given name.
+     * Registers an object with a given stringified id.
      *
-     * If no modid is present, it uses `"modid:name"` format.
-     * @param name The name to register under.
+     * * If passed `namespace:path`, then this object will be registered under `namespace:path`.
+     * * If passed `path` and [modid] is not `null`, then this will be under `modid:path`.
+     * * Otherwise, this will be under `minecraft:path`.
+     *
+     * @param id The id to register under.
      *
      * @author Oliver-makes-code (Emma)
      * */
-    public infix fun T.withName(name: String) {
-        if (modid == null) {
-            Registry.register(registry, Identifier(name), this)
-            return
+    @RegistryDsl
+    public infix fun T.withId(id: String) {
+        val identifier = if (':' in id || modid == null) {
+            Identifier(id)
+        } else {
+            Identifier(modid, id)
         }
-        Registry.register(registry, Identifier(modid, name), this)
+        Registry.register(registry, identifier, this)
     }
 }
 
 /**
+ * Creates a RegistryScope to register objects under a modid.
+ *
+ * @param modid The modid to register under.
+ * @param action The action.
+ *
+ * @author Peanuuutz
+ *
+ * @sample samples.qkl.registry.RegistryDslSamples.sampleRegisterWithScope
+ * */
+@RegistryDsl
+public inline fun registryScope(
+    modid: String,
+    action: RegistryScope.() -> Unit
+) {
+    RegistryScope(modid).apply(action)
+}
+
+/**
  * Registry DSL class, used to register objects more cleanly.
- * @param modid The modid you want to register under.
- * @param action The DSL action.
+ *
+ * @param modid The modid to register under.
  *
  * @author Oliver-makes-code (Emma)
  * */
-public class RegistryDsl(private val modid: String, action: RegistryDsl.() -> Unit) {
-    init {
-        apply(action)
-    }
-
+public class RegistryScope(public val modid: String) {
     /**
      * Creates a RegistryObject.
-     * @param name The name to register under.
+     *
+     * @param path The path to register under.
      *
      * @author Oliver-makes-code (Emma)
      * */
-    public infix fun <T> T.withName(name: String): RegistryObject<T> {
-        return RegistryObject(modid, name, this)
+    @RegistryDsl
+    public infix fun <T> T.withPath(path: String): RegistryObject<T> {
+        return RegistryObject(modid, path, this)
     }
 
     /**
      * Applies a RegistryAction.
+     *
      * @param action The action.
      *
      * @author Oliver-makes-code (Emma)
      * */
-    public operator fun <T> Registry<T>.invoke(action: RegistryAction<T>.() -> Unit) {
+    @RegistryDsl
+    public inline operator fun <T> Registry<T>.invoke(action: RegistryAction<T>.() -> Unit) {
         RegistryAction(modid, this).apply(action)
     }
 }
 
 /**
  * Applies a RegistryAction.
+ *
  * @param modid The modid to register under.
  * @param action The action.
  *
  * @author Oliver-makes-code (Emma)
+ *
+ * @sample samples.qkl.registry.RegistryDslSamples.sampleRegisterWithRegistry
  * */
-public operator fun <T> Registry<T>.invoke(modid: String, action: RegistryAction<T>.() -> Unit) {
+@RegistryDsl
+public inline operator fun <T> Registry<T>.invoke(modid: String, action: RegistryAction<T>.() -> Unit) {
     RegistryAction(modid, this).apply(action)
 }
 
 /**
- * Applies a RegistryAction.
+ * Applies a RegistryAction with no default modid.
+ *
  * @param action The action.
  *
  * @author Oliver-makes-code (Emma)
+ *
+ * @sample samples.qkl.registry.RegistryDslSamples.sampleRegisterWithRegistry
  * */
-public operator fun <T> Registry<T>.invoke(action: RegistryAction<T>.() -> Unit) {
+@RegistryDsl
+public inline operator fun <T> Registry<T>.invoke(action: RegistryAction<T>.() -> Unit) {
     RegistryAction(null, this).apply(action)
 }
 
 /**
  * Creates a RegistryObject.
+ *
  * @param id The Identifier to register under.
  *
  * @author Oliver-makes-code (Emma)
+ *
+ * @sample samples.qkl.registry.RegistryDslSamples.sampleRegisterGlobally
  * */
+@RegistryDsl
 public infix fun <T> T.withId(id: Identifier): RegistryObject<T> {
     return RegistryObject(id.namespace, id.path, this)
 }
