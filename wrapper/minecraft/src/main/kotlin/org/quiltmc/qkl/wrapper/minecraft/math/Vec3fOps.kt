@@ -16,7 +16,11 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.math
 
+import net.minecraft.client.util.math.Vector3d
+import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
+import net.minecraft.util.math.Vec3i
 
 //region Standard math operators
 /**
@@ -190,5 +194,51 @@ public operator fun Vec3f.component2(): Float {
  */
 public operator fun Vec3f.component3(): Float {
     return this.z
+}
+//endregion
+
+//region Conversion methods
+/**
+ * Converts a [Vec3f] to a [Vec3d].
+ */
+public fun Vec3f.toVec3d(): Vec3d {
+    return Vec3d(
+        this.x.toDouble(),
+        this.y.toDouble(),
+        this.z.toDouble()
+    )
+}
+
+/**
+ * Converts a [Vec3f] to a [Vec3i].
+ */
+public fun Vec3f.toVec3i(): Vec3i {
+    return Vec3i(
+        this.x.toInt(),
+        this.y.toInt(),
+        this.z.toInt()
+    )
+}
+
+/**
+ * Converts a [Vec3f] to a [BlockPos].
+ */
+public fun Vec3f.toBlockPos(): BlockPos {
+    return BlockPos(
+        this.x.toInt(),
+        this.y.toInt(),
+        this.z.toInt()
+    )
+}
+
+/**
+ * Converts a [Vec3f] to a [Vector3d].
+ */
+public fun Vec3f.toVector3d(): Vector3d {
+    return Vector3d(
+        this.x.toDouble(),
+        this.y.toDouble(),
+        this.z.toDouble()
+    )
 }
 //endregion

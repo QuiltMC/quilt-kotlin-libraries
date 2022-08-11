@@ -151,3 +151,15 @@ public operator fun Vec2f.component2(): Float {
     return this.y
 }
 //endregion
+
+//region Conversion methods
+/**
+ * Converts a [Vec2f] to a [Vector2f].
+ */
+public fun Vec2f.toVector2f(): Vector2f {
+    return Vector2f(
+        this.x,
+        this.y
+    )
+}
+//endregion
