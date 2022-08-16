@@ -19,7 +19,6 @@ package org.quiltmc.qkl.wrapper.minecraft.nbt
 import net.minecraft.nbt.*
 import kotlin.properties.PropertyDelegateProvider
 import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KCallable
 import kotlin.reflect.KProperty
 
 /**
@@ -35,7 +34,7 @@ public typealias NbtPropertyProvider<T> = PropertyDelegateProvider<Any?, NbtProp
 /**
  * A reference to a [Compound][NbtCompound]. To get one, create a variable and reference it with `::variableName`.
  */
-public typealias CompoundProperty = KCallable<NbtCompound>
+public typealias CompoundProperty = () -> NbtCompound
 
 internal class Delegate<T>(
     val compound: CompoundProperty,
@@ -48,29 +47,29 @@ internal class Delegate<T>(
 
     init {
         if (default != null) {
-            compound.call().put(name, toNbt(default))
+            compound().put(name, toNbt(default))
         }
     }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return when {
-            name in compound.call() -> {
-                val value = fromNbt(compound.call().get(name)!!)
+            name in compound() -> {
+                val value = fromNbt(compound().get(name)!!)
                 lastKnownValue = value
                 value
             }
             lastKnownValue != null -> {
-                compound.call().put(name, toNbt(lastKnownValue!!))
+                compound().put(name, toNbt(lastKnownValue!!))
                 lastKnownValue!!
             }
             else -> {
-                error("No value for $name in ${compound.call()}")
+                error("No value for $name in ${compound()}")
             }
         }
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        compound.call().put(name, toNbt(value))
+        compound().put(name, toNbt(value))
         lastKnownValue = value
     }
 }
@@ -87,8 +86,8 @@ internal inline fun <T> provider(crossinline action: (String) -> NbtProperty<T>)
  * @sample samples.qkl.nbt.NbtSamples.Properties
  */
 public fun CompoundProperty.constant(): CompoundProperty {
-    val value = this.call()
-    return { value }::invoke
+    val value = this()
+    return { value }
 }
 
 /**
@@ -98,7 +97,7 @@ public fun CompoundProperty.constant(): CompoundProperty {
  * @sample samples.qkl.nbt.NbtSamples.Properties
  */
 public fun NbtCompound.property(): CompoundProperty {
-    return { this }::invoke
+    return { this }
 }
 
 /**
