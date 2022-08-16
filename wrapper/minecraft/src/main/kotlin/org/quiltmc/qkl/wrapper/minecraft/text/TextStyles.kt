@@ -20,7 +20,6 @@ package org.quiltmc.qkl.wrapper.minecraft.text
 
 import net.minecraft.text.*
 import net.minecraft.util.Formatting
-import org.quiltmc.qkl.core.annotations.QklDslMarker
 
 /**
  * A mutable color object that can be transformed into Minecraft [color][TextColor].
@@ -29,7 +28,7 @@ import org.quiltmc.qkl.core.annotations.QklDslMarker
  *
  * @author NoComment1105
  */
-@QklDslMarker
+@TextDslMarker
 public class MutableColor(public var rgb: Int) {
     public companion object {
         /**
@@ -76,7 +75,7 @@ public class MutableColor(public var rgb: Int) {
  *
  * @author NoComment1105
  */
-@QklDslMarker
+@TextDslMarker
 @Suppress("MagicNumber")
 public class MutableStyle {
     /** A [MutableColor] to apply to the text. */

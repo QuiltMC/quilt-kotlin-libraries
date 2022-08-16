@@ -21,9 +21,11 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.text.data.TextData
-import org.quiltmc.qkl.core.annotations.QklDslMarker
 import java.util.Optional
 import java.util.stream.Stream
+
+@DslMarker
+public annotation class TextDslMarker
 
 /**
  * This class contains the functions for building a [Text] object.
@@ -32,7 +34,7 @@ import java.util.stream.Stream
  *
  * @author NoComment1105
  */
-@QklDslMarker
+@TextDslMarker
 public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
     init {
         apply(action)
