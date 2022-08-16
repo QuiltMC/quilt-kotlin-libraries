@@ -58,7 +58,7 @@ internal class Delegate<T>(
 }
 
 internal inline fun <T> provider(crossinline action: String.() -> NbtProperty<T>): NbtPropertyProvider<T> {
-    return PropertyDelegateProvider<Any?, NbtProperty<T>> { _, property -> property.name.action() }
+    return PropertyDelegateProvider<Any?, NbtProperty<T>> { _, property -> property.name.apply(action) }
 }
 
 /**
