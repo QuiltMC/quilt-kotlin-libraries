@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-@file:Suppress("MemberVisibilityCanBePrivate")
-
 package org.quiltmc.qkl.wrapper.minecraft.text
 
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityType
+import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.*
 import net.minecraft.util.Formatting
+import net.minecraft.util.Identifier
+import org.quiltmc.qkl.wrapper.minecraft.text.mixin.StyleAccessor
+import java.util.UUID
 
 /**
  * A mutable color object that can be transformed into Minecraft [color][TextColor].
@@ -69,6 +75,171 @@ public class MutableColor(public var rgb: Int) {
     }
 }
 
+/**
+ * The build to create a hover event for an item.
+ *
+ * @author NoComment1105
+ */
+@TextDslMarker
+public class ItemHoverEvent {
+    /** The item stack to apply the event to. */
+    public var itemStack: ItemStack? = null
+    /** The item to apply the event to. */
+    public var item: Item? = null
+    /** The NBT of the item to apply the event to. */
+    public var nbt: NbtCompound? = null
+
+    /**
+     * Gets the item based off the [itemStack], [item] or [nbt] variables.
+     *
+     * @author NoComment1105
+     */
+    private fun getItem(): ItemStack {
+        return if (itemStack != null) {
+            itemStack!!
+        } else if (item != null) {
+            ItemStack(item).let {
+                it.nbt = nbt
+                it
+            }
+        } else if (nbt != null) {
+            ItemStack.fromNbt(nbt)
+        } else {
+            ItemStack.EMPTY
+        }
+    }
+
+    /**
+     * Creates the hover event.
+     *
+     * @author NoComment1105
+     */
+    public fun create(): HoverEvent {
+        return HoverEvent(
+            HoverEvent.Action.SHOW_ITEM,
+            HoverEvent.ItemStackContent(
+                itemStack ?: getItem()
+            )
+        )
+    }
+}
+
+/**
+ * The builder to create a hover event for an entity.
+ *
+ * @author NoComment1105
+ */
+@TextDslMarker
+public class EntityHoverEvent {
+    /** The entity type to apply the hover event to. */
+    public var entityType: EntityType<Entity>? = null
+    /** The UUID of hte entity to apply the event to. */
+    public var uuid: UUID? = null
+    /** The name of the entity to apply the event to. */
+    public var name: Text? = null
+
+    /**
+     * Creates a hover event for an entity based off of [entityType], [uuid] and [name].
+     *
+     * @author NoComment1105
+     */
+    public fun create(): HoverEvent {
+        return HoverEvent(
+            HoverEvent.Action.SHOW_ENTITY,
+            HoverEvent.EntityContent(
+                entityType ?: EntityType.PLAYER,
+                uuid ?: UUID.randomUUID(),
+                name
+            )
+        )
+    }
+}
+
+/**
+ * The builder to create a hover event for text.
+ *
+ * @author NoComment1105
+ */
+@TextDslMarker
+public class TextHoverEvent {
+    /** The text to apply the hover event to. */
+    public var text: Text? = null
+
+    /**
+     * Creates a hover event for the [text] provided.
+     *
+     * @author NoComment1105
+     */
+    public fun create(): HoverEvent {
+        return HoverEvent(
+            HoverEvent.Action.SHOW_TEXT,
+            text ?: buildText {
+                empty()
+            }
+        )
+    }
+}
+
+/**
+ * The builder to create a [ClickEvent].
+ *
+ * @author NoComment1105
+ */
+public class QklClickEvent {
+    /** The action to perform on the click. */
+    private var action: ClickEvent.Action? = null
+    /** The value for the event. */
+    private var value: String? = null
+
+    /** Open's a URL. */
+    public var openUrl: String = ""
+        set(url) = run {
+            action = ClickEvent.Action.OPEN_URL
+            value = url
+        }
+    /** Open's a file. */
+    public var openFile: String = ""
+        set(path) = run {
+            action = ClickEvent.Action.OPEN_FILE
+            value = path
+        }
+    /** Runs a command. */
+    public var runCommand: String = ""
+        set(command) = run {
+            action = ClickEvent.Action.RUN_COMMAND
+            value = command
+        }
+    /** Suggests a command. */
+    public var suggestCommand: String = ""
+        set(suggestedCommand) = run {
+            action = ClickEvent.Action.SUGGEST_COMMAND
+            value = suggestedCommand
+        }
+    /** Change's page. */
+    public var changePage: Int = 0
+        set(page) = run {
+            action = ClickEvent.Action.CHANGE_PAGE
+            value = page.toString()
+        }
+    /** Copies text to the clipboard. */
+    public var copyToClipboard: String = ""
+        set(toCopy) = run {
+            action = ClickEvent.Action.COPY_TO_CLIPBOARD
+            value = toCopy
+        }
+
+    /**
+     * Creates a click event based on the [action] and [value] provided.
+     *
+     * @author NoComment1105
+     */
+    public fun create(): ClickEvent {
+        return ClickEvent(
+            action ?: ClickEvent.Action.SUGGEST_COMMAND,
+            value
+        )
+    }
+}
 
 /**
  * A mutable style object that transforms to Minecraft [styles][Style].
@@ -76,7 +247,6 @@ public class MutableColor(public var rgb: Int) {
  * @author NoComment1105
  */
 @TextDslMarker
-@Suppress("MagicNumber")
 public class MutableStyle {
     /** A [MutableColor] to apply to the text. */
     public var color: MutableColor? = null
@@ -94,6 +264,12 @@ public class MutableStyle {
     public var hoverEvent: HoverEvent? = null
     /** A [ClickEvent] to apply to the text. */
     public var clickEvent: ClickEvent? = null
+    /**
+     * An insertion inserted when a piece of text clicked while shift key is down in the chat HUD to apply to the text.
+     */
+    public var insertion: String? = null
+    /** An [Identifier] for the Minecraft font that would like to be used. */
+    public var font: Identifier? = null
 
     /**
      * Converts 3 separate RGB values to a [MutableColor].
@@ -104,6 +280,7 @@ public class MutableStyle {
      *
      * @author NoComment1105
      */
+    @Suppress("MagicNumber")
     public fun color(red: Int, green: Int, blue: Int) {
         this.color = MutableColor((red shl 16) + (green shl 8) + blue)
     }
@@ -137,6 +314,7 @@ public class MutableStyle {
      *
      * @author NoComment1105
      */
+    @Suppress("MagicNumber")
     private fun String.toColor(): Int {
         var color = when {
             startsWith("#") -> substring(1)
@@ -161,19 +339,20 @@ public class MutableStyle {
      * @author NoComment1105
      */
     public fun applyTo(text: MutableText): MutableText {
+        @Suppress("MagicNumber") // It's the colour code...
         return text.setStyle(
-            Style.EMPTY.apply {
-                if (color != null) {
-                    withColor(color!!.rgb)
-                }
-                withObfuscated(obfuscated)
-                withBold(bold)
-                withItalic(italic)
-                withStrikethrough(strikethrough)
-                withUnderline(underline)
-                withHoverEvent(this@MutableStyle.hoverEvent)
-                withClickEvent(this@MutableStyle.clickEvent)
-            }
+            StyleAccessor.create(
+                (color ?: MutableColor(0xffffff)).toTextColor(),
+                obfuscated,
+                bold,
+                italic,
+                strikethrough,
+                underline,
+                clickEvent,
+                hoverEvent,
+                insertion,
+                font
+            )
         )
     }
 }

@@ -21,9 +21,13 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.text.data.TextData
+import net.minecraft.util.Identifier
 import java.util.Optional
 import java.util.stream.Stream
 
+/**
+ * DSL Marker for text based DSL's.
+ */
 @DslMarker
 public annotation class TextDslMarker
 
@@ -45,7 +49,8 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public val text: MutableText = Text.empty()
+    @PublishedApi
+    internal val text: MutableText = Text.empty()
 
     /**
      * Adds a translatable text.
@@ -193,6 +198,72 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
         val mutableStyle = MutableStyle()
         mutableStyle.apply(action)
         text.append(mutableStyle.applyTo(Text.empty()))
+    }
+
+    /**
+     * Sets the insertion for the text.
+     *
+     * @param insertion The string to insert
+     *
+     * @author NoComment1105
+     */
+    public fun insertion(insertion: String) {
+        MutableStyle().insertion = insertion
+    }
+
+    /**
+     * Sets the font for the text using the Minecraft Identifier system.
+     *
+     * @param font The font identifier
+     *
+     * @author NoComment1105
+     */
+    public fun font(font: Identifier) {
+        MutableStyle().font = font
+    }
+
+    /**
+     * Adds a hover event to an item.
+     *
+     * @see ItemHoverEvent for action
+     *
+     * @author NoComment1105
+     */
+    public inline fun itemHoverEvent(action: ItemHoverEvent.() -> Unit = { }) {
+        MutableStyle().hoverEvent = ItemHoverEvent().apply(action).create()
+    }
+
+    /**
+     * Adds a hover event to an entity.
+     *
+     * @see EntityHoverEvent for action
+     *
+     * @author NoComment1105
+     */
+    public inline fun entityHoverEvent(action: EntityHoverEvent.() -> Unit = { }) {
+        MutableStyle().hoverEvent = EntityHoverEvent().apply(action).create()
+    }
+
+    /**
+     * Adds a hover event to text.
+     *
+     * @see TextHoverEvent for action
+     *
+     * @author NoComment1105
+     */
+    public inline fun textHoverEvent(action: TextHoverEvent.() -> Unit = { }) {
+        MutableStyle().hoverEvent = TextHoverEvent().apply(action).create()
+    }
+
+    /**
+     * Adds a click event to text.
+     *
+     * @see QklClickEvent for action
+     *
+     * @author NoComment1105
+     */
+    public inline fun clickEvent(action: QklClickEvent.() -> Unit = { }) {
+        MutableStyle().clickEvent = QklClickEvent().apply(action).create()
     }
 }
 
