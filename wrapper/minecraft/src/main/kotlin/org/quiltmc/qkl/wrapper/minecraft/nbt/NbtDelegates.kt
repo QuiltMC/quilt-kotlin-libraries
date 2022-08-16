@@ -44,21 +44,61 @@ internal class Delegate<T>(
     val toNbt: (T) -> NbtElement,
     val fromNbt: (NbtElement) -> T,
 ) : NbtProperty<T> {
+    var lastKnownValue = default
+
     init {
         if (default != null) {
             compound.call().put(name, toNbt(default))
         }
     }
 
-    override fun getValue(thisRef: Any?, property: KProperty<*>): T = fromNbt(compound.call().get(name)!!)
+    override fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        return when {
+            name in compound.call() -> {
+                val value = fromNbt(compound.call().get(name)!!)
+                lastKnownValue = value
+                value
+            }
+            lastKnownValue != null -> {
+                compound.call().put(name, toNbt(lastKnownValue!!))
+                lastKnownValue!!
+            }
+            else -> {
+                error("No value for $name in ${compound.call()}")
+            }
+        }
+    }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
         compound.call().put(name, toNbt(value))
+        lastKnownValue = value
     }
 }
 
 internal inline fun <T> provider(crossinline action: (String) -> NbtProperty<T>): NbtPropertyProvider<T> {
     return PropertyDelegateProvider { _, property -> property.name.let(action) }
+}
+
+/**
+ * Get a copy of this variable, as a constant reference. Future changes to the variable will not affect the copy,
+ * and therefore any delegations created from this copy will always point to the same compound.
+ *
+ * @author sschr15
+ * @sample samples.qkl.nbt.NbtSamples.Properties
+ */
+public fun CompoundProperty.constant(): CompoundProperty {
+    val value = this.call()
+    return { value }::invoke
+}
+
+/**
+ * Get this compound as a [CompoundProperty]. This can be used to create delegations.
+ *
+ * @author sschr15
+ * @sample samples.qkl.nbt.NbtSamples.Properties
+ */
+public fun NbtCompound.property(): CompoundProperty {
+    return { this }::invoke
 }
 
 /**

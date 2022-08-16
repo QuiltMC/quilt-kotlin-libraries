@@ -20,9 +20,14 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
 import org.quiltmc.qkl.wrapper.minecraft.nbt.*
 
-@Suppress("unused", "MagicNumber")
+@Suppress("unused", "MagicNumber", "UNUSED_VARIABLE")
 private object NbtSamples {
     fun <T> stub(): T {
+        error("Sample utility should not be called")
+    }
+
+    @JvmName("getCompoundFunction")
+    fun getCompound(): NbtCompound {
         error("Sample utility should not be called")
     }
 
@@ -30,15 +35,22 @@ private object NbtSamples {
 
     object BasicTypes {
         val compound: NbtCompound = stub()
+        val secondCompound = getCompound()
 
         var count by ::compound.byte(default = 1)
         var maxDamage by ::compound.int()
         var currentDamage by ::compound.int(name = "damage")
 
+        var name by ::getCompound.string()
+        var height by ::getCompound.float()
+
         fun modify() {
             count = 2
             maxDamage = 100
             currentDamage = 50
+
+            name = "test"
+            height = 1.0f
         }
     }
 
@@ -66,6 +78,17 @@ private object NbtSamples {
         fun modify() {
             isNested = true
             objectsInObjects["objects"] = NbtCompound()
+        }
+    }
+
+    abstract class Properties {
+        abstract fun getCompound(): NbtCompound
+
+        val constantReference = ::getCompound.constant()
+
+        fun actions() {
+            val compound = getCompound()
+            val byte by compound.property().byte(default = 5)
         }
     }
 
