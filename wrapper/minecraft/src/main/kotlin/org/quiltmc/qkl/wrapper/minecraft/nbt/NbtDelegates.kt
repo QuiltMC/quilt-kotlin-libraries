@@ -57,8 +57,9 @@ internal class Delegate<T>(
     }
 }
 
-internal inline fun <T> provider(crossinline func: (String) -> NbtProperty<T>): NbtPropertyProvider<T> =
-    PropertyDelegateProvider<Any?, NbtProperty<T>> { _, property -> func(property.name) }
+internal inline fun <T> provider(crossinline func: (String) -> NbtProperty<T>): NbtPropertyProvider<T> {
+    return PropertyDelegateProvider<Any?, NbtProperty<T>> { _, property -> func(property.name) }
+}
 
 /**
  * An integer in a [Compound][NbtCompound].
@@ -66,10 +67,11 @@ internal inline fun <T> provider(crossinline func: (String) -> NbtProperty<T>): 
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.int(name: String? = null, default: Int? = null): NbtPropertyProvider<Int> =
-    provider { propName ->
+public fun CompoundProperty.int(name: String? = null, default: Int? = null): NbtPropertyProvider<Int> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtInt::of) { (it as NbtInt).intValue() }
     }
+}
 
 /**
  * A long in a [Compound][NbtCompound].
@@ -77,10 +79,11 @@ public fun CompoundProperty.int(name: String? = null, default: Int? = null): Nbt
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.long(name: String? = null, default: Long? = null): NbtPropertyProvider<Long> =
-    provider { propName ->
+public fun CompoundProperty.long(name: String? = null, default: Long? = null): NbtPropertyProvider<Long> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtLong::of) { (it as NbtLong).longValue() }
     }
+}
 
 /**
  * A byte in a [Compound][NbtCompound].
@@ -88,10 +91,11 @@ public fun CompoundProperty.long(name: String? = null, default: Long? = null): N
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.byte(name: String? = null, default: Byte? = null): NbtPropertyProvider<Byte> =
-    provider { propName ->
+public fun CompoundProperty.byte(name: String? = null, default: Byte? = null): NbtPropertyProvider<Byte> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtByte::of) { (it as NbtByte).byteValue() }
     }
+}
 
 /**
  * A boolean in a [Compound][NbtCompound], internally stored as a byte.
@@ -99,10 +103,11 @@ public fun CompoundProperty.byte(name: String? = null, default: Byte? = null): N
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.boolean(name: String? = null, default: Boolean? = null): NbtPropertyProvider<Boolean> =
-    provider { propName ->
+public fun CompoundProperty.boolean(name: String? = null, default: Boolean? = null): NbtPropertyProvider<Boolean> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtByte::of) { (it as NbtByte).byteValue() != 0.toByte() }
     }
+}
 
 /**
  * A short in a [Compound][NbtCompound].
@@ -110,10 +115,11 @@ public fun CompoundProperty.boolean(name: String? = null, default: Boolean? = nu
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.short(name: String? = null, default: Short? = null): NbtPropertyProvider<Short> =
-    provider { propName ->
+public fun CompoundProperty.short(name: String? = null, default: Short? = null): NbtPropertyProvider<Short> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtShort::of) { (it as NbtShort).shortValue() }
     }
+}
 
 /**
  * A float in a [Compound][NbtCompound].
@@ -121,10 +127,11 @@ public fun CompoundProperty.short(name: String? = null, default: Short? = null):
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.float(name: String? = null, default: Float? = null): NbtPropertyProvider<Float> =
-    provider { propName ->
+public fun CompoundProperty.float(name: String? = null, default: Float? = null): NbtPropertyProvider<Float> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtFloat::of) { (it as NbtFloat).floatValue() }
     }
+}
 
 /**
  * A double in a [Compound][NbtCompound].
@@ -132,10 +139,11 @@ public fun CompoundProperty.float(name: String? = null, default: Float? = null):
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.double(name: String? = null, default: Double? = null): NbtPropertyProvider<Double> =
-    provider { propName ->
+public fun CompoundProperty.double(name: String? = null, default: Double? = null): NbtPropertyProvider<Double> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtDouble::of) { (it as NbtDouble).doubleValue() }
     }
+}
 
 /**
  * A string in a [Compound][NbtCompound].
@@ -143,10 +151,11 @@ public fun CompoundProperty.double(name: String? = null, default: Double? = null
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.BasicTypes
  */
-public fun CompoundProperty.string(name: String? = null, default: String? = null): NbtPropertyProvider<String> =
-    provider { propName ->
+public fun CompoundProperty.string(name: String? = null, default: String? = null): NbtPropertyProvider<String> {
+    return provider { propName ->
         Delegate(this, name ?: propName, default, NbtString::of) { it.asString() }
     }
+}
 
 /**
  * A [Compound][NbtCompound] in a Compound. Compounds created in this way can also be used with all the other
@@ -158,6 +167,8 @@ public fun CompoundProperty.string(name: String? = null, default: String? = null
 public fun CompoundProperty.compound(
     name: String? = null,
     default: NbtCompound? = null
-): NbtPropertyProvider<NbtCompound> = provider { propName ->
-    Delegate(this, name ?: propName, default, { it }) { it as NbtCompound }
+): NbtPropertyProvider<NbtCompound> {
+    return provider { propName ->
+        Delegate(this, name ?: propName, default, { it }) { it as NbtCompound }
+    }
 }

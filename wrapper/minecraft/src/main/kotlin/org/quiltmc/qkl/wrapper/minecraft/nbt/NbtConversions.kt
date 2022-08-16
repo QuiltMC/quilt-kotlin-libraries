@@ -25,7 +25,9 @@ import net.minecraft.nbt.*
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val Boolean.nbt: NbtByte get() = NbtByte.of(this)
+public val Boolean.nbt: NbtByte get() {
+    return NbtByte.of(this)
+}
 
 /**
  * Get this byte as an NBT element.
@@ -33,7 +35,9 @@ public val Boolean.nbt: NbtByte get() = NbtByte.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val Byte.nbt: NbtByte get() = NbtByte.of(this)
+public val Byte.nbt: NbtByte get() {
+    return NbtByte.of(this)
+}
 
 /**
  * Get this short as an NBT element.
@@ -41,7 +45,9 @@ public val Byte.nbt: NbtByte get() = NbtByte.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val Short.nbt: NbtShort get() = NbtShort.of(this)
+public val Short.nbt: NbtShort get() {
+    return NbtShort.of(this)
+}
 
 /**
  * Get this int as an NBT element.
@@ -49,7 +55,9 @@ public val Short.nbt: NbtShort get() = NbtShort.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val Int.nbt: NbtInt get() = NbtInt.of(this)
+public val Int.nbt: NbtInt get() {
+    return NbtInt.of(this)
+}
 
 /**
  * Get this long as an NBT element.
@@ -57,7 +65,9 @@ public val Int.nbt: NbtInt get() = NbtInt.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val Long.nbt: NbtLong get() = NbtLong.of(this)
+public val Long.nbt: NbtLong get() {
+    return NbtLong.of(this)
+}
 
 /**
  * Get this float as an NBT element.
@@ -65,7 +75,9 @@ public val Long.nbt: NbtLong get() = NbtLong.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val Float.nbt: NbtFloat get() = NbtFloat.of(this)
+public val Float.nbt: NbtFloat get() {
+    return NbtFloat.of(this)
+}
 
 /**
  * Get this double as an NBT element.
@@ -73,7 +85,9 @@ public val Float.nbt: NbtFloat get() = NbtFloat.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val Double.nbt: NbtDouble get() = NbtDouble.of(this)
+public val Double.nbt: NbtDouble get() {
+    return NbtDouble.of(this)
+}
 
 /**
  * Get this string as an NBT element.
@@ -81,7 +95,9 @@ public val Double.nbt: NbtDouble get() = NbtDouble.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val String.nbt: NbtString get() = NbtString.of(this)
+public val String.nbt: NbtString get() {
+    return NbtString.of(this)
+}
 
 /**
  * Get this element as a boolean, if possible.
@@ -89,7 +105,9 @@ public val String.nbt: NbtString get() = NbtString.of(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.boolean: Boolean get() = (this as NbtByte).byteValue() != 0.toByte()
+public val NbtElement.boolean: Boolean get() {
+    return (this as NbtByte).byteValue() != 0.toByte()
+}
 
 /**
  * Get this element as a byte, if possible.
@@ -97,7 +115,9 @@ public val NbtElement.boolean: Boolean get() = (this as NbtByte).byteValue() != 
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.byte: Byte get() = (this as NbtByte).byteValue()
+public val NbtElement.byte: Byte get() {
+    return (this as NbtByte).byteValue()
+}
 
 /**
  * Get this element as a short, if possible.
@@ -105,7 +125,9 @@ public val NbtElement.byte: Byte get() = (this as NbtByte).byteValue()
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.short: Short get() = (this as NbtShort).shortValue()
+public val NbtElement.short: Short get() {
+    return (this as NbtShort).shortValue()
+}
 
 /**
  * Get this element as an int, if possible.
@@ -113,7 +135,9 @@ public val NbtElement.short: Short get() = (this as NbtShort).shortValue()
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.int: Int get() = (this as NbtInt).intValue()
+public val NbtElement.int: Int get() {
+    return (this as NbtInt).intValue()
+}
 
 /**
  * Get this element as a long, if possible.
@@ -121,7 +145,9 @@ public val NbtElement.int: Int get() = (this as NbtInt).intValue()
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.long: Long get() = (this as NbtLong).longValue()
+public val NbtElement.long: Long get() {
+    return (this as NbtLong).longValue()
+}
 
 /**
  * Get this element as a float, if possible.
@@ -129,7 +155,9 @@ public val NbtElement.long: Long get() = (this as NbtLong).longValue()
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.float: Float get() = (this as NbtFloat).floatValue()
+public val NbtElement.float: Float get() {
+    return (this as NbtFloat).floatValue()
+}
 
 /**
  * Get this element as a double, if possible.
@@ -137,7 +165,9 @@ public val NbtElement.float: Float get() = (this as NbtFloat).floatValue()
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.double: Double get() = (this as NbtDouble).doubleValue()
+public val NbtElement.double: Double get() {
+    return (this as NbtDouble).doubleValue()
+}
 
 /**
  * Get this element as a string, if possible.
@@ -145,7 +175,9 @@ public val NbtElement.double: Double get() = (this as NbtDouble).doubleValue()
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val NbtElement.string: String get() = asString()
+public val NbtElement.string: String get() {
+    return asString()
+}
 //endregion
 
 //region: NBT <-> Lists / Arrays
@@ -155,7 +187,9 @@ public val NbtElement.string: String get() = asString()
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val ByteArray.nbt: NbtByteArray get() = NbtByteArray(this)
+public val ByteArray.nbt: NbtByteArray get() {
+    return NbtByteArray(this)
+}
 
 /**
  * Get this int array as an NBT int array.
@@ -163,7 +197,9 @@ public val ByteArray.nbt: NbtByteArray get() = NbtByteArray(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val IntArray.nbt: NbtIntArray get() = NbtIntArray(this)
+public val IntArray.nbt: NbtIntArray get() {
+    return NbtIntArray(this)
+}
 
 /**
  * Get this long array as an NBT long array.
@@ -171,7 +207,9 @@ public val IntArray.nbt: NbtIntArray get() = NbtIntArray(this)
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public val LongArray.nbt: NbtLongArray get() = NbtLongArray(this)
+public val LongArray.nbt: NbtLongArray get() {
+    return NbtLongArray(this)
+}
 
 /**
  * Get these bytes as an NBT byte array.
@@ -180,7 +218,9 @@ public val LongArray.nbt: NbtLongArray get() = NbtLongArray(this)
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
 @JvmName("bytesToNbt")
-public fun Iterable<Byte>.toNbt(): NbtByteArray = NbtByteArray(toList())
+public fun Iterable<Byte>.toNbt(): NbtByteArray {
+    return NbtByteArray(toList())
+}
 
 /**
  * Get these ints as an NBT int array.
@@ -189,7 +229,9 @@ public fun Iterable<Byte>.toNbt(): NbtByteArray = NbtByteArray(toList())
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
 @JvmName("intsToNbt")
-public fun Iterable<Int>.toNbt(): NbtIntArray = NbtIntArray(toList())
+public fun Iterable<Int>.toNbt(): NbtIntArray {
+    return NbtIntArray(toList())
+}
 
 /**
  * Get these longs as an NBT long array.
@@ -198,7 +240,9 @@ public fun Iterable<Int>.toNbt(): NbtIntArray = NbtIntArray(toList())
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
 @JvmName("longsToNbt")
-public fun Iterable<Long>.toNbt(): NbtLongArray = NbtLongArray(toList())
+public fun Iterable<Long>.toNbt(): NbtLongArray {
+    return NbtLongArray(toList())
+}
 
 /**
  * Get these shorts as an NBT list.
@@ -207,7 +251,9 @@ public fun Iterable<Long>.toNbt(): NbtLongArray = NbtLongArray(toList())
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
 @JvmName("shortsToNbt")
-public fun Iterable<Short>.toNbt(): NbtList = NbtList().also { it.addAll(map { s -> s.nbt }) }
+public fun Iterable<Short>.toNbt(): NbtList {
+    return NbtList().also { it.addAll(map { s -> s.nbt }) }
+}
 
 /**
  * Get these floats as an NBT list.
@@ -216,7 +262,9 @@ public fun Iterable<Short>.toNbt(): NbtList = NbtList().also { it.addAll(map { s
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
 @JvmName("floatsToNbt")
-public fun Iterable<Float>.toNbt(): NbtList = NbtList().also { it.addAll(map { f -> f.nbt }) }
+public fun Iterable<Float>.toNbt(): NbtList {
+    return NbtList().also { it.addAll(map { f -> f.nbt }) }
+}
 
 /**
  * Get these doubles as an NBT list.
@@ -225,7 +273,9 @@ public fun Iterable<Float>.toNbt(): NbtList = NbtList().also { it.addAll(map { f
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
 @JvmName("doublesToNbt")
-public fun Iterable<Double>.toNbt(): NbtList = NbtList().also { it.addAll(map { d -> d.nbt }) }
+public fun Iterable<Double>.toNbt(): NbtList {
+    return NbtList().also { it.addAll(map { d -> d.nbt }) }
+}
 
 /**
  * Get these strings as an NBT list.
@@ -234,7 +284,9 @@ public fun Iterable<Double>.toNbt(): NbtList = NbtList().also { it.addAll(map { 
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
 @JvmName("stringsToNbt")
-public fun Iterable<String>.toNbt(): NbtList = NbtList().also { it.addAll(map { s -> s.nbt }) }
+public fun Iterable<String>.toNbt(): NbtList {
+    return NbtList().also { it.addAll(map { s -> s.nbt }) }
+}
 //endregion
 
 //region: NBT <-> NBT
@@ -244,7 +296,9 @@ public fun Iterable<String>.toNbt(): NbtList = NbtList().also { it.addAll(map { 
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public fun NbtByteArray.toNbtList(): NbtList = NbtList().also { it.addAll(this) }
+public fun NbtByteArray.toNbtList(): NbtList {
+    return NbtList().also { it.addAll(this) }
+}
 
 /**
  * Get this NBT int array as an NBT list.
@@ -252,7 +306,9 @@ public fun NbtByteArray.toNbtList(): NbtList = NbtList().also { it.addAll(this) 
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public fun NbtIntArray.toNbtList(): NbtList = NbtList().also { it.addAll(this) }
+public fun NbtIntArray.toNbtList(): NbtList {
+    return NbtList().also { it.addAll(this) }
+}
 
 /**
  * Get this NBT long array as an NBT list.
@@ -260,5 +316,7 @@ public fun NbtIntArray.toNbtList(): NbtList = NbtList().also { it.addAll(this) }
  * @author sschr15
  * @sample samples.qkl.nbt.NbtSamples.elementConversions
  */
-public fun NbtLongArray.toNbtList(): NbtList = NbtList().also { it.addAll(this) }
+public fun NbtLongArray.toNbtList(): NbtList {
+    return NbtList().also { it.addAll(this) }
+}
 //endregion

@@ -106,13 +106,15 @@ internal class NbtListWatcher<T, N : NbtElement>(
 public fun CompoundProperty.byteArray(
     name: String? = null,
     default: ByteArray? = null
-): NbtListPropertyProvider<Byte> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        ::NbtByteArray
-    ) { NbtListWatcher(it as NbtByteArray, NbtByte::of, NbtByte::byteValue) }
+): NbtListPropertyProvider<Byte> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            ::NbtByteArray
+        ) { NbtListWatcher(it as NbtByteArray, NbtByte::of, NbtByte::byteValue) }
+    }
 }
 
 /**
@@ -124,7 +126,9 @@ public fun CompoundProperty.byteArray(
 public fun CompoundProperty.byteArray(
     name: String? = null,
     default: Iterable<Byte>?
-): NbtListPropertyProvider<Byte> = byteArray(name, default?.toList()?.toByteArray())
+): NbtListPropertyProvider<Byte> {
+    return byteArray(name, default?.toList()?.toByteArray())
+}
 
 /**
  * A byte list. Lists are not always guaranteed to be of the correct type.
@@ -135,13 +139,15 @@ public fun CompoundProperty.byteArray(
 public fun CompoundProperty.byteList(
     name: String? = null,
     default: Iterable<Byte>? = null
-): NbtListPropertyProvider<Byte> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        { NbtList().also { list -> list.addAll(it.map(NbtByte::of)) } }
-    ) { NbtListWatcher(it as NbtList, { b: Byte -> NbtByte.of(b) }) { element -> (element as NbtByte).byteValue() } }
+): NbtListPropertyProvider<Byte> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            { NbtList().also { list -> list.addAll(it.map(NbtByte::of)) } }
+        ) { NbtListWatcher(it as NbtList, { b: Byte -> NbtByte.of(b) }) { nbt -> (nbt as NbtByte).byteValue() } }
+    }
 }
 
 /**
@@ -154,13 +160,15 @@ public fun CompoundProperty.byteList(
 public fun CompoundProperty.shortList(
     name: String? = null,
     default: Iterable<Short>? = null
-): NbtListPropertyProvider<Short> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        { NbtList().also { list -> list.addAll(it.map(NbtShort::of)) } }
-    ) { NbtListWatcher(it as NbtList, NbtShort::of) { element -> (element as NbtShort).shortValue() } }
+): NbtListPropertyProvider<Short> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            { NbtList().also { list -> list.addAll(it.map(NbtShort::of)) } }
+        ) { NbtListWatcher(it as NbtList, NbtShort::of) { nbt -> (nbt as NbtShort).shortValue() } }
+    }
 }
 
 /**
@@ -172,13 +180,15 @@ public fun CompoundProperty.shortList(
 public fun CompoundProperty.intArray(
     name: String? = null,
     default: IntArray? = null
-): NbtListPropertyProvider<Int> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        ::NbtIntArray
-    ) { NbtListWatcher(it as NbtIntArray, NbtInt::of, NbtInt::intValue) }
+): NbtListPropertyProvider<Int> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            ::NbtIntArray
+        ) { NbtListWatcher(it as NbtIntArray, NbtInt::of, NbtInt::intValue) }
+    }
 }
 
 /**
@@ -190,7 +200,9 @@ public fun CompoundProperty.intArray(
 public fun CompoundProperty.intArray(
     name: String? = null,
     default: Iterable<Int>?
-): NbtListPropertyProvider<Int> = intArray(name, default?.toList()?.toIntArray())
+): NbtListPropertyProvider<Int> {
+    return intArray(name, default?.toList()?.toIntArray())
+}
 
 /**
  * An int list. Lists are not always guaranteed to be of the correct type.
@@ -201,13 +213,15 @@ public fun CompoundProperty.intArray(
 public fun CompoundProperty.intList(
     name: String? = null,
     default: Iterable<Int>? = null
-): NbtListPropertyProvider<Int> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        { NbtList().also { list -> list.addAll(it.map(NbtInt::of)) } }
-    ) { NbtListWatcher(it as NbtList, NbtInt::of) { element -> (element as NbtInt).intValue() } }
+): NbtListPropertyProvider<Int> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            { NbtList().also { list -> list.addAll(it.map(NbtInt::of)) } }
+        ) { NbtListWatcher(it as NbtList, NbtInt::of) { nbt -> (nbt as NbtInt).intValue() } }
+    }
 }
 
 /**
@@ -219,13 +233,15 @@ public fun CompoundProperty.intList(
 public fun CompoundProperty.longArray(
     name: String? = null,
     default: LongArray? = null
-): NbtListPropertyProvider<Long> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        ::NbtLongArray
-    ) { NbtListWatcher(it as NbtLongArray, NbtLong::of, NbtLong::longValue) }
+): NbtListPropertyProvider<Long> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            ::NbtLongArray
+        ) { NbtListWatcher(it as NbtLongArray, NbtLong::of, NbtLong::longValue) }
+    }
 }
 
 /**
@@ -237,7 +253,9 @@ public fun CompoundProperty.longArray(
 public fun CompoundProperty.longArray(
     name: String? = null,
     default: Iterable<Long>?
-): NbtListPropertyProvider<Long> = longArray(name, default?.toList()?.toLongArray())
+): NbtListPropertyProvider<Long> {
+    return longArray(name, default?.toList()?.toLongArray())
+}
 
 /**
  * A long list. Lists are not always guaranteed to be of the correct type.
@@ -248,13 +266,15 @@ public fun CompoundProperty.longArray(
 public fun CompoundProperty.longList(
     name: String? = null,
     default: Iterable<Long>? = null
-): NbtListPropertyProvider<Long> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        { NbtList().also { list -> list.addAll(it.map(NbtLong::of)) } }
-    ) { NbtListWatcher(it as NbtList, NbtLong::of) { element -> (element as NbtLong).longValue() } }
+): NbtListPropertyProvider<Long> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            { NbtList().also { list -> list.addAll(it.map(NbtLong::of)) } }
+        ) { NbtListWatcher(it as NbtList, NbtLong::of) { nbt -> (nbt as NbtLong).longValue() } }
+    }
 }
 
 /**
@@ -267,13 +287,15 @@ public fun CompoundProperty.longList(
 public fun CompoundProperty.floatList(
     name: String? = null,
     default: Iterable<Float>? = null
-): NbtListPropertyProvider<Float> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        { NbtList().also { list -> list.addAll(it.map(NbtFloat::of)) } }
-    ) { NbtListWatcher(it as NbtList, NbtFloat::of) { element -> (element as NbtFloat).floatValue() } }
+): NbtListPropertyProvider<Float> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            { NbtList().also { list -> list.addAll(it.map(NbtFloat::of)) } }
+        ) { NbtListWatcher(it as NbtList, NbtFloat::of) { nbt -> (nbt as NbtFloat).floatValue() } }
+    }
 }
 
 /**
@@ -286,13 +308,15 @@ public fun CompoundProperty.floatList(
 public fun CompoundProperty.doubleList(
     name: String? = null,
     default: Iterable<Double>? = null
-): NbtListPropertyProvider<Double> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        { NbtList().also { list -> list.addAll(it.map(NbtDouble::of)) } }
-    ) { NbtListWatcher(it as NbtList, NbtDouble::of) { element -> (element as NbtDouble).doubleValue() } }
+): NbtListPropertyProvider<Double> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            { NbtList().also { list -> list.addAll(it.map(NbtDouble::of)) } }
+        ) { NbtListWatcher(it as NbtList, NbtDouble::of) { nbt -> (nbt as NbtDouble).doubleValue() } }
+    }
 }
 
 /**
@@ -305,11 +329,13 @@ public fun CompoundProperty.doubleList(
 public fun CompoundProperty.stringList(
     name: String? = null,
     default: Iterable<String>? = null
-): NbtListPropertyProvider<String> = provider { propName ->
-    Delegate(
-        this,
-        name ?: propName,
-        default?.toMutableList(),
-        { NbtList().also { list -> list.addAll(it.map(NbtString::of)) } }
-    ) { NbtListWatcher(it as NbtList, NbtString::of, NbtElement::asString) }
+): NbtListPropertyProvider<String> {
+    return provider { propName ->
+        Delegate(
+            this,
+            name ?: propName,
+            default?.toMutableList(),
+            { NbtList().also { list -> list.addAll(it.map(NbtString::of)) } }
+        ) { NbtListWatcher(it as NbtList, NbtString::of, NbtElement::asString) }
+    }
 }
