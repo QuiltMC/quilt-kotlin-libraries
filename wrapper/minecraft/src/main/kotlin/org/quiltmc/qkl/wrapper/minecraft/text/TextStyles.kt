@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package org.quiltmc.qkl.wrapper.minecraft.text
 
 import net.minecraft.entity.Entity
@@ -26,52 +28,112 @@ import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.text.mixin.StyleAccessor
 import java.util.UUID
+import kotlin.math.roundToInt
 
 /**
- * A mutable color object that can be transformed into Minecraft [color][TextColor].
+ * TODO Kdoc.
+ */
+@TextDslMarker
+@Suppress("MagicNumber")
+public fun Color(red: Int, green: Int, blue: Int): Color = Color((red shl 16) + (green shl 8) + blue)
+
+/**
+ * TODO KDoc.
+ */
+@TextDslMarker
+@Suppress("MagicNumber")
+public fun Color(red: Float, green: Float, blue: Float): Color = Color(
+    (red.coerceIn(0F, 1F) * 255).roundToInt(),
+    (green.coerceIn(0F, 1F) * 255).roundToInt(),
+    (blue.coerceIn(0F, 1F) * 255).roundToInt()
+)
+
+/**
+ * A color class that can transform RGB values into color codes.
  *
- * @property rgb The RGB value to convert to a Minecraft [color][TextColor].
+ * @property value The RGB value to convert to a color code.
  *
  * @author NoComment1105
  */
 @TextDslMarker
-public class MutableColor(public var rgb: Int) {
+@JvmInline
+public value class Color(public val value: Int) {
+    /** A specific shade of red generated from [value]. */
+    public val red: Int get() = value shl 16
+    /** A specific shade of green generated from [value]. */
+    public val green: Int get() = value shl 8 and 0xFF
+    /** A specific shade of blue generated from [value]. */
+    public val blue: Int get() = value and 0xFF
+
     public companion object {
+        /** Minecraft's native black color. */
+        public val BLACK: Color = Color(0x000000)
+        /** Minecraft's native dark blue color. */
+        public val DARK_BLUE: Color = Color(0x0000AA)
+        /** Minecraft's native dark green color. */
+        public val DARK_GREEN: Color = Color(0x00AA00)
+        /** Minecraft's native dark aqua color. */
+        public val DARK_AQUA: Color = Color(0x00AAAA)
+        /** Minecraft's native dark red color. */
+        public val DARK_RED: Color = Color(0xAA0000)
+        /** Minecraft's native dark purple color. */
+        public val DARK_PURPLE: Color = Color(0xAA00AA)
+        /** Minecraft's native gold color. */
+        public val GOLD: Color = Color(0xFFAA00)
+        /** Minecraft's native grey color. */
+        public val GREY: Color = Color(0xAAAAAA)
+        /** Minecraft's native dark grey color. */
+        public val DARK_GREY: Color = Color(0x555555)
+        /** Minecraft's native blue color. */
+        public val BLUE: Color = Color(0x5555FF)
+        /** Minecraft's native green color. */
+        public val GREEN: Color = Color(0x55FF55)
+        /** Minecraft's native aqua color. */
+        public val AQUA: Color = Color(0x55FFFF)
+        /** Minecraft's native red color. */
+        public val RED: Color = Color(0xFF5555)
+        /** Minecraft's native light purple color. */
+        public val LIGHT_PURPLE: Color = Color(0xFF55FF)
+        /** Minecraft's native yellow color. */
+        public val YELLOW: Color = Color(0xFFFF55)
+        /** Minecraft's native white color. */
+        public val WHITE: Color = Color(0xFFFFFF)
+
         /**
-         * Gets a color from [TextColor] and converts it to [MutableColor].
+         * Gets a color from [TextColor] and converts it to [Color].
          *
          * @param color The [TextColor] to convert
-         * @return A [MutableColor] from [color]
+         * @return A [Color] from [color]
          *
          * @author NoComment1105
          */
-        public fun fromTextColor(color: TextColor): MutableColor {
-            return MutableColor(color.rgb)
+        public fun fromTextColor(color: TextColor): Color {
+            return Color(color.rgb)
         }
 
         /**
-         * Gets a color from [Formatting] and converts it to [MutableColor].
+         * Gets a color from [Formatting] and converts it to [Color].
          * If the color value is null, it defaults to black.
          *
          * @param formattingColor The color to convert
-         * @return A [MutableColor] from [formattingColor] or black if invalid/null
+         * @return A [Color] from [formattingColor] or black if invalid/null
          *
          * @author NoComment1105
          */
-        public fun fromFormatting(formattingColor: Formatting): MutableColor {
-            return MutableColor(formattingColor.colorValue ?: 0x000000)
+        public fun fromFormatting(formattingColor: Formatting): Color {
+            return Color(formattingColor.colorValue ?: 0x000000)
         }
     }
 
     /**
-     * Converts [rgb] to a [TextColor].
+     * Converts [value] to a [TextColor].
      *
-     * @return A [TextColor] created from the [rgb] value
+     * @return A [TextColor] created from the [value] value
      *
      * @author NoComment1105
      */
     public fun toTextColor(): TextColor {
-        return TextColor.fromRgb(rgb)
+        return TextColor.fromRgb(value)
     }
 }
 
@@ -248,8 +310,8 @@ public class QklClickEvent {
  */
 @TextDslMarker
 public class MutableStyle {
-    /** A [MutableColor] to apply to the text. */
-    public var color: MutableColor? = null
+    /** A [Color] to apply to the text. */
+    public var color: Color? = null
     /** Whether to obfuscate the text or not. */
     public var obfuscated: Boolean = false
     /** Whether to format the text in bold or not. */
@@ -272,7 +334,7 @@ public class MutableStyle {
     public var font: Identifier? = null
 
     /**
-     * Converts 3 separate RGB values to a [MutableColor].
+     * Converts 3 separate RGB values to a [Color].
      *
      * @param red The red channel of the color
      * @param green The green channel of the color
@@ -282,29 +344,29 @@ public class MutableStyle {
      */
     @Suppress("MagicNumber")
     public fun color(red: Int, green: Int, blue: Int) {
-        this.color = MutableColor((red shl 16) + (green shl 8) + blue)
+        this.color = Color(red, green, blue)
     }
 
     /**
-     * Converts a single RGB value to a [MutableColor].
+     * Converts a single RGB value to a [Color].
      *
      * @param rgb The RGB value to convert
      *
      * @author NoComment1105
      */
     public fun color(rgb: Int) {
-        this.color = MutableColor(rgb)
+        this.color = Color(rgb)
     }
 
     /**
-     * Converts a string color to a [MutableColor].
+     * Converts a string color to a [Color].
      *
      * @param colorCode The color to convert.
      *
      * @author NoComment1105
      */
     public fun color(colorCode: String) {
-        this.color = MutableColor(colorCode.toColor())
+        this.color = Color(colorCode.toColor())
     }
 
     /**
@@ -342,7 +404,7 @@ public class MutableStyle {
         @Suppress("MagicNumber") // It's the colour code...
         return text.setStyle(
             StyleAccessor.create(
-                (color ?: MutableColor(0xffffff)).toTextColor(),
+                (color ?: Color(0xffffff)).toTextColor(),
                 obfuscated,
                 bold,
                 italic,
