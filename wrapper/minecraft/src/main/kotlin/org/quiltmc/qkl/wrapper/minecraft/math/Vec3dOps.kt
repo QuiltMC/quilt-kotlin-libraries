@@ -16,10 +16,11 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.math
 
+import net.minecraft.client.util.math.Vector3d
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
 import net.minecraft.util.math.Vec3i
-import net.minecraft.client.util.math.Vector3d
 
 //region Standard math operators
 /**
@@ -68,6 +69,17 @@ public operator fun Vec3d.times(other: Double): Vec3d {
 }
 
 /**
+ * Multiplies a Double and a [Vec3d].
+ */
+public operator fun Double.times(other: Vec3d): Vec3d {
+    return Vec3d(
+        this * other.x,
+        this * other.y,
+        this * other.z
+    )
+}
+
+/**
  * Divides a [Vec3d] and a Double.
  */
 public operator fun Vec3d.div(other: Double): Vec3d {
@@ -88,28 +100,6 @@ public operator fun Vec3d.unaryMinus(): Vec3d {
 
 //region Type compatibility operator variations
 /**
- * Adds a [Vec3f] to a [Vec3d].
- */
-public operator fun Vec3d.plus(other: Vec3f): Vec3d {
-    return Vec3d(
-        this.x + other.x.toDouble(),
-        this.y + other.y.toDouble(),
-        this.z + other.z.toDouble()
-    )
-}
-
-/**
- * Adds a [Vec3i] to a [Vec3d].
- */
-public operator fun Vec3d.plus(other: Vec3i): Vec3d {
-    return Vec3d(
-        this.x + other.x.toDouble(),
-        this.y + other.y.toDouble(),
-        this.z + other.z.toDouble()
-    )
-}
-
-/**
  * Adds a [Vector3d] to a [Vec3d].
  */
 public operator fun Vec3d.plus(other: Vector3d): Vec3d {
@@ -121,28 +111,6 @@ public operator fun Vec3d.plus(other: Vector3d): Vec3d {
 }
 
 /**
- * Subtracts a [Vec3f] from a [Vec3d].
- */
-public operator fun Vec3d.minus(other: Vec3f): Vec3d {
-    return Vec3d(
-        this.x - other.x.toDouble(),
-        this.y - other.y.toDouble(),
-        this.z - other.z.toDouble()
-    )
-}
-
-/**
- * Subtracts a [Vec3i] from a [Vec3d].
- */
-public operator fun Vec3d.minus(other: Vec3i): Vec3d {
-    return Vec3d(
-        this.x - other.x.toDouble(),
-        this.y - other.y.toDouble(),
-        this.z - other.z.toDouble()
-    )
-}
-
-/**
  * Subtracts a [Vector3d] from a [Vec3d].
  */
 public operator fun Vec3d.minus(other: Vector3d): Vec3d {
@@ -150,30 +118,6 @@ public operator fun Vec3d.minus(other: Vector3d): Vec3d {
         this.x - other.x,
         this.y - other.y,
         this.z - other.z
-    )
-}
-
-/**
- * Multiplies a [Vec3d] and a [Vec3f].
- * This method is a shorthand for component wise multiplication.
- */
-public operator fun Vec3d.times(other: Vec3f): Vec3d {
-    return Vec3d(
-        this.x * other.x.toDouble(),
-        this.y * other.y.toDouble(),
-        this.z * other.z.toDouble()
-    )
-}
-
-/**
- * Multiplies a [Vec3d] and a [Vec3i].
- * This method is a shorthand for component wise multiplication.
- */
-public operator fun Vec3d.times(other: Vec3i): Vec3d {
-    return Vec3d(
-        this.x * other.x.toDouble(),
-        this.y * other.y.toDouble(),
-        this.z * other.z.toDouble()
     )
 }
 
@@ -203,34 +147,6 @@ public infix fun Vec3d.dot(other: Vec3d): Double {
  */
 public infix fun Vec3d.cross(other: Vec3d): Vec3d {
     return this.crossProduct(other)
-}
-
-/**
- * The dot product of a [Vec3d] and a [Vec3f].
- */
-public infix fun Vec3d.dot(other: Vec3f): Double {
-    return this.dotProduct(Vec3d(other))
-}
-
-/**
- * The cross product of a [Vec3d] and a [Vec3f].
- */
-public infix fun Vec3d.cross(other: Vec3f): Vec3d {
-    return this.crossProduct(Vec3d(other))
-}
-
-/**
- * The dot product of a [Vec3d] and a [Vec3i].
- */
-public infix fun Vec3d.dot(other: Vec3i): Double {
-    return this.dotProduct(Vec3d.of(other))
-}
-
-/**
- * The cross product of a [Vec3d] and a [Vec3i].
- */
-public infix fun Vec3d.cross(other: Vec3i): Vec3d {
-    return this.crossProduct(Vec3d.of(other))
 }
 
 /**
@@ -266,5 +182,51 @@ public operator fun Vec3d.component2(): Double {
  */
 public operator fun Vec3d.component3(): Double {
     return this.z
+}
+//endregion
+
+//region Conversion methods
+/**
+ * Converts a [Vec3d] to a [Vec3f].
+ */
+public fun Vec3d.toVec3f(): Vec3f {
+    return Vec3f(
+        this.x.toFloat(),
+        this.y.toFloat(),
+        this.z.toFloat()
+    )
+}
+
+/**
+ * Converts a [Vec3d] to a [Vec3i].
+ */
+public fun Vec3d.toVec3i(): Vec3i {
+    return Vec3i(
+        this.x.toInt(),
+        this.y.toInt(),
+        this.z.toInt()
+    )
+}
+
+/**
+ * Converts a [Vec3d] to a [BlockPos].
+ */
+public fun Vec3d.toBlockPos(): BlockPos {
+    return BlockPos(
+        this.x.toInt(),
+        this.y.toInt(),
+        this.z.toInt()
+    )
+}
+
+/**
+ * Converts a [Vec3d] to a [Vector3d].
+ */
+public fun Vec3d.toVector3d(): Vector3d {
+    return Vector3d(
+        this.x,
+        this.y,
+        this.z
+    )
 }
 //endregion
