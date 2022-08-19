@@ -290,42 +290,47 @@ public class QklClickEvent {
     private var value: String? = null
 
     /** Opens a URL. */
-    public var openUrl: String = ""
-        set(url) = run {
+    public var openUrl: String
+        set(url) {
             action = ClickEvent.Action.OPEN_URL
             value = url
         }
+        get() { return "" }
     /** Opens a file. */
-    public var openFile: String = ""
-        set(path) = run {
+    public var openFile: String
+        set(path) {
             action = ClickEvent.Action.OPEN_FILE
             value = path
         }
+        get() { return "" }
     /** Runs a command. */
-    public var runCommand: String = ""
-        set(command) = run {
+    public var runCommand: String
+        set(command) {
             action = ClickEvent.Action.RUN_COMMAND
             value = command
         }
+        get() { return "" }
     /** Suggests a command. */
-    public var suggestCommand: String = ""
-        set(suggestedCommand) = run {
+    public var suggestCommand: String
+        set(suggestedCommand) {
             action = ClickEvent.Action.SUGGEST_COMMAND
             value = suggestedCommand
         }
+        get() { return "" }
     /** Changes page. */
-    public var changePage: Int = 0
-        set(page) = run {
+    public var changePage: Int
+        set(page) {
             action = ClickEvent.Action.CHANGE_PAGE
             value = page.toString()
         }
+        get() { return 0 }
     /** Copies text to the clipboard. */
-    public var copyToClipboard: String = ""
+    public var copyToClipboard: String
         set(toCopy) {
             action = ClickEvent.Action.COPY_TO_CLIPBOARD
             value = toCopy
-            field = toCopy
         }
+        get() { return "" }
 
     /**
      * Creates a click event based on the [action] and [value] provided.
