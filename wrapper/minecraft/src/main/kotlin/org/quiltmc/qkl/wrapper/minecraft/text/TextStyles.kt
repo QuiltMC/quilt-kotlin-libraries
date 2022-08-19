@@ -31,14 +31,36 @@ import java.util.UUID
 import kotlin.math.roundToInt
 
 /**
- * TODO Kdoc.
+ * Converts RGB values from Integers to a [Color] for use in text.
+ * Each argument should be within 0 and 255. If a number is outside the range, the function will automatically default
+ * it to the maximum value or minimum value, depending on which is nearer to the provided value
+ *
+ * @param red The red channel of the color
+ * @param green The green channel of the color
+ * @param blue The blue channel of the color
+ *
+ * @return A [Color] created from the provided RGB channels
+ *
+ * @author NoComment1105
  */
 @TextDslMarker
 @Suppress("MagicNumber")
-public fun Color(red: Int, green: Int, blue: Int): Color = Color((red shl 16) + (green shl 8) + blue)
+public fun Color(red: Int, green: Int, blue: Int): Color = Color(
+    (red.coerceIn(0, 255) shl 16) + (green.coerceIn(0, 255) shl 8) + blue.coerceIn(0, 255)
+)
 
 /**
- * TODO KDoc.
+ * Converts RGB values from floats to a [Color] for use in text.
+ * Each argument should be within 0 and 1. If a number is outside the range, the function will automatically default it
+ * to the maximum value or minimum value, depending on which is nearer to the provided value.
+ *
+ * @param red The red channel of the color
+ * @param green The green channel of the color
+ * @param blue The blue channel of the color
+ *
+ * @return A [Color] created from the provided RGB Channels
+ *
+ * @author NoComment1105
  */
 @TextDslMarker
 @Suppress("MagicNumber")
@@ -58,13 +80,6 @@ public fun Color(red: Float, green: Float, blue: Float): Color = Color(
 @TextDslMarker
 @JvmInline
 public value class Color(public val value: Int) {
-    /** A specific shade of red generated from [value]. */
-    public val red: Int get() = value shl 16
-    /** A specific shade of green generated from [value]. */
-    public val green: Int get() = value shl 8 and 0xFF
-    /** A specific shade of blue generated from [value]. */
-    public val blue: Int get() = value and 0xFF
-
     public companion object {
         /** Minecraft's native black color. */
         public val BLACK: Color = Color(0x000000)
@@ -121,7 +136,7 @@ public value class Color(public val value: Int) {
          * @author NoComment1105
          */
         public fun fromFormatting(formattingColor: Formatting): Color {
-            return Color(formattingColor.colorValue ?: 0x000000)
+            return Color(formattingColor.colorValue?.let(::Color)?.value ?: BLACK.value)
         }
     }
 
@@ -138,7 +153,7 @@ public value class Color(public val value: Int) {
 }
 
 /**
- * The build to create a hover event for an item.
+ * The builder to create a hover event for an item.
  *
  * @author NoComment1105
  */
@@ -404,7 +419,7 @@ public class MutableStyle {
         @Suppress("MagicNumber") // It's the colour code...
         return text.setStyle(
             StyleAccessor.create(
-                (color ?: Color(0xffffff)).toTextColor(),
+                (color?.value?.let(::Color) ?: Color.BLACK).toTextColor(),
                 obfuscated,
                 bold,
                 italic,
