@@ -33,7 +33,7 @@ import kotlin.math.roundToInt
 /**
  * Converts RGB values from Integers to a [Color] for use in text.
  * Each argument should be within 0 and 255. If a number is outside the range, the function will automatically default
- * it to the maximum value or minimum value, depending on which is nearer to the provided value
+ * it to the maximum or minimum value, depending on which is nearer to the provided value
  *
  * @param red The red channel of the color
  * @param green The green channel of the color
@@ -52,7 +52,7 @@ public fun Color(red: Int, green: Int, blue: Int): Color = Color(
 /**
  * Converts RGB values from floats to a [Color] for use in text.
  * Each argument should be within 0 and 1. If a number is outside the range, the function will automatically default it
- * to the maximum value or minimum value, depending on which is nearer to the provided value.
+ * to the maximum or minimum value, depending on which is nearer to the provided value.
  *
  * @param red The red channel of the color
  * @param green The green channel of the color
@@ -68,6 +68,27 @@ public fun Color(red: Float, green: Float, blue: Float): Color = Color(
     (red.coerceIn(0F, 1F) * 255).roundToInt(),
     (green.coerceIn(0F, 1F) * 255).roundToInt(),
     (blue.coerceIn(0F, 1F) * 255).roundToInt()
+)
+
+/**
+ * Converts RGB values from doubles to a [Color] for use in text.
+ * Each argument should be within 0 and 1. If a number is outside the range, the function will automatically default it
+ * to the maximum or minimum value, depending on which is nearer to the provided value.
+ *
+ * @param red The red channel of the color
+ * @param green The green channel of the color
+ * @param blue The blue channel of the color
+ *
+ * @return A [Color] created from the provided RGB Channels
+ *
+ * @author NoComment1105
+ */
+@TextDslMarker
+@Suppress("MagicNumber")
+public fun Color(red: Double, green: Double, blue: Double): Color = Color(
+    (red.coerceIn(0.0, 1.0) * 255).roundToInt(),
+    (green.coerceIn(0.0, 1.0) * 255).roundToInt(),
+    (blue.coerceIn(0.0, 1.0) * 255).roundToInt(),
 )
 
 /**
@@ -268,13 +289,13 @@ public class QklClickEvent {
     /** The value for the event. */
     private var value: String? = null
 
-    /** Open's a URL. */
+    /** Opens a URL. */
     public var openUrl: String = ""
         set(url) = run {
             action = ClickEvent.Action.OPEN_URL
             value = url
         }
-    /** Open's a file. */
+    /** Opens a file. */
     public var openFile: String = ""
         set(path) = run {
             action = ClickEvent.Action.OPEN_FILE
@@ -292,7 +313,7 @@ public class QklClickEvent {
             action = ClickEvent.Action.SUGGEST_COMMAND
             value = suggestedCommand
         }
-    /** Change's page. */
+    /** Changes page. */
     public var changePage: Int = 0
         set(page) = run {
             action = ClickEvent.Action.CHANGE_PAGE
@@ -300,9 +321,10 @@ public class QklClickEvent {
         }
     /** Copies text to the clipboard. */
     public var copyToClipboard: String = ""
-        set(toCopy) = run {
+        set(toCopy) {
             action = ClickEvent.Action.COPY_TO_CLIPBOARD
             value = toCopy
+            field = toCopy
         }
 
     /**
@@ -349,7 +371,7 @@ public class MutableStyle {
     public var font: Identifier? = null
 
     /**
-     * Converts 3 separate RGB values to a [Color].
+     * Converts 3 RGB int values to a [Color].
      *
      * @param red The red channel of the color
      * @param green The green channel of the color
@@ -359,6 +381,34 @@ public class MutableStyle {
      */
     @Suppress("MagicNumber")
     public fun color(red: Int, green: Int, blue: Int) {
+        this.color = Color(red, green, blue)
+    }
+
+    /**
+     * Converts 3 RGB float values to a [Color].
+     *
+     * @param red The red channel of the color
+     * @param green The green channel of the color
+     * @param blue The blue channel of the color
+     *
+     * @author NoComment1105
+     */
+    @Suppress("MagicNumber")
+    public fun color(red: Float, green: Float, blue: Float) {
+        this.color = Color(red, green, blue)
+    }
+
+    /**
+     * Converts 3 RGB double values to a [Color].
+     *
+     * @param red The red channel of the color
+     * @param green The green channel of the color
+     * @param blue The blue channel of the color
+     *
+     * @author NoComment1105
+     */
+    @Suppress("MagicNumber")
+    public fun color(red: Double, green: Double, blue: Double) {
         this.color = Color(red, green, blue)
     }
 
