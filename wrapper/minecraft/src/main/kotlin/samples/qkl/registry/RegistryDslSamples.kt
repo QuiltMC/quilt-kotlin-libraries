@@ -19,7 +19,9 @@ package samples.qkl.registry
 import net.minecraft.item.Item
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
+import org.quiltmc.qkl.wrapper.minecraft.registry.RegistryScope
 import org.quiltmc.qkl.wrapper.minecraft.registry.invoke
+import org.quiltmc.qkl.wrapper.minecraft.registry.provide
 import org.quiltmc.qkl.wrapper.minecraft.registry.withId
 import org.quiltmc.qkl.wrapper.minecraft.registry.registryScope
 
@@ -72,6 +74,16 @@ private object RegistryDslSamples {
             }
 
             item withPath "item3" toRegistry Registry.ITEM
+        }
+    }
+
+    fun sampleRegistryDelegate() {
+        val scope: RegistryScope = stub()
+
+        val item: Item by scope.provide {
+            val instance: Item = stub()
+
+            instance withPath "item" toRegistry Registry.ITEM
         }
     }
 }

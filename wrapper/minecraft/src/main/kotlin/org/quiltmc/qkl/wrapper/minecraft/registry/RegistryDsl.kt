@@ -45,7 +45,7 @@ public data class RegistryObject<T>(val modid: String, val path: String, val t: 
      * @author Oliver-makes-code (Emma)
      * */
     @RegistryDsl
-    public infix fun toRegistry(registry: Registry<T>): T {
+    public infix fun toRegistry(registry: Registry<in T>): T {
         return Registry.register(registry, Identifier(modid, path), t)
     }
 }
