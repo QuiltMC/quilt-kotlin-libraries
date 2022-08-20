@@ -15,3 +15,15 @@ dependencies {
 tasks.remapJar {
     archiveBaseName.set("quilt-kotlin-libraries")
 }
+
+publishing {
+    publications {
+        getByName<MavenPublication>("Maven") {
+            val dokka = rootProject.tasks.getByName<Jar>("dokkaHtmlJar")
+            artifact(dokka.archiveFile) {
+                builtBy(dokka)
+                classifier = "dokka"
+            }
+        }
+    }
+}
