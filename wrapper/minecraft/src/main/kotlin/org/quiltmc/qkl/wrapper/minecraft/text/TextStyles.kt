@@ -314,65 +314,74 @@ public class TextHoverEvent {
  *
  * @author NoComment1105
  */
-public class QklClickEvent {
-    /** The action to perform on the click. */
-    private var action: ClickEvent.Action? = null
-    /** The value for the event. */
-    private var value: String? = null
-
-    /** Opens a URL. */
-    public var openUrl: String
-        set(url) {
-            action = ClickEvent.Action.OPEN_URL
-            value = url
-        }
-        get() { throw UnsupportedOperationException() }
-    /** Opens a file. */
-    public var openFile: String
-        set(path) {
-            action = ClickEvent.Action.OPEN_FILE
-            value = path
-        }
-        get() { throw UnsupportedOperationException() }
-    /** Runs a command. */
-    public var runCommand: String
-        set(command) {
-            action = ClickEvent.Action.RUN_COMMAND
-            value = command
-        }
-        get() { throw UnsupportedOperationException() }
-    /** Suggests a command. */
-    public var suggestCommand: String
-        set(suggestedCommand) {
-            action = ClickEvent.Action.SUGGEST_COMMAND
-            value = suggestedCommand
-        }
-        get() { return "" }
-    /** Changes page. */
-    public var changePage: Int
-        set(page) {
-            action = ClickEvent.Action.CHANGE_PAGE
-            value = page.toString()
-        }
-        get() { throw UnsupportedOperationException() }
-    /** Copies text to the clipboard. */
-    public var copyToClipboard: String
-        set(toCopy) {
-            action = ClickEvent.Action.COPY_TO_CLIPBOARD
-            value = toCopy
-        }
-        get() { throw UnsupportedOperationException() }
+public sealed class QklClickEvent {
+    /** Internal variable for building [ClickEvent]s. */
+    private var clickEvent: ClickEvent? = null
 
     /**
-     * Creates a click event based on the [action] and [value] provided.
+     * Builds a click event to open a [url]
      *
-     * @author NoComment1105
+     * @param url The url to open
+     * @return The click event to open the target [url]
      */
-    public fun create(): ClickEvent {
-        return ClickEvent(
-            action ?: ClickEvent.Action.SUGGEST_COMMAND,
-            value
-        )
+    public fun openUrl(url: String): ClickEvent? {
+        clickEvent = ClickEvent(ClickEvent.Action.OPEN_URL, url)
+        return clickEvent
+    }
+
+    /**
+     * Builds a click event to open a file at a specified [path]
+     *
+     * @param path The path of the file to open
+     * @return The click event to open the target file
+     */
+    public fun openFile(path: String): ClickEvent? {
+        clickEvent = ClickEvent(ClickEvent.Action.OPEN_FILE, path)
+        return clickEvent
+    }
+
+    /**
+     * Builds a click event run a given [command]
+     *
+     * @param command The command to suggest
+     * @return The click event to run the target [command]
+     */
+    public fun runCommand(command: String): ClickEvent? {
+        clickEvent = ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
+        return clickEvent
+    }
+
+    /**
+     * Builds a click event to suggest a [command].
+     *
+     * @param command The command to suggest
+     * @return The click event to suggest a given command
+     */
+    public fun suggestCommand(command: String): ClickEvent? {
+        clickEvent = ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
+        return clickEvent
+    }
+
+    /**
+     * Builds a click event to change a page to the given [page].
+     *
+     * @param page The page to change too
+     * @return The click event to change the page to the povided [page]
+     */
+    public fun changePage(page: Int): ClickEvent? {
+        clickEvent = ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
+        return clickEvent
+    }
+
+    /**
+     * Builds a click event to copy [toCopy] to the clipboard.
+     *
+     * @param toCopy The text to copy
+     * @return The click event to copy the provided text
+     */
+    public fun copyToClipboard(toCopy: String): ClickEvent? {
+        clickEvent = ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
+        return clickEvent
     }
 }
 
