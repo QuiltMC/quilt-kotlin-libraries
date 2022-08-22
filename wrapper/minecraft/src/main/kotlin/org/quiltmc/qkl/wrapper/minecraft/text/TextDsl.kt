@@ -29,7 +29,7 @@ import java.util.stream.Stream
  * DSL Marker for text based DSL's.
  */
 @DslMarker
-public annotation class TextDslMarker
+public annotation class TextDsl
 
 /**
  * This class contains the functions for building a [Text] object.
@@ -38,8 +38,8 @@ public annotation class TextDslMarker
  *
  * @author NoComment1105
  */
-@TextDslMarker
-public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
+@TextDsl
+public class TextDslConstructor internal constructor(action: TextDslConstructor.() -> Unit) {
     init {
         apply(action)
     }
@@ -158,7 +158,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public inline fun scoreboardText(
+    public inline fun scoreboard(
         name: String,
         objective: String,
         action: MutableStyle.() -> Unit = { }
@@ -177,7 +177,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public inline fun selectorText(
+    public inline fun selector(
         selector: String,
         separator: Optional<Text>,
         action: MutableStyle.() -> Unit = { }
@@ -229,7 +229,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public inline fun itemHoverEvent(action: ItemHoverEvent.() -> Unit = { }) {
+    public inline fun itemHoverEvent(action: ItemHoverEvent.() -> Unit) {
         MutableStyle().hoverEvent = ItemHoverEvent().apply(action).create()
     }
 
@@ -240,7 +240,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public inline fun entityHoverEvent(action: EntityHoverEvent.() -> Unit = { }) {
+    public inline fun entityHoverEvent(action: EntityHoverEvent.() -> Unit) {
         MutableStyle().hoverEvent = EntityHoverEvent().apply(action).create()
     }
 
@@ -251,7 +251,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public inline fun textHoverEvent(action: TextHoverEvent.() -> Unit = { }) {
+    public inline fun textHoverEvent(action: TextHoverEvent.() -> Unit) {
         MutableStyle().hoverEvent = TextHoverEvent().apply(action).create()
     }
 
@@ -262,7 +262,7 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
      *
      * @author NoComment1105
      */
-    public inline fun clickEvent(action: QklClickEvent.() -> Unit = { }) {
+    public inline fun clickEvent(action: QklClickEvent.() -> Unit) {
         MutableStyle().clickEvent = QklClickEvent().apply(action).create()
     }
 }
@@ -270,10 +270,10 @@ public class TextDsl internal constructor(action: TextDsl.() -> Unit) {
 /**
  * The DSL for building a [Text] object.
  *
- * @see TextDsl for action
+ * @see TextDslConstructor for action
  *
  * @author NoComment1105
  */
-public fun buildText(action: TextDsl.() -> Unit): Text {
-    return TextDsl(action).text
+public fun buildText(action: TextDslConstructor.() -> Unit): Text {
+    return TextDslConstructor(action).text
 }

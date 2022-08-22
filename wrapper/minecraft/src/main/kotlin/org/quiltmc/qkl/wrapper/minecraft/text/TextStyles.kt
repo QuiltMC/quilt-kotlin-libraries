@@ -26,6 +26,7 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.*
 import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
+import net.minecraft.util.Util
 import org.quiltmc.qkl.wrapper.minecraft.text.mixin.StyleAccessor
 import java.util.UUID
 import kotlin.math.roundToInt
@@ -43,7 +44,7 @@ import kotlin.math.roundToInt
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 @Suppress("MagicNumber")
 public fun Color(red: Int, green: Int, blue: Int): Color = Color(
     (red.coerceIn(0, 255) shl 16) + (green.coerceIn(0, 255) shl 8) + blue.coerceIn(0, 255)
@@ -62,7 +63,7 @@ public fun Color(red: Int, green: Int, blue: Int): Color = Color(
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 @Suppress("MagicNumber")
 public fun Color(red: Float, green: Float, blue: Float): Color = Color(
     (red.coerceIn(0F, 1F) * 255).roundToInt(),
@@ -83,7 +84,7 @@ public fun Color(red: Float, green: Float, blue: Float): Color = Color(
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 @Suppress("MagicNumber")
 public fun Color(red: Double, green: Double, blue: Double): Color = Color(
     (red.coerceIn(0.0, 1.0) * 255).roundToInt(),
@@ -98,9 +99,16 @@ public fun Color(red: Double, green: Double, blue: Double): Color = Color(
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 @JvmInline
 public value class Color(public val value: Int) {
+    /** A color of red influenced by [value]. */
+    public val red: Int get() = value shr 16 and 0xFF
+    /** A color of green influenced by [value]. */
+    public val green: Int get() = value shr 8 and 0xFF
+    /** A color of blue influenced by [value]. */
+    public val blue: Int get() = value and 0xFF
+
     public companion object {
         /** Minecraft's native black color. */
         public val BLACK: Color = Color(0x000000)
@@ -178,7 +186,7 @@ public value class Color(public val value: Int) {
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 public class ItemHoverEvent {
     /** The item stack to apply the event to. */
     public var itemStack: ItemStack? = null
@@ -196,9 +204,8 @@ public class ItemHoverEvent {
         return if (itemStack != null) {
             itemStack!!
         } else if (item != null) {
-            ItemStack(item).let {
+            ItemStack(item).also {
                 it.nbt = nbt
-                it
             }
         } else if (nbt != null) {
             ItemStack.fromNbt(nbt)
@@ -227,7 +234,7 @@ public class ItemHoverEvent {
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 public class EntityHoverEvent {
     /** The entity type to apply the hover event to. */
     public var entityType: EntityType<Entity>? = null
@@ -246,7 +253,7 @@ public class EntityHoverEvent {
             HoverEvent.Action.SHOW_ENTITY,
             HoverEvent.EntityContent(
                 entityType ?: EntityType.PLAYER,
-                uuid ?: UUID.randomUUID(),
+                uuid ?: Util.NIL_UUID,
                 name
             )
         )
@@ -258,7 +265,7 @@ public class EntityHoverEvent {
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 public class TextHoverEvent {
     /** The text to apply the hover event to. */
     public var text: Text? = null
@@ -295,21 +302,21 @@ public class QklClickEvent {
             action = ClickEvent.Action.OPEN_URL
             value = url
         }
-        get() { return "" }
+        get() { throw UnsupportedOperationException() }
     /** Opens a file. */
     public var openFile: String
         set(path) {
             action = ClickEvent.Action.OPEN_FILE
             value = path
         }
-        get() { return "" }
+        get() { throw UnsupportedOperationException() }
     /** Runs a command. */
     public var runCommand: String
         set(command) {
             action = ClickEvent.Action.RUN_COMMAND
             value = command
         }
-        get() { return "" }
+        get() { throw UnsupportedOperationException() }
     /** Suggests a command. */
     public var suggestCommand: String
         set(suggestedCommand) {
@@ -323,14 +330,14 @@ public class QklClickEvent {
             action = ClickEvent.Action.CHANGE_PAGE
             value = page.toString()
         }
-        get() { return 0 }
+        get() { throw UnsupportedOperationException() }
     /** Copies text to the clipboard. */
     public var copyToClipboard: String
         set(toCopy) {
             action = ClickEvent.Action.COPY_TO_CLIPBOARD
             value = toCopy
         }
-        get() { return "" }
+        get() { throw UnsupportedOperationException() }
 
     /**
      * Creates a click event based on the [action] and [value] provided.
@@ -350,7 +357,7 @@ public class QklClickEvent {
  *
  * @author NoComment1105
  */
-@TextDslMarker
+@TextDsl
 public class MutableStyle {
     /** A [Color] to apply to the text. */
     public var color: Color? = null
@@ -384,7 +391,6 @@ public class MutableStyle {
      *
      * @author NoComment1105
      */
-    @Suppress("MagicNumber")
     public fun color(red: Int, green: Int, blue: Int) {
         this.color = Color(red, green, blue)
     }
@@ -398,7 +404,6 @@ public class MutableStyle {
      *
      * @author NoComment1105
      */
-    @Suppress("MagicNumber")
     public fun color(red: Float, green: Float, blue: Float) {
         this.color = Color(red, green, blue)
     }
@@ -412,7 +417,6 @@ public class MutableStyle {
      *
      * @author NoComment1105
      */
-    @Suppress("MagicNumber")
     public fun color(red: Double, green: Double, blue: Double) {
         this.color = Color(red, green, blue)
     }
@@ -471,7 +475,6 @@ public class MutableStyle {
      * @author NoComment1105
      */
     public fun applyTo(text: MutableText): MutableText {
-        @Suppress("MagicNumber") // It's the colour code...
         return text.setStyle(
             StyleAccessor.create(
                 (color?.value?.let(::Color) ?: Color.BLACK).toTextColor(),
