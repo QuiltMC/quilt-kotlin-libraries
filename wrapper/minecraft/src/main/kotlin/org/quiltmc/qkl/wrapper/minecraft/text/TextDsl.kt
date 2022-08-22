@@ -19,14 +19,14 @@ package org.quiltmc.qkl.wrapper.minecraft.text
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
+import net.minecraft.text.Style
 import net.minecraft.text.Text
 import net.minecraft.text.data.TextData
-import net.minecraft.util.Identifier
-import java.util.Optional
+import java.util.*
 import java.util.stream.Stream
 
 /**
- * DSL Marker for text based DSL's.
+ * Marks objects as being part of QKL's Text Builder DSL.
  */
 @DslMarker
 public annotation class TextDsl
@@ -35,246 +35,260 @@ public annotation class TextDsl
  * This class contains the functions for building a [Text] object.
  * To use the DSL use [buildText].
  *
+ * @property text [Text] object being built
  *
  * @author NoComment1105
  */
 @TextDsl
-public class TextDslConstructor internal constructor() {
-
+public class TextBuilder
+@PublishedApi internal constructor(
+    private val text: MutableText
+) : StyleBuilder() {
     /**
-     * The text object being built.
+     * Appends a given [child] text
+     * to the end of this builder's result text.
      *
-     * @author NoComment1105
+     * @author Cypher121
      */
-    @PublishedApi
-    internal val text: MutableText = Text.empty()
-
-    /**
-     * Adds a translatable text.
-     *
-     * @param value The translation key of the text.
-     * @param args Any arguments to apply to the translatable text. Can be left
-     * empty for no arguments.
-     * @see MutableStyle for action
-     *
-     * @author NoComment1105
-     */
-    public inline fun translatable(
-        value: String,
-        vararg args: Any,
-        action: MutableStyle.() -> Unit = { }
-    ) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.translatable(value, args)))
+    public fun append(child: Text) {
+        text.append(child)
     }
 
     /**
-     * Adds a literal text.
+     * Builds a [Text] based on properties set on this builder.
      *
-     * @param value The text.
-     * @see MutableStyle for action
-     *
-     * @author NoComment1105
+     * @author Cypher121
      */
-    public inline fun literal(value: String, action: MutableStyle.() -> Unit = { }) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.literal(value)))
+    public fun buildText(): Text {
+        return super.applyTo(text)
     }
 
     /**
-     * Adds a mutable key bind text.
+     * This method of [StyleBuilder] is not
+     * available on [TextBuilder] and will throw
+     * an exception if used.
      *
-     * @param key The key of the Key bind
-     * @see MutableStyle for action
+     * @throws UnsupportedOperationException
      *
-     * @author NoComment1105
+     * @author Cypher121
      */
-    public inline fun keyBind(key: String, action: MutableStyle.() -> Unit = { }) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.keyBind(key)))
-    }
-
-
-    /**
-     * @see Text.nbt
-     *
-     * @author NoComment1105
-     */
-    public inline fun nbt(
-        pathPattern: String,
-        interpreting: Boolean,
-        separator: Optional<Text>,
-        nbt: TextData,
-        action: MutableStyle.() -> Unit = { }
-    ) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.nbt(pathPattern, interpreting, separator, nbt)))
+    @Deprecated(
+        message = "Text cannot be built as a Style",
+        level = DeprecationLevel.HIDDEN
+    )
+    override fun buildStyle(): Style {
+        throw UnsupportedOperationException(
+            "Text cannot be built as a Style"
+        )
     }
 
     /**
-     * @see Text.nbt
+     * This method of [StyleBuilder] is not
+     * available on [TextBuilder] and will throw
+     * an exception if used.
      *
-     * @author NoComment1105
+     * @throws UnsupportedOperationException
+     *
+     * @author Cypher121
      */
-    public inline fun nbt(
-        pathPattern: String,
-        interpreting: Boolean,
-        separator: Optional<Text>,
-        noinline nbt: ((ServerCommandSource) -> Stream<NbtCompound>),
-        action: MutableStyle.() -> Unit = { }
-    ) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.nbt(pathPattern, interpreting, separator, nbt)))
+    @Deprecated(
+        message = "Text cannot be built as a Style",
+        level = DeprecationLevel.HIDDEN
+    )
+    override fun applyTo(text: MutableText): MutableText {
+        throw UnsupportedOperationException(
+            "Text cannot be built as a Style"
+        )
     }
-
-    /**
-     * Add a plain text.
-     *
-     * @param value The text to add
-     * @see MutableStyle for action
-     *
-     * @author NoComment1105
-     */
-    public inline fun text(value: String, action: MutableStyle.() -> Unit = { }) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.empty().append(value)))
-    }
-
-    /**
-     * Adds a scoreboard.
-     *
-     * @param name The name to add to the scoreboard
-     * @param objective The objective of the scoreboard
-     * @see MutableStyle for action
-     *
-     * @author NoComment1105
-     */
-    public inline fun scoreboard(
-        name: String,
-        objective: String,
-        action: MutableStyle.() -> Unit = { }
-    ) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.score(name, objective)))
-    }
-
-    /**
-     * Adds a resolvable entity selector.
-     *
-     * @param separator the optional separator if there's multiple matches issued from the selector
-     * @param selector the selector
-     * @see MutableStyle for action
-     *
-     * @author NoComment1105
-     */
-    public inline fun selector(
-        selector: String,
-        separator: Optional<Text>,
-        action: MutableStyle.() -> Unit = { }
-    ) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        this.text.append(mutableStyle.applyTo(Text.selector(selector, separator)))
-    }
-
-    /**
-     * Adds a mutable empty text.
-     *
-     * @see MutableStyle for action
-     *
-     * @author NoComment1105
-     */
-    public inline fun empty(action: MutableStyle.() -> Unit = { }) {
-        val mutableStyle = MutableStyle()
-        mutableStyle.apply(action)
-        text.append(mutableStyle.applyTo(Text.empty()))
-    }
-
-    /**
-     * Sets the insertion for the text.
-     *
-     * @param insertion The string to insert
-     *
-     * @author NoComment1105
-     */
-    public fun insertion(insertion: String) {
-        MutableStyle().insertion = insertion
-    }
-
-    /**
-     * Sets the font for the text using the Minecraft Identifier system.
-     *
-     * @param font The font identifier
-     *
-     * @author NoComment1105
-     */
-    public fun font(font: Identifier) {
-        MutableStyle().font = font
-    }
-
-    /**
-     * Adds a hover event to an item.
-     *
-     * @see ItemHoverEvent for action
-     *
-     * @author NoComment1105
-     */
-    // FIXME Work out how to do this properly
-    public inline fun itemHoverEvent(action: ItemHoverEvent.() -> Unit) {
-        MutableStyle().hoverEvent = ItemHoverEvent().apply(action).create()
-    }
-
-    /**
-     * Adds a hover event to an entity.
-     *
-     * @see EntityHoverEvent for action
-     *
-     * @author NoComment1105
-     */
-    // FIXME Work out how to do this properly too
-    public inline fun entityHoverEvent(action: EntityHoverEvent.() -> Unit) {
-        MutableStyle().hoverEvent = EntityHoverEvent().apply(action).create()
-    }
-
-    /**
-     * Adds a hover event to text.
-     *
-     * @see TextHoverEvent for action
-     *
-     * @author NoComment1105
-     */
-    // FIXME Work out how to do this properly as well
-    public inline fun textHoverEvent(action: TextHoverEvent.() -> Unit) {
-        MutableStyle().hoverEvent = TextHoverEvent().apply(action).create()
-    }
-
-    /**
-     * Adds a click event to text.
-     *
-     * @see QklClickEvent for action
-     *
-     * @author NoComment1105
-     */
-    // FIXME Work out how to do this properly as well as that
-//    public inline fun clickEvent(action: QklClickEvent.() -> Unit) {
-//        MutableStyle().clickEvent = action
-//    }
 }
 
 /**
- * The DSL for building a [Text] object.
+ * Wrap given text in a [TextBuilder],
+ * apply the given [action], then append the result
+ * to the receiver [TextBuilder].
  *
- * @see TextDslConstructor for action
+ * @author Cypher121
+ */
+public inline fun TextBuilder.buildAndAppend(
+    text: MutableText,
+    action: TextBuilder.() -> Unit
+) {
+    append(TextBuilder(text).apply(action).buildText())
+}
+
+
+/**
+ * Adds a translatable text.
+ *
+ * @param value The translation key of the text.
+ * @param args Any arguments to apply to the translatable text. Can be left
+ * empty for no arguments.
+ * @see StyleBuilder for action
  *
  * @author NoComment1105
  */
-public fun buildText(action: TextDslConstructor.() -> Unit): Text {
-    return TextDslConstructor().also(action).text
+public inline fun TextBuilder.translatable(
+    value: String,
+    vararg args: Any,
+    action: TextBuilder.() -> Unit = { }
+) {
+    buildAndAppend(Text.translatable(value, args), action)
 }
+
+/**
+ * Adds a literal text.
+ *
+ * @param value The text.
+ * @see StyleBuilder for action
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.literal(
+    value: String,
+    action: TextBuilder.() -> Unit = { }
+) {
+
+    buildAndAppend(Text.literal(value), action)
+}
+
+/**
+ * Adds a mutable key bind text.
+ *
+ * @param key The key of the Key bind
+ * @see StyleBuilder for action
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.keyBind(
+    key: String,
+    action: TextBuilder.() -> Unit = { }
+) {
+    buildAndAppend(Text.keyBind(key), action)
+}
+
+
+/**
+ * @see Text.nbt
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.nbt(
+    pathPattern: String,
+    interpreting: Boolean,
+    separator: Optional<Text>,
+    nbt: TextData,
+    action: TextBuilder.() -> Unit = { }
+) {
+    buildAndAppend(
+        Text.nbt(
+            pathPattern,
+            interpreting,
+            separator,
+            nbt
+        ),
+        action
+    )
+}
+
+/**
+ * @see Text.nbt
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.nbt(
+    pathPattern: String,
+    interpreting: Boolean,
+    separator: Optional<Text>,
+    noinline nbt: ((ServerCommandSource) -> Stream<NbtCompound>),
+    action: TextBuilder.() -> Unit = { }
+) {
+    buildAndAppend(
+        Text.nbt(
+            pathPattern,
+            interpreting,
+            separator,
+            nbt
+        ),
+        action
+    )
+}
+
+/**
+ * TODO remove?
+ * Add a plain text.
+ *
+ * @param value The text to add
+ * @see StyleBuilder for action
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.text(
+    value: String,
+    action: TextBuilder.() -> Unit = { }
+) {
+    literal(value, action)
+}
+
+/**
+ * Adds a scoreboard.
+ *
+ * @param name The name to add to the scoreboard
+ * @param objective The objective of the scoreboard
+ * @see StyleBuilder for action
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.scoreboard(
+    name: String,
+    objective: String,
+    action: TextBuilder.() -> Unit = { }
+) {
+    buildAndAppend(Text.score(name, objective), action)
+}
+
+/**
+ * Adds a resolvable entity selector.
+ *
+ * @param separator the optional separator if there's multiple matches issued from the selector
+ * @param selector the selector
+ * @see StyleBuilder for action
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.selector(
+    selector: String,
+    separator: Optional<Text>,
+    action: TextBuilder.() -> Unit = { }
+) {
+    buildAndAppend(Text.selector(selector, separator), action)
+}
+
+/**
+ * Adds a mutable empty text.
+ *
+ * @see StyleBuilder for action
+ *
+ * @author NoComment1105
+ */
+public inline fun TextBuilder.empty(action: TextBuilder.() -> Unit = { }) {
+    buildAndAppend(Text.empty(), action)
+}
+
+/**
+ * Creates a [Text] object configured by given [action].
+ *
+ * @see TextBuilder for available parameters
+ *
+ * @author NoComment1105
+ */
+public inline fun buildText(action: TextBuilder.() -> Unit): Text {
+    return TextBuilder(Text.empty()).apply(action).buildText()
+}
+/*
+private val example: Text = buildText {
+    font = Identifier("my:font")
+
+    literal("OWO") {
+        clickEvent = copyToClipboard("abcd")
+    }
+}*/

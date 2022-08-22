@@ -87,46 +87,67 @@ public fun Color(red: Double, green: Double, blue: Double): Color = Color(
 public value class Color(public val value: Int) {
     @Suppress("MagicNumber")
     public constructor(red: Int, green: Int, blue: Int) : this(
-        (red.coerceIn(0, 255) shl 16) + (green.coerceIn(0, 255) shl 8) + blue.coerceIn(0, 255)
+        (red.coerceIn(0, 255) shl 16) + (green.coerceIn(
+            0,
+            255
+        ) shl 8) + blue.coerceIn(0, 255)
     )
+
     /** A color of red influenced by [value]. */
     public val red: Int get() = value shr 16 and 0xFF
+
     /** A color of green influenced by [value]. */
     public val green: Int get() = value shr 8 and 0xFF
+
     /** A color of blue influenced by [value]. */
     public val blue: Int get() = value and 0xFF
 
     public companion object {
         /** Minecraft's native black color. */
         public val BLACK: Color = Color(0x000000)
+
         /** Minecraft's native dark blue color. */
         public val DARK_BLUE: Color = Color(0x0000AA)
+
         /** Minecraft's native dark green color. */
         public val DARK_GREEN: Color = Color(0x00AA00)
+
         /** Minecraft's native dark aqua color. */
         public val DARK_AQUA: Color = Color(0x00AAAA)
+
         /** Minecraft's native dark red color. */
         public val DARK_RED: Color = Color(0xAA0000)
+
         /** Minecraft's native dark purple color. */
         public val DARK_PURPLE: Color = Color(0xAA00AA)
+
         /** Minecraft's native gold color. */
         public val GOLD: Color = Color(0xFFAA00)
+
         /** Minecraft's native grey color. */
         public val GREY: Color = Color(0xAAAAAA)
+
         /** Minecraft's native dark grey color. */
         public val DARK_GREY: Color = Color(0x555555)
+
         /** Minecraft's native blue color. */
         public val BLUE: Color = Color(0x5555FF)
+
         /** Minecraft's native green color. */
         public val GREEN: Color = Color(0x55FF55)
+
         /** Minecraft's native aqua color. */
         public val AQUA: Color = Color(0x55FFFF)
+
         /** Minecraft's native red color. */
         public val RED: Color = Color(0xFF5555)
+
         /** Minecraft's native light purple color. */
         public val LIGHT_PURPLE: Color = Color(0xFF55FF)
+
         /** Minecraft's native yellow color. */
         public val YELLOW: Color = Color(0xFFFF55)
+
         /** Minecraft's native white color. */
         public val WHITE: Color = Color(0xFFFFFF)
 
@@ -199,8 +220,10 @@ public value class Color(public val value: Int) {
 public class ItemHoverEvent {
     /** The item stack to apply the event to. */
     public var itemStack: ItemStack? = null
+
     /** The item to apply the event to. */
     public var item: Item? = null
+
     /** The NBT of the item to apply the event to. */
     public var nbt: NbtCompound? = null
 
@@ -247,8 +270,10 @@ public class ItemHoverEvent {
 public class EntityHoverEvent {
     /** The entity type to apply the hover event to. */
     public var entityType: EntityType<Entity>? = null
+
     /** The UUID of hte entity to apply the event to. */
     public var uuid: UUID? = null
+
     /** The name of the entity to apply the event to. */
     public var name: Text? = null
 
@@ -295,91 +320,41 @@ public class TextHoverEvent {
 }
 
 /**
- * The builder to create a [ClickEvent].
- *
- * @author NoComment1105
- */
-public sealed class QklClickEvent {
-    /** Builder of [ClickEvent]s. */
-    public var clickEvent: ClickEvent? = null
-
-    /**
-     * Builds a click event to open a [url]
-     *
-     * @param url The url to open
-     * @return The click event to open the target [url]
-     */
-    public fun openUrl(url: String): ClickEvent = ClickEvent(ClickEvent.Action.OPEN_URL, url)
-
-    /**
-     * Builds a click event to open a file at a specified [path]
-     *
-     * @param path The path of the file to open
-     * @return The click event to open the target file
-     */
-    public fun openFile(path: String): ClickEvent = ClickEvent(ClickEvent.Action.OPEN_FILE, path)
-
-    /**
-     * Builds a click event run a given [command]
-     *
-     * @param command The command to suggest
-     * @return The click event to run the target [command]
-     */
-    public fun runCommand(command: String): ClickEvent = ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
-
-    /**
-     * Builds a click event to suggest a [command].
-     *
-     * @param command The command to suggest
-     * @return The click event to suggest a given command
-     */
-    public fun suggestCommand(command: String): ClickEvent = ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
-
-
-    /**
-     * Builds a click event to change a page to the given [page].
-     *
-     * @param page The page to change too
-     * @return The click event to change the page to the povided [page]
-     */
-    public fun changePage(page: Int): ClickEvent = ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
-
-    /**
-     * Builds a click event to copy [toCopy] to the clipboard.
-     *
-     * @param toCopy The text to copy
-     * @return The click event to copy the provided text
-     */
-    public fun copyToClipboard(toCopy: String): ClickEvent = ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
-}
-
-/**
  * A mutable style object that transforms to Minecraft [styles][Style].
  *
  * @author NoComment1105
  */
 @TextDsl
-public class MutableStyle {
+public open class StyleBuilder {
     /** A [Color] to apply to the text. */
-    public var color: Color? = null
+    public var color: Color = Color.BLACK
+
     /** Whether to obfuscate the text or not. */
     public var obfuscated: Boolean = false
+
     /** Whether to format the text in bold or not. */
     public var bold: Boolean = false
+
     /** Whether to format the text in italics or not. */
     public var italic: Boolean = false
+
     /** Whether to format the text with a strikethrough or not. */
     public var strikethrough: Boolean = false
+
     /** Whether to format the text with an underline or not. */
     public var underline: Boolean = false
+
     /** A [HoverEvent] to apply to the text. */
     public var hoverEvent: HoverEvent? = null
+
     /** A [ClickEvent] to apply to the text. */
     public var clickEvent: ClickEvent? = null
+
     /**
      * An insertion inserted when a piece of text clicked while shift key is down in the chat HUD to apply to the text.
      */
     public var insertion: String? = null
+
     /** An [Identifier] for the Minecraft font that would like to be used. */
     public var font: Identifier? = null
 
@@ -468,27 +443,90 @@ public class MutableStyle {
         return color.toInt(16)
     }
 
+
     /**
-     * Applies the [styles][MutableStyle] to the [text].
+     * Builds a click event to open a [url].
      *
-     * @param text The text to apply a [style][MutableStyle] to
+     * @param url The url to open
+     * @return The click event to open the target [url]
+     */
+    public fun openUrl(url: String): ClickEvent =
+        ClickEvent(ClickEvent.Action.OPEN_URL, url)
+
+    /**
+     * Builds a click event to open a file at a specified [path].
+     *
+     * @param path The path of the file to open
+     * @return The click event to open the target file
+     */
+    public fun openFile(path: String): ClickEvent =
+        ClickEvent(ClickEvent.Action.OPEN_FILE, path)
+
+    /**
+     * Builds a click event run a given [command].
+     *
+     * @param command The command to suggest
+     * @return The click event to run the target [command]
+     */
+    public fun runCommand(command: String): ClickEvent =
+        ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
+
+    /**
+     * Builds a click event to suggest a [command].
+     *
+     * @param command The command to suggest
+     * @return The click event to suggest a given command
+     */
+    public fun suggestCommand(command: String): ClickEvent =
+        ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
+
+
+    /**
+     * Builds a click event to change a page to the given [page].
+     *
+     * @param page The page to change too
+     * @return The click event to change the page to the povided [page]
+     */
+    public fun changePage(page: Int): ClickEvent =
+        ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
+
+    /**
+     * Builds a click event to copy [toCopy] to the clipboard.
+     *
+     * @param toCopy The text to copy
+     * @return The click event to copy the provided text
+     */
+    public fun copyToClipboard(toCopy: String): ClickEvent =
+        ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
+
+    /**
+     * Builds a [Style] based on properties set on the builder.
+     *
+     * @author Cypher121
+     */
+    public open fun buildStyle(): Style {
+        return StyleAccessor.create(
+            color.toTextColor(),
+            obfuscated,
+            bold,
+            italic,
+            strikethrough,
+            underline,
+            clickEvent,
+            hoverEvent,
+            insertion,
+            font
+        )
+    }
+
+    /**
+     * Applies the [styles][StyleBuilder] to the [text].
+     *
+     * @param text The text to apply a [style][StyleBuilder] to
      *
      * @author NoComment1105
      */
-    public fun applyTo(text: MutableText): MutableText {
-        return text.setStyle(
-            StyleAccessor.create(
-                (color?.value?.let(::Color) ?: Color.BLACK).toTextColor(),
-                obfuscated,
-                bold,
-                italic,
-                strikethrough,
-                underline,
-                clickEvent,
-                hoverEvent,
-                insertion,
-                font
-            )
-        )
+    public open fun applyTo(text: MutableText): MutableText {
+        return text.setStyle(buildStyle())
     }
 }
