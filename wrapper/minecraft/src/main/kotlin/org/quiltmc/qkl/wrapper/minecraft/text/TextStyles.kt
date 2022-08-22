@@ -34,25 +34,6 @@ import java.util.UUID
 import kotlin.math.roundToInt
 
 /**
- * Converts RGB values from Integers to a [Color] for use in text.
- * Each argument should be within 0 and 255. If a number is outside the range, the function will automatically default
- * it to the maximum or minimum value, depending on which is nearer to the provided value
- *
- * @param red The red channel of the color
- * @param green The green channel of the color
- * @param blue The blue channel of the color
- *
- * @return A [Color] created from the provided RGB channels
- *
- * @author NoComment1105
- */
-@TextDsl
-@Suppress("MagicNumber")
-public fun Color(red: Int, green: Int, blue: Int): Color = Color(
-    (red.coerceIn(0, 255) shl 16) + (green.coerceIn(0, 255) shl 8) + blue.coerceIn(0, 255)
-)
-
-/**
  * Converts RGB values from floats to a [Color] for use in text.
  * Each argument should be within 0 and 1. If a number is outside the range, the function will automatically default it
  * to the maximum or minimum value, depending on which is nearer to the provided value.
@@ -104,6 +85,10 @@ public fun Color(red: Double, green: Double, blue: Double): Color = Color(
 @TextDsl
 @JvmInline
 public value class Color(public val value: Int) {
+    @Suppress("MagicNumber")
+    public constructor(red: Int, green: Int, blue: Int) : this(
+        (red.coerceIn(0, 255) shl 16) + (green.coerceIn(0, 255) shl 8) + blue.coerceIn(0, 255)
+    )
     /** A color of red influenced by [value]. */
     public val red: Int get() = value shr 16 and 0xFF
     /** A color of green influenced by [value]. */
