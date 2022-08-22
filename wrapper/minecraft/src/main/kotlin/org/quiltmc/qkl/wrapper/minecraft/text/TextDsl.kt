@@ -39,10 +39,7 @@ public annotation class TextDsl
  * @author NoComment1105
  */
 @TextDsl
-public class TextDslConstructor internal constructor(action: TextDslConstructor.() -> Unit) {
-    init {
-        apply(action)
-    }
+public class TextDslConstructor internal constructor() {
 
     /**
      * The text object being built.
@@ -229,6 +226,7 @@ public class TextDslConstructor internal constructor(action: TextDslConstructor.
      *
      * @author NoComment1105
      */
+    // FIXME Work out how to do this properly
     public inline fun itemHoverEvent(action: ItemHoverEvent.() -> Unit) {
         MutableStyle().hoverEvent = ItemHoverEvent().apply(action).create()
     }
@@ -240,6 +238,7 @@ public class TextDslConstructor internal constructor(action: TextDslConstructor.
      *
      * @author NoComment1105
      */
+    // FIXME Work out how to do this properly too
     public inline fun entityHoverEvent(action: EntityHoverEvent.() -> Unit) {
         MutableStyle().hoverEvent = EntityHoverEvent().apply(action).create()
     }
@@ -251,6 +250,7 @@ public class TextDslConstructor internal constructor(action: TextDslConstructor.
      *
      * @author NoComment1105
      */
+    // FIXME Work out how to do this properly as well
     public inline fun textHoverEvent(action: TextHoverEvent.() -> Unit) {
         MutableStyle().hoverEvent = TextHoverEvent().apply(action).create()
     }
@@ -262,9 +262,10 @@ public class TextDslConstructor internal constructor(action: TextDslConstructor.
      *
      * @author NoComment1105
      */
-    public inline fun clickEvent(action: QklClickEvent.() -> Unit) {
-        MutableStyle().clickEvent = QklClickEvent().apply(action).create()
-    }
+    // FIXME Work out how to do this properly as well as that
+//    public inline fun clickEvent(action: QklClickEvent.() -> Unit) {
+//        MutableStyle().clickEvent = action
+//    }
 }
 
 /**
@@ -275,5 +276,5 @@ public class TextDslConstructor internal constructor(action: TextDslConstructor.
  * @author NoComment1105
  */
 public fun buildText(action: TextDslConstructor.() -> Unit): Text {
-    return TextDslConstructor(action).text
+    return TextDslConstructor().also(action).text
 }

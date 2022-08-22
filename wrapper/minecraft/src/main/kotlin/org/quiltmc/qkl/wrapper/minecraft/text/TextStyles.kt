@@ -315,8 +315,8 @@ public class TextHoverEvent {
  * @author NoComment1105
  */
 public sealed class QklClickEvent {
-    /** Internal variable for building [ClickEvent]s. */
-    private var clickEvent: ClickEvent? = null
+    /** Builder of [ClickEvent]s. */
+    public var clickEvent: ClickEvent? = null
 
     /**
      * Builds a click event to open a [url]
@@ -324,10 +324,7 @@ public sealed class QklClickEvent {
      * @param url The url to open
      * @return The click event to open the target [url]
      */
-    public fun openUrl(url: String): ClickEvent? {
-        clickEvent = ClickEvent(ClickEvent.Action.OPEN_URL, url)
-        return clickEvent
-    }
+    public fun openUrl(url: String): ClickEvent = ClickEvent(ClickEvent.Action.OPEN_URL, url)
 
     /**
      * Builds a click event to open a file at a specified [path]
@@ -335,10 +332,7 @@ public sealed class QklClickEvent {
      * @param path The path of the file to open
      * @return The click event to open the target file
      */
-    public fun openFile(path: String): ClickEvent? {
-        clickEvent = ClickEvent(ClickEvent.Action.OPEN_FILE, path)
-        return clickEvent
-    }
+    public fun openFile(path: String): ClickEvent = ClickEvent(ClickEvent.Action.OPEN_FILE, path)
 
     /**
      * Builds a click event run a given [command]
@@ -346,10 +340,7 @@ public sealed class QklClickEvent {
      * @param command The command to suggest
      * @return The click event to run the target [command]
      */
-    public fun runCommand(command: String): ClickEvent? {
-        clickEvent = ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
-        return clickEvent
-    }
+    public fun runCommand(command: String): ClickEvent = ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
 
     /**
      * Builds a click event to suggest a [command].
@@ -357,10 +348,8 @@ public sealed class QklClickEvent {
      * @param command The command to suggest
      * @return The click event to suggest a given command
      */
-    public fun suggestCommand(command: String): ClickEvent? {
-        clickEvent = ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
-        return clickEvent
-    }
+    public fun suggestCommand(command: String): ClickEvent = ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
+
 
     /**
      * Builds a click event to change a page to the given [page].
@@ -368,10 +357,7 @@ public sealed class QklClickEvent {
      * @param page The page to change too
      * @return The click event to change the page to the povided [page]
      */
-    public fun changePage(page: Int): ClickEvent? {
-        clickEvent = ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
-        return clickEvent
-    }
+    public fun changePage(page: Int): ClickEvent = ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
 
     /**
      * Builds a click event to copy [toCopy] to the clipboard.
@@ -379,10 +365,7 @@ public sealed class QklClickEvent {
      * @param toCopy The text to copy
      * @return The click event to copy the provided text
      */
-    public fun copyToClipboard(toCopy: String): ClickEvent? {
-        clickEvent = ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
-        return clickEvent
-    }
+    public fun copyToClipboard(toCopy: String): ClickEvent = ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
 }
 
 /**
