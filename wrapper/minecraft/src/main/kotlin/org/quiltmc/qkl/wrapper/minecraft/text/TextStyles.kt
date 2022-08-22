@@ -18,12 +18,14 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.text
 
+import net.minecraft.block.MapColor
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.*
+import net.minecraft.util.DyeColor
 import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
 import net.minecraft.util.Util
@@ -147,11 +149,11 @@ public value class Color(public val value: Int) {
          * Gets a color from [TextColor] and converts it to [Color].
          *
          * @param color The [TextColor] to convert
-         * @return A [Color] from [color]
+         * @return A [Color] from [TextColor]
          *
          * @author NoComment1105
          */
-        public fun fromTextColor(color: TextColor): Color {
+        public fun from(color: TextColor): Color {
             return Color(color.rgb)
         }
 
@@ -159,13 +161,35 @@ public value class Color(public val value: Int) {
          * Gets a color from [Formatting] and converts it to [Color].
          * If the color value is null, it defaults to black.
          *
-         * @param formattingColor The color to convert
-         * @return A [Color] from [formattingColor] or black if invalid/null
+         * @param color The [Formatting] to convert
+         * @return A [Color] from [Formatting] or black if invalid/null
          *
          * @author NoComment1105
          */
-        public fun fromFormatting(formattingColor: Formatting): Color {
-            return Color(formattingColor.colorValue?.let(::Color)?.value ?: BLACK.value)
+        public fun from(color: Formatting): Color {
+            return Color(color.colorValue?.let(::Color)?.value ?: BLACK.value)
+        }
+
+        /**
+         * Gets a color from [MapColor] and converts it to [Color].
+         *
+         * @param color The [MapColor] to convert
+         * @return A [Color] from [MapColor]
+         *
+         * @author NoComment1105
+         */
+        public fun from(color: MapColor): Color {
+            return Color(color.color)
+        }
+
+        /**
+         * Gets a color from [DyeColor] and converts it to [Color].
+         *
+         * @param color The [DyeColor] to convert
+         * @return A [Color] from [DyeColor]
+         */
+        public fun from(color: DyeColor): Color {
+            return Color(color.signColor)
         }
     }
 
