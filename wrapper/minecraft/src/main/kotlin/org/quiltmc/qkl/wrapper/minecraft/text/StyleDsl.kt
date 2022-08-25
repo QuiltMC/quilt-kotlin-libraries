@@ -23,6 +23,7 @@ import net.minecraft.text.HoverEvent
 import net.minecraft.text.MutableText
 import net.minecraft.text.Style
 import net.minecraft.util.Identifier
+import org.quiltmc.qkl.wrapper.minecraft.*
 import org.quiltmc.qkl.wrapper.minecraft.text.mixin.StyleAccessor
 
 /**
@@ -183,7 +184,7 @@ public class StyleBuilder {
     }
 
     /**
-     * Converts a string color to a [Color].
+     * Converts a hexadecimal string color to a [Color].
      *
      * @param colorCode The color to convert.
      *
@@ -218,6 +219,22 @@ public class StyleBuilder {
     }
 
     /**
+     * Copies all non-null properties from a given [base] [Style]
+     * into this builder.
+     */
+    public fun copyFrom(base: Style) {
+        color = base.color?.let(Color::from) ?: color
+        bold = base.isBoldRaw ?: bold
+        italic = base.isItalicRaw ?: italic
+        strikethrough = base.isStrikethroughRaw ?: strikethrough
+        underlined = base.isUnderlinedRaw ?: underlined
+        clickEvent = base.clickEvent ?: clickEvent
+        hoverEvent = base.hoverEvent ?: hoverEvent
+        insertion = base.insertion ?: insertion
+        font = base.fontRaw ?: font
+    }
+
+    /**
      * Creates a new style while avoiding creating a new instance of the empty style.
      *
      * Both helpful to avoid multiple instances of the style being created,
@@ -225,7 +242,8 @@ public class StyleBuilder {
      */
     private fun createNewStyle(): Style {
         if (color == null && bold == null && italic == null && underlined == null && strikethrough == null &&
-                obfuscated == null && clickEvent == null && hoverEvent == null && insertion == null && font == null) {
+            obfuscated == null && clickEvent == null && hoverEvent == null && insertion == null && font == null
+        ) {
             return Style.EMPTY
         }
 

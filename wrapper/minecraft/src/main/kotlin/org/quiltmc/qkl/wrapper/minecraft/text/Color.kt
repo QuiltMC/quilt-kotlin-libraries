@@ -80,16 +80,13 @@ public value class Color(public val value: Int) {
     )
 
     /** A color of red influenced by [value]. */
-    public
-    val red: Int get() = value shr 16 and 0xFF
+    public val red: Int get() = value shr 16 and 0xFF
 
     /** A color of green influenced by [value]. */
-    public
-    val green: Int get() = value shr 8 and 0xFF
+    public val green: Int get() = value shr 8 and 0xFF
 
     /** A color of blue influenced by [value]. */
-    public
-    val blue: Int get() = value and 0xFF
+    public val blue: Int get() = value and 0xFF
 
     public companion object {
         /** Minecraft's native black color. */

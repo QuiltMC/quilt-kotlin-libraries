@@ -64,8 +64,8 @@ public class TextBuilder {
      */
     public inline fun <T> withProp(
         newValue: T,
-        getProp: (StyleBuilder) -> T,
-        setProp: (StyleBuilder, T) -> Unit,
+        getProp: StyleBuilder.() -> T,
+        setProp: StyleBuilder.(T) -> Unit,
         action: TextBuilder.() -> Unit
     ) {
         val oldValue = getProp(style)
@@ -262,7 +262,7 @@ public fun TextBuilder.empty() {
  */
 @TextDsl
 public inline fun TextBuilder.color(color: Color?, action: TextBuilder.() -> Unit) {
-    withProp(color, { it.color }, { builder, value -> builder.color = value }, action)
+    withProp(color, { color }, { this.color = it }, action)
 }
 
 /**
@@ -272,7 +272,7 @@ public inline fun TextBuilder.color(color: Color?, action: TextBuilder.() -> Uni
  */
 @TextDsl
 public inline fun TextBuilder.bold(bold: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(bold, { it.bold }, { builder, value -> builder.bold = value }, action)
+    withProp(bold, { bold }, { this.bold = it }, action)
 }
 
 /**
@@ -282,7 +282,7 @@ public inline fun TextBuilder.bold(bold: Boolean? = true, action: TextBuilder.()
  */
 @TextDsl
 public inline fun TextBuilder.italic(italic: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(italic, { it.italic }, { builder, value -> builder.italic = value }, action)
+    withProp(italic, { italic }, { this.italic = it }, action)
 }
 
 /**
@@ -292,7 +292,7 @@ public inline fun TextBuilder.italic(italic: Boolean? = true, action: TextBuilde
  */
 @TextDsl
 public inline fun TextBuilder.underlined(underlined: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(underlined, { it.underlined }, { builder, value -> builder.underlined = value }, action)
+    withProp(underlined, { underlined }, { this.underlined = it }, action)
 }
 
 /**
@@ -302,7 +302,7 @@ public inline fun TextBuilder.underlined(underlined: Boolean? = true, action: Te
  */
 @TextDsl
 public inline fun TextBuilder.strikethrough(strikethrough: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(strikethrough, { it.strikethrough }, { builder, value -> builder.strikethrough = value }, action)
+    withProp(strikethrough, { strikethrough }, { this.strikethrough = it }, action)
 }
 
 /**
@@ -312,7 +312,7 @@ public inline fun TextBuilder.strikethrough(strikethrough: Boolean? = true, acti
  */
 @TextDsl
 public inline fun TextBuilder.obfuscated(obfuscated: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(obfuscated, { it.obfuscated }, { builder, value -> builder.obfuscated = value }, action)
+    withProp(obfuscated, { obfuscated }, { this.obfuscated = it }, action)
 }
 
 /**
@@ -322,7 +322,7 @@ public inline fun TextBuilder.obfuscated(obfuscated: Boolean? = true, action: Te
  */
 @TextDsl
 public inline fun TextBuilder.clickEvent(clickEvent: ClickEvent?, action: TextBuilder.() -> Unit) {
-    withProp(clickEvent, { it.clickEvent }, { builder, value -> builder.clickEvent = value }, action)
+    withProp(clickEvent, { clickEvent }, { this.clickEvent = it }, action)
 }
 
 /**
@@ -332,7 +332,7 @@ public inline fun TextBuilder.clickEvent(clickEvent: ClickEvent?, action: TextBu
  */
 @TextDsl
 public inline fun TextBuilder.hoverEvent(hoverEvent: HoverEvent?, action: TextBuilder.() -> Unit) {
-    withProp(hoverEvent, { it.hoverEvent }, { builder, value -> builder.hoverEvent = value }, action)
+    withProp(hoverEvent, { hoverEvent }, { this.hoverEvent = it }, action)
 }
 
 /**
@@ -342,7 +342,7 @@ public inline fun TextBuilder.hoverEvent(hoverEvent: HoverEvent?, action: TextBu
  */
 @TextDsl
 public inline fun TextBuilder.insertion(insertion: String?, action: TextBuilder.() -> Unit) {
-    withProp(insertion, { it.insertion }, { builder, value -> builder.insertion = value }, action)
+    withProp(insertion, { insertion }, { this.insertion = it }, action)
 }
 
 /**
@@ -352,7 +352,7 @@ public inline fun TextBuilder.insertion(insertion: String?, action: TextBuilder.
  */
 @TextDsl
 public inline fun TextBuilder.font(font: Identifier?, action: TextBuilder.() -> Unit) {
-    withProp(font, { it.font }, { builder, value -> builder.font = value }, action)
+    withProp(font, { font }, { this.font = it }, action)
 }
 
 /**
