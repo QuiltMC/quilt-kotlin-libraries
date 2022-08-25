@@ -25,10 +25,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.math.Vec3d
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.argument.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.entity
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.required
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.sendFeedback
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.server
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.*
 import kotlin.random.Random
 
 /**
@@ -136,7 +133,7 @@ private object BrigadierDslSamples {
                             // Operator access is nullable only for optionals
                             val targetName = this[target]?.value()?.displayName ?: Text.literal("themselves")
 
-                            server.playerManager.broadcastSystemMessage(
+                            broadcastSystemMessage(
                                 Text.empty().apply {
                                     append(entity?.displayName ?: Text.literal("Someone"))
                                     append(Text.literal(" slaps "))
@@ -151,7 +148,7 @@ private object BrigadierDslSamples {
                                         append(Text.literal(" repeatedly"))
                                     }
                                 },
-                                MessageType.SAY_COMMAND
+                                false
                             )
                         }
                     }
