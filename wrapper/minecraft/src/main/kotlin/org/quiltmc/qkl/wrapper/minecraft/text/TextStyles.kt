@@ -19,18 +19,11 @@
 package org.quiltmc.qkl.wrapper.minecraft.text
 
 import net.minecraft.block.MapColor
-import net.minecraft.entity.Entity
-import net.minecraft.entity.EntityType
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.*
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
-import net.minecraft.util.Util
 import org.quiltmc.qkl.wrapper.minecraft.text.mixin.StyleAccessor
-import java.util.UUID
 import kotlin.math.roundToInt
 
 /**
@@ -87,20 +80,22 @@ public fun Color(red: Double, green: Double, blue: Double): Color = Color(
 public value class Color(public val value: Int) {
     @Suppress("MagicNumber")
     public constructor(red: Int, green: Int, blue: Int) : this(
-        (red.coerceIn(0, 255) shl 16) + (green.coerceIn(
-            0,
-            255
-        ) shl 8) + blue.coerceIn(0, 255)
+        (red.coerceIn(0, 255) shl 16) +
+                (green.coerceIn(0, 255) shl 8) +
+                blue.coerceIn(0, 255)
     )
 
     /** A color of red influenced by [value]. */
-    public val red: Int get() = value shr 16 and 0xFF
+    public
+    val red: Int get() = value shr 16 and 0xFF
 
     /** A color of green influenced by [value]. */
-    public val green: Int get() = value shr 8 and 0xFF
+    public
+    val green: Int get() = value shr 8 and 0xFF
 
     /** A color of blue influenced by [value]. */
-    public val blue: Int get() = value and 0xFF
+    public
+    val blue: Int get() = value and 0xFF
 
     public companion object {
         /** Minecraft's native black color. */
@@ -212,151 +207,105 @@ public value class Color(public val value: Int) {
 }
 
 /**
- * The builder to create a hover event for an item.
- *
- * @author NoComment1105
- */
-@TextDsl
-public class ItemHoverEvent {
-    /** The item stack to apply the event to. */
-    public var itemStack: ItemStack? = null
-
-    /** The item to apply the event to. */
-    public var item: Item? = null
-
-    /** The NBT of the item to apply the event to. */
-    public var nbt: NbtCompound? = null
-
-    /**
-     * Gets the item based off the [itemStack], [item] or [nbt] variables.
-     *
-     * @author NoComment1105
-     */
-    private fun getItem(): ItemStack {
-        return if (itemStack != null) {
-            itemStack!!
-        } else if (item != null) {
-            ItemStack(item).also {
-                it.nbt = nbt
-            }
-        } else if (nbt != null) {
-            ItemStack.fromNbt(nbt)
-        } else {
-            ItemStack.EMPTY
-        }
-    }
-
-    /**
-     * Creates the hover event.
-     *
-     * @author NoComment1105
-     */
-    public fun create(): HoverEvent {
-        return HoverEvent(
-            HoverEvent.Action.SHOW_ITEM,
-            HoverEvent.ItemStackContent(
-                itemStack ?: getItem()
-            )
-        )
-    }
-}
-
-/**
- * The builder to create a hover event for an entity.
- *
- * @author NoComment1105
- */
-@TextDsl
-public class EntityHoverEvent {
-    /** The entity type to apply the hover event to. */
-    public var entityType: EntityType<Entity>? = null
-
-    /** The UUID of hte entity to apply the event to. */
-    public var uuid: UUID? = null
-
-    /** The name of the entity to apply the event to. */
-    public var name: Text? = null
-
-    /**
-     * Creates a hover event for an entity based off of [entityType], [uuid] and [name].
-     *
-     * @author NoComment1105
-     */
-    public fun create(): HoverEvent {
-        return HoverEvent(
-            HoverEvent.Action.SHOW_ENTITY,
-            HoverEvent.EntityContent(
-                entityType ?: EntityType.PLAYER,
-                uuid ?: Util.NIL_UUID,
-                name
-            )
-        )
-    }
-}
-
-/**
- * The builder to create a hover event for text.
- *
- * @author NoComment1105
- */
-@TextDsl
-public class TextHoverEvent {
-    /** The text to apply the hover event to. */
-    public var text: Text? = null
-
-    /**
-     * Creates a hover event for the [text] provided.
-     *
-     * @author NoComment1105
-     */
-    public fun create(): HoverEvent {
-        return HoverEvent(
-            HoverEvent.Action.SHOW_TEXT,
-            text ?: buildText {
-                empty()
-            }
-        )
-    }
-}
-
-/**
  * A mutable style object that transforms to Minecraft [styles][Style].
  *
  * @author NoComment1105
  */
 @TextDsl
-public open class StyleBuilder {
+public class StyleBuilder {
     /** A [Color] to apply to the text. */
-    public var color: Color = Color.BLACK
+    public var color: Color? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** Whether to obfuscate the text or not. */
-    public var obfuscated: Boolean = false
+    public var obfuscated: Boolean? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** Whether to format the text in bold or not. */
-    public var bold: Boolean = false
+    public var bold: Boolean? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** Whether to format the text in italics or not. */
-    public var italic: Boolean = false
+    public var italic: Boolean? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** Whether to format the text with a strikethrough or not. */
-    public var strikethrough: Boolean = false
+    public var strikethrough: Boolean? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** Whether to format the text with an underline or not. */
-    public var underline: Boolean = false
+    public var underlined: Boolean? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** A [HoverEvent] to apply to the text. */
     public var hoverEvent: HoverEvent? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** A [ClickEvent] to apply to the text. */
     public var clickEvent: ClickEvent? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /**
      * An insertion inserted when a piece of text clicked while shift key is down in the chat HUD to apply to the text.
      */
     public var insertion: String? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
 
     /** An [Identifier] for the Minecraft font that would like to be used. */
     public var font: Identifier? = null
+        set(value) {
+            if (field != value) {
+                cachedStyle = null
+            }
+            field = value
+        }
+
+    private var cachedStyle: Style? = Style.EMPTY
 
     /**
      * Converts 3 RGB int values to a [Color].
@@ -443,80 +392,42 @@ public open class StyleBuilder {
         return color.toInt(16)
     }
 
-
     /**
-     * Builds a click event to open a [url].
+     * Creates a new style while avoiding creating a new instance of the empty style.
      *
-     * @param url The url to open
-     * @return The click event to open the target [url]
+     * Both helpful to avoid multiple instances of the style being created,
+     * and to enable optimizations in Minecraft code that use reference equality to [Style.EMPTY].
      */
-    public fun openUrl(url: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.OPEN_URL, url)
+    private fun createNewStyle(): Style {
+        if (color == null && bold == null && italic == null && underlined == null && strikethrough == null &&
+                obfuscated == null && clickEvent == null && hoverEvent == null && insertion == null && font == null) {
+            return Style.EMPTY
+        }
 
-    /**
-     * Builds a click event to open a file at a specified [path].
-     *
-     * @param path The path of the file to open
-     * @return The click event to open the target file
-     */
-    public fun openFile(path: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.OPEN_FILE, path)
-
-    /**
-     * Builds a click event run a given [command].
-     *
-     * @param command The command to suggest
-     * @return The click event to run the target [command]
-     */
-    public fun runCommand(command: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
-
-    /**
-     * Builds a click event to suggest a [command].
-     *
-     * @param command The command to suggest
-     * @return The click event to suggest a given command
-     */
-    public fun suggestCommand(command: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
-
-
-    /**
-     * Builds a click event to change a page to the given [page].
-     *
-     * @param page The page to change too
-     * @return The click event to change the page to the povided [page]
-     */
-    public fun changePage(page: Int): ClickEvent =
-        ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
-
-    /**
-     * Builds a click event to copy [toCopy] to the clipboard.
-     *
-     * @param toCopy The text to copy
-     * @return The click event to copy the provided text
-     */
-    public fun copyToClipboard(toCopy: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
-
-    /**
-     * Builds a [Style] based on properties set on the builder.
-     *
-     * @author Cypher121
-     */
-    public open fun buildStyle(): Style {
         return StyleAccessor.create(
-            color.toTextColor(),
-            obfuscated,
+            color?.toTextColor(),
             bold,
             italic,
+            underlined,
             strikethrough,
-            underline,
+            obfuscated,
             clickEvent,
             hoverEvent,
             insertion,
             font
         )
+    }
+
+    /**
+     * Builds a [Style] based on properties set on the builder.
+     *
+     * If called repeatedly with no property changes, will return
+     * a cached value.
+     *
+     * @author Cypher121
+     */
+    public fun buildStyle(): Style {
+        return cachedStyle ?: createNewStyle().also { cachedStyle = it }
     }
 
     /**
@@ -526,7 +437,16 @@ public open class StyleBuilder {
      *
      * @author NoComment1105
      */
-    public open fun applyTo(text: MutableText): MutableText {
+    public fun applyTo(text: MutableText): MutableText {
         return text.setStyle(buildStyle())
     }
+}
+
+/**
+ * Build a [Style] using the given [action] to set [StyleBuilder] properties.
+ *
+ * @author Cypher121
+ */
+public inline fun buildStyle(action: StyleBuilder.() -> Unit): Style {
+    return StyleBuilder().apply(action).buildStyle()
 }

@@ -18,10 +18,14 @@ package org.quiltmc.qkl.wrapper.minecraft.text
 
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.MutableText
-import net.minecraft.text.Style
-import net.minecraft.text.Text
+import net.minecraft.text.*
 import net.minecraft.text.data.TextData
+import net.minecraft.util.Identifier
+import org.quiltmc.qkl.wrapper.minecraft.*
+import org.quiltmc.qkl.wrapper.minecraft.isBoldRaw
+import org.quiltmc.qkl.wrapper.minecraft.isItalicRaw
+import org.quiltmc.qkl.wrapper.minecraft.isStrikethroughRaw
+import org.quiltmc.qkl.wrapper.minecraft.isUnderlinedRaw
 import java.util.*
 import java.util.stream.Stream
 
@@ -32,90 +36,70 @@ import java.util.stream.Stream
 public annotation class TextDsl
 
 /**
- * This class contains the functions for building a [Text] object.
- * To use the DSL use [buildText].
+ * A builder for a styled [Text] instance. Can be built into text with [build].
  *
- * @property text [Text] object being built
+ * @see [buildText]
  *
- * @author NoComment1105
+ * @author Cypher121
  */
 @TextDsl
-public class TextBuilder
-@PublishedApi internal constructor(
-    private val text: MutableText
-) : StyleBuilder() {
+public class TextBuilder {
     /**
-     * Appends a given [child] text
-     * to the end of this builder's result text.
+     * Current text state of the builder.
+     */
+    public val text: MutableText = Text.empty()
+
+    /**
+     * Current style state of the builder to be applied with [styleAndAppend].
+     */
+    public val style: StyleBuilder = StyleBuilder()
+
+    /**
+     * Applies the given [action] while setting the [StyleBuilder] property
+     * described by [getProp] and [setProp] to [newValue] for the duration of the action.
+     *
+     * The value is then reset to its original state.
      *
      * @author Cypher121
      */
-    public fun append(child: Text) {
-        text.append(child)
+    public inline fun <T> withProp(
+        newValue: T,
+        getProp: (StyleBuilder) -> T,
+        setProp: (StyleBuilder, T) -> Unit,
+        action: TextBuilder.() -> Unit
+    ) {
+        val oldValue = getProp(style)
+        setProp(style, newValue)
+
+        action()
+
+        setProp(style, oldValue)
     }
 
     /**
-     * Builds a [Text] based on properties set on this builder.
-     *
-     * @author Cypher121
+     * Applies the current [style] of the builder to the given [text]
+     * and appends it to the builder's result.
      */
-    public fun buildText(): Text {
-        return super.applyTo(text)
+    @TextDsl
+    public fun styleAndAppend(text: MutableText) {
+        this.text.append(style.applyTo(text))
     }
 
     /**
-     * This method of [StyleBuilder] is not
-     * available on [TextBuilder] and will throw
-     * an exception if used.
-     *
-     * @throws UnsupportedOperationException
-     *
-     * @author Cypher121
+     * Returns the [Text] result of this builder.
      */
-    @Deprecated(
-        message = "Text cannot be built as a Style",
-        level = DeprecationLevel.HIDDEN
-    )
-    override fun buildStyle(): Style {
-        throw UnsupportedOperationException(
-            "Text cannot be built as a Style"
-        )
-    }
-
-    /**
-     * This method of [StyleBuilder] is not
-     * available on [TextBuilder] and will throw
-     * an exception if used.
-     *
-     * @throws UnsupportedOperationException
-     *
-     * @author Cypher121
-     */
-    @Deprecated(
-        message = "Text cannot be built as a Style",
-        level = DeprecationLevel.HIDDEN
-    )
-    override fun applyTo(text: MutableText): MutableText {
-        throw UnsupportedOperationException(
-            "Text cannot be built as a Style"
-        )
+    public fun build(): Text {
+        return text
     }
 }
 
 /**
- * Wrap given text in a [TextBuilder],
- * apply the given [action], then append the result
- * to the receiver [TextBuilder].
- *
- * @author Cypher121
+ * Builds a [Text] instance by configuring a [TextBuilder] with the given [action].
  */
-public inline fun TextBuilder.buildAndAppend(
-    text: MutableText,
-    action: TextBuilder.() -> Unit
-) {
-    append(TextBuilder(text).apply(action).buildText())
+@TextDsl
+public inline fun buildText(action: TextBuilder.() -> Unit): Text {
+    return TextBuilder().apply(action).build()
 }
-
 
 /**
  * Adds a translatable text.
@@ -127,12 +111,12 @@ public inline fun TextBuilder.buildAndAppend(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.translatable(
+@TextDsl
+public fun TextBuilder.translatable(
     value: String,
-    vararg args: Any,
-    action: TextBuilder.() -> Unit = { }
+    vararg args: Any
 ) {
-    buildAndAppend(Text.translatable(value, args), action)
+    styleAndAppend(Text.translatable(value, args))
 }
 
 /**
@@ -143,12 +127,11 @@ public inline fun TextBuilder.translatable(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.literal(
-    value: String,
-    action: TextBuilder.() -> Unit = { }
+@TextDsl
+public fun TextBuilder.literal(
+    value: String
 ) {
-
-    buildAndAppend(Text.literal(value), action)
+    styleAndAppend(Text.literal(value))
 }
 
 /**
@@ -159,11 +142,11 @@ public inline fun TextBuilder.literal(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.keyBind(
-    key: String,
-    action: TextBuilder.() -> Unit = { }
+@TextDsl
+public fun TextBuilder.keyBind(
+    key: String
 ) {
-    buildAndAppend(Text.keyBind(key), action)
+    styleAndAppend(Text.keyBind(key))
 }
 
 
@@ -172,21 +155,20 @@ public inline fun TextBuilder.keyBind(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.nbt(
+@TextDsl
+public fun TextBuilder.nbt(
     pathPattern: String,
     interpreting: Boolean,
     separator: Optional<Text>,
-    nbt: TextData,
-    action: TextBuilder.() -> Unit = { }
+    nbt: TextData
 ) {
-    buildAndAppend(
+    styleAndAppend(
         Text.nbt(
             pathPattern,
             interpreting,
             separator,
             nbt
-        ),
-        action
+        )
     )
 }
 
@@ -195,38 +177,36 @@ public inline fun TextBuilder.nbt(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.nbt(
+@TextDsl
+public fun TextBuilder.nbt(
     pathPattern: String,
     interpreting: Boolean,
     separator: Optional<Text>,
-    noinline nbt: ((ServerCommandSource) -> Stream<NbtCompound>),
-    action: TextBuilder.() -> Unit = { }
+    nbt: ((ServerCommandSource) -> Stream<NbtCompound>)
 ) {
-    buildAndAppend(
+    styleAndAppend(
         Text.nbt(
             pathPattern,
             interpreting,
             separator,
             nbt
-        ),
-        action
+        )
     )
 }
 
 /**
- * TODO remove?
- * Add a plain text.
+ * Adds a pre-existing [Text] instance.
  *
  * @param value The text to add
  * @see StyleBuilder for action
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.text(
-    value: String,
-    action: TextBuilder.() -> Unit = { }
+@TextDsl
+public fun TextBuilder.text(
+    value: Text
 ) {
-    literal(value, action)
+    styleAndAppend(value.copy())
 }
 
 /**
@@ -238,12 +218,12 @@ public inline fun TextBuilder.text(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.scoreboard(
+@TextDsl
+public fun TextBuilder.scoreboard(
     name: String,
-    objective: String,
-    action: TextBuilder.() -> Unit = { }
+    objective: String
 ) {
-    buildAndAppend(Text.score(name, objective), action)
+    styleAndAppend(Text.score(name, objective))
 }
 
 /**
@@ -255,12 +235,12 @@ public inline fun TextBuilder.scoreboard(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.selector(
+@TextDsl
+public fun TextBuilder.selector(
     selector: String,
-    separator: Optional<Text>,
-    action: TextBuilder.() -> Unit = { }
+    separator: Optional<Text>
 ) {
-    buildAndAppend(Text.selector(selector, separator), action)
+    styleAndAppend(Text.selector(selector, separator))
 }
 
 /**
@@ -270,25 +250,172 @@ public inline fun TextBuilder.selector(
  *
  * @author NoComment1105
  */
-public inline fun TextBuilder.empty(action: TextBuilder.() -> Unit = { }) {
-    buildAndAppend(Text.empty(), action)
+@TextDsl
+public fun TextBuilder.empty() {
+    styleAndAppend(Text.empty())
 }
 
 /**
- * Creates a [Text] object configured by given [action].
+ * Applies the [TextBuilder] [action] with [color] set to the provided value.
  *
- * @see TextBuilder for available parameters
- *
- * @author NoComment1105
+ * @author Cypher121
  */
-public inline fun buildText(action: TextBuilder.() -> Unit): Text {
-    return TextBuilder(Text.empty()).apply(action).buildText()
+@TextDsl
+public inline fun TextBuilder.color(color: Color?, action: TextBuilder.() -> Unit) {
+    withProp(color, { it.color }, { builder, value -> builder.color = value }, action)
 }
-/*
-private val example: Text = buildText {
-    font = Identifier("my:font")
 
-    literal("OWO") {
-        clickEvent = copyToClipboard("abcd")
+/**
+ * Applies the [TextBuilder] [action] with [bold] set to the provided value (or enabled if no value given).
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.bold(bold: Boolean? = true, action: TextBuilder.() -> Unit) {
+    withProp(bold, { it.bold }, { builder, value -> builder.bold = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [italic] set to the provided value (or enabled if no value given).
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.italic(italic: Boolean? = true, action: TextBuilder.() -> Unit) {
+    withProp(italic, { it.italic }, { builder, value -> builder.italic = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [underlined] set to the provided value (or enabled if no value given).
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.underlined(underlined: Boolean? = true, action: TextBuilder.() -> Unit) {
+    withProp(underlined, { it.underlined }, { builder, value -> builder.underlined = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [strikethrough] set to the provided value (or enabled if no value given).
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.strikethrough(strikethrough: Boolean? = true, action: TextBuilder.() -> Unit) {
+    withProp(strikethrough, { it.strikethrough }, { builder, value -> builder.strikethrough = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [obfuscated] set to the provided value (or enabled if no value given).
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.obfuscated(obfuscated: Boolean? = true, action: TextBuilder.() -> Unit) {
+    withProp(obfuscated, { it.obfuscated }, { builder, value -> builder.obfuscated = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [clickEvent] set to the provided value.
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.clickEvent(clickEvent: ClickEvent?, action: TextBuilder.() -> Unit) {
+    withProp(clickEvent, { it.clickEvent }, { builder, value -> builder.clickEvent = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [hoverEvent] set to the provided value.
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.hoverEvent(hoverEvent: HoverEvent?, action: TextBuilder.() -> Unit) {
+    withProp(hoverEvent, { it.hoverEvent }, { builder, value -> builder.hoverEvent = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [insertion] set to the provided value.
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.insertion(insertion: String?, action: TextBuilder.() -> Unit) {
+    withProp(insertion, { it.insertion }, { builder, value -> builder.insertion = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with [font] set to the provided value.
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.font(font: Identifier?, action: TextBuilder.() -> Unit) {
+    withProp(font, { it.font }, { builder, value -> builder.font = value }, action)
+}
+
+/**
+ * Applies the [TextBuilder] [action] with the selected style properties changed.
+ *
+ * @author Cypher121
+ */
+@TextDsl
+public inline fun TextBuilder.styled(
+    color: Color? = style.color,
+    bold: Boolean? = style.bold,
+    italic: Boolean? = style.italic,
+    underlined: Boolean? = style.underlined,
+    strikethrough: Boolean? = style.strikethrough,
+    obfuscated: Boolean? = style.obfuscated,
+    clickEvent: ClickEvent? = style.clickEvent,
+    hoverEvent: HoverEvent? = style.hoverEvent,
+    insertion: String? = style.insertion,
+    font: Identifier? = style.font,
+    action: TextBuilder.() -> Unit
+) {
+    color(color) {
+        bold(bold) {
+            italic(italic) {
+                underlined(underlined) {
+                    strikethrough(strikethrough) {
+                        obfuscated(obfuscated) {
+                            clickEvent(clickEvent) {
+                                hoverEvent(hoverEvent) {
+                                    insertion(insertion) {
+                                        font(font) {
+                                            action()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-}*/
+}
+
+/**
+ * Applies the [TextBuilder] [action] using the given [style]'s properties.
+ *
+ * Similar to [Style.withParent], properties that are set to null on the style will
+ * not be changed from those currently set on the builder.
+ */
+@TextDsl
+public inline fun TextBuilder.styled(style: Style, action: TextBuilder.() -> Unit) {
+    styled(
+        style.color?.let(Color::from) ?: this.style.color,
+        style.isBoldRaw,
+        style.isItalicRaw,
+        style.isUnderlinedRaw,
+        style.isStrikethroughRaw,
+        style.isObfuscatedRaw,
+        style.clickEvent,
+        style.hoverEvent,
+        style.insertion,
+        style.fontRaw,
+        action
+    )
+}
