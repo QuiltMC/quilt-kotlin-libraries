@@ -29,7 +29,8 @@ buildscript {
 }
 
 group = "org.quiltmc"
-version = project.version
+val rootVersion = project.version
+version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk.1.8.2"
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 val javaVersion = 17 // The current version of Java used by Minecraft
@@ -75,9 +76,9 @@ allprojects {
 
     tasks {
         processResources {
-            inputs.property("version", version)
+            inputs.property("version", rootVersion)
             filesMatching("quilt.mod.json") {
-                expand(Pair("version", version))
+                expand(Pair("version", rootVersion))
             }
         }
 

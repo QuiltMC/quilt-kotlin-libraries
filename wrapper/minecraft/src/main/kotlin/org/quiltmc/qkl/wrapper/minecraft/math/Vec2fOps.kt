@@ -62,6 +62,16 @@ public operator fun Vec2f.times(other: Float): Vec2f {
 }
 
 /**
+ * Multiplies a Float and a [Vec2f].
+ */
+public operator fun Float.times(other: Vec2f): Vec2f {
+    return Vec2f(
+        this * other.x,
+        this * other.y
+    )
+}
+
+/**
  * Divides a [Vec2f] and a Float.
  */
 public operator fun Vec2f.div(other: Float): Vec2f {
@@ -139,5 +149,17 @@ public operator fun Vec2f.component1(): Float {
  */
 public operator fun Vec2f.component2(): Float {
     return this.y
+}
+//endregion
+
+//region Conversion methods
+/**
+ * Converts a [Vec2f] to a [Vector2f].
+ */
+public fun Vec2f.toVector2f(): Vector2f {
+    return Vector2f(
+        this.x,
+        this.y
+    )
 }
 //endregion
