@@ -112,10 +112,7 @@ public inline fun buildText(action: TextBuilder.() -> Unit): Text {
  * @author NoComment1105
  */
 @TextDsl
-public fun TextBuilder.translatable(
-    value: String,
-    vararg args: Any
-) {
+public fun TextBuilder.translatable(value: String, vararg args: Any) {
     styleAndAppend(Text.translatable(value, args))
 }
 
@@ -128,9 +125,7 @@ public fun TextBuilder.translatable(
  * @author NoComment1105
  */
 @TextDsl
-public fun TextBuilder.literal(
-    value: String
-) {
+public fun TextBuilder.literal(value: String) {
     styleAndAppend(Text.literal(value))
 }
 
@@ -143,9 +138,7 @@ public fun TextBuilder.literal(
  * @author NoComment1105
  */
 @TextDsl
-public fun TextBuilder.keyBind(
-    key: String
-) {
+public fun TextBuilder.keyBind(key: String) {
     styleAndAppend(Text.keyBind(key))
 }
 
@@ -203,9 +196,7 @@ public fun TextBuilder.nbt(
  * @author NoComment1105
  */
 @TextDsl
-public fun TextBuilder.text(
-    value: Text
-) {
+public fun TextBuilder.text(value: Text) {
     styleAndAppend(value.copy())
 }
 
@@ -219,10 +210,7 @@ public fun TextBuilder.text(
  * @author NoComment1105
  */
 @TextDsl
-public fun TextBuilder.scoreboard(
-    name: String,
-    objective: String
-) {
+public fun TextBuilder.scoreboard(name: String, objective: String) {
     styleAndAppend(Text.score(name, objective))
 }
 
@@ -236,10 +224,7 @@ public fun TextBuilder.scoreboard(
  * @author NoComment1105
  */
 @TextDsl
-public fun TextBuilder.selector(
-    selector: String,
-    separator: Optional<Text>
-) {
+public fun TextBuilder.selector(selector: String, separator: Optional<Text>) {
     styleAndAppend(Text.selector(selector, separator))
 }
 
