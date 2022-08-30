@@ -1,0 +1,14 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "org.quiltmc.qkl.wrapper.minecraft.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "brain.SensorTypeAccessor"
+    ],
+    "client": [],
+    "server": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
