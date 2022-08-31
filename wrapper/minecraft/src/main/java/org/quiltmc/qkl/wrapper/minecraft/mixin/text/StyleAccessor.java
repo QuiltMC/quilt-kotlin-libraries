@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.quiltmc.qkl.wrapper.minecraft.text.mixin;
+package org.quiltmc.qkl.wrapper.minecraft.mixin.text;
 
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.HoverEvent;
