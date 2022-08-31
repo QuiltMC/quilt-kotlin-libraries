@@ -39,7 +39,9 @@ public annotation class StyleDsl
  */
 @StyleDsl
 public class StyleBuilder {
-    /** A [Color] to apply to the text. */
+    /**
+     * A [Color] to apply to the text.
+     */
     public var color: Color? = null
         set(value) {
             if (field != value) {
@@ -48,7 +50,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** Whether to obfuscate the text or not. */
+    /**
+     * Whether to obfuscate the text or not.
+     */
     public var obfuscated: Boolean? = null
         set(value) {
             if (field != value) {
@@ -57,7 +61,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** Whether to format the text in bold or not. */
+    /**
+     * Whether to format the text in bold or not.
+     */
     public var bold: Boolean? = null
         set(value) {
             if (field != value) {
@@ -66,7 +72,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** Whether to format the text in italics or not. */
+    /**
+     * Whether to format the text in italics or not.
+     */
     public var italic: Boolean? = null
         set(value) {
             if (field != value) {
@@ -75,7 +83,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** Whether to format the text with a strikethrough or not. */
+    /**
+     * Whether to format the text with a strikethrough or not.
+     */
     public var strikethrough: Boolean? = null
         set(value) {
             if (field != value) {
@@ -84,7 +94,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** Whether to format the text with an underline or not. */
+    /**
+     * Whether to format the text with an underline or not.
+     */
     public var underlined: Boolean? = null
         set(value) {
             if (field != value) {
@@ -93,7 +105,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** A [HoverEvent] to apply to the text. */
+    /**
+     * A [HoverEvent] to apply to the text.
+     */
     public var hoverEvent: HoverEvent? = null
         set(value) {
             if (field != value) {
@@ -102,7 +116,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** A [ClickEvent] to apply to the text. */
+    /**
+     * A [ClickEvent] to apply to the text.
+     */
     public var clickEvent: ClickEvent? = null
         set(value) {
             if (field != value) {
@@ -122,7 +138,9 @@ public class StyleBuilder {
             field = value
         }
 
-    /** An [Identifier] for the Minecraft font that would like to be used. */
+    /**
+     * An [Identifier] for the Minecraft font that would like to be used.
+     */
     public var font: Identifier? = null
         set(value) {
             if (field != value) {

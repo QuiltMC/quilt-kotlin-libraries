@@ -1,10 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.quiltmc.qkl.wrapper.minecraft.text.mixin",
+  "package": "org.quiltmc.qkl.wrapper.minecraft.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "StyleAccessor"
+    "text.StyleAccessor"
   ],
   "client": [],
   "server": [],
