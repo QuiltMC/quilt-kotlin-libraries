@@ -95,6 +95,8 @@ public class TextBuilder {
 
 /**
  * Builds a [Text] instance by configuring a [TextBuilder] with the given [action].
+ *
+ * @sample samples.qkl.text.TextDslSamples.sampleBuildText
  */
 @TextDsl
 public inline fun buildText(action: TextBuilder.() -> Unit): Text {
@@ -343,6 +345,8 @@ public inline fun TextBuilder.font(font: Identifier?, action: TextBuilder.() -> 
 /**
  * Applies the [TextBuilder] [action] with the selected style properties changed.
  *
+ * @sample samples.qkl.text.TextDslSamples.sampleStyledText
+ *
  * @author Cypher121
  */
 @TextDsl
@@ -387,6 +391,8 @@ public inline fun TextBuilder.styled(
  *
  * Similar to [Style.withParent], properties that are set to null on the style will
  * not be changed from those currently set on the builder.
+ *
+ * @sample samples.qkl.text.TextDslSamples.sampleStyledText
  */
 @TextDsl
 public inline fun TextBuilder.styled(style: Style, action: TextBuilder.() -> Unit) {

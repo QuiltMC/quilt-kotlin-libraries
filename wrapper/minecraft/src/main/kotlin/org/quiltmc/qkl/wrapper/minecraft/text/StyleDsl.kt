@@ -306,6 +306,8 @@ public class StyleBuilder {
 /**
  * Build a [Style] using the given [action] to set [StyleBuilder] properties.
  *
+ * @sample samples.qkl.text.TextDslSamples.sampleBuildStyle
+ *
  * @author Cypher121
  */
 @StyleDsl

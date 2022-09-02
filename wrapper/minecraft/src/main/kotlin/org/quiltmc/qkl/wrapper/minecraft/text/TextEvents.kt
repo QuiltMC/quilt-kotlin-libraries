@@ -29,6 +29,8 @@ import java.util.*
 /**
  * Container object for [ClickEvent] builders.
  *
+ * @sample samples.qkl.text.TextDslSamples.sampleTextEvents
+ *
  * @author Cypher121
  */
 public object ClickEvents {
@@ -38,8 +40,9 @@ public object ClickEvents {
      * @param url The url to open
      * @return The click event to open the target [url]
      */
-    public fun openUrl(url: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.OPEN_URL, url)
+    public fun openUrl(url: String): ClickEvent {
+        return ClickEvent(ClickEvent.Action.OPEN_URL, url)
+    }
 
     /**
      * Builds a [ClickEvent] to open a file at a specified [path].
@@ -47,8 +50,9 @@ public object ClickEvents {
      * @param path The path of the file to open
      * @return The click event to open the target file
      */
-    public fun openFile(path: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.OPEN_FILE, path)
+    public fun openFile(path: String): ClickEvent {
+        return ClickEvent(ClickEvent.Action.OPEN_FILE, path)
+    }
 
     /**
      * Builds a [ClickEvent] run a given [command].
@@ -56,8 +60,9 @@ public object ClickEvents {
      * @param command The command to suggest
      * @return The click event to run the target [command]
      */
-    public fun runCommand(command: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
+    public fun runCommand(command: String): ClickEvent {
+        return ClickEvent(ClickEvent.Action.RUN_COMMAND, command)
+    }
 
     /**
      * Builds a [ClickEvent] to suggest a [command].
@@ -65,18 +70,19 @@ public object ClickEvents {
      * @param command The command to suggest
      * @return The click event to suggest a given command
      */
-    public fun suggestCommand(command: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
-
+    public fun suggestCommand(command: String): ClickEvent {
+        return ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)
+    }
 
     /**
      * Builds a [ClickEvent] to change a page to the given [page].
      *
      * @param page The page to change too
-     * @return The click event to change the page to the povided [page]
+     * @return The click event to change the page to the provided [page]
      */
-    public fun changePage(page: Int): ClickEvent =
-        ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
+    public fun changePage(page: Int): ClickEvent {
+        return ClickEvent(ClickEvent.Action.CHANGE_PAGE, page.toString())
+    }
 
     /**
      * Builds a [ClickEvent] to copy [toCopy] to the clipboard.
@@ -84,12 +90,15 @@ public object ClickEvents {
      * @param toCopy The text to copy
      * @return The click event to copy the provided text
      */
-    public fun copyToClipboard(toCopy: String): ClickEvent =
-        ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
+    public fun copyToClipboard(toCopy: String): ClickEvent {
+        return ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, toCopy)
+    }
 }
 
 /**
  * Container object for [HoverEvent] builders.
+ *
+ * @sample samples.qkl.text.TextDslSamples.sampleTextEvents
  */
 public object HoverEvents {
     /**
@@ -122,8 +131,8 @@ public object HoverEvents {
      *
      * @author NoComment1105
      */
-    public fun showItem(item: Item, nbt: NbtCompound? = null) {
-        showItem(item.defaultStack.also { it.nbt = nbt })
+    public fun showItem(item: Item, nbt: NbtCompound? = null): HoverEvent {
+        return showItem(item.defaultStack.also { it.nbt = nbt })
     }
 
     /**
