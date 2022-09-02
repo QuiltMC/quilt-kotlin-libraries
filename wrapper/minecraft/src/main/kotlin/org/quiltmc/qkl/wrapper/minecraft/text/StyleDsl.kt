@@ -24,7 +24,7 @@ import net.minecraft.text.MutableText
 import net.minecraft.text.Style
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.*
-import org.quiltmc.qkl.wrapper.minecraft.text.mixin.StyleAccessor
+import org.quiltmc.qkl.wrapper.minecraft.mixin.text.StyleAccessor
 
 /**
  * Marks objects as being part of QKL's Style Builder DSL.

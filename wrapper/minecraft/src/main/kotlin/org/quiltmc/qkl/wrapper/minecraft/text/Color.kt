@@ -75,8 +75,8 @@ public value class Color(public val value: Int) {
     @Suppress("MagicNumber")
     public constructor(red: Int, green: Int, blue: Int) : this(
         (red.coerceIn(0, 255) shl 16) +
-                (green.coerceIn(0, 255) shl 8) +
-                blue.coerceIn(0, 255)
+        (green.coerceIn(0, 255) shl 8) +
+        blue.coerceIn(0, 255)
     )
 
     /** A color of red influenced by [value]. */
