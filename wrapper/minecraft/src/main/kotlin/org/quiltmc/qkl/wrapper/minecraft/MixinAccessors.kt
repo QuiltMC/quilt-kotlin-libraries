@@ -18,7 +18,7 @@ package org.quiltmc.qkl.wrapper.minecraft
 
 import net.minecraft.text.Style
 import net.minecraft.util.Identifier
-import org.quiltmc.qkl.wrapper.minecraft.text.mixin.StyleAccessor
+import org.quiltmc.qkl.wrapper.minecraft.mixin.text.StyleAccessor
 
 //Accessors for internal Style variables. Required as getters on Style coerce null values to defaults.
 
