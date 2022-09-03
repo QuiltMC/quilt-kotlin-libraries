@@ -16,6 +16,10 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.registry
 
+import net.minecraft.block.Block
+import net.minecraft.item.BlockItem
+import net.minecraft.item.Item
+
 /**
  * Provides a [lazy][Lazy] registration using [scope][this].
  *
@@ -23,8 +27,30 @@ package org.quiltmc.qkl.wrapper.minecraft.registry
  *
  * When getting [value][Lazy.value] for the first time, the corresponding object is registered.
  *
- * @sample samples.qkl.registry.RegistryDslSamples.sampleRegistryDelegate
+ * @sample samples.qkl.registry.RegistryDslSamples.sampleRegistryScopeDelegate
  */
 public fun <T : Any> RegistryScope.provide(provider: RegistryScope.() -> T): Lazy<T> {
     return lazy { provider() }
+}
+
+/**
+ * Provides a [lazy][Lazy] registration using [action][this].
+ *
+ * When getting [value][Lazy.value] for the first time, the corresponding object is registered.
+ *
+ * @sample samples.qkl.registry.RegistryDslSamples.sampleRegistryActionDelegate
+ */
+public fun <T : Any> RegistryAction<T>.provide(path: String, provider: () -> T): Lazy<T> {
+    return lazy { provider() withId path }
+}
+
+/**
+ * Provides a [lazy][Lazy] registration using [action][this].
+ *
+ * When getting [value][Lazy.value] for the first time, the corresponding object is registered.
+ *
+ * This is a shortcut for default [BlockItem] registration.
+ */
+public fun RegistryAction<Item>.provideBlockItem(path: String, provider: () -> Block): Lazy<Item> {
+    return lazy { BlockItem(provider(), Item.Settings()) withId path }
 }

@@ -16,12 +16,14 @@
 
 package samples.qkl.registry
 
+import net.minecraft.block.Block
 import net.minecraft.item.Item
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import org.quiltmc.qkl.wrapper.minecraft.registry.RegistryScope
 import org.quiltmc.qkl.wrapper.minecraft.registry.invoke
 import org.quiltmc.qkl.wrapper.minecraft.registry.provide
+import org.quiltmc.qkl.wrapper.minecraft.registry.provideBlockItem
 import org.quiltmc.qkl.wrapper.minecraft.registry.withId
 import org.quiltmc.qkl.wrapper.minecraft.registry.registryScope
 
@@ -77,7 +79,7 @@ private object RegistryDslSamples {
         }
     }
 
-    fun sampleRegistryDelegate() {
+    fun sampleRegistryScopeDelegate() {
         val scope: RegistryScope = stub()
 
         val item: Item by scope.provide {
@@ -85,5 +87,21 @@ private object RegistryDslSamples {
 
             instance withPath "item" toRegistry Registry.ITEM
         }
+    }
+
+    fun sampleRegistryActionDelegate() {
+        // GlobalRegistrar.kt
+        val scope: RegistryScope = stub()
+
+        // Blocks.kt
+        val blocks = scope.action(Registry.BLOCK)
+
+        val myBlock by blocks.provide("block") { Block(stub()) }
+
+        // Items.kt
+        val items = scope.action(Registry.ITEM)
+
+        val myItem by items.provide("item") { Item(stub()) }
+        val myBlockItem by items.provideBlockItem("block") { myBlock } // Shortcut
     }
 }
