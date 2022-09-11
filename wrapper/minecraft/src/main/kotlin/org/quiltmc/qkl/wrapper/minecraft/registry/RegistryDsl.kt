@@ -45,7 +45,7 @@ public data class RegistryObject<T>(val modid: String, val path: String, val t: 
      * @author Oliver-makes-code (Emma)
      * */
     @RegistryDsl
-    public infix fun toRegistry(registry: Registry<T>): T {
+    public infix fun toRegistry(registry: Registry<in T>): T {
         return Registry.register(registry, Identifier(modid, path), t)
     }
 }
@@ -67,8 +67,8 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
      * @author Oliver-makes-code (Emma)
      * */
     @RegistryDsl
-    public infix fun T.withId(id: Identifier) {
-        Registry.register(registry, id, this)
+    public infix fun T.withId(id: Identifier): T {
+        return Registry.register(registry, id, this)
     }
 
     /**
@@ -83,13 +83,13 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
      * @author Oliver-makes-code (Emma)
      * */
     @RegistryDsl
-    public infix fun T.withId(id: String) {
+    public infix fun T.withId(id: String): T {
         val identifier = if (':' in id || modid == null) {
             Identifier(id)
         } else {
             Identifier(modid, id)
         }
-        Registry.register(registry, identifier, this)
+        return Registry.register(registry, identifier, this)
     }
 }
 
@@ -140,8 +140,17 @@ public class RegistryScope(public val modid: String) {
      * */
     @RegistryDsl
     public inline operator fun <T> Registry<T>.invoke(action: RegistryAction<T>.() -> Unit) {
-        RegistryAction(modid, this).apply(action)
+        action(this).apply(action)
     }
+
+    /**
+     * Creates a RegistryAction
+     *
+     * @param registry The registry to register into
+     *
+     * @author Peanuuutz
+     */
+    public fun <T> action(registry: Registry<T>): RegistryAction<T> = RegistryAction(modid, registry)
 }
 
 /**
