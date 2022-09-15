@@ -249,5 +249,5 @@ tasks {
 
 gitHooks {
     // Before committing, check that licenses are all ready and the detekt checks have passed.
-    setHooks(mapOf("pre-commit" to "checkLicenses"))
+    setHooks(mapOf("pre-commit" to "checkLicenses detekt"))
 }
