@@ -16,8 +16,8 @@
 
 package org.quiltmc.qkl.wrapper.minecraft.math
 
-import net.minecraft.util.math.Vec2f
 import net.minecraft.client.util.math.Vector2f
+import net.minecraft.util.math.Vec2f
 
 //region Standard math operators
 /**

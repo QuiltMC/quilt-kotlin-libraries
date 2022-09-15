@@ -35,6 +35,7 @@ import kotlin.reflect.jvm.jvmErasure
  *
  * @author Oliver-makes-code (Emma)
  * */
+@Suppress("UNCHECKED_CAST")
 public open class KotlinAdapter : LanguageAdapter {
     override fun <T: Any> create(
         mod: ModContainer,
