@@ -3,7 +3,7 @@ plugins {
 }
 
 fun DependencyHandlerScope.includeApi(dependency: Any) {
-    include(dependency)?.let { namedElements(it) }
+    include(dependency)?.let { implementation(it) }
 }
 
 dependencies {
