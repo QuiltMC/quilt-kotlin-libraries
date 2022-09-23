@@ -350,7 +350,7 @@ public inline fun TextBuilder.font(font: Identifier?, action: TextBuilder.() -> 
  * @author Cypher121
  */
 @TextDsl
-public inline fun TextBuilder.styled(
+public fun TextBuilder.styled(
     color: Color? = style.color,
     bold: Boolean? = style.bold,
     italic: Boolean? = style.italic,
@@ -395,7 +395,7 @@ public inline fun TextBuilder.styled(
  * @sample samples.qkl.text.TextDslSamples.sampleStyledText
  */
 @TextDsl
-public inline fun TextBuilder.styled(style: Style, action: TextBuilder.() -> Unit) {
+public fun TextBuilder.styled(style: Style, action: TextBuilder.() -> Unit) {
     styled(
         style.color?.let(Color::from) ?: this.style.color,
         style.isBoldRaw,
