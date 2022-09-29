@@ -116,9 +116,11 @@ internal class DynamicDecoder<T : Any>(
             StructureKind.MAP -> if (elementOptions.useEntryListMap || options.useEntryListMaps) {
                 EntryListMapState(ops.getStream(element).unwrap().toList(), serializationConfig)
             } else {
-                if (extendedOps.supportedMapKeys != ElementSupport.ANY) {
-                    validateKeyDescriptor(descriptor.getElementDescriptor(0), serializersModule)
-                }
+                validateKeyDescriptor(
+                    descriptor.getElementDescriptor(0),
+                    serializersModule,
+                    extendedOps.supportedMapKeys
+                )
 
                 RegularMapState(ops.getMap(element).unwrap(), serializationConfig)
             }

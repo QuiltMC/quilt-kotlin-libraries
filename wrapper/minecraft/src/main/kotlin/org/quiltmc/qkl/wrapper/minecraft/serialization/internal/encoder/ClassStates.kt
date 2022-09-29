@@ -72,6 +72,7 @@ internal class ClassState<T : Any>(
 internal class PolymorphicState<T : Any>(
     private val discriminator: String,
     private val isFlattened: Boolean,
+    private val parentOptions: ElementOptions,
     serializationConfig: SerializationConfig<T>
 ) : StructuredEncoderState<T>(serializationConfig) {
     private lateinit var serialName: T
@@ -82,7 +83,11 @@ internal class PolymorphicState<T : Any>(
     override fun beforeStructureElement(descriptor: SerialDescriptor, index: Int): ElementOptions {
         encodedIndex = index
 
-        return ElementOptions()
+        return when {
+            encodedIndex != 1 -> ElementOptions()
+            isFlattened -> parentOptions
+            else -> parentOptions.copy(isMapKey = false)
+        }
     }
 
     override fun addElement(element: T) {
@@ -129,13 +134,20 @@ internal class PolymorphicState<T : Any>(
 internal class InlineState<T : Any>(
     private val descriptor: SerialDescriptor,
     private val useWrapper: Boolean,
+    parentOptions: ElementOptions,
     serializationConfig: SerializationConfig<T>
 ) : SingleValueState<T>(serializationConfig) {
     private var isNull = false
 
-    override val elementOptions = ElementOptions(
-        useEntryListMap = descriptor.useEntryListMapForElement(0)
-    )
+    override val elementOptions = if (!useWrapper) {
+        parentOptions.copy(
+            useEntryListMap = descriptor.useEntryListMapForElement(0)
+        )
+    } else {
+        ElementOptions(
+            useEntryListMap = descriptor.useEntryListMapForElement(0)
+        )
+    }
 
     override fun addNull(nullElement: T) {
         isNull = true
@@ -175,5 +187,4 @@ internal class InlineState<T : Any>(
             null
         }
     }
-
 }

@@ -21,6 +21,7 @@ import com.mojang.serialization.MapLike
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.modules.SerializersModule
+import org.quiltmc.qkl.wrapper.minecraft.serialization.ExtendedDynamicOps
 
 internal fun <T : Any> collectInvalidKeys(
     map: MapLike<T>,
@@ -55,11 +56,19 @@ internal fun validatePolymorphicFields(
 }
 
 @OptIn(ExperimentalSerializationApi::class)
-internal fun validateKeyDescriptor(keyDescriptor: SerialDescriptor, module: SerializersModule) {
+internal fun validateKeyDescriptor(
+    keyDescriptor: SerialDescriptor,
+    module: SerializersModule,
+    acceptedElements: ExtendedDynamicOps.ElementSupport
+) {
     if (keyDescriptor.isNullable) {
         throw IllegalArgumentException(
             "Regular maps do not support nullable keys"
         )
+    }
+
+    if (acceptedElements == ExtendedDynamicOps.ElementSupport.ANY) {
+        return
     }
 
     //check that keys are primitives or codecs

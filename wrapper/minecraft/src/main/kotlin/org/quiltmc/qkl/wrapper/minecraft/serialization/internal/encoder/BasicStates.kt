@@ -23,6 +23,8 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import org.quiltmc.qkl.wrapper.minecraft.serialization.internal.ElementOptions
 import org.quiltmc.qkl.wrapper.minecraft.serialization.internal.SerializationConfig
 
+//TODO another pass over all states to see if everything is forwarded right
+//     also do a test on inline and nullable map keys and non-primitive maps!
 internal class RootState<T : Any>(
     serializationConfig: SerializationConfig<T>
 ) : SingleValueState<T>(serializationConfig) {
@@ -32,8 +34,11 @@ internal class RootState<T : Any>(
 }
 
 internal class NullableState<T : Any>(
+    parentOptions: ElementOptions,
     serializationConfig: SerializationConfig<T>
 ) : SingleValueState<T>(serializationConfig) {
+    override val elementOptions = parentOptions
+
     override fun build(): T {
         return extendedOps.wrapNullable(result)
     }
