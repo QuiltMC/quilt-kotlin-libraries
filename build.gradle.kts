@@ -20,6 +20,7 @@ plugins {
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
     `maven-publish`
+    kotlin("plugin.serialization") version "1.7.10"
 }
 
 buildscript {
@@ -33,10 +34,14 @@ val rootVersion = project.version
 version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk.1.8.3"
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
-val javaVersion = 17 // The current version of Java used by Minecraft
+val javaVersion = 17 // The current version o f Java used by Minecraft
 
 repositories {
     mavenCentral()
+
+    maven(url = "abc") {
+
+    }
 }
 
 dependencies {
@@ -55,6 +60,7 @@ allprojects {
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
     apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
     apply(plugin=rootProject.libs.plugins.dokka.get().pluginId)
+    apply(plugin="org.jetbrains.kotlin.plugin.serialization")
 
     repositories {
         mavenCentral()
