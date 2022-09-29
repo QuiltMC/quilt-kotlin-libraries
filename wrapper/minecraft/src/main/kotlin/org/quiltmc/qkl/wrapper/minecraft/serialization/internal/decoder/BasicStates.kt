@@ -43,7 +43,7 @@ internal class RootState<T : Any>(
 
 internal class NullableState<T : Any>(
     private val input: T,
-    private val elementOptions: ElementOptions,
+    private val parentOptions: ElementOptions,
     serializationConfig: SerializationConfig<T>
 ) : DecoderState<T>(serializationConfig) {
     override val isStructure = false
@@ -53,7 +53,7 @@ internal class NullableState<T : Any>(
     }
 
     override fun getElement(): Pair<T, ElementOptions> {
-        return extendedOps.unwrapNullable(input) to elementOptions
+        return extendedOps.unwrapNullable(input) to parentOptions
     }
 
     override fun getElementTrace(): Nothing? {

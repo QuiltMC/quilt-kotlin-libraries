@@ -132,16 +132,20 @@ internal class DynamicEncoder<T : Any>(
     //structures
 
     override fun beginStructure(descriptor: SerialDescriptor): CompositeEncoder {
+        val elementOptions = getOptionsOrThrow()
+
         val newState = when (descriptor.kind) {
             StructureKind.CLASS -> ClassState(serializationConfig)
             StructureKind.LIST -> ListState(serializationConfig)
             StructureKind.MAP -> {
-                if (getOptionsOrThrow().useEntryListMap || options.useEntryListMaps) {
+                if (elementOptions.useEntryListMap || options.useEntryListMaps) {
                     EntryListMapState(serializationConfig)
                 } else {
-                    if (extendedOps.supportedMapKeys != ElementSupport.ANY) {
-                        validateKeyDescriptor(descriptor.getElementDescriptor(0), serializersModule)
-                    }
+                    validateKeyDescriptor(
+                        descriptor.getElementDescriptor(0),
+                        serializersModule,
+                        extendedOps.supportedMapKeys
+                    )
 
                     RegularMapState(serializationConfig)
                 }
@@ -163,6 +167,7 @@ internal class DynamicEncoder<T : Any>(
                 PolymorphicState(
                     discriminator,
                     isFlattened,
+                    elementOptions,
                     serializationConfig
                 )
             }
@@ -190,17 +195,18 @@ internal class DynamicEncoder<T : Any>(
     //special elements: inline, nullable, enum, and external (codec elements)
 
     override fun encodeInline(descriptor: SerialDescriptor): Encoder {
-        val requiresPrimitives = getOptionsOrThrow().isMapKey && extendedOps.supportedMapKeys != ElementSupport.ANY
+        val elementOptions = getOptionsOrThrow()
+        val requiresPrimitives = elementOptions.isMapKey && extendedOps.supportedMapKeys != ElementSupport.ANY
 
         val useWrapper = !requiresPrimitives && (descriptor.useInlineWrapper ?: options.useInlineWrappers)
 
-        pushState(InlineState(descriptor, useWrapper, serializationConfig))
+        pushState(InlineState(descriptor, useWrapper, elementOptions, serializationConfig))
 
         return this
     }
 
     override fun encodeNotNullMark() {
-        pushState(NullableState(serializationConfig))
+        pushState(NullableState(getOptionsOrThrow(), serializationConfig))
     }
 
     override fun encodeNull() {

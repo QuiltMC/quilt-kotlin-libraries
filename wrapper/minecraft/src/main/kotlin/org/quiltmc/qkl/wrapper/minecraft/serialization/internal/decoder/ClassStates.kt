@@ -150,7 +150,7 @@ internal class PolymorphicState<T : Any>(
     private val mapLike: MapLike<T>,
     private val classDiscriminator: String,
     private val isFlattened: Boolean,
-    private val elementOptions: ElementOptions,
+    private val parentOptions: ElementOptions,
     serializationConfig: SerializationConfig<T>
 ) : DecoderState<T>(serializationConfig) {
     private var currentIndex = -1
@@ -188,13 +188,13 @@ internal class PolymorphicState<T : Any>(
                     mapLike.entries().filter {
                         ops.getStringValue(it.first).orNull() != classDiscriminator
                     }
-                ) to elementOptions
+                ) to parentOptions
             } else {
                 val element = mapLike["value"] ?: throw IllegalArgumentException(
                     "Required field 'value' is missing"
                 )
 
-                element to elementOptions
+                element to parentOptions.copy(isMapKey = false)
             }
 
             else -> throw IllegalStateException("Polymorphic structure is at invalid index $currentIndex")
@@ -222,7 +222,9 @@ internal class InlineState<T : Any>(
 
     override fun getElement(): Pair<T, ElementOptions> {
         if (!useWrapper) {
-            return input to elementOptions
+            return input to elementOptions.copy(
+                useEntryListMap = descriptor.useEntryListMapForElement(0)
+            )
         }
 
         val key = when {
