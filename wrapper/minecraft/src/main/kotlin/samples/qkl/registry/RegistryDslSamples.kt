@@ -20,12 +20,7 @@ import net.minecraft.block.Block
 import net.minecraft.item.Item
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
-import org.quiltmc.qkl.wrapper.minecraft.registry.RegistryScope
-import org.quiltmc.qkl.wrapper.minecraft.registry.invoke
-import org.quiltmc.qkl.wrapper.minecraft.registry.provide
-import org.quiltmc.qkl.wrapper.minecraft.registry.provideBlockItem
-import org.quiltmc.qkl.wrapper.minecraft.registry.withId
-import org.quiltmc.qkl.wrapper.minecraft.registry.registryScope
+import org.quiltmc.qkl.wrapper.minecraft.registry.*
 
 /**
  * Container for samples. Functions can be referenced
@@ -34,7 +29,7 @@ import org.quiltmc.qkl.wrapper.minecraft.registry.registryScope
  *
  * @author Peanuuutz
  */
-@Suppress("unused")
+@Suppress("unused", "UNUSED_VARIABLE")
 private object RegistryDslSamples {
     fun <T> stub(): T {
         error("Sample utility should not be called")
