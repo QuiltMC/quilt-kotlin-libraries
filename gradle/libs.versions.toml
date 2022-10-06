@@ -32,3 +32,4 @@ git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 licenser = { id = "org.quiltmc.gradle.licenser", version = "1.1.2" }
 quilt_loom = { id = "org.quiltmc.loom", version = "0.12.+" }
+binary_compatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.11.1" }
