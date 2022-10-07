@@ -249,7 +249,7 @@ public fun TextBuilder.empty() {
  */
 @TextDsl
 public inline fun TextBuilder.color(color: Color?, action: TextBuilder.() -> Unit) {
-    withProp(color, { color }, { this.color = it }, action)
+    withProp(color, { this.color }, { this.color = it }, action)
 }
 
 /**
@@ -259,7 +259,7 @@ public inline fun TextBuilder.color(color: Color?, action: TextBuilder.() -> Uni
  */
 @TextDsl
 public inline fun TextBuilder.bold(bold: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(bold, { bold }, { this.bold = it }, action)
+    withProp(bold, { this.bold }, { this.bold = it }, action)
 }
 
 /**
@@ -269,7 +269,7 @@ public inline fun TextBuilder.bold(bold: Boolean? = true, action: TextBuilder.()
  */
 @TextDsl
 public inline fun TextBuilder.italic(italic: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(italic, { italic }, { this.italic = it }, action)
+    withProp(italic, { this.italic }, { this.italic = it }, action)
 }
 
 /**
@@ -279,7 +279,7 @@ public inline fun TextBuilder.italic(italic: Boolean? = true, action: TextBuilde
  */
 @TextDsl
 public inline fun TextBuilder.underlined(underlined: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(underlined, { underlined }, { this.underlined = it }, action)
+    withProp(underlined, { this.underlined }, { this.underlined = it }, action)
 }
 
 /**
@@ -289,7 +289,7 @@ public inline fun TextBuilder.underlined(underlined: Boolean? = true, action: Te
  */
 @TextDsl
 public inline fun TextBuilder.strikethrough(strikethrough: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(strikethrough, { strikethrough }, { this.strikethrough = it }, action)
+    withProp(strikethrough, { this.strikethrough }, { this.strikethrough = it }, action)
 }
 
 /**
@@ -299,7 +299,7 @@ public inline fun TextBuilder.strikethrough(strikethrough: Boolean? = true, acti
  */
 @TextDsl
 public inline fun TextBuilder.obfuscated(obfuscated: Boolean? = true, action: TextBuilder.() -> Unit) {
-    withProp(obfuscated, { obfuscated }, { this.obfuscated = it }, action)
+    withProp(obfuscated, { this.obfuscated }, { this.obfuscated = it }, action)
 }
 
 /**
@@ -309,7 +309,7 @@ public inline fun TextBuilder.obfuscated(obfuscated: Boolean? = true, action: Te
  */
 @TextDsl
 public inline fun TextBuilder.clickEvent(clickEvent: ClickEvent?, action: TextBuilder.() -> Unit) {
-    withProp(clickEvent, { clickEvent }, { this.clickEvent = it }, action)
+    withProp(clickEvent, { this.clickEvent }, { this.clickEvent = it }, action)
 }
 
 /**
@@ -319,7 +319,7 @@ public inline fun TextBuilder.clickEvent(clickEvent: ClickEvent?, action: TextBu
  */
 @TextDsl
 public inline fun TextBuilder.hoverEvent(hoverEvent: HoverEvent?, action: TextBuilder.() -> Unit) {
-    withProp(hoverEvent, { hoverEvent }, { this.hoverEvent = it }, action)
+    withProp(hoverEvent, { this.hoverEvent }, { this.hoverEvent = it }, action)
 }
 
 /**
@@ -329,7 +329,7 @@ public inline fun TextBuilder.hoverEvent(hoverEvent: HoverEvent?, action: TextBu
  */
 @TextDsl
 public inline fun TextBuilder.insertion(insertion: String?, action: TextBuilder.() -> Unit) {
-    withProp(insertion, { insertion }, { this.insertion = it }, action)
+    withProp(insertion, { this.insertion }, { this.insertion = it }, action)
 }
 
 /**
@@ -339,7 +339,7 @@ public inline fun TextBuilder.insertion(insertion: String?, action: TextBuilder.
  */
 @TextDsl
 public inline fun TextBuilder.font(font: Identifier?, action: TextBuilder.() -> Unit) {
-    withProp(font, { font }, { this.font = it }, action)
+    withProp(font, { this.font }, { this.font = it }, action)
 }
 
 /**
