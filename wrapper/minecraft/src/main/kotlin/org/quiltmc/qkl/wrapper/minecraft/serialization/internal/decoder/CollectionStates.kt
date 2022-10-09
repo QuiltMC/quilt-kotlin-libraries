@@ -28,7 +28,6 @@ import org.quiltmc.qkl.wrapper.minecraft.serialization.internal.SerializationCon
 import org.quiltmc.qkl.wrapper.minecraft.serialization.internal.util.collectInvalidKeys
 import org.quiltmc.qkl.wrapper.minecraft.serialization.internal.util.unwrap
 
-//TODO note in docs: violates pattern of not modifying index in getElement due to sequential decoding
 internal sealed class CollectionState<T : Any>(
     serializationConfig: SerializationConfig<T>
 ) : DecoderState<T>(serializationConfig) {
