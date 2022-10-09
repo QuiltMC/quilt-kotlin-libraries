@@ -147,6 +147,7 @@ to invoke the codec directly.
 The descriptor for codec serializers contains a marker annotation signaling the encoder/decoder
 to not use it for type introspection, including not checking if its SerialKind is allowed as a map key.
 
+
 ### State stack
 
 To reduce code duplication, encoding/decoding of individual values is separated from
@@ -159,6 +160,34 @@ as well as the need to pass some properties down into child states. To do so, st
 options for its decoding, while `EncoderState` instances either provide one as a property
 in case of `SingleValueState` as there is only one element, or as the return value of
 `beforeStructureElement` in case of `StructuredEncoderState`.
+
+### AbstractEncoder and AbstractDecoder
+
+`DynamicEncoder` and `DynamicDecoder` inherit from their respective abstract classes,
+as the interfaces are not considered safe for direct inheritance at current stage of
+custom format support. While QKL has full control of the ktx.serialization version it
+bundles and would catch any changes at compile-time, using abstract versions should
+give more freedom on implementing new experimental features or leaving them to defaults.
+
+The abstract base classes also share logic between top-level and structure element encoding,
+significantly reducing code duplication. As a negative effect, they require passing
+state between shared and element-specific methods. Element-specific methods are mapped to equivalent
+methods in `SerializationState` subclasses:
+
+* `AbstractEncoder#encodeElement(descriptor): Boolean` => 
+    `StructuredEncoderState#beforeStructureElement(descriptor): ElementOptions?` 
+    (`null` return interpreted as false, i.e. skip encoding element)
+* `AbstractDecoder#decodeElementIndex(descriptor): Int` => 
+  `DecoderState#getNextIndex(descriptor): Int`
+  * Magic number `CompositeDecoder.DECODE_DONE` used identically
+  * Magic number `CompositeDecoder.UNKNOWN_NAME` returned only when no additional debug info
+    can be added to the exception, as the default exception does not include any useful data
+
+Both methods throw exceptions (causing the codec to immediately return a failure `DataResult`)
+if called on a non-structural state.
+
+Individual states must store their own data between element-specific calls and encoding calls,
+with the exception of `ElementOptions` returned by encoder states.
 
 ### Wrapper states
 
@@ -184,3 +213,28 @@ without assuming a certain structure followed by those descriptors:
   of the base polymorphic type (format used by standard serializers for sealed classes).
 
 * `StructureKind.MAP` descriptors are expected to have two elements: key and value descriptors.
+
+### Debug traces
+
+Decoders and encoders attempt to track the position in the object where the error occurred
+to provide better debugging info if an error occurs. To preserve accuracy, each state
+should keep track of the element currently being serialized (e.g. current index in list or key in map),
+and only modify it once the next element is selected. Usually this is done in `DecoderState#getNextIndex`
+or `StructuredEncoderState#beforeStructureElement`, with the exception of collection states (see below).
+
+Nullable states do not provide a trace element, as their structure is Ops implementation-specific.
+
+### Collection states
+
+Collection decoder states make use of the (currently experimental) `decodeSequentially` method,
+which allows serializers to bypass checking indices of every list and map element, instead only
+calling `decodeCollectionSize` and assuming the elements are returned in order. However, this 
+leads to an undesired interaction with `Decoder#decodeElementIndex` and therefore `DecoderState#getNextIndex`:
+
+* If sequential decoding is used, calls to `getNextIndex` are skipped entirely
+* But, there is no strong guarantee that returning `true` from `decodeSequentially` will enable
+  sequential decoding
+
+Due to the above, collection states should always return the correct index from
+`getNextIndex` but modify it at the start of `getElement` instead. That way both
+approaches are supported while preserving the correct debug trace.
