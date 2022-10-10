@@ -45,7 +45,7 @@ private object MapSerializationSamples {
 
     @Serializable
     @JvmInline
-    value class ForbiddenCodecInline(@Contextual val field: TestRecord)
+    value class InvalidCodecInline(@Contextual val field: TestRecord)
 
     val testRecordCodec: Codec<TestRecord> = RecordCodecBuilder.create {
         it.group(
@@ -111,5 +111,20 @@ private object MapSerializationSamples {
 
     fun invalidMapEncoding() {
         val codecCodec = baseFactory.create<Map<@Contextual TestRecord, String>>()
+        val inlineCodecCodec = baseFactory.create<Map<InvalidCodecInline, String>>()
+
+        assert(
+            codecCodec.encodeStart(
+                JsonOps.INSTANCE,
+                mapOf(TestRecord(123, 123.0) to "foo")
+            ).error().isPresent
+        )
+
+        assert(
+            inlineCodecCodec.encodeStart(
+                JsonOps.INSTANCE,
+                mapOf(InvalidCodecInline(TestRecord(123, 123.0)) to "foo")
+            ).error().isPresent
+        )
     }
 }
