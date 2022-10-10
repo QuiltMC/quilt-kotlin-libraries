@@ -111,11 +111,11 @@ internal class PolymorphicState<T : Any>(
             )
 
             ops.mapBuilder().apply {
+                add(discriminator, serialName)
+
                 entries.forEach {
                     add(it.first, it.second)
                 }
-
-                add(discriminator, serialName)
             }.build(ops.empty()).unwrap()
         } else {
             ops.mapBuilder()

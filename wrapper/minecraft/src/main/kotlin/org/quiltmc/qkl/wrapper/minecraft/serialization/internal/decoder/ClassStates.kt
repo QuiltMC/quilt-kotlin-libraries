@@ -96,7 +96,7 @@ internal class ClassState<T : Any>(
     //if any of the elements are not nullable, throw instead
     private fun getImplicitNullIndex(descriptor: SerialDescriptor): Int {
         if (!this::implicitNullIndices.isInitialized) {
-            val missingIndices = ((0..descriptor.elementsCount) - decodedIndices).asSequence()
+            val missingIndices = ((0 until descriptor.elementsCount) - decodedIndices).asSequence()
 
             implicitNullIndices = ArrayDeque(
                 missingIndices.filterNot {

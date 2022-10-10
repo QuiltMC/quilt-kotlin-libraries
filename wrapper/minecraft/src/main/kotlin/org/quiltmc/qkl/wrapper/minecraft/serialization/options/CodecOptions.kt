@@ -104,7 +104,7 @@ public data class CodecOptions(
             ignoreUnknownKeys = false,
             allowStringValues = false,
             useClassPropertyIndices = false,
-            printErrorStackTraces = true
+            printErrorStackTraces = false
         )
     }
 }

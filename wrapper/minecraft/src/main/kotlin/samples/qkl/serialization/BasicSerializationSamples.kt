@@ -21,10 +21,9 @@ import com.mojang.serialization.JsonOps
 import kotlinx.serialization.Serializable
 import org.quiltmc.qkl.wrapper.minecraft.serialization.CodecFactory
 
-//TODO anything that doesn't use registries can eventually be a unit test
-@Suppress("MagicNumber")
-private object SerializationSamples {
-    fun basicEncoding() {
+@Suppress("MagicNumber", "Unused")
+private object BasicSerializationSamples {
+    fun sampleBasicEncoding() {
         @Serializable
         data class Foo(
             val bar: Int
@@ -34,15 +33,10 @@ private object SerializationSamples {
 
         val encodeResult = codec.encodeStart(JsonOps.INSTANCE, Foo(123))
 
-        assert(encodeResult.result().isPresent)
-        val encoded = encodeResult.result().get()
-
-        assert(encoded.isJsonObject)
-        assert(encoded.asJsonObject["bar"].isJsonPrimitive)
-        assert(encoded.asJsonObject["bar"].asNumber == 123)
+        require(encodeResult.result().orElse(null) == JsonParser.parseString("""{ "bar": 123 }"""))
     }
 
-    fun basicDecoding() {
+    fun sampleBasicDecoding() {
         @Serializable
         data class Foo(
             val bar: Int
@@ -51,16 +45,8 @@ private object SerializationSamples {
         val codec = CodecFactory.create<Foo>()
         val json = JsonParser.parseString("""{ "bar": 123 }""")
 
-        val decodedResult = codec.decode(JsonOps.INSTANCE, json)
+        val decodedResult = codec.decode(JsonOps.INSTANCE, json).result()
 
-        assert(decodedResult.result().isPresent)
-        assert(decodedResult.result().get().first == Foo(123))
-    }
-}
-
-internal fun runTests() {
-    with(SerializationSamples) {
-        basicEncoding()
-        basicDecoding()
+        require(decodedResult.orElse(null)?.first == Foo(123))
     }
 }
