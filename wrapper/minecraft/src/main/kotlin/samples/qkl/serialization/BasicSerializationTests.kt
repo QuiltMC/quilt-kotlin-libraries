@@ -16,14 +16,14 @@
 
 package samples.qkl.serialization
 
-import com.google.gson.JsonParser
-import com.mojang.serialization.JsonOps
 import kotlinx.serialization.Serializable
 import org.quiltmc.qkl.wrapper.minecraft.serialization.CodecFactory
+import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
+import samples.qkl.serialization.SerializationTestUtils.encodesToJson
 
 @Suppress("MagicNumber", "Unused")
 private object BasicSerializationSamples {
-    fun sampleBasicEncoding() {
+    fun basicEncoding() {
         @Serializable
         data class Foo(
             val bar: Int
@@ -31,22 +31,29 @@ private object BasicSerializationSamples {
 
         val codec = CodecFactory.create<Foo>()
 
-        val encodeResult = codec.encodeStart(JsonOps.INSTANCE, Foo(123))
-
-        require(encodeResult.result().orElse(null) == JsonParser.parseString("""{ "bar": 123 }"""))
+        require(
+            encodesToJson(
+                codec,
+                Foo(123),
+                """{ "bar": 123 }"""
+            )
+        )
     }
 
-    fun sampleBasicDecoding() {
+    fun basicDecoding() {
         @Serializable
         data class Foo(
             val bar: Int
         )
 
         val codec = CodecFactory.create<Foo>()
-        val json = JsonParser.parseString("""{ "bar": 123 }""")
 
-        val decodedResult = codec.decode(JsonOps.INSTANCE, json).result()
-
-        require(decodedResult.orElse(null)?.first == Foo(123))
+        require(
+            decodesFromJson(
+                codec,
+                Foo(123),
+                """{ "bar": 123 }"""
+            )
+        )
     }
 }

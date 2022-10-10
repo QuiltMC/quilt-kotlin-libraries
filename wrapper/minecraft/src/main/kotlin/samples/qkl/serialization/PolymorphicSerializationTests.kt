@@ -16,13 +16,15 @@
 
 package samples.qkl.serialization
 
-import com.google.gson.JsonParser
-import com.mojang.serialization.JsonOps
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.quiltmc.qkl.wrapper.minecraft.serialization.CodecFactory
 import org.quiltmc.qkl.wrapper.minecraft.serialization.annotation.CodecSerializable
 import org.quiltmc.qsl.base.api.util.TriState
+import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
+import samples.qkl.serialization.SerializationTestUtils.encodesToJson
+import samples.qkl.serialization.SerializationTestUtils.failsToDecodeJson
+import samples.qkl.serialization.SerializationTestUtils.failsToEncodeJson
 
 @Suppress("MagicNumber", "Unused")
 private object PolymorphicSerializationSamples {
@@ -48,36 +50,52 @@ private object PolymorphicSerializationSamples {
         ) : Foo()
     }
 
-    fun sampleFlattenedEncoding() {
+    @CodecSerializable.Polymorphic(
+        classDiscriminator = "foo",
+        flatten = TriState.TRUE
+    )
+    sealed class Conflicting {
+        @Serializable
+        data class Subclass(val foo: Int): Conflicting()
+
+        @Serializable
+        @SerialName("Sibling")
+        object Sibling : Conflicting()
+    }
+
+    fun flattenedEncoding() {
         val codec = CodecFactory {
             polymorphism {
                 classDiscriminator = "test_class"
             }
         }.create<FooFlat>()
-
-        val encodeResult = codec.encodeStart(JsonOps.INSTANCE, FooFlat.FoobarFlat(123))
 
         require(
-            encodeResult.result().orElse(null) ==
-                    JsonParser.parseString("""{ "test_class": "foobar", "bar": 123 }""")
+            encodesToJson(
+                codec,
+                FooFlat.FoobarFlat(123),
+                """{ "test_class": "foobar", "bar": 123 }"""
+            )
         )
     }
 
-    fun sampleFlattenedDecoding() {
+    fun flattenedDecoding() {
         val codec = CodecFactory {
             polymorphism {
                 classDiscriminator = "test_class"
             }
         }.create<FooFlat>()
 
-        val decodedResult = codec.decode(
-            JsonOps.INSTANCE, JsonParser.parseString("""{ "test_class": "foobar", "bar": 123 }""")
+        require(
+            decodesFromJson(
+                codec,
+                FooFlat.FoobarFlat(123),
+                """{ "test_class": "foobar", "bar": 123 }"""
+            )
         )
-
-        require(decodedResult.result().orElse(null)?.first == FooFlat.FoobarFlat(123))
     }
 
-    fun sampleStructuredEncoding() {
+    fun structuredEncoding() {
         val codec = CodecFactory {
             polymorphism {
                 flatten = false
@@ -85,15 +103,16 @@ private object PolymorphicSerializationSamples {
             }
         }.create<Foo>()
 
-        val encodeResult = codec.encodeStart(JsonOps.INSTANCE, Foo.Foobar(123))
-
         require(
-            encodeResult.result().orElse(null) ==
-                    JsonParser.parseString("""{ "type": "foobar", "value": { "bar": 123 } }""")
+            encodesToJson(
+                codec,
+                Foo.Foobar(123),
+                """{ "type": "foobar", "value": { "bar": 123 } }"""
+            )
         )
     }
 
-    fun sampleStructuredDecoding() {
+    fun structuredDecoding() {
         val codec = CodecFactory {
             polymorphism {
                 flatten = false
@@ -101,10 +120,19 @@ private object PolymorphicSerializationSamples {
             }
         }.create<Foo>()
 
-        val decodedResult = codec.decode(
-            JsonOps.INSTANCE, JsonParser.parseString("""{ "type": "foobar", "value": { "bar": 123 } }""")
+        require(
+            decodesFromJson(
+                codec,
+                Foo.Foobar(123),
+                """{ "type": "foobar", "value": { "bar": 123 } }"""
+            )
         )
+    }
 
-        require(decodedResult.result().orElse(null)?.first == Foo.Foobar(123))
+    fun conflictingDiscriminator() {
+        val codec = CodecFactory.create<Conflicting>()
+
+        require(failsToEncodeJson(codec, Conflicting.Sibling))
+        require(failsToDecodeJson(codec, """{"foo": "Sibling"}"""))
     }
 }

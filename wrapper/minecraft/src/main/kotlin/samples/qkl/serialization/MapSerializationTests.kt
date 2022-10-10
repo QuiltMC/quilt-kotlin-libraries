@@ -16,15 +16,15 @@
 
 package samples.qkl.serialization
 
-import com.google.gson.JsonElement
-import com.google.gson.JsonParser
 import com.mojang.serialization.Codec
-import com.mojang.serialization.JsonOps
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.serialization.CodecFactory
+import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
+import samples.qkl.serialization.SerializationTestUtils.encodesToJson
+import samples.qkl.serialization.SerializationTestUtils.failsToEncodeJson
 import java.util.function.BiFunction
 
 @Suppress("MagicNumber", "Unused")
@@ -63,68 +63,88 @@ private object MapSerializationSamples {
 
     fun allowedMapEncoding() {
         val inlineCodec = baseFactory.create<Map<BasicInline, String>>()
-        val codecCodec = baseFactory.create<Map<@Contextual Identifier, String>>()
-        val inlineCodecCodec = baseFactory.create<Map<AllowedCodecInline, String>>()
+        val codecCodec =
+            baseFactory.create<Map<@Contextual Identifier, String>>()
+        val inlineCodecCodec =
+            baseFactory.create<Map<AllowedCodecInline, String>>()
 
-        fun <T> testEncode(codec: Codec<T>, value: T): JsonElement? {
-            return codec.encodeStart(JsonOps.INSTANCE, value).result().orElse(null)
-        }
-
-        assert(
-            testEncode(inlineCodec, mapOf(BasicInline("foo") to "bar")) ==
-                    JsonParser.parseString("""{"foo": "bar"}""")
+        require(
+            encodesToJson(
+                inlineCodec,
+                mapOf(BasicInline("foo") to "bar"),
+                """{"foo": "bar"}"""
+            )
         )
 
-        assert(
-            testEncode(codecCodec, mapOf(Identifier("foo:bar") to "baz")) ==
-                    JsonParser.parseString("""{"foo:bar": "baz"}""")
+        require(
+            encodesToJson(
+                codecCodec,
+                mapOf(Identifier("foo:bar") to "baz"),
+                """{"foo:bar": "baz"}"""
+            )
         )
 
-        assert(
-            testEncode(inlineCodecCodec, mapOf(AllowedCodecInline(Identifier("foo:bar")) to "baz")) ==
-                    JsonParser.parseString("""{"foo:bar": "baz"}""")
+        require(
+            encodesToJson(
+                inlineCodecCodec,
+                mapOf(AllowedCodecInline(Identifier("foo:bar")) to "baz"),
+                """{"foo:bar": "baz"}"""
+            )
         )
     }
 
     fun allowedMapDecoding() {
         val inlineCodec = baseFactory.create<Map<BasicInline, String>>()
-        val codecCodec = baseFactory.create<Map<@Contextual Identifier, String>>()
-        val inlineCodecCodec = baseFactory.create<Map<AllowedCodecInline, String>>()
+        val codecCodec =
+            baseFactory.create<Map<@Contextual Identifier, String>>()
+        val inlineCodecCodec =
+            baseFactory.create<Map<AllowedCodecInline, String>>()
 
-        fun <T> testDecode(codec: Codec<T>, input: String): T? {
-            return codec.decode(JsonOps.INSTANCE, JsonParser.parseString(input)).result().orElse(null)?.first
-        }
-
-        assert(
-            testDecode(inlineCodec, """{"foo": "bar"}""") == mapOf(BasicInline("foo") to "bar")
+        require(
+            decodesFromJson(
+                inlineCodec,
+                mapOf(BasicInline("foo") to "bar"),
+                """{"foo": "bar"}"""
+            )
         )
 
-        assert(
-            testDecode(codecCodec, """{"foo:bar": "baz"}""") == mapOf(Identifier("foo:bar") to "baz")
+        require(
+            decodesFromJson(
+                codecCodec,
+                mapOf(Identifier("foo:bar") to "baz"),
+                """{"foo:bar": "baz"}"""
+            )
         )
 
-        assert(
-            testDecode(inlineCodecCodec, """{"foo:bar": "baz"}""") ==
-                    mapOf(AllowedCodecInline(Identifier("foo:bar")) to "baz")
+        require(
+            decodesFromJson(
+                inlineCodecCodec,
+                mapOf(AllowedCodecInline(Identifier("foo:bar")) to "baz"),
+                """{"foo:bar": "baz"}"""
+            )
         )
     }
 
     fun invalidMapEncoding() {
-        val codecCodec = baseFactory.create<Map<@Contextual TestRecord, String>>()
-        val inlineCodecCodec = baseFactory.create<Map<InvalidCodecInline, String>>()
+        val codecCodec =
+            baseFactory.create<Map<@Contextual TestRecord, String>>()
+        val inlineCodecCodec =
+            baseFactory.create<Map<InvalidCodecInline, String>>()
 
-        assert(
-            codecCodec.encodeStart(
-                JsonOps.INSTANCE,
+        require(
+            failsToEncodeJson(
+                codecCodec,
                 mapOf(TestRecord(123, 123.0) to "foo")
-            ).error().isPresent
+            )
         )
 
-        assert(
-            inlineCodecCodec.encodeStart(
-                JsonOps.INSTANCE,
-                mapOf(InvalidCodecInline(TestRecord(123, 123.0)) to "foo")
-            ).error().isPresent
+        require(
+            failsToEncodeJson(
+                inlineCodecCodec,
+                mapOf(
+                    InvalidCodecInline(TestRecord(123, 123.0)) to "foo"
+                )
+            )
         )
     }
 }
