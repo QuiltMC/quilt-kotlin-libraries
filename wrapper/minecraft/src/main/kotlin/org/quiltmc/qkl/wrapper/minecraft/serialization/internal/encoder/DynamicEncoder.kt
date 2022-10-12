@@ -71,15 +71,23 @@ internal class DynamicEncoder<T : Any>(
             return
         }
 
-        currentState.addElement(checkStringify(stateResult))
+        addElementOrNull(checkStringify(stateResult))
 
         if (currentState is SingleValueState) {
             popResult()
         }
     }
 
+    private fun addElementOrNull(element: T) {
+        if (extendedOps.isNotNull(element)) {
+            currentState.addElement(element)
+        } else {
+            currentState.addNull(element)
+        }
+    }
+
     private fun addElement(element: T) {
-        currentState.addElement(element)
+        addElementOrNull(element)
 
         if (currentState is SingleValueState) {
             popResult()

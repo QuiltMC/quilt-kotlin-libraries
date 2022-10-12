@@ -22,8 +22,8 @@ import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
 import samples.qkl.serialization.SerializationTestUtils.encodesToJson
 
 @Suppress("MagicNumber", "Unused")
-private object BasicSerializationSamples {
-    fun basicEncoding() {
+private object BasicSerializationTests {
+    fun testBasicEncoding() {
         @Serializable
         data class Foo(
             val bar: Int
@@ -40,7 +40,7 @@ private object BasicSerializationSamples {
         )
     }
 
-    fun basicDecoding() {
+    fun testBasicDecoding() {
         @Serializable
         data class Foo(
             val bar: Int

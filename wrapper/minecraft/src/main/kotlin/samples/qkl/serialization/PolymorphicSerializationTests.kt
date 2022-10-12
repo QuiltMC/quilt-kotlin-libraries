@@ -27,7 +27,7 @@ import samples.qkl.serialization.SerializationTestUtils.failsToDecodeJson
 import samples.qkl.serialization.SerializationTestUtils.failsToEncodeJson
 
 @Suppress("MagicNumber", "Unused")
-private object PolymorphicSerializationSamples {
+private object PolymorphicSerializationTests {
     @CodecSerializable.Polymorphic(
         flatten = TriState.TRUE
     )
@@ -63,7 +63,7 @@ private object PolymorphicSerializationSamples {
         object Sibling : Conflicting()
     }
 
-    fun flattenedEncoding() {
+    fun testFlattenedEncoding() {
         val codec = CodecFactory {
             polymorphism {
                 classDiscriminator = "test_class"
@@ -79,7 +79,7 @@ private object PolymorphicSerializationSamples {
         )
     }
 
-    fun flattenedDecoding() {
+    fun testFlattenedDecoding() {
         val codec = CodecFactory {
             polymorphism {
                 classDiscriminator = "test_class"
@@ -95,7 +95,7 @@ private object PolymorphicSerializationSamples {
         )
     }
 
-    fun structuredEncoding() {
+    fun testStructuredEncoding() {
         val codec = CodecFactory {
             polymorphism {
                 flatten = false
@@ -112,7 +112,7 @@ private object PolymorphicSerializationSamples {
         )
     }
 
-    fun structuredDecoding() {
+    fun testStructuredDecoding() {
         val codec = CodecFactory {
             polymorphism {
                 flatten = false
@@ -129,7 +129,7 @@ private object PolymorphicSerializationSamples {
         )
     }
 
-    fun conflictingDiscriminator() {
+    fun testConflictingDiscriminator() {
         val codec = CodecFactory.create<Conflicting>()
 
         require(failsToEncodeJson(codec, Conflicting.Sibling))
