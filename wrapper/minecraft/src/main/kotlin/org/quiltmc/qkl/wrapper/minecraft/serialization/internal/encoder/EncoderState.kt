@@ -28,10 +28,6 @@ internal sealed class EncoderState<T : Any>(
     //whether encoding is done and build should be called
     abstract fun addElement(element: T)
 
-    open fun addNull(nullElement: T) {
-        return addElement(nullElement)
-    }
-
     abstract fun build(): T
 }
 

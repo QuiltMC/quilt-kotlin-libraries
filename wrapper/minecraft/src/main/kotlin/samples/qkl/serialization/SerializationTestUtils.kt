@@ -62,7 +62,12 @@ internal object SerializationTestUtils {
 //TODO running things from IDE is broken due to circular loom deps so making this public and running it from REPL
 //     is the best way to run all tests. Ideally this whole thing should be in JUnit tests or some other engine.
 public fun runSerializationTests() {
-    val classes = listOf("Basic", "Nullable", "Polymorphic", "Map").map {
+    val classes = listOf(
+        "Basic",
+        "Nullable",
+        "Polymorphic",
+        "Map"
+    ).map {
         "samples.qkl.serialization.${it}SerializationTests"
     }
 
