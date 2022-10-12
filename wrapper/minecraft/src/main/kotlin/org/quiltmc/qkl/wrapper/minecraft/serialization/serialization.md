@@ -214,6 +214,28 @@ without assuming a certain structure followed by those descriptors:
 
 * `StructureKind.MAP` descriptors are expected to have two elements: key and value descriptors.
 
+* A serializer cannot call `decodeNotNullMark`, `decodeNull`, and their encoding counterparts unless
+  `descriptor.isNullable` is true for that serializer.
+
+* Calls to nullable encoding methods follow the following structure, as specified in documentation
+  for `Decoder#decodeNotNullMark` and `Encoder#encodeNotNullMark`:
+```kotlin
+//decoding
+if (decodeNotNullMark()) {
+    //decode underlying value here
+} else {
+    decodeNull()
+}
+
+//encoding
+if (value != null) {
+  encodeNotNullMark()
+  //encode underlying value here
+} else {
+    encodeNull()
+}
+```
+
 ### Debug traces
 
 Decoders and encoders attempt to track the position in the object where the error occurred

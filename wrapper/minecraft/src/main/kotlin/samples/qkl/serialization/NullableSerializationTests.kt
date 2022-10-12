@@ -33,8 +33,6 @@ private object NullableSerializationTests {
         val codec = CodecFactory.create<Int?>()
 
         require(identicalAfterEncoding(codec, 1, JsonOps.INSTANCE))
-
-        println(codec.encodeStart(NbtOps.INSTANCE, 1)) //todo no null checks on not wrapped states
         require(identicalAfterEncoding(codec, 1, NbtOps.INSTANCE))
 
         require(identicalAfterEncoding(codec, null, JsonOps.INSTANCE))
@@ -53,8 +51,6 @@ private object NullableSerializationTests {
         val codec = CodecFactory {
             explicitNulls = false
         }.create<NullableTest>()
-
-        println(codec.encodeStart(JsonOps.INSTANCE, NullableTest(null, 10)))
 
         require(
             encodesToJson(

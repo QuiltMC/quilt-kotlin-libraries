@@ -31,6 +31,7 @@ internal class ClassState<T : Any>(
 ) : StructuredEncoderState<T>(serializationConfig) {
     private val mapBuilder = ops.mapBuilder()
     private var elementKey: T? = null
+    private var expectNullable = true
 
     override fun beforeStructureElement(descriptor: SerialDescriptor, index: Int): ElementOptions {
         elementKey = when {
@@ -39,25 +40,35 @@ internal class ClassState<T : Any>(
             else -> ops.createInt(index)
         }
 
+        if (descriptor.getElementDescriptor(index).isNullable) {
+            expectNullable = true
+        }
+
         return ElementOptions(
             useEntryListMap = descriptor.useEntryListMapForElement(index)
         )
     }
 
-    override fun addNull(nullElement: T) {
-        if (!options.explicitNulls) {
-            elementKey = null
-            return
-        }
-
-        addElement(nullElement)
-    }
-
     override fun addElement(element: T) {
         val key = elementKey ?: throw IllegalStateException("No key set for element $element")
 
-        mapBuilder.add(key, element)
+        if (expectNullable && !options.explicitNulls) {
+            expectNullable = false
 
+            //this *should* always be a null-wrapped value but catch exceptions just in case
+            val isNotNull = try {
+                extendedOps.isNotNull(element)
+            } catch (_: Exception) {
+                true
+            }
+
+            if (!isNotNull) {
+                elementKey = null
+                return
+            }
+        }
+
+        mapBuilder.add(key, element)
         elementKey = null
     }
 
@@ -138,8 +149,6 @@ internal class InlineState<T : Any>(
     parentOptions: ElementOptions,
     serializationConfig: SerializationConfig<T>
 ) : SingleValueState<T>(serializationConfig) {
-    private var isNull = false
-
     override val elementOptions = if (!useWrapper) {
         parentOptions.copy(
             useEntryListMap = descriptor.useEntryListMapForElement(0)
@@ -148,12 +157,6 @@ internal class InlineState<T : Any>(
         ElementOptions(
             useEntryListMap = descriptor.useEntryListMapForElement(0)
         )
-    }
-
-    override fun addNull(nullElement: T) {
-        isNull = true
-
-        return super.addNull(nullElement)
     }
 
     override fun build(): T {
@@ -166,7 +169,16 @@ internal class InlineState<T : Any>(
 
             return ops.mapBuilder()
                 .apply {
-                    if (!isNull || options.explicitNulls) {
+                    val canBeSkippableNull = !options.explicitNulls &&
+                            descriptor.getElementDescriptor(0).isNullable
+
+                    val shouldEncode = canBeSkippableNull && try {
+                        extendedOps.isNotNull(result)
+                    } catch (_: Exception) {
+                        true
+                    }
+
+                    if (shouldEncode) {
                         add(key, result)
                     }
                 }
