@@ -29,10 +29,12 @@ import samples.qkl.serialization.SerializationTestUtils.identicalAfterEncoding
 
 @Suppress("MagicNumber", "Unused")
 private object NullableSerializationTests {
-    fun basicNullableValue() {
+    fun testBasicNullableValue() {
         val codec = CodecFactory.create<Int?>()
 
         require(identicalAfterEncoding(codec, 1, JsonOps.INSTANCE))
+
+        println(codec.encodeStart(NbtOps.INSTANCE, 1)) //todo no null checks on not wrapped states
         require(identicalAfterEncoding(codec, 1, NbtOps.INSTANCE))
 
         require(identicalAfterEncoding(codec, null, JsonOps.INSTANCE))
@@ -47,10 +49,12 @@ private object NullableSerializationTests {
         val bar: Int
     )
 
-    fun implicitNullFields() {
+    fun testImplicitNullFields() {
         val codec = CodecFactory {
             explicitNulls = false
         }.create<NullableTest>()
+
+        println(codec.encodeStart(JsonOps.INSTANCE, NullableTest(null, 10)))
 
         require(
             encodesToJson(
@@ -69,7 +73,7 @@ private object NullableSerializationTests {
         )
     }
 
-    fun explicitNullFields() {
+    fun testExplicitNullFields() {
         val codec = CodecFactory {
             explicitNulls = true
         }.create<NullableTest>()
@@ -99,7 +103,7 @@ private object NullableSerializationTests {
     @JvmInline
     value class UnwrappedNull(val foo: Int?)
 
-    fun unwrappedInlineNullAmbiguity() {
+    fun testUnwrappedInlineNullAmbiguity() {
         val codec = CodecFactory.create<UnwrappedNull?>()
 
         require(identicalAfterEncoding(codec, null, JsonOps.INSTANCE))

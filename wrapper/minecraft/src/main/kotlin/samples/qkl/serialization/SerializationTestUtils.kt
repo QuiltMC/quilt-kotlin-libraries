@@ -21,6 +21,8 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.DynamicOps
 import com.mojang.serialization.JsonOps
 import org.quiltmc.qkl.wrapper.minecraft.serialization.internal.util.orNull
+import kotlin.reflect.full.memberFunctions
+import kotlin.reflect.jvm.isAccessible
 
 internal object SerializationTestUtils {
     fun <T> encodesToJson(codec: Codec<T>, value: T, json: String): Boolean {
@@ -54,5 +56,40 @@ internal object SerializationTestUtils {
         }
 
         return typedOpsWrapper(ops)
+    }
+}
+
+//TODO running things from IDE is broken due to circular loom deps so making this public and running it from REPL
+//     is the best way to run all tests. Ideally this whole thing should be in JUnit tests or some other engine.
+public fun runSerializationTests() {
+    val classes = listOf("Basic", "Nullable", "Polymorphic", "Map").map {
+        "samples.qkl.serialization.${it}SerializationTests"
+    }
+
+    classes.forEach {
+        val kclass = try {
+            Class.forName(it).kotlin
+        } catch (_: Exception) {
+            println("No class $it found    ")
+            return@forEach
+        }
+
+        val inst = try {
+            val field = kclass.java.getDeclaredField("INSTANCE")
+            field.isAccessible = true
+
+            field.get(null)
+        } catch (_: Exception) {
+            return@forEach
+        }
+
+        kclass.memberFunctions.forEach { fn ->
+            fn.isAccessible = true
+
+            if ("test" in fn.name) {
+                println("Running $it:${fn.name}    ")
+                fn.call(inst)
+            }
+        }
     }
 }

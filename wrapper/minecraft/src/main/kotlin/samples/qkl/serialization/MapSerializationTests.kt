@@ -28,7 +28,7 @@ import samples.qkl.serialization.SerializationTestUtils.failsToEncodeJson
 import java.util.function.BiFunction
 
 @Suppress("MagicNumber", "Unused")
-private object MapSerializationSamples {
+private object MapSerializationTests {
     @Serializable
     @JvmInline
     value class BasicInline(val field: String)
@@ -61,7 +61,7 @@ private object MapSerializationSamples {
         }
     }
 
-    fun allowedMapEncoding() {
+    fun testAllowedMapEncoding() {
         val inlineCodec = baseFactory.create<Map<BasicInline, String>>()
         val codecCodec =
             baseFactory.create<Map<@Contextual Identifier, String>>()
@@ -93,7 +93,7 @@ private object MapSerializationSamples {
         )
     }
 
-    fun allowedMapDecoding() {
+    fun testAllowedMapDecoding() {
         val inlineCodec = baseFactory.create<Map<BasicInline, String>>()
         val codecCodec =
             baseFactory.create<Map<@Contextual Identifier, String>>()
@@ -125,7 +125,7 @@ private object MapSerializationSamples {
         )
     }
 
-    fun invalidMapEncoding() {
+    fun testInvalidMapEncoding() {
         val codecCodec =
             baseFactory.create<Map<@Contextual TestRecord, String>>()
         val inlineCodecCodec =

@@ -46,6 +46,7 @@ internal class ClassState<T : Any>(
 
     override fun addNull(nullElement: T) {
         if (!options.explicitNulls) {
+            elementKey = null
             return
         }
 
