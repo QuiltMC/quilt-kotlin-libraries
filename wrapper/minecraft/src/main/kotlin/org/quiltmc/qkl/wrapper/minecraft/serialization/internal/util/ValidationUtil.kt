@@ -88,12 +88,13 @@ internal fun validateKeyDescriptor(
     }
 
     //check that keys are primitives or codecs
-    val keyKind = keyDescriptor.carrierDescriptor(module).kind
+    val carrierDescriptor = keyDescriptor.carrierDescriptor(module)
+    val keyKind = carrierDescriptor.kind
 
     if (
         keyKind !is PrimitiveKind &&
         keyKind != SerialKind.ENUM &&
-        !keyDescriptor.isCodec
+        !carrierDescriptor.isCodec
     ) {
         throw IllegalArgumentException(
             "Regular maps do not support keys of kind $keyKind, " +

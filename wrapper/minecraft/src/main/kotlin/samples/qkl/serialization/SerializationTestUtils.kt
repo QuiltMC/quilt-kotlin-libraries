@@ -61,7 +61,8 @@ internal object SerializationTestUtils {
 
 //TODO running things from IDE is broken due to circular loom deps so making this public and running it from REPL
 //     is the best way to run all tests. Ideally this whole thing should be in tests (e.g. JUnit or Spek).
-public fun runSerializationTests() {
+@Suppress("Unused", "UnusedPrivateMember")
+private fun runSerializationTests() {
     val classes = listOf(
         "Basic",
         "Nullable",
@@ -70,6 +71,8 @@ public fun runSerializationTests() {
     ).map {
         "samples.qkl.serialization.${it}SerializationTests"
     }
+
+    var failedTests = 0
 
     classes.forEach {
         val kclass = try {
@@ -93,8 +96,21 @@ public fun runSerializationTests() {
 
             if ("test" in fn.name) {
                 println("Running $it:${fn.name}    ")
-                fn.call(inst)
+                try {
+                    fn.call(inst)
+                } catch (e: Exception) {
+                    println("$it:${fn.name} failed: ")
+                    e.printStackTrace()
+                    println("    ")
+                    failedTests++
+                }
             }
         }
+    }
+
+    if (failedTests == 0) {
+        println("All tests succeeded")
+    } else {
+        println("$failedTests tests failed")
     }
 }

@@ -48,6 +48,10 @@ private object NullableSerializationTests {
         val bar: Int
     )
 
+    @Serializable
+    @JvmInline
+    value class NullInline(val foo: Int?)
+
     fun testImplicitNullFields() {
         val codec = CodecFactory {
             explicitNulls = false
@@ -94,10 +98,6 @@ private object NullableSerializationTests {
         require(failsToDecodeJson(codec, """{"bar": 10}"""))
     }
 
-    @Serializable
-    @JvmInline
-    value class NullInline(val foo: Int?)
-
     fun testAmbiguousInlineNullsUnwrapped() {
         val codec = CodecFactory {
             useInlineWrappers = false
@@ -112,8 +112,6 @@ private object NullableSerializationTests {
         val codec = CodecFactory {
             useInlineWrappers = true
         }.create<NullInline?>()
-
-        println(codec.encodeStart(JsonOps.INSTANCE, NullInline(null)))
 
         require(identicalAfterEncoding(codec, null, JsonOps.INSTANCE))
         require(identicalAfterEncoding(codec, NullInline(null), JsonOps.INSTANCE))

@@ -16,7 +16,9 @@
 
 package samples.qkl.serialization
 
+import com.google.gson.JsonParser
 import com.mojang.serialization.Codec
+import com.mojang.serialization.JsonOps
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
@@ -115,6 +117,8 @@ private object MapSerializationTests {
                 """{"foo:bar": "baz"}"""
             )
         )
+
+        println(inlineCodecCodec.decode(JsonOps.INSTANCE, JsonParser.parseString("""{"foo:bar": "baz"}""")))
 
         require(
             decodesFromJson(
