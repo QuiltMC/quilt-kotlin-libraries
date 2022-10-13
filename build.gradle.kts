@@ -19,8 +19,8 @@ plugins {
     alias(libs.plugins.licenser)
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.serialization)
     `maven-publish`
-    kotlin("plugin.serialization") version "1.7.10"
 }
 
 buildscript {
@@ -56,7 +56,7 @@ allprojects {
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
     apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
     apply(plugin=rootProject.libs.plugins.dokka.get().pluginId)
-    apply(plugin="org.jetbrains.kotlin.plugin.serialization")
+    apply(plugin=rootProject.libs.plugins.serialization.get().pluginId)
 
     repositories {
         mavenCentral()
