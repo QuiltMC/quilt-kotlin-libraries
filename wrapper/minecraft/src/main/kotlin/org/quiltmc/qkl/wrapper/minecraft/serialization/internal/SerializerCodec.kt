@@ -35,7 +35,7 @@ internal class SerializerCodec<A>(
         val encoder = DynamicEncoder(ops, prefix, options, serializersModule)
 
         return try {
-            serializer.serialize(encoder, input)
+            encoder.encodeSerializableValue(serializer, input)
             DataResult.success(encoder.result)
         } catch (e: Exception) {
             val trace = encoder.collectTrace()
@@ -54,7 +54,7 @@ internal class SerializerCodec<A>(
         val decoder = DynamicDecoder(ops, input, options, serializersModule)
 
         return try {
-            DataResult.success(Pair.of(serializer.deserialize(decoder), ops.empty()))
+            DataResult.success(Pair.of(decoder.decodeSerializableValue(serializer), ops.empty()))
         } catch (e: Exception) {
             val trace = decoder.collectTrace()
 

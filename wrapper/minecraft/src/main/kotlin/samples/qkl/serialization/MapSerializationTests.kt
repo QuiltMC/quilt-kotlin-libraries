@@ -24,7 +24,7 @@ import net.minecraft.util.Identifier
 import org.quiltmc.qkl.wrapper.minecraft.serialization.CodecFactory
 import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
 import samples.qkl.serialization.SerializationTestUtils.encodesToJson
-import samples.qkl.serialization.SerializationTestUtils.failsToEncodeJson
+import samples.qkl.serialization.SerializationTestUtils.failsToEncode
 import java.util.function.BiFunction
 
 @Suppress("MagicNumber", "Unused")
@@ -132,14 +132,14 @@ private object MapSerializationTests {
             baseFactory.create<Map<InvalidCodecInline, String>>()
 
         require(
-            failsToEncodeJson(
+            failsToEncode(
                 codecCodec,
                 mapOf(TestRecord(123, 123.0) to "foo")
             )
         )
 
         require(
-            failsToEncodeJson(
+            failsToEncode(
                 inlineCodecCodec,
                 mapOf(
                     InvalidCodecInline(TestRecord(123, 123.0)) to "foo"

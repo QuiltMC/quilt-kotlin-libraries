@@ -208,6 +208,7 @@ internal class PolymorphicState<T : Any>(
     }
 }
 
+//TODO implicit nulls for wrapped
 @OptIn(ExperimentalSerializationApi::class)
 internal class InlineState<T : Any>(
     private val input: T,

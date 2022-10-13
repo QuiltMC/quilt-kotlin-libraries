@@ -24,7 +24,7 @@ import org.quiltmc.qsl.base.api.util.TriState
 import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
 import samples.qkl.serialization.SerializationTestUtils.encodesToJson
 import samples.qkl.serialization.SerializationTestUtils.failsToDecodeJson
-import samples.qkl.serialization.SerializationTestUtils.failsToEncodeJson
+import samples.qkl.serialization.SerializationTestUtils.failsToEncode
 
 @Suppress("MagicNumber", "Unused")
 private object PolymorphicSerializationTests {
@@ -132,7 +132,7 @@ private object PolymorphicSerializationTests {
     fun testConflictingDiscriminator() {
         val codec = CodecFactory.create<Conflicting>()
 
-        require(failsToEncodeJson(codec, Conflicting.Sibling))
+        require(failsToEncode(codec, Conflicting.Sibling))
         require(failsToDecodeJson(codec, """{"foo": "Sibling"}"""))
     }
 }

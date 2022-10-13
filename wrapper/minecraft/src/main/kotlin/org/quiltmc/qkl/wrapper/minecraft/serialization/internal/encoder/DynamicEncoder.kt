@@ -18,6 +18,7 @@ package org.quiltmc.qkl.wrapper.minecraft.serialization.internal.encoder
 
 import com.mojang.serialization.DynamicOps
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.encoding.AbstractEncoder
 import kotlinx.serialization.encoding.CompositeEncoder
@@ -192,9 +193,24 @@ internal class DynamicEncoder<T : Any>(
         popResult()
     }
 
+    //early descriptor validation
+    override fun <T> encodeSerializableValue(serializer: SerializationStrategy<T>, value: T) {
+        if (serializer.descriptor.isNullable && serializer.descriptor.isInline) {
+            validateNullableInline(serializer.descriptor, options)
+        }
+
+        return super.encodeSerializableValue(serializer, value)
+    }
+
     //special elements: inline, nullable, enum, and external (codec elements)
 
     override fun encodeInline(descriptor: SerialDescriptor): Encoder {
+        //backup in case encodeSerializableValue doesn't get called
+        //won't catch outer nulls
+        if (currentState is NullableState) {
+            validateNullableInline(descriptor, options)
+        }
+
         val elementOptions = getOptionsOrThrow()
         val requiresPrimitives = elementOptions.isMapKey && extendedOps.supportedMapKeys != ElementSupport.ANY
 
