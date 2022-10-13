@@ -114,7 +114,7 @@ internal class ClassState<T : Any>(
                 throw MissingFieldException(
                     nonNullFields,
                     "Non-null required fields for type '${descriptor.serialName}' were not found: " +
-                    nonNullFields.joinToString { "'$it'" }
+                            nonNullFields.joinToString { "'$it'" }
                 )
             }
         }
@@ -235,11 +235,17 @@ internal class InlineState<T : Any>(
         }
 
         val map = ops.getMap(input).orNull()
+        val canBeImplicitNull = !options.explicitNulls
+                && descriptor.getElementDescriptor(0).isNullable
 
-        val element = map?.get(key) ?: throw IllegalArgumentException(
-            "Wrapped inline class '${descriptor.serialName}' must be a map containing a field '$key' " +
-            "with value of type '${descriptor.getElementDescriptor(0).serialName}', was $input"
-        )
+        val element = when {
+            map == null || (map.get(key) == null && !canBeImplicitNull) -> throw IllegalArgumentException(
+                "Wrapped inline class '${descriptor.serialName}' must be a map containing a field '$key' " +
+                        "with value of type '${descriptor.getElementDescriptor(0).serialName}', was $input"
+            )
+            map.get(key) != null -> map.get(key)!!
+            else -> extendedOps.createNull()
+        }
 
         if (!options.ignoreUnknownKeys && map.entries().count() > 1) {
             throw IllegalArgumentException()
