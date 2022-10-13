@@ -22,6 +22,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.modules.SerializersModule
 import org.quiltmc.qkl.wrapper.minecraft.serialization.ExtendedDynamicOps
+import org.quiltmc.qkl.wrapper.minecraft.serialization.options.CodecOptions
 
 internal fun <T : Any> collectInvalidKeys(
     map: MapLike<T>,
@@ -52,6 +53,21 @@ internal fun validatePolymorphicFields(
                 "or annotate it with @SerialName with a non-conflicting name"
             )
         }
+    }
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+internal fun validateNullableInline(descriptor: SerialDescriptor, options: CodecOptions) {
+    if (descriptor.useInlineWrapper ?: options.useInlineWrappers) {
+        return
+    }
+
+    if (descriptor.getElementDescriptor(0).isNullable) {
+        throw IllegalArgumentException(
+            "Encoding a nullable inline class with a nullable backing field without a wrapper is ambiguous. " +
+            "Enable wrappers for type ${descriptor.serialName} using CodecSerializable#useInlineWrapper " +
+            "or globally using CodecOptions#useInlineWrappers"
+        )
     }
 }
 

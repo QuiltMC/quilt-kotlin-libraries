@@ -20,11 +20,10 @@ import com.mojang.serialization.JsonOps
 import kotlinx.serialization.Serializable
 import net.minecraft.nbt.NbtOps
 import org.quiltmc.qkl.wrapper.minecraft.serialization.CodecFactory
-import org.quiltmc.qkl.wrapper.minecraft.serialization.annotation.CodecSerializable
-import org.quiltmc.qsl.base.api.util.TriState
 import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
 import samples.qkl.serialization.SerializationTestUtils.encodesToJson
 import samples.qkl.serialization.SerializationTestUtils.failsToDecodeJson
+import samples.qkl.serialization.SerializationTestUtils.failsToEncode
 import samples.qkl.serialization.SerializationTestUtils.identicalAfterEncoding
 
 @Suppress("MagicNumber", "Unused")
@@ -34,6 +33,8 @@ private object NullableSerializationTests {
 
         require(identicalAfterEncoding(codec, 1, JsonOps.INSTANCE))
         require(identicalAfterEncoding(codec, 1, NbtOps.INSTANCE))
+
+        println(codec.encodeStart(JsonOps.INSTANCE, null))
 
         require(identicalAfterEncoding(codec, null, JsonOps.INSTANCE))
         require(identicalAfterEncoding(codec, null, NbtOps.INSTANCE))
@@ -93,31 +94,33 @@ private object NullableSerializationTests {
         require(failsToDecodeJson(codec, """{"bar": 10}"""))
     }
 
-    @CodecSerializable(
-        useInlineWrapper = TriState.FALSE
-    )
+    @Serializable
     @JvmInline
-    value class UnwrappedNull(val foo: Int?)
+    value class NullInline(val foo: Int?)
 
-    fun testUnwrappedInlineNullAmbiguity() {
-        val codec = CodecFactory.create<UnwrappedNull?>()
+    fun testAmbiguousInlineNullsUnwrapped() {
+        val codec = CodecFactory {
+            useInlineWrappers = false
+        }.create<NullInline?>()
+
+        require(failsToEncode(codec, null)) //encode inline never called if outer null, find earlier spot!
+        require(failsToEncode(codec, NullInline(null)))
+        require(failsToEncode(codec, NullInline(123)))
+    }
+
+    fun testAmbiguousInlineNullsWrapped() {
+        val codec = CodecFactory {
+            useInlineWrappers = true
+        }.create<NullInline?>()
+
+        println(codec.encodeStart(JsonOps.INSTANCE, NullInline(null)))
 
         require(identicalAfterEncoding(codec, null, JsonOps.INSTANCE))
-        require(identicalAfterEncoding(codec, null, NbtOps.INSTANCE))
+        require(identicalAfterEncoding(codec, NullInline(null), JsonOps.INSTANCE))
+        require(identicalAfterEncoding(codec, NullInline(123), JsonOps.INSTANCE))
 
-        require(
-            identicalAfterEncoding(
-                codec,
-                UnwrappedNull(null),
-                JsonOps.INSTANCE
-            )
-        )
-        require(
-            identicalAfterEncoding(
-                codec,
-                UnwrappedNull(null),
-                NbtOps.INSTANCE
-            )
-        )
+        require(identicalAfterEncoding(codec, null, NbtOps.INSTANCE))
+        require(identicalAfterEncoding(codec, NullInline(null), NbtOps.INSTANCE))
+        require(identicalAfterEncoding(codec, NullInline(123), NbtOps.INSTANCE))
     }
 }

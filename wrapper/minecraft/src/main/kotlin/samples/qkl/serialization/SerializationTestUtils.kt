@@ -35,8 +35,8 @@ internal object SerializationTestUtils {
             .orNull()?.first == value
     }
 
-    fun <T> failsToEncodeJson(codec: Codec<T>, value: T): Boolean {
-        return codec.encodeStart(JsonOps.INSTANCE, value).error().isPresent
+    fun <T> failsToEncode(codec: Codec<T>, value: T, ops: DynamicOps<*> = JsonOps.INSTANCE): Boolean {
+        return codec.encodeStart(ops, value).error().isPresent
     }
 
     fun failsToDecodeJson(codec: Codec<*>, json: String): Boolean {
@@ -60,7 +60,7 @@ internal object SerializationTestUtils {
 }
 
 //TODO running things from IDE is broken due to circular loom deps so making this public and running it from REPL
-//     is the best way to run all tests. Ideally this whole thing should be in JUnit tests or some other engine.
+//     is the best way to run all tests. Ideally this whole thing should be in tests (e.g. JUnit or Spek).
 public fun runSerializationTests() {
     val classes = listOf(
         "Basic",

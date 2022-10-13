@@ -19,6 +19,7 @@ package org.quiltmc.qkl.wrapper.minecraft.serialization.internal.decoder
 import com.mojang.serialization.Codec
 import com.mojang.serialization.DataResult
 import com.mojang.serialization.DynamicOps
+import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.descriptors.PolymorphicKind
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -168,9 +169,24 @@ internal class DynamicDecoder<T : Any>(
         popState()
     }
 
+    //early descriptor validation
+    override fun <T> decodeSerializableValue(deserializer: DeserializationStrategy<T>): T {
+        if (deserializer.descriptor.isNullable && deserializer.descriptor.isInline) {
+            validateNullableInline(deserializer.descriptor, options)
+        }
+
+        return super.decodeSerializableValue(deserializer)
+    }
+
     //special elements: inline, nullable, enum, and external (codec elements)
 
     override fun decodeInline(descriptor: SerialDescriptor): Decoder {
+        //backup in case decodeSerializableValue doesn't get called
+        //won't catch outer nulls
+        if (currentState is NullableState) {
+            validateNullableInline(descriptor, options)
+        }
+
         val (element, elementOptions) = currentState.getElement()
 
         val requiresPrimitives = elementOptions.isMapKey && extendedOps.supportedMapKeys != ElementSupport.ANY
