@@ -20,6 +20,7 @@ import com.mojang.datafixers.util.Pair
 import com.mojang.serialization.Codec
 import com.mojang.serialization.DataResult
 import com.mojang.serialization.DynamicOps
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.modules.SerializersModule
 import org.quiltmc.qkl.wrapper.minecraft.serialization.internal.decoder.DynamicDecoder
@@ -66,5 +67,10 @@ internal class SerializerCodec<A>(
 
             DataResult.error(errorMessage)
         }
+    }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    override fun toString(): String {
+        return "SerializerCodec[${serializer.descriptor.serialName}]"
     }
 }
