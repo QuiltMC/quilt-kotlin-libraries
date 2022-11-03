@@ -1,6 +1,6 @@
 # Quilt Kotlin Libraries
 
-#### Note: At the moment, [Quilt Standard Libraries](https://github.com/QuiltMC/quilt-standard-libraries), and as such Quilt Kotlin Libraries, are not read for general use. Please make an issue or talk to the QKL team on discord before writing any PRs.
+#### Note: At the moment Quilt Kotlin Libraries is not ready for general use. Please make an issue or talk to the QKL team on discord before writing any PRs.
 
 
 ### What are the Quilt Kotlin Libraries?

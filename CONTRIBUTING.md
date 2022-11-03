@@ -12,3 +12,13 @@ This documents outlines best-practices and contributing guidelines to the Quilt 
 4. ### Request a merge!
    Once the minimum time on the Final Comment Period has passed, and you have resolved any concerns reviewers have raised during that time, leave a comment on your PR requesting for it to be merged. A QSL Core Team member will take a final look over your PR, and if everything looks good, merge it!
 
+
+## Guide: Triage Categories
+
+Triage categories ensure that important, but small PRs -- like bugfixes -- are merged quickly, while large changes -- like new wrappers -- are thoroughly reviewed before they are merged.
+
+PRs to QKL are currently defined their effect on the project. If the PR provides a new module or rewrites some code it is labelled appropriately and left. If the PR is a small bugfix, or typo fix PR, it is given the `fast-track` label, allowing it to be merged as soon as each team member has given their approving reivew.
+
+PRs to QKL require approval from every team member before being put into final comment. This is subject to change in the future.
+
+Currently, the final comment period for all PRs is set at 3 days. In the future, extra categories for PRs may be created, each with specific FCP times. 

@@ -23,7 +23,7 @@ body:
     attributes:
       label: Screenshots
       description: If applicable, add screenshots to help explain your issue.
-      placeholder: You can add images by clicking on the button in the bar that will appear one you click this textbox.
+      placeholder: You can add images by clicking on the button in the bar that will appear once you click this textbox.
     validations:
       required: false
   - type: textarea
