@@ -13,7 +13,7 @@ body:
     id: what-happened
     attributes:
       label: What happened?
-      description: 'Also tell us what did you expect to happen? PLease provide some reproduction steps: What did you do to trigger this bug?'
+      description: 'Also tell us what did you expect to happen? Please provide some reproduction steps: What did you do to trigger this bug?'
       placeholder: Tell us what you see!
       value: "A bug happened!"
     validations:
@@ -30,7 +30,7 @@ body:
     id: logs
     attributes:
       label: Relevant log output
-      description: Please provide some logs that generated when your issue occured. This will be automatically formatted into code, so no need for backticks.
+      description: Please provide some logs that generated when your issue occurred. This will be automatically formatted into code, so no need for backticks.
       render: bash
   - type: input
     id: qkl-version
