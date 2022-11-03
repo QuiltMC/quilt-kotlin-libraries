@@ -5,15 +5,14 @@ jobs:
   build:
     strategy:
       matrix:
-        # Keep the matrix for when jdk 17 rc come out
         java: [17]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/setup-java@v2
+      - uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: ${{ matrix.java }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: chmod +x ./gradlew
       - run: ./gradlew checkLicenses --parallel --stacktrace
       - run: ./gradlew build --parallel --stacktrace

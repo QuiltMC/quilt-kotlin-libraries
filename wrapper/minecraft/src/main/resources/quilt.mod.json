@@ -39,5 +39,8 @@
         "library"
       ]
     }
-  }
+  },
+  "mixin": [
+    "qkl_minecraft.mixins.json"
+  ]
 }
