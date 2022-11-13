@@ -19,6 +19,7 @@ plugins {
     alias(libs.plugins.licenser)
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.binary.compatibility)
     alias(libs.plugins.serialization)
     `maven-publish`
 }
@@ -253,7 +254,11 @@ tasks {
     }
 }
 
+apiValidation {
+    ignoredProjects.addAll(setOf("core", "fatjar"))
+}
+
 gitHooks {
     // Before committing, check that licenses are all ready and the detekt checks have passed.
-    setHooks(mapOf("pre-commit" to "checkLicenses detekt"))
+    setHooks(mapOf("pre-commit" to "checkLicenses apiCheck detekt"))
 }
