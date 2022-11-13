@@ -19,6 +19,7 @@ plugins {
     alias(libs.plugins.licenser)
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.serialization)
     `maven-publish`
 }
 
@@ -56,6 +57,7 @@ allprojects {
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
     apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
     apply(plugin=rootProject.libs.plugins.dokka.get().pluginId)
+    apply(plugin=rootProject.libs.plugins.serialization.get().pluginId)
 
     repositories {
         mavenCentral()
