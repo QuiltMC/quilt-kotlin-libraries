@@ -496,6 +496,10 @@ public final class org/quiltmc/qkl/wrapper/minecraft/math/Vector4fOpsKt {
 	public static final fun unaryMinus (Lnet/minecraft/util/math/Vector4f;)Lnet/minecraft/util/math/Vector4f;
 }
 
+public abstract interface class org/quiltmc/qkl/wrapper/minecraft/mixin/serialization/ForwardingDynamicOpsAccessor {
+	public abstract fun getDelegate ()Lcom/mojang/serialization/DynamicOps;
+}
+
 public abstract interface class org/quiltmc/qkl/wrapper/minecraft/mixin/text/StyleAccessor {
 	public static fun create (Lnet/minecraft/text/TextColor;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/text/ClickEvent;Lnet/minecraft/text/HoverEvent;Ljava/lang/String;Lnet/minecraft/util/Identifier;)Lnet/minecraft/text/Style;
 	public abstract fun getFontRaw ()Lnet/minecraft/util/Identifier;
@@ -504,6 +508,112 @@ public abstract interface class org/quiltmc/qkl/wrapper/minecraft/mixin/text/Sty
 	public abstract fun isObfuscatedRaw ()Ljava/lang/Boolean;
 	public abstract fun isStrikethroughRaw ()Ljava/lang/Boolean;
 	public abstract fun isUnderlinedRaw ()Ljava/lang/Boolean;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/nbt/CompoundOperatorsKt {
+	public static final fun NbtCompound (Ljava/util/Map;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun NbtCompound (Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun NbtCompound ([Lkotlin/Pair;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun plus (Lnet/minecraft/nbt/NbtCompound;Ljava/util/Map;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun plus (Lnet/minecraft/nbt/NbtCompound;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun plusAssign (Lnet/minecraft/nbt/NbtCompound;Ljava/util/Map;)V
+	public static final fun plusAssign (Lnet/minecraft/nbt/NbtCompound;Lnet/minecraft/nbt/NbtCompound;)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;B)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;D)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;F)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;I)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;J)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;Lnet/minecraft/nbt/NbtElement;)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;S)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;Z)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;[B)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;[I)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;[J)V
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/nbt/NbtConversionsKt {
+	public static final fun bytesToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtByteArray;
+	public static final fun doublesToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun floatsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun getBoolean (Lnet/minecraft/nbt/NbtElement;)Z
+	public static final fun getByte (Lnet/minecraft/nbt/NbtElement;)B
+	public static final fun getDouble (Lnet/minecraft/nbt/NbtElement;)D
+	public static final fun getFloat (Lnet/minecraft/nbt/NbtElement;)F
+	public static final fun getInt (Lnet/minecraft/nbt/NbtElement;)I
+	public static final fun getLong (Lnet/minecraft/nbt/NbtElement;)J
+	public static final fun getNbt (B)Lnet/minecraft/nbt/NbtByte;
+	public static final fun getNbt (D)Lnet/minecraft/nbt/NbtDouble;
+	public static final fun getNbt (F)Lnet/minecraft/nbt/NbtFloat;
+	public static final fun getNbt (I)Lnet/minecraft/nbt/NbtInt;
+	public static final fun getNbt (J)Lnet/minecraft/nbt/NbtLong;
+	public static final fun getNbt (Ljava/lang/String;)Lnet/minecraft/nbt/NbtString;
+	public static final fun getNbt (S)Lnet/minecraft/nbt/NbtShort;
+	public static final fun getNbt (Z)Lnet/minecraft/nbt/NbtByte;
+	public static final fun getNbt ([B)Lnet/minecraft/nbt/NbtByteArray;
+	public static final fun getNbt ([I)Lnet/minecraft/nbt/NbtIntArray;
+	public static final fun getNbt ([J)Lnet/minecraft/nbt/NbtLongArray;
+	public static final fun getShort (Lnet/minecraft/nbt/NbtElement;)S
+	public static final fun getString (Lnet/minecraft/nbt/NbtElement;)Ljava/lang/String;
+	public static final fun intsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtIntArray;
+	public static final fun longsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtLongArray;
+	public static final fun shortsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun stringsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun toNbtList (Lnet/minecraft/nbt/NbtByteArray;)Lnet/minecraft/nbt/NbtList;
+	public static final fun toNbtList (Lnet/minecraft/nbt/NbtIntArray;)Lnet/minecraft/nbt/NbtList;
+	public static final fun toNbtList (Lnet/minecraft/nbt/NbtLongArray;)Lnet/minecraft/nbt/NbtList;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/nbt/NbtDelegatesKt {
+	public static final fun boolean (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Boolean;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun boolean$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun byte (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Byte;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byte$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Byte;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun compound (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lnet/minecraft/nbt/NbtCompound;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun compound$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lnet/minecraft/nbt/NbtCompound;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun constant (Lkotlin/jvm/functions/Function0;)Lkotlin/jvm/functions/Function0;
+	public static final fun double (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Double;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun double$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Double;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun float (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Float;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun float$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Float;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun int (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Integer;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun int$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun long (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Long;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun long$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun property (Lnet/minecraft/nbt/NbtCompound;)Lkotlin/jvm/functions/Function0;
+	public static final fun short (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Short;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun short$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Short;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun string (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/String;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun string$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/nbt/NbtListDelegatesKt {
+	public static final fun byteArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun byteArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[B)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byteArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byteArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[BILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun byteList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byteList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun doubleList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun doubleList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun floatList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun floatList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun intArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun intArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[I)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun intArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun intArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[IILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun intList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun intList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun longArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun longArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[J)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun longArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun longArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[JILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun longList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun longList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun shortList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun shortList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun stringList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun stringList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
 }
 
 public final class org/quiltmc/qkl/wrapper/minecraft/registry/RegistryAction {
@@ -559,6 +669,211 @@ public final class org/quiltmc/qkl/wrapper/minecraft/registry/RegistryScope {
 	public final fun getModid ()Ljava/lang/String;
 	public final fun invoke (Lnet/minecraft/util/registry/Registry;Lkotlin/jvm/functions/Function1;)V
 	public final fun withPath (Ljava/lang/Object;Ljava/lang/String;)Lorg/quiltmc/qkl/wrapper/minecraft/registry/RegistryObject;
+}
+
+public abstract class org/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory {
+	public static final field Default Lorg/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory$Default;
+	public synthetic fun <init> (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun create (Lkotlin/reflect/KType;)Lcom/mojang/serialization/Codec;
+	public final fun create (Lkotlinx/serialization/KSerializer;)Lcom/mojang/serialization/Codec;
+	public final fun getOptions ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory$Default : org/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory {
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactoryKt {
+	public static final fun CodecFactory (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory;
+	public static synthetic fun CodecFactory$default (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/CodecFactory;
+}
+
+public abstract interface class org/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps {
+	public abstract fun createNull ()Ljava/lang/Object;
+	public abstract fun getSupportedMapKeys ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps$ElementSupport;
+	public abstract fun getSupportsNull ()Z
+	public abstract fun isNotNull (Ljava/lang/Object;)Z
+	public abstract fun unwrapNullable (Ljava/lang/Object;)Ljava/lang/Object;
+	public abstract fun wrapNullable (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps$ElementSupport : java/lang/Enum {
+	public static final field ANY Lorg/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps$ElementSupport;
+	public static final field PRIMITIVES Lorg/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps$ElementSupport;
+	public static final field STRINGS Lorg/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps$ElementSupport;
+	public static fun valueOf (Ljava/lang/String;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps$ElementSupport;
+	public static fun values ()[Lorg/quiltmc/qkl/wrapper/minecraft/serialization/ExtendedDynamicOps$ElementSupport;
+}
+
+public abstract interface annotation class org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecEntryListMap : java/lang/annotation/Annotation {
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecEntryListMap$Impl : org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecEntryListMap {
+	public fun <init> ()V
+}
+
+public abstract interface annotation class org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecSerializable : java/lang/annotation/Annotation {
+	public abstract fun encodeDefaults ()Lorg/quiltmc/qsl/base/api/util/TriState;
+	public abstract fun useInlineWrapper ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecSerializable$Impl : org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecSerializable {
+	public fun <init> (Lorg/quiltmc/qsl/base/api/util/TriState;Lorg/quiltmc/qsl/base/api/util/TriState;)V
+	public final synthetic fun encodeDefaults ()Lorg/quiltmc/qsl/base/api/util/TriState;
+	public final synthetic fun useInlineWrapper ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public abstract interface annotation class org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecSerializable$Polymorphic : java/lang/annotation/Annotation {
+	public abstract fun classDiscriminator ()Ljava/lang/String;
+	public abstract fun flatten ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecSerializable$Polymorphic$Impl : org/quiltmc/qkl/wrapper/minecraft/serialization/annotation/CodecSerializable$Polymorphic {
+	public fun <init> (Ljava/lang/String;Lorg/quiltmc/qsl/base/api/util/TriState;)V
+	public final synthetic fun classDiscriminator ()Ljava/lang/String;
+	public final synthetic fun flatten ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecListBuilder {
+	public fun <init> (Ljava/util/List;)V
+	public final fun getList ()Ljava/util/List;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions {
+	public static final field Companion Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$Companion;
+	public fun <init> (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;Lkotlinx/serialization/modules/SerializersModule;Ljava/util/List;ZZZZZZZZ)V
+	public final fun component1 ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;
+	public final fun component10 ()Z
+	public final fun component11 ()Z
+	public final fun component12 ()Z
+	public final fun component2 ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;
+	public final fun component3 ()Lkotlinx/serialization/modules/SerializersModule;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Z
+	public final fun component6 ()Z
+	public final fun component7 ()Z
+	public final fun component8 ()Z
+	public final fun component9 ()Z
+	public final fun copy (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;Lkotlinx/serialization/modules/SerializersModule;Ljava/util/List;ZZZZZZZZ)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;Lkotlinx/serialization/modules/SerializersModule;Ljava/util/List;ZZZZZZZZILjava/lang/Object;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowStringValues ()Z
+	public final fun getCodecs ()Ljava/util/List;
+	public final fun getEncodeDefaults ()Z
+	public final fun getEnum ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;
+	public final fun getExplicitNulls ()Z
+	public final fun getIgnoreUnknownKeys ()Z
+	public final fun getPolymorphism ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;
+	public final fun getPrintErrorStackTraces ()Z
+	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
+	public final fun getUseClassPropertyIndices ()Z
+	public final fun getUseEntryListMaps ()Z
+	public final fun getUseInlineWrappers ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$Companion {
+	public final fun getDEFAULT ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;
+}
+
+public abstract class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding {
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding$Index : org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding {
+	public static final field INSTANCE Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding$Index;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding$SerialName : org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding {
+	public fun <init> (Z)V
+	public final fun getCaseInsensitive ()Z
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions {
+	public fun <init> (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding;Z)V
+	public final fun component1 ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding;
+	public final fun component2 ()Z
+	public final fun copy (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding;Z)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding;ZILjava/lang/Object;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEncoding ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding;
+	public final fun getLenientDecoding ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions {
+	public fun <init> (Ljava/lang/String;Z)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun copy (Ljava/lang/String;Z)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;Ljava/lang/String;ZILjava/lang/Object;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClassDiscriminator ()Ljava/lang/String;
+	public final fun getFlatten ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptionsBuilder {
+	public fun <init> ()V
+	public fun <init> (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;)V
+	public synthetic fun <init> (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun build ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions;
+	public final fun codecs (Lkotlin/jvm/functions/Function1;)V
+	public final fun enum (Lkotlin/jvm/functions/Function1;)V
+	public final fun getAllowStringValues ()Z
+	public final fun getCodecs ()Ljava/util/List;
+	public final fun getEncodeDefaults ()Z
+	public final fun getEnum ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptionsBuilder$EnumOptionsBuilder;
+	public final fun getExplicitNulls ()Z
+	public final fun getIgnoreUnknownKeys ()Z
+	public final fun getPolymorphism ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptionsBuilder$PolymorphismOptionsBuilder;
+	public final fun getPrintErrorStackTraces ()Z
+	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
+	public final fun getUseClassPropertyIndices ()Z
+	public final fun getUseEntryListMaps ()Z
+	public final fun getUseInlineWrappers ()Z
+	public final fun polymorphism (Lkotlin/jvm/functions/Function1;)V
+	public final fun setAllowStringValues (Z)V
+	public final fun setEncodeDefaults (Z)V
+	public final fun setExplicitNulls (Z)V
+	public final fun setIgnoreUnknownKeys (Z)V
+	public final fun setPrintErrorStackTraces (Z)V
+	public final fun setSerializersModule (Lkotlinx/serialization/modules/SerializersModule;)V
+	public final fun setUseClassPropertyIndices (Z)V
+	public final fun setUseEntryListMaps (Z)V
+	public final fun setUseInlineWrappers (Z)V
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptionsBuilder$EnumOptionsBuilder {
+	public fun <init> (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumOptions;)V
+	public final fun getEncoding ()Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding;
+	public final fun getLenientDecoding ()Z
+	public final fun setEncoding (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$EnumEncoding;)V
+	public final fun setLenientDecoding (Z)V
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptionsBuilder$PolymorphismOptionsBuilder {
+	public fun <init> (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/CodecOptions$PolymorphismOptions;)V
+	public final fun getClassDiscriminator ()Ljava/lang/String;
+	public final fun getFlatten ()Z
+	public final fun setClassDiscriminator (Ljava/lang/String;)V
+	public final fun setFlatten (Z)V
+}
+
+public final class org/quiltmc/qkl/wrapper/minecraft/serialization/options/TypedCodec {
+	public fun <init> (Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Ljava/lang/String;)V
+	public final fun component1 ()Lkotlin/reflect/KClass;
+	public final fun component2 ()Lcom/mojang/serialization/Codec;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Ljava/lang/String;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/TypedCodec;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/TypedCodec;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Ljava/lang/String;ILjava/lang/Object;)Lorg/quiltmc/qkl/wrapper/minecraft/serialization/options/TypedCodec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCodec ()Lcom/mojang/serialization/Codec;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getType ()Lkotlin/reflect/KClass;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class org/quiltmc/qkl/wrapper/minecraft/text/ClickEvents {

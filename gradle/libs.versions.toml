@@ -1,14 +1,15 @@
 [versions]
-atomic = "0.18.3"
+atomic = "0.18.4"
 coroutines = "1.6.4"
 datetime = "0.4.0"
-dokka = "1.7.10"
-kotlin = "1.7.10"
+dokka = "1.7.20"
+kotlin = "1.7.20"
 minecraft = "1.19.2"
 qsl = "3.0.0-beta.16+1.19.2"
 quilt_loader = "0.17.4"
 quilt_mappings = "1.19.2+build.1"
-serialization = "1.4.0"
+serialization = "1.4.1"
+serialization_plugin = "1.7.20" # usually same as kotlin but can lag behind
 
 [libraries]
 atomic = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
@@ -32,4 +33,5 @@ git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 licenser = { id = "org.quiltmc.gradle.licenser", version = "1.1.2" }
 quilt_loom = { id = "org.quiltmc.loom", version = "0.12.+" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization_plugin" }
 binary_compatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.11.1" }
