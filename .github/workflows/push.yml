@@ -12,10 +12,20 @@ jobs:
         with:
           distribution: "temurin"
           java-version: ${{ matrix.java }}
+          
       - uses: actions/checkout@v3
       - run: chmod +x ./gradlew
-      - run: ./gradlew checkLicenses --parallel --stacktrace
-      - run: ./gradlew build --parallel --stacktrace
+
+      - name: Check Licenses
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: checkLicenses --stacktrace
+      
+      - name: Build Artifacts
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build --stacktrace
+
       - uses: actions/upload-artifact@v3
         with:
           name: Built Artifacts
