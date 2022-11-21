@@ -16,4 +16,3 @@ rootProject.name = "quilt-kotlin-libraries"
 
 include(":core")
 include(":library")
-include(":fatjar")
