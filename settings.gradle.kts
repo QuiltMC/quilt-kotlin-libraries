@@ -15,6 +15,5 @@ pluginManagement {
 rootProject.name = "quilt-kotlin-libraries"
 
 include(":core")
-include(":wrapper:minecraft")
-include(":wrapper:qsl")
+include(":library")
 include(":fatjar")

@@ -44,9 +44,11 @@ repositories {
 
 dependencies {
     minecraft(rootProject.libs.minecraft)
-    mappings(loom.layered {
-        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
-    })
+    mappings(
+        variantOf(rootProject.libs.quilt.mappings) {
+            classifier("intermediary-v2")
+        }
+    )
 
     modImplementation(rootProject.libs.quilt.loader)
 
@@ -148,9 +150,11 @@ subprojects {
 
     dependencies {
         minecraft(rootProject.libs.minecraft)
-        mappings(loom.layered {
-            addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
-        })
+        mappings(
+            variantOf(rootProject.libs.quilt.mappings) {
+                classifier("intermediary-v2")
+            }
+        )
 
         modImplementation(rootProject.libs.quilt.loader)
 
@@ -192,25 +196,23 @@ subprojects {
 
     publishing {
         publications {
-            if (project.name != "wrapper") {
-                create<MavenPublication>("Maven") {
-                    artifactId = project.name
-                    if (project.name == "fatjar") {
-                        artifactId = "quilt-kotlin-libraries"
-                    }
-                    version = projectVersion
+            create<MavenPublication>("Maven") {
+                artifactId = project.name
+                if (project.name == "fatjar") {
+                    artifactId = "quilt-kotlin-libraries"
+                }
+                version = projectVersion
 
-                    artifact(tasks.remapSourcesJar.get().archiveFile) {
-                        builtBy(tasks.remapSourcesJar)
-                        this.classifier = "sources"
-                    }
-                    artifact(tasks.remapJar.get().archiveFile) {
-                        builtBy(tasks.remapJar)
-                    }
-                    artifact(tasks.getByName<Jar>("dokkaJavadocJar").archiveFile) {
-                        builtBy(tasks.getByName("dokkaJavadocJar"))
-                        this.classifier = "javadoc"
-                    }
+                artifact(tasks.remapSourcesJar.get().archiveFile) {
+                    builtBy(tasks.remapSourcesJar)
+                    this.classifier = "sources"
+                }
+                artifact(tasks.remapJar.get().archiveFile) {
+                    builtBy(tasks.remapJar)
+                }
+                artifact(tasks.getByName<Jar>("dokkaJavadocJar").archiveFile) {
+                    builtBy(tasks.getByName("dokkaJavadocJar"))
+                    this.classifier = "javadoc"
                 }
             }
         }

@@ -3,13 +3,12 @@ plugins {
 }
 
 fun DependencyHandlerScope.includeApi(dependency: Any) {
-    include(dependency)?.let { implementation(it) }
+    include(dependency)?.let { api(it) }
 }
 
 dependencies {
     includeApi(project(":core"))
-    includeApi(project(":wrapper:qsl"))
-    includeApi(project(":wrapper:minecraft"))
+    includeApi(project(":library"))
 }
 
 tasks.remapJar {
