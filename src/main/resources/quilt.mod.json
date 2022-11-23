@@ -29,11 +29,7 @@
         "versions": ">=${version}"
       },
       {
-        "id": "qkl_qsl",
-        "versions": ">=${version}"
-      },
-      {
-        "id": "qkl_minecraft",
+        "id": "qkl_library",
         "versions": ">=${version}"
       }
     ]
