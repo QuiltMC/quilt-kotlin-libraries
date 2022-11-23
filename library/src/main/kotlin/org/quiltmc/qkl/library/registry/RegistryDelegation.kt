@@ -40,7 +40,7 @@ public fun <T : Any> RegistryScope.provide(provider: RegistryScope.() -> T): Laz
  *
  * @sample samples.qkl.registry.RegistryDslSamples.sampleRegistryActionDelegate
  */
-public fun <T : Any> RegistryAction<T>.provide(path: String, provider: () -> T): Lazy<T> {
+public fun <T : Any> RegistryAction<in T>.provide(path: String, provider: () -> T): Lazy<T> {
     return lazy { provider() withId path }
 }
 
@@ -51,6 +51,6 @@ public fun <T : Any> RegistryAction<T>.provide(path: String, provider: () -> T):
  *
  * This is a shortcut for default [BlockItem] registration.
  */
-public fun RegistryAction<Item>.provideBlockItem(path: String, provider: () -> Block): Lazy<Item> {
+public fun RegistryAction<Item>.provideBlockItem(path: String, provider: () -> Block): Lazy<BlockItem> {
     return lazy { BlockItem(provider(), Item.Settings()) withId path }
 }

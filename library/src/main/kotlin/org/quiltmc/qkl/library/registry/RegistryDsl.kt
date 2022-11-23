@@ -67,7 +67,7 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
      * @author Oliver-makes-code (Emma)
      * */
     @RegistryDsl
-    public infix fun T.withId(id: Identifier): T {
+    public infix fun <R : T> R.withId(id: Identifier): R {
         return Registry.register(registry, id, this)
     }
 
@@ -83,7 +83,7 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
      * @author Oliver-makes-code (Emma)
      * */
     @RegistryDsl
-    public infix fun T.withId(id: String): T {
+    public infix fun <R : T> R.withId(id: String): R {
         val identifier = if (':' in id || modid == null) {
             Identifier(id)
         } else {

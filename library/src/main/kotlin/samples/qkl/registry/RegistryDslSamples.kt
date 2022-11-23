@@ -35,15 +35,18 @@ private object RegistryDslSamples {
         error("Sample utility should not be called")
     }
 
+    class TestItem(settings: Settings) : Item(settings)
+    class TestBlock(settings: Settings) : Block(settings)
+
     fun sampleRegisterGlobally() {
-        val item: Item = stub()
+        val item: TestItem = stub()
         val identifier: Identifier = stub()
 
         item withId identifier toRegistry Registry.ITEM
     }
 
     fun sampleRegisterWithRegistry() {
-        val item: Item = stub()
+        val item: TestItem = stub()
         val identifier = Identifier("my", "item1")
 
         Registry.ITEM("my") {
@@ -60,7 +63,7 @@ private object RegistryDslSamples {
     }
 
     fun sampleRegisterWithScope() {
-        val item: Item = stub()
+        val item: TestItem = stub()
         val identifier = Identifier("my", "item1")
 
         registryScope("my") {
@@ -77,8 +80,8 @@ private object RegistryDslSamples {
     fun sampleRegistryScopeDelegate() {
         val scope: RegistryScope = stub()
 
-        val item: Item by scope.provide {
-            val instance: Item = stub()
+        val item: TestItem by scope.provide {
+            val instance: TestItem = stub()
 
             instance withPath "item" toRegistry Registry.ITEM
         }
@@ -91,12 +94,18 @@ private object RegistryDslSamples {
         // Blocks.kt
         val blocks = scope.action(Registry.BLOCK)
 
-        val myBlock by blocks.provide("block") { Block(stub()) }
+        val myBlock by blocks.provide("block") { TestBlock(stub()) }
 
         // Items.kt
         val items = scope.action(Registry.ITEM)
 
-        val myItem by items.provide("item") { Item(stub()) }
+        val myItem: TestItem by items.provide("item") { TestItem(stub()) }
         val myBlockItem by items.provideBlockItem("block") { myBlock } // Shortcut
+    }
+
+    fun sampleScopeWithResult() {
+        val item: TestItem = with(RegistryAction("id", Registry.ITEM)) {
+            TestItem(stub()) withId "test"
+        }
     }
 }
