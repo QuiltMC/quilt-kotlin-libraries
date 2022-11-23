@@ -19,16 +19,13 @@ package samples.qkl.brigadier
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.command.argument.PosArgument
 import net.minecraft.command.argument.Vec3ArgumentType
-import net.minecraft.network.MessageType
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 import net.minecraft.util.math.Vec3d
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.*
 import org.quiltmc.qkl.wrapper.minecraft.brigadier.argument.*
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.entity
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.required
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.sendFeedback
-import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.server
+import org.quiltmc.qkl.wrapper.minecraft.brigadier.util.*
+import org.quiltmc.qkl.wrapper.minecraft.text.*
 import kotlin.random.Random
 
 /**
@@ -136,22 +133,22 @@ private object BrigadierDslSamples {
                             // Operator access is nullable only for optionals
                             val targetName = this[target]?.value()?.displayName ?: Text.literal("themselves")
 
-                            server.playerManager.broadcastSystemMessage(
-                                Text.empty().apply {
-                                    append(entity?.displayName ?: Text.literal("Someone"))
-                                    append(Text.literal(" slaps "))
-                                    append(targetName)
+                            broadcastSystemMessage(
+                                buildText {
+                                    text(entity?.displayName ?: Text.literal("Someone"))
+                                    literal(" slaps ")
+                                    text(targetName)
 
                                     //checking the accessor directly works as well
                                     if (getWeapon != null) {
-                                        append(Text.literal(" with ${getWeapon().value()}"))
+                                        literal(" with ${getWeapon().value()}")
                                     }
 
                                     if (repeatedly != null) {
-                                        append(Text.literal(" repeatedly"))
+                                        literal(" repeatedly")
                                     }
                                 },
-                                MessageType.SAY_COMMAND
+                                false
                             )
                         }
                     }

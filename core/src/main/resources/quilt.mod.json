@@ -28,7 +28,7 @@
     "provides": [
       {
         "id": "fabric-language-kotlin",
-        "version": "1.8.2+kotlin.1.7.10"
+        "version": "${flk_version}"
       }
     ],
     "language_adapters": {

@@ -25,8 +25,6 @@ import org.quiltmc.qkl.wrapper.qsl.EventRegistration
 import org.quiltmc.qsl.registry.api.event.RegistryEntryContext
 import org.quiltmc.qsl.registry.api.event.RegistryEvents
 import org.quiltmc.qsl.registry.attachment.api.RegistryEntryAttachment
-import org.quiltmc.qsl.registry.attachment.api.RegistryExtensions
-import org.quiltmc.qsl.registry.attachment.api.RegistryExtensions.BuiltinAttachmentBuilder
 import kotlin.reflect.KClass
 
 /**
@@ -39,19 +37,6 @@ public fun <V> EventRegistration.onRegistryEntryAdded(
     callback: (RegistryEntryContext<V>) -> Unit
 ) {
     RegistryEvents.getEntryAddEvent(registry).register(callback)
-}
-
-/**
- * Register a [value] with the given [id] in this registry.
- *
- * @author sschr15
- */
-public fun <V> Registry<in V>.register(
-    id: Identifier,
-    value: V,
-    block: BuiltinAttachmentBuilder<in V>.() -> Unit
-) {
-    RegistryExtensions.register(this, id, value, block)
 }
 
 /**

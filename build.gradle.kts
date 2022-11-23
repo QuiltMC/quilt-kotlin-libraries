@@ -19,6 +19,8 @@ plugins {
     alias(libs.plugins.licenser)
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.binary.compatibility)
+    alias(libs.plugins.serialization)
     `maven-publish`
 }
 
@@ -30,7 +32,8 @@ buildscript {
 
 group = "org.quiltmc"
 val rootVersion = project.version
-version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk.1.8.2"
+val flk_version: String by project
+version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk." + flk_version
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 val javaVersion = 17 // The current version of Java used by Minecraft
@@ -55,6 +58,7 @@ allprojects {
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
     apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
     apply(plugin=rootProject.libs.plugins.dokka.get().pluginId)
+    apply(plugin=rootProject.libs.plugins.serialization.get().pluginId)
 
     repositories {
         mavenCentral()
@@ -78,7 +82,10 @@ allprojects {
         processResources {
             inputs.property("version", rootVersion)
             filesMatching("quilt.mod.json") {
-                expand(Pair("version", rootVersion))
+                expand(
+                    "version" to rootVersion,
+                    "flk_version" to "$flk_version+kotlin.${project.libs.versions.kotlin.orNull}"
+                )
             }
         }
 
@@ -247,7 +254,11 @@ tasks {
     }
 }
 
+apiValidation {
+    ignoredProjects.addAll(setOf("core", "fatjar"))
+}
+
 gitHooks {
     // Before committing, check that licenses are all ready and the detekt checks have passed.
-    setHooks(mapOf("pre-commit" to "checkLicenses detekt"))
+    setHooks(mapOf("pre-commit" to "checkLicenses apiCheck detekt"))
 }
