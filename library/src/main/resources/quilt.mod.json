@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "org.quiltmc.qkl",
+    "id": "qkl_library",
+    "version": "${version}",
+    "metadata": {
+      "name": "Quilt Kotlin Libraries: Library",
+      "description": "QKL Wrappers and Libraries",
+      "contributors": {
+        "QuiltMC: Quilt Kotlin Team": "Owner"
+      },
+      "contact": {
+        "homepage": "https://quiltmc.org",
+        "issues": "https://github.com/quiltmc/quilt-kotlin-libaries/issues",
+        "sources": "https://github.com/quiltmc/quilt-kotlin-libraries"
+      },
+      "license": "Apache-2.0",
+      "icon": "assets/qkl/icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=0.17.0"
+      }
+    ]
+  },
+  "modmenu": {
+    "badges": [
+      "library"
+    ],
+    "parent": {
+      "id": "qkl",
+      "name": "Quilt Kotlin Libraries",
+      "description": "Official Kotlin libraries for modding in Kotlin",
+      "icon": "assets/qkl/icon.png",
+      "badges": [
+        "library"
+      ]
+    }
+  },
+  "mixin": [
+    "qkl.mixins.json"
+  ]
+}

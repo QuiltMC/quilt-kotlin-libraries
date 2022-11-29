@@ -1,0 +1,1222 @@
+public final class org/quiltmc/qkl/library/EventRegistration {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/EventRegistration;
+}
+
+public final class org/quiltmc/qkl/library/EventRegistrationKt {
+	public static final fun registerEvents (Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class org/quiltmc/qkl/library/MixinAccessorsKt {
+	public static final fun getFontRaw (Lnet/minecraft/text/Style;)Lnet/minecraft/util/Identifier;
+	public static final fun isBoldRaw (Lnet/minecraft/text/Style;)Ljava/lang/Boolean;
+	public static final fun isItalicRaw (Lnet/minecraft/text/Style;)Ljava/lang/Boolean;
+	public static final fun isObfuscatedRaw (Lnet/minecraft/text/Style;)Ljava/lang/Boolean;
+	public static final fun isStrikethroughRaw (Lnet/minecraft/text/Style;)Ljava/lang/Boolean;
+	public static final fun isUnderlinedRaw (Lnet/minecraft/text/Style;)Ljava/lang/Boolean;
+}
+
+public final class org/quiltmc/qkl/library/blocks/BlockExtensionsKt {
+	public static final fun blockSettingsOf (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;ZLnet/minecraft/sound/BlockSoundGroup;ILkotlin/jvm/functions/Function1;FLjava/lang/Float;ZZFFFLjava/lang/Object;ZZLkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;)Lnet/minecraft/block/AbstractBlock$Settings;
+	public static synthetic fun blockSettingsOf$default (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;ZLnet/minecraft/sound/BlockSoundGroup;ILkotlin/jvm/functions/Function1;FLjava/lang/Float;ZZFFFLjava/lang/Object;ZZLkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ILjava/lang/Object;)Lnet/minecraft/block/AbstractBlock$Settings;
+	public static final fun buildBlockSettings (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/block/AbstractBlock$Settings;
+	public static final fun buildMaterial (Lnet/minecraft/block/MapColor;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/block/Material;
+	public static final fun materialOf (Lnet/minecraft/block/MapColor;Lnet/minecraft/block/piston/PistonBehavior;ZZZZZZ)Lnet/minecraft/block/Material;
+	public static synthetic fun materialOf$default (Lnet/minecraft/block/MapColor;Lnet/minecraft/block/piston/PistonBehavior;ZZZZZZILjava/lang/Object;)Lnet/minecraft/block/Material;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/ArgumentConstructor {
+	public fun <init> (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/lang/String;Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;)V
+	public final fun getBuilder ()Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	public final fun getDescriptor ()Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;
+	public final fun getName ()Ljava/lang/String;
+	public final fun optional ()Lorg/quiltmc/qkl/library/brigadier/CommandArgument$Optional;
+	public final fun required ()Lorg/quiltmc/qkl/library/brigadier/CommandArgument$Required;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/ArgumentConstructorKt {
+	public static final fun argument (Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun argument (Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun optional (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;Lkotlin/jvm/functions/Function2;)V
+	public static final fun required (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;Lkotlin/jvm/functions/Function2;)V
+}
+
+public abstract interface class org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+}
+
+public final class org/quiltmc/qkl/library/brigadier/ArgumentReader {
+	public fun <init> (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;)V
+	public final fun getArgumentDescriptor ()Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;
+	public final fun getContext ()Lcom/mojang/brigadier/context/CommandContext;
+	public final fun getName ()Ljava/lang/String;
+}
+
+public abstract interface annotation class org/quiltmc/qkl/library/brigadier/BrigadierDsl : java/lang/annotation/Annotation {
+}
+
+public final class org/quiltmc/qkl/library/brigadier/BrigadierDslKt {
+	public static final fun commandBuildContext (Lnet/minecraft/util/registry/DynamicRegistryManager;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/command/CommandBuildContext;
+	public static final fun getOptional (Lcom/mojang/brigadier/context/CommandContext;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;
+	public static final fun getRequired (Lcom/mojang/brigadier/context/CommandContext;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;
+	public static final fun register (Lcom/mojang/brigadier/CommandDispatcher;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract class org/quiltmc/qkl/library/brigadier/CommandArgument {
+	public synthetic fun <init> (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/lang/String;Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getBuilder ()Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	public final fun getDescriptor ()Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;
+	public final fun getName ()Ljava/lang/String;
+	public abstract fun register (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lkotlin/jvm/functions/Function2;)V
+}
+
+public final class org/quiltmc/qkl/library/brigadier/CommandArgument$Optional : org/quiltmc/qkl/library/brigadier/CommandArgument {
+	public fun <init> (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/lang/String;Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;)V
+	public fun register (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lkotlin/jvm/functions/Function2;)V
+}
+
+public final class org/quiltmc/qkl/library/brigadier/CommandArgument$Required : org/quiltmc/qkl/library/brigadier/CommandArgument {
+	public fun <init> (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/lang/String;Lorg/quiltmc/qkl/library/brigadier/ArgumentDescriptor;)V
+	public fun register (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lkotlin/jvm/functions/Function2;)V
+}
+
+public final class org/quiltmc/qkl/library/brigadier/CommandExecutionKt {
+	public static final fun execute (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lkotlin/jvm/functions/Function1;)V
+	public static final fun executeWithResult (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract class org/quiltmc/qkl/library/brigadier/CommandResult {
+	public static final field Companion Lorg/quiltmc/qkl/library/brigadier/CommandResult$Companion;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/CommandResult$Companion {
+	public final fun failure (Lnet/minecraft/text/Text;)Lorg/quiltmc/qkl/library/brigadier/CommandResult$Failure;
+	public final fun success (I)Lorg/quiltmc/qkl/library/brigadier/CommandResult$Success;
+	public static synthetic fun success$default (Lorg/quiltmc/qkl/library/brigadier/CommandResult$Companion;IILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/CommandResult$Success;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/CommandResult$Failure : org/quiltmc/qkl/library/brigadier/CommandResult {
+	public fun <init> (Lnet/minecraft/text/Text;)V
+	public final fun getMessage ()Lnet/minecraft/text/Text;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/CommandResult$Success : org/quiltmc/qkl/library/brigadier/CommandResult {
+	public fun <init> ()V
+	public fun <init> (I)V
+	public synthetic fun <init> (IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getResult ()I
+}
+
+public final class org/quiltmc/qkl/library/brigadier/DefaultArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public fun <init> ()V
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
+	public static final fun absoluteRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun angle (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun asAdvancement (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/advancement/Advancement;
+	public static final fun asItemModifier (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/function/LootFunction;
+	public static final fun asPredicate (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/condition/LootCondition;
+	public static final fun asRecipe (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/recipe/Recipe;
+	public static final fun blockPos (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun blockPredicate (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun blockState (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun boolean (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun color (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun columnPos (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun commandFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun defaultToAllKnownListScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun dimension (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun double (Ljava/lang/String;DD)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun double$default (Ljava/lang/String;DDILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun enchantment (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun entities (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun entity (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun entityAnchor (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun entitySummon (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun float (Ljava/lang/String;FF)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun float$default (Ljava/lang/String;FFILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun floatRange (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun functionOrTag (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lcom/mojang/datafixers/util/Pair;
+	public static final fun functions (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun gameProfile (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun greedyString (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun identifier (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun intRange (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun integer (Ljava/lang/String;II)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun integer$default (Ljava/lang/String;IIILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun itemPredicate (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun itemSlot (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun itemStack (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun literal (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun long (Ljava/lang/String;JJ)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun long$default (Ljava/lang/String;JJILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun message (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun nbtCompound (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun nbtElement (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun nbtPath (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun operation (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun optionalEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun optionalPlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun particleEffect (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun player (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun players (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun posVec3Arg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/PosArgument;
+	public static final fun requireLoaded (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun requiredEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun requiredPlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun rotation (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreHolder (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreHolders (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreboardCriterion (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreboardObjective (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreboardSlot (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun signed (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/MessageArgumentType$C_ygsxruyj;
+	public static final fun statusEffect (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun string (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun swizzle (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun team (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun testClass (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun testFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun text (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun time (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun uuid (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun valueAngleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)F
+	public static final fun valueBlockPosArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun valueBlockPredicateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/function/Predicate;
+	public static final fun valueBlockStateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/BlockStateArgument;
+	public static final fun valueBoolArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Z
+	public static final fun valueColorArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/Formatting;
+	public static final fun valueColumnPosArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/ColumnPos;
+	public static final fun valueDimensionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/server/world/ServerWorld;
+	public static final fun valueDoubleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)D
+	public static final fun valueEnchantmentArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/enchantment/Enchantment;
+	public static final fun valueEntityAnchorArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/EntityAnchorArgumentType$EntityAnchor;
+	public static final fun valueEntitySummonArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/Identifier;
+	public static final fun valueFloatArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)F
+	public static final fun valueFloatRangeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/predicate/NumberRange$FloatRange;
+	public static final fun valueGameProfileArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun valueIdentifierArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/Identifier;
+	public static final fun valueIntArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueIntRangeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/predicate/NumberRange$IntRange;
+	public static final fun valueItemPredicateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/function/Predicate;
+	public static final fun valueItemSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueItemStackArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/ItemStackArgument;
+	public static final fun valueListScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun valueLongArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)J
+	public static final fun valueMessageArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/text/Text;
+	public static final fun valueNbtCompoundArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun valueNbtElementArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/nbt/NbtElement;
+	public static final fun valueNbtPathArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/NbtPathArgumentType$NbtPath;
+	public static final fun valueOperationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/OperationArgumentType$Operation;
+	public static final fun valueParticleEffectArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/particle/ParticleEffect;
+	public static final fun valuePlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/server/network/ServerPlayerEntity;
+	public static final fun valueRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/PosArgument;
+	public static final fun valueScoreboardCriterionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardCriterion;
+	public static final fun valueScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
+	public static final fun valueScoreboardSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueSingleEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/entity/Entity;
+	public static final fun valueSingleScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+	public static final fun valueStatusEffectArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/entity/effect/StatusEffect;
+	public static final fun valueStringArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+	public static final fun valueSwizzleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/EnumSet;
+	public static final fun valueTeamArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/Team;
+	public static final fun valueTestClassArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+	public static final fun valueTestFunctionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/test/TestFunction;
+	public static final fun valueTextArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/text/Text;
+	public static final fun valueTimeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueUuidArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/UUID;
+	public static final fun valueVec2Arg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun valueVec3Arg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun vec2 (Ljava/lang/String;Z)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun vec2$default (Ljava/lang/String;ZILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun vec3 (Ljava/lang/String;Z)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun vec3$default (Ljava/lang/String;ZILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun word (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun writableScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/ListEntityArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/ListEntityArgumentDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/ListPlayerArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/ListPlayerArgumentDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/ListScoreHolderArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/ListScoreHolderArgumentDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/LiteralDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/LiteralDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/MappedStringEnumArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public fun <init> (Ljava/util/Map;)V
+	public final fun getMap ()Ljava/util/Map;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/QuiltArgumentsKt {
+	public static final fun enum (Ljava/lang/String;Ljava/util/List;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun enum (Ljava/lang/String;Ljava/util/Map;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun enum (Ljava/lang/String;Lkotlin/reflect/KClass;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun enumAllowedSublist (Ljava/lang/String;Ljava/util/List;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun valueEnumClassArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/Enum;
+	public static final fun valueEnumMappedArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/Object;
+	public static final fun valueEnumStringArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/SingleEntityArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/SingleEntityArgumentDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/SinglePlayerArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/SinglePlayerArgumentDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/SingleScoreHolderArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/SingleScoreHolderArgumentDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/StringEnumArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/StringEnumArgumentDescriptor;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/argument/TypedEnumArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
+	public fun <init> (Ljava/lang/Class;)V
+	public final fun getType ()Ljava/lang/Class;
+}
+
+public final class org/quiltmc/qkl/library/brigadier/util/RequiredChainKt {
+	public static final fun required (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;Lkotlin/jvm/functions/Function3;)V
+	public static final fun required (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;Lkotlin/jvm/functions/Function4;)V
+}
+
+public final class org/quiltmc/qkl/library/brigadier/util/ServerCommandUtilKt {
+	public static final fun broadcastSystemMessage (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/text/Text;Z)V
+	public static final fun getEntity (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/entity/Entity;
+	public static final fun getPlayer (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/network/ServerPlayerEntity;
+	public static final fun getServer (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/MinecraftServer;
+	public static final fun getWorld (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/world/ServerWorld;
+	public static final fun sendFeedback (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/text/Text;Z)V
+	public static synthetic fun sendFeedback$default (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/text/Text;ZILjava/lang/Object;)V
+}
+
+public final class org/quiltmc/qkl/library/client/lifecycle/ClientEventsKt {
+	public static final fun onClientReady (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onClientStopped (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onClientStopping (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onClientTickFinish (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onClientTickStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onWorldTickFinish (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onWorldTickStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+}
+
+public final class org/quiltmc/qkl/library/client/networking/ClientEventsKt {
+	public static final fun onClientPlayChannelRegister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onClientPlayChannelUnregister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onLoginDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onLoginInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onLoginQueryStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPlayConnectionDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPlayConnectionInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPlayConnectionReady (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
+}
+
+public final class org/quiltmc/qkl/library/client/resource/ResourceLoaderEventsKt {
+	public static final fun onResourcePackReloadFinish (Lkotlin/jvm/functions/Function4;)V
+	public static final fun onResourcePackReloadStart (Lkotlin/jvm/functions/Function3;)V
+}
+
+public final class org/quiltmc/qkl/library/client/screen/QuiltScreenKt {
+	public static final fun getButtons (Lnet/minecraft/client/gui/screen/Screen;)Ljava/util/List;
+	public static final fun getClient (Lnet/minecraft/client/gui/screen/Screen;)Lnet/minecraft/client/MinecraftClient;
+	public static final fun getItemRenderer (Lnet/minecraft/client/gui/screen/Screen;)Lnet/minecraft/client/render/item/ItemRenderer;
+	public static final fun getTextRenderer (Lnet/minecraft/client/gui/screen/Screen;)Lnet/minecraft/client/font/TextRenderer;
+}
+
+public final class org/quiltmc/qkl/library/client/screen/ScreenEventsKt {
+	public static final fun afterKeyPress (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun afterKeyRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun afterMouseClick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun afterMouseRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun afterMouseScroll (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
+	public static final fun afterScreenInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun afterScreenRender (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
+	public static final fun afterScreenTick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun allowKeyPress (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun allowKeyRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun allowMouseClick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun allowMouseRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun allowMouseScroll (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
+	public static final fun beforeKeyPress (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun beforeKeyRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun beforeMouseClick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun beforeMouseRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun beforeMouseScroll (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
+	public static final fun beforeScreenInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun beforeScreenRender (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
+	public static final fun beforeScreenTick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onScreenRemoved (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class org/quiltmc/qkl/library/client/tooltip/TooltipEventsKt {
+	public static final fun onItemTooltip (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onTooltipComponent (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class org/quiltmc/qkl/library/commands/CommandRegistrationKt {
+	public static final fun onClientCommandRegistration (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
+	public static final fun onCommandRegistration (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
+}
+
+public final class org/quiltmc/qkl/library/crash/CrashEventsKt {
+	public static final fun onAddAffectedWorldDetails (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onAddBlockDetails (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onAddBlockEntityDetails (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onAddEntityDetails (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onAddSystemDetails (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onCrashReportCreation (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class org/quiltmc/qkl/library/items/ItemGroupKt {
+	public static final fun buildItemGroup (Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/item/ItemGroup;
+	public static final fun itemGroupOf (Lnet/minecraft/util/Identifier;Lnet/minecraft/text/Text;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/item/ItemGroup;
+	public static synthetic fun itemGroupOf$default (Lnet/minecraft/util/Identifier;Lnet/minecraft/text/Text;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lnet/minecraft/item/ItemGroup;
+}
+
+public final class org/quiltmc/qkl/library/items/ItemSettingsKt {
+	public static final fun buildItemSettings (Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/item/setting/api/QuiltItemSettings;
+	public static final fun customSetting (Lorg/quiltmc/qsl/item/setting/api/QuiltItemSettings;Ljava/lang/Object;Lorg/quiltmc/qsl/item/setting/api/CustomItemSetting;)V
+	public static final fun itemSettingsOf (IILnet/minecraft/item/Item;Lnet/minecraft/item/ItemGroup;Lnet/minecraft/util/Rarity;Lnet/minecraft/item/FoodComponent;ZLorg/quiltmc/qsl/item/setting/api/CustomDamageHandler;Lkotlin/jvm/functions/Function1;Ljava/util/List;)Lorg/quiltmc/qsl/item/setting/api/QuiltItemSettings;
+	public static synthetic fun itemSettingsOf$default (IILnet/minecraft/item/Item;Lnet/minecraft/item/ItemGroup;Lnet/minecraft/util/Rarity;Lnet/minecraft/item/FoodComponent;ZLorg/quiltmc/qsl/item/setting/api/CustomDamageHandler;Lkotlin/jvm/functions/Function1;Ljava/util/List;ILjava/lang/Object;)Lorg/quiltmc/qsl/item/setting/api/QuiltItemSettings;
+}
+
+public final class org/quiltmc/qkl/library/lifecycle/ServerEventsKt {
+	public static final fun onServerReady (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onServerStarting (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onServerStopped (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onServerStopping (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onServerTickEnd (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onServerTickStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onServerWorldLoad (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onServerWorldTickEnd (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onServerWorldTickStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onServerWorldUnload (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+}
+
+public final class org/quiltmc/qkl/library/math/BlockPosOpsKt {
+	public static final fun component1 (Lnet/minecraft/util/math/BlockPos;)I
+	public static final fun component2 (Lnet/minecraft/util/math/BlockPos;)I
+	public static final fun component3 (Lnet/minecraft/util/math/BlockPos;)I
+	public static final fun cross (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun cross (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun cross (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun div (Lnet/minecraft/util/math/BlockPos;I)Lnet/minecraft/util/math/BlockPos;
+	public static final fun dot (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)I
+	public static final fun dot (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Vec3i;)I
+	public static final fun minus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun minus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun plus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun plus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun times (ILnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun times (Lnet/minecraft/util/math/BlockPos;I)Lnet/minecraft/util/math/BlockPos;
+	public static final fun times (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun times (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun toVec3d (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun toVec3f (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun toVec3i (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun toVector3d (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun unaryMinus (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
+}
+
+public final class org/quiltmc/qkl/library/math/Matrix3fKt {
+	public static final fun minusAssign (Lnet/minecraft/util/math/Matrix3f;Lnet/minecraft/util/math/Matrix3f;)V
+	public static final fun plusAssign (Lnet/minecraft/util/math/Matrix3f;Lnet/minecraft/util/math/Matrix3f;)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Matrix3f;F)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Matrix3f;Lnet/minecraft/util/math/Matrix3f;)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Matrix3f;Lnet/minecraft/util/math/Quaternion;)V
+}
+
+public final class org/quiltmc/qkl/library/math/Matrix4fKt {
+	public static final fun minusAssign (Lnet/minecraft/util/math/Matrix4f;Lnet/minecraft/util/math/Matrix4f;)V
+	public static final fun plusAssign (Lnet/minecraft/util/math/Matrix4f;Lnet/minecraft/util/math/Matrix4f;)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Matrix4f;F)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Matrix4f;Lnet/minecraft/util/math/Matrix4f;)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Matrix4f;Lnet/minecraft/util/math/Quaternion;)V
+}
+
+public final class org/quiltmc/qkl/library/math/Vec2fOpsKt {
+	public static final fun component1 (Lnet/minecraft/util/math/Vec2f;)F
+	public static final fun component2 (Lnet/minecraft/util/math/Vec2f;)F
+	public static final fun div (Lnet/minecraft/util/math/Vec2f;F)Lnet/minecraft/util/math/Vec2f;
+	public static final fun dot (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/client/util/math/Vector2f;)F
+	public static final fun dot (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/util/math/Vec2f;)F
+	public static final fun minus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun minus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun plus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun plus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun times (FLnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun times (Lnet/minecraft/util/math/Vec2f;F)Lnet/minecraft/util/math/Vec2f;
+	public static final fun times (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun times (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun toVector2f (Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun unaryMinus (Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
+}
+
+public final class org/quiltmc/qkl/library/math/Vec3dOpsKt {
+	public static final fun component1 (Lnet/minecraft/util/math/Vec3d;)D
+	public static final fun component2 (Lnet/minecraft/util/math/Vec3d;)D
+	public static final fun component3 (Lnet/minecraft/util/math/Vec3d;)D
+	public static final fun cross (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun cross (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun div (Lnet/minecraft/util/math/Vec3d;D)Lnet/minecraft/util/math/Vec3d;
+	public static final fun dot (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/client/util/math/Vector3d;)D
+	public static final fun dot (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)D
+	public static final fun minus (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun minus (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun plus (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun plus (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun times (DLnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun times (Lnet/minecraft/util/math/Vec3d;D)Lnet/minecraft/util/math/Vec3d;
+	public static final fun times (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun times (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun toBlockPos (Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun toVec3f (Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun toVec3i (Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun toVector3d (Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun unaryMinus (Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
+}
+
+public final class org/quiltmc/qkl/library/math/Vec3fOpsKt {
+	public static final fun component1 (Lnet/minecraft/util/math/Vec3f;)F
+	public static final fun component2 (Lnet/minecraft/util/math/Vec3f;)F
+	public static final fun component3 (Lnet/minecraft/util/math/Vec3f;)F
+	public static final fun cross (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun div (Lnet/minecraft/util/math/Vec3f;F)Lnet/minecraft/util/math/Vec3f;
+	public static final fun divAssign (Lnet/minecraft/util/math/Vec3f;F)V
+	public static final fun dot (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)F
+	public static final fun minus (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun minusAssign (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)V
+	public static final fun plus (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun plusAssign (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)V
+	public static final fun times (FLnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun times (Lnet/minecraft/util/math/Vec3f;F)Lnet/minecraft/util/math/Vec3f;
+	public static final fun times (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun timesAssign (Lnet/minecraft/util/math/Vec3f;F)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Vec3f;Lnet/minecraft/util/math/Vec3f;)V
+	public static final fun toBlockPos (Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun toVec3d (Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun toVec3i (Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun toVector3d (Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun unaryMinus (Lnet/minecraft/util/math/Vec3f;)Lnet/minecraft/util/math/Vec3f;
+}
+
+public final class org/quiltmc/qkl/library/math/Vec3iOpsKt {
+	public static final fun component1 (Lnet/minecraft/util/math/Vec3i;)I
+	public static final fun component2 (Lnet/minecraft/util/math/Vec3i;)I
+	public static final fun component3 (Lnet/minecraft/util/math/Vec3i;)I
+	public static final fun cross (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun cross (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun div (Lnet/minecraft/util/math/Vec3i;I)Lnet/minecraft/util/math/Vec3i;
+	public static final fun dot (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/BlockPos;)I
+	public static final fun dot (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/Vec3i;)I
+	public static final fun length (Lnet/minecraft/util/math/Vec3i;)D
+	public static final fun lengthSquared (Lnet/minecraft/util/math/Vec3i;)I
+	public static final fun minus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun minus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun plus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun plus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun times (ILnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun times (Lnet/minecraft/util/math/Vec3i;I)Lnet/minecraft/util/math/Vec3i;
+	public static final fun times (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun times (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun toBlockPos (Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun toVec3d (Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun toVec3f (Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun toVector3d (Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun unaryMinus (Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
+}
+
+public final class org/quiltmc/qkl/library/math/Vector2fOpsKt {
+	public static final fun component1 (Lnet/minecraft/client/util/math/Vector2f;)F
+	public static final fun component2 (Lnet/minecraft/client/util/math/Vector2f;)F
+	public static final fun div (Lnet/minecraft/client/util/math/Vector2f;F)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun dot (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)F
+	public static final fun dot (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/util/math/Vec2f;)F
+	public static final fun length (Lnet/minecraft/client/util/math/Vector2f;)F
+	public static final fun lengthSquared (Lnet/minecraft/client/util/math/Vector2f;)F
+	public static final fun minus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun minus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun normalize (Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun plus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun plus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun times (FLnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun times (Lnet/minecraft/client/util/math/Vector2f;F)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun times (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun times (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun toVec2f (Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun unaryMinus (Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
+}
+
+public final class org/quiltmc/qkl/library/math/Vector3dOpsKt {
+	public static final fun component1 (Lnet/minecraft/client/util/math/Vector3d;)D
+	public static final fun component2 (Lnet/minecraft/client/util/math/Vector3d;)D
+	public static final fun component3 (Lnet/minecraft/client/util/math/Vector3d;)D
+	public static final fun cross (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun cross (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun div (Lnet/minecraft/client/util/math/Vector3d;D)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun divAssign (Lnet/minecraft/client/util/math/Vector3d;D)V
+	public static final fun dot (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)D
+	public static final fun dot (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)D
+	public static final fun length (Lnet/minecraft/client/util/math/Vector3d;)D
+	public static final fun lengthSquared (Lnet/minecraft/client/util/math/Vector3d;)D
+	public static final fun minus (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun minus (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun minusAssign (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)V
+	public static final fun minusAssign (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)V
+	public static final fun normalize (Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun plus (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun plus (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun plusAssign (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)V
+	public static final fun plusAssign (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)V
+	public static final fun times (DLnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun times (Lnet/minecraft/client/util/math/Vector3d;D)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun times (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun times (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/client/util/math/Vector3d;
+	public static final fun timesAssign (Lnet/minecraft/client/util/math/Vector3d;D)V
+	public static final fun timesAssign (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/client/util/math/Vector3d;)V
+	public static final fun timesAssign (Lnet/minecraft/client/util/math/Vector3d;Lnet/minecraft/util/math/Vec3d;)V
+	public static final fun toBlockPos (Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun toVec3d (Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun toVec3f (Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/Vec3f;
+	public static final fun toVec3i (Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun unaryMinus (Lnet/minecraft/client/util/math/Vector3d;)Lnet/minecraft/client/util/math/Vector3d;
+}
+
+public final class org/quiltmc/qkl/library/math/Vector4fOpsKt {
+	public static final fun component1 (Lnet/minecraft/util/math/Vector4f;)F
+	public static final fun component2 (Lnet/minecraft/util/math/Vector4f;)F
+	public static final fun component3 (Lnet/minecraft/util/math/Vector4f;)F
+	public static final fun component4 (Lnet/minecraft/util/math/Vector4f;)F
+	public static final fun div (Lnet/minecraft/util/math/Vector4f;F)Lnet/minecraft/util/math/Vector4f;
+	public static final fun divAssign (Lnet/minecraft/util/math/Vector4f;F)V
+	public static final fun dot (Lnet/minecraft/util/math/Vector4f;Lnet/minecraft/util/math/Vector4f;)F
+	public static final fun length (Lnet/minecraft/util/math/Vector4f;)F
+	public static final fun lengthSquared (Lnet/minecraft/util/math/Vector4f;)F
+	public static final fun minus (Lnet/minecraft/util/math/Vector4f;Lnet/minecraft/util/math/Vector4f;)Lnet/minecraft/util/math/Vector4f;
+	public static final fun minusAssign (Lnet/minecraft/util/math/Vector4f;Lnet/minecraft/util/math/Vector4f;)V
+	public static final fun normalized (Lnet/minecraft/util/math/Vector4f;)Lnet/minecraft/util/math/Vector4f;
+	public static final fun plus (Lnet/minecraft/util/math/Vector4f;Lnet/minecraft/util/math/Vector4f;)Lnet/minecraft/util/math/Vector4f;
+	public static final fun plusAssign (Lnet/minecraft/util/math/Vector4f;Lnet/minecraft/util/math/Vector4f;)V
+	public static final fun times (FLnet/minecraft/util/math/Vector4f;)Lnet/minecraft/util/math/Vector4f;
+	public static final fun times (Lnet/minecraft/util/math/Vector4f;F)Lnet/minecraft/util/math/Vector4f;
+	public static final fun times (Lnet/minecraft/util/math/Vector4f;Lnet/minecraft/util/math/Vector4f;)Lnet/minecraft/util/math/Vector4f;
+	public static final fun timesAssign (Lnet/minecraft/util/math/Vector4f;F)V
+	public static final fun timesAssign (Lnet/minecraft/util/math/Vector4f;Lnet/minecraft/util/math/Vector4f;)V
+	public static final fun unaryMinus (Lnet/minecraft/util/math/Vector4f;)Lnet/minecraft/util/math/Vector4f;
+}
+
+public abstract interface class org/quiltmc/qkl/library/mixin/serialization/ForwardingDynamicOpsAccessor {
+	public abstract fun getDelegate ()Lcom/mojang/serialization/DynamicOps;
+}
+
+public abstract interface class org/quiltmc/qkl/library/mixin/text/StyleAccessor {
+	public static fun create (Lnet/minecraft/text/TextColor;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/text/ClickEvent;Lnet/minecraft/text/HoverEvent;Ljava/lang/String;Lnet/minecraft/util/Identifier;)Lnet/minecraft/text/Style;
+	public abstract fun getFontRaw ()Lnet/minecraft/util/Identifier;
+	public abstract fun isBoldRaw ()Ljava/lang/Boolean;
+	public abstract fun isItalicRaw ()Ljava/lang/Boolean;
+	public abstract fun isObfuscatedRaw ()Ljava/lang/Boolean;
+	public abstract fun isStrikethroughRaw ()Ljava/lang/Boolean;
+	public abstract fun isUnderlinedRaw ()Ljava/lang/Boolean;
+}
+
+public final class org/quiltmc/qkl/library/nbt/CompoundOperatorsKt {
+	public static final fun NbtCompound (Ljava/util/Map;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun NbtCompound (Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun NbtCompound ([Lkotlin/Pair;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun plus (Lnet/minecraft/nbt/NbtCompound;Ljava/util/Map;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun plus (Lnet/minecraft/nbt/NbtCompound;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun plusAssign (Lnet/minecraft/nbt/NbtCompound;Ljava/util/Map;)V
+	public static final fun plusAssign (Lnet/minecraft/nbt/NbtCompound;Lnet/minecraft/nbt/NbtCompound;)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;B)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;D)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;F)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;I)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;J)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;Lnet/minecraft/nbt/NbtElement;)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;S)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;Z)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;[B)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;[I)V
+	public static final fun set (Lnet/minecraft/nbt/NbtCompound;Ljava/lang/String;[J)V
+}
+
+public final class org/quiltmc/qkl/library/nbt/NbtConversionsKt {
+	public static final fun bytesToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtByteArray;
+	public static final fun doublesToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun floatsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun getBoolean (Lnet/minecraft/nbt/NbtElement;)Z
+	public static final fun getByte (Lnet/minecraft/nbt/NbtElement;)B
+	public static final fun getDouble (Lnet/minecraft/nbt/NbtElement;)D
+	public static final fun getFloat (Lnet/minecraft/nbt/NbtElement;)F
+	public static final fun getInt (Lnet/minecraft/nbt/NbtElement;)I
+	public static final fun getLong (Lnet/minecraft/nbt/NbtElement;)J
+	public static final fun getNbt (B)Lnet/minecraft/nbt/NbtByte;
+	public static final fun getNbt (D)Lnet/minecraft/nbt/NbtDouble;
+	public static final fun getNbt (F)Lnet/minecraft/nbt/NbtFloat;
+	public static final fun getNbt (I)Lnet/minecraft/nbt/NbtInt;
+	public static final fun getNbt (J)Lnet/minecraft/nbt/NbtLong;
+	public static final fun getNbt (Ljava/lang/String;)Lnet/minecraft/nbt/NbtString;
+	public static final fun getNbt (S)Lnet/minecraft/nbt/NbtShort;
+	public static final fun getNbt (Z)Lnet/minecraft/nbt/NbtByte;
+	public static final fun getNbt ([B)Lnet/minecraft/nbt/NbtByteArray;
+	public static final fun getNbt ([I)Lnet/minecraft/nbt/NbtIntArray;
+	public static final fun getNbt ([J)Lnet/minecraft/nbt/NbtLongArray;
+	public static final fun getShort (Lnet/minecraft/nbt/NbtElement;)S
+	public static final fun getString (Lnet/minecraft/nbt/NbtElement;)Ljava/lang/String;
+	public static final fun intsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtIntArray;
+	public static final fun longsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtLongArray;
+	public static final fun shortsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun stringsToNbt (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtList;
+	public static final fun toNbtList (Lnet/minecraft/nbt/NbtByteArray;)Lnet/minecraft/nbt/NbtList;
+	public static final fun toNbtList (Lnet/minecraft/nbt/NbtIntArray;)Lnet/minecraft/nbt/NbtList;
+	public static final fun toNbtList (Lnet/minecraft/nbt/NbtLongArray;)Lnet/minecraft/nbt/NbtList;
+}
+
+public final class org/quiltmc/qkl/library/nbt/NbtDelegatesKt {
+	public static final fun boolean (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Boolean;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun boolean$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun byte (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Byte;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byte$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Byte;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun compound (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lnet/minecraft/nbt/NbtCompound;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun compound$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lnet/minecraft/nbt/NbtCompound;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun constant (Lkotlin/jvm/functions/Function0;)Lkotlin/jvm/functions/Function0;
+	public static final fun double (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Double;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun double$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Double;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun float (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Float;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun float$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Float;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun int (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Integer;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun int$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun long (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Long;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun long$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun property (Lnet/minecraft/nbt/NbtCompound;)Lkotlin/jvm/functions/Function0;
+	public static final fun short (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Short;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun short$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Short;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun string (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/String;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun string$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+}
+
+public final class org/quiltmc/qkl/library/nbt/NbtListDelegatesKt {
+	public static final fun byteArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun byteArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[B)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byteArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byteArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[BILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun byteList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun byteList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun doubleList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun doubleList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun floatList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun floatList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun intArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun intArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[I)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun intArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun intArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[IILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun intList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun intList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun longArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun longArray (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[J)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun longArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun longArray$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;[JILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun longList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun longList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun shortList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun shortList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+	public static final fun stringList (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;)Lkotlin/properties/PropertyDelegateProvider;
+	public static synthetic fun stringList$default (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/Iterable;ILjava/lang/Object;)Lkotlin/properties/PropertyDelegateProvider;
+}
+
+public final class org/quiltmc/qkl/library/networking/PlayerLookupsKt {
+	public static final fun getAllPlayers (Lnet/minecraft/server/MinecraftServer;)Ljava/util/Collection;
+	public static final fun getPlayersInWorld (Lnet/minecraft/server/world/ServerWorld;)Ljava/util/Collection;
+	public static final fun getPlayersNear (Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;D)Ljava/util/Collection;
+	public static final fun getPlayersNear (Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3i;D)Ljava/util/Collection;
+	public static final fun getPlayersTracking (Lnet/minecraft/block/entity/BlockEntity;)Ljava/util/Collection;
+	public static final fun getPlayersTracking (Lnet/minecraft/entity/Entity;)Ljava/util/Collection;
+	public static final fun getPlayersTrackingChunk (Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/ChunkPos;)Ljava/util/Collection;
+}
+
+public final class org/quiltmc/qkl/library/networking/ServerEventsKt {
+	public static final fun onEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onEntityTrackingStop (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onLoginDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onLoginInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onLoginQueryStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onPlayChannelRegister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onPlayChannelUnregister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onPlayDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPlayInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPlayReady (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
+}
+
+public final class org/quiltmc/qkl/library/recipe/RecipeEventsKt {
+	public static final fun onAddRecipes (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onModifyRecipes (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onRemoveRecipes (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class org/quiltmc/qkl/library/recipe/RecipeExtensionsKt {
+	public static final fun coerceIngredient (Ljava/lang/Object;)Lnet/minecraft/recipe/Ingredient;
+	public static final fun foodCookingRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;FIII)[Lnet/minecraft/recipe/AbstractCookingRecipe;
+	public static synthetic fun foodCookingRecipe$default (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;FIIIILjava/lang/Object;)[Lnet/minecraft/recipe/AbstractCookingRecipe;
+	public static final fun registerStaticRecipe (Lnet/minecraft/recipe/Recipe;)Lnet/minecraft/recipe/Recipe;
+	public static final fun registerStaticRecipes ([Lnet/minecraft/recipe/Recipe;)V
+	public static final fun shapedRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Lkotlin/Pair;)Lnet/minecraft/recipe/ShapedRecipe;
+	public static final fun shapelessRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Ljava/lang/Object;)Lnet/minecraft/recipe/ShapelessRecipe;
+}
+
+public final class org/quiltmc/qkl/library/registry/RegistryAction {
+	public fun <init> (Ljava/lang/String;Lnet/minecraft/util/registry/Registry;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lnet/minecraft/util/registry/Registry;
+	public final fun copy (Ljava/lang/String;Lnet/minecraft/util/registry/Registry;)Lorg/quiltmc/qkl/library/registry/RegistryAction;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/library/registry/RegistryAction;Ljava/lang/String;Lnet/minecraft/util/registry/Registry;ILjava/lang/Object;)Lorg/quiltmc/qkl/library/registry/RegistryAction;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getModid ()Ljava/lang/String;
+	public final fun getRegistry ()Lnet/minecraft/util/registry/Registry;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public final fun withId (Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+	public final fun withId (Ljava/lang/Object;Lnet/minecraft/util/Identifier;)Ljava/lang/Object;
+}
+
+public final class org/quiltmc/qkl/library/registry/RegistryDelegationKt {
+	public static final fun provide (Lorg/quiltmc/qkl/library/registry/RegistryAction;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Lazy;
+	public static final fun provide (Lorg/quiltmc/qkl/library/registry/RegistryScope;Lkotlin/jvm/functions/Function1;)Lkotlin/Lazy;
+	public static final fun provideBlockItem (Lorg/quiltmc/qkl/library/registry/RegistryAction;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Lazy;
+}
+
+public abstract interface annotation class org/quiltmc/qkl/library/registry/RegistryDsl : java/lang/annotation/Annotation {
+}
+
+public final class org/quiltmc/qkl/library/registry/RegistryDslKt {
+	public static final fun invoke (Lnet/minecraft/util/registry/Registry;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun invoke (Lnet/minecraft/util/registry/Registry;Lkotlin/jvm/functions/Function1;)V
+	public static final fun registryScope (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withId (Ljava/lang/Object;Lnet/minecraft/util/Identifier;)Lorg/quiltmc/qkl/library/registry/RegistryObject;
+}
+
+public final class org/quiltmc/qkl/library/registry/RegistryObject {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)Lorg/quiltmc/qkl/library/registry/RegistryObject;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/library/registry/RegistryObject;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;ILjava/lang/Object;)Lorg/quiltmc/qkl/library/registry/RegistryObject;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getModid ()Ljava/lang/String;
+	public final fun getPath ()Ljava/lang/String;
+	public final fun getT ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public final fun toRegistry (Lnet/minecraft/util/registry/Registry;)Ljava/lang/Object;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/library/registry/RegistryScope {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun action (Lnet/minecraft/util/registry/Registry;)Lorg/quiltmc/qkl/library/registry/RegistryAction;
+	public final fun getModid ()Ljava/lang/String;
+	public final fun invoke (Lnet/minecraft/util/registry/Registry;Lkotlin/jvm/functions/Function1;)V
+	public final fun withPath (Ljava/lang/Object;Ljava/lang/String;)Lorg/quiltmc/qkl/library/registry/RegistryObject;
+}
+
+public final class org/quiltmc/qkl/library/registry/RegistrySugarKt {
+	public static final fun buildBooleanRegistryEntryAttachment (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildBooleanRegistryEntryAttachment$default (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun buildDoubleRegistryEntryAttachment (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildDoubleRegistryEntryAttachment$default (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun buildFloatRegistryEntryAttachment (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildFloatRegistryEntryAttachment$default (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun buildIntRegistryEntryAttachment (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildIntRegistryEntryAttachment$default (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun buildLongRegistryEntryAttachment (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildLongRegistryEntryAttachment$default (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun buildRegistryEntryAttachment (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildRegistryEntryAttachment$default (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun buildStringRegistryEntryAttachment (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildStringRegistryEntryAttachment$default (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun onRegistryEntryAdded (Lorg/quiltmc/qkl/library/EventRegistration;Lnet/minecraft/util/registry/Registry;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class org/quiltmc/qkl/library/resource/ResourceLoaderEventsKt {
+	public static final fun onDataPackReloadFinish (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
+	public static final fun onDataPackReloadStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+}
+
+public abstract class org/quiltmc/qkl/library/serialization/CodecFactory {
+	public static final field Default Lorg/quiltmc/qkl/library/serialization/CodecFactory$Default;
+	public synthetic fun <init> (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun create (Lkotlin/reflect/KType;)Lcom/mojang/serialization/Codec;
+	public final fun create (Lkotlinx/serialization/KSerializer;)Lcom/mojang/serialization/Codec;
+	public final fun getOptions ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;
+}
+
+public final class org/quiltmc/qkl/library/serialization/CodecFactory$Default : org/quiltmc/qkl/library/serialization/CodecFactory {
+}
+
+public final class org/quiltmc/qkl/library/serialization/CodecFactoryKt {
+	public static final fun CodecFactory (Lorg/quiltmc/qkl/library/serialization/CodecFactory;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qkl/library/serialization/CodecFactory;
+	public static synthetic fun CodecFactory$default (Lorg/quiltmc/qkl/library/serialization/CodecFactory;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qkl/library/serialization/CodecFactory;
+}
+
+public abstract interface class org/quiltmc/qkl/library/serialization/ExtendedDynamicOps {
+	public abstract fun createNull ()Ljava/lang/Object;
+	public abstract fun getSupportedMapKeys ()Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
+	public abstract fun getSupportsNull ()Z
+	public abstract fun isNotNull (Ljava/lang/Object;)Z
+	public abstract fun unwrapNullable (Ljava/lang/Object;)Ljava/lang/Object;
+	public abstract fun wrapNullable (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport : java/lang/Enum {
+	public static final field ANY Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
+	public static final field PRIMITIVES Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
+	public static final field STRINGS Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
+	public static fun valueOf (Ljava/lang/String;)Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
+	public static fun values ()[Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
+}
+
+public abstract interface annotation class org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap : java/lang/annotation/Annotation {
+}
+
+public final class org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap {
+	public fun <init> ()V
+}
+
+public abstract interface annotation class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable : java/lang/annotation/Annotation {
+	public abstract fun encodeDefaults ()Lorg/quiltmc/qsl/base/api/util/TriState;
+	public abstract fun useInlineWrapper ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public final class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecSerializable {
+	public fun <init> (Lorg/quiltmc/qsl/base/api/util/TriState;Lorg/quiltmc/qsl/base/api/util/TriState;)V
+	public final synthetic fun encodeDefaults ()Lorg/quiltmc/qsl/base/api/util/TriState;
+	public final synthetic fun useInlineWrapper ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public abstract interface annotation class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Polymorphic : java/lang/annotation/Annotation {
+	public abstract fun classDiscriminator ()Ljava/lang/String;
+	public abstract fun flatten ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public final class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Polymorphic$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Polymorphic {
+	public fun <init> (Ljava/lang/String;Lorg/quiltmc/qsl/base/api/util/TriState;)V
+	public final synthetic fun classDiscriminator ()Ljava/lang/String;
+	public final synthetic fun flatten ()Lorg/quiltmc/qsl/base/api/util/TriState;
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecListBuilder {
+	public fun <init> (Ljava/util/List;)V
+	public final fun getList ()Ljava/util/List;
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptions {
+	public static final field Companion Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$Companion;
+	public fun <init> (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;Lkotlinx/serialization/modules/SerializersModule;Ljava/util/List;ZZZZZZZZ)V
+	public final fun component1 ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;
+	public final fun component10 ()Z
+	public final fun component11 ()Z
+	public final fun component12 ()Z
+	public final fun component2 ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;
+	public final fun component3 ()Lkotlinx/serialization/modules/SerializersModule;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Z
+	public final fun component6 ()Z
+	public final fun component7 ()Z
+	public final fun component8 ()Z
+	public final fun component9 ()Z
+	public final fun copy (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;Lkotlinx/serialization/modules/SerializersModule;Ljava/util/List;ZZZZZZZZ)Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;Lkotlinx/serialization/modules/SerializersModule;Ljava/util/List;ZZZZZZZZILjava/lang/Object;)Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowStringValues ()Z
+	public final fun getCodecs ()Ljava/util/List;
+	public final fun getEncodeDefaults ()Z
+	public final fun getEnum ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;
+	public final fun getExplicitNulls ()Z
+	public final fun getIgnoreUnknownKeys ()Z
+	public final fun getPolymorphism ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;
+	public final fun getPrintErrorStackTraces ()Z
+	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
+	public final fun getUseClassPropertyIndices ()Z
+	public final fun getUseEntryListMaps ()Z
+	public final fun getUseInlineWrappers ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptions$Companion {
+	public final fun getDEFAULT ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;
+}
+
+public abstract class org/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding {
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding$Index : org/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding$Index;
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding$SerialName : org/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding {
+	public fun <init> (Z)V
+	public final fun getCaseInsensitive ()Z
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions {
+	public fun <init> (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding;Z)V
+	public final fun component1 ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding;
+	public final fun component2 ()Z
+	public final fun copy (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding;Z)Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding;ZILjava/lang/Object;)Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEncoding ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding;
+	public final fun getLenientDecoding ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions {
+	public fun <init> (Ljava/lang/String;Z)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun copy (Ljava/lang/String;Z)Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;Ljava/lang/String;ZILjava/lang/Object;)Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClassDiscriminator ()Ljava/lang/String;
+	public final fun getFlatten ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptionsBuilder {
+	public fun <init> ()V
+	public fun <init> (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;)V
+	public synthetic fun <init> (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun build ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions;
+	public final fun codecs (Lkotlin/jvm/functions/Function1;)V
+	public final fun enum (Lkotlin/jvm/functions/Function1;)V
+	public final fun getAllowStringValues ()Z
+	public final fun getCodecs ()Ljava/util/List;
+	public final fun getEncodeDefaults ()Z
+	public final fun getEnum ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptionsBuilder$EnumOptionsBuilder;
+	public final fun getExplicitNulls ()Z
+	public final fun getIgnoreUnknownKeys ()Z
+	public final fun getPolymorphism ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptionsBuilder$PolymorphismOptionsBuilder;
+	public final fun getPrintErrorStackTraces ()Z
+	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
+	public final fun getUseClassPropertyIndices ()Z
+	public final fun getUseEntryListMaps ()Z
+	public final fun getUseInlineWrappers ()Z
+	public final fun polymorphism (Lkotlin/jvm/functions/Function1;)V
+	public final fun setAllowStringValues (Z)V
+	public final fun setEncodeDefaults (Z)V
+	public final fun setExplicitNulls (Z)V
+	public final fun setIgnoreUnknownKeys (Z)V
+	public final fun setPrintErrorStackTraces (Z)V
+	public final fun setSerializersModule (Lkotlinx/serialization/modules/SerializersModule;)V
+	public final fun setUseClassPropertyIndices (Z)V
+	public final fun setUseEntryListMaps (Z)V
+	public final fun setUseInlineWrappers (Z)V
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptionsBuilder$EnumOptionsBuilder {
+	public fun <init> (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumOptions;)V
+	public final fun getEncoding ()Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding;
+	public final fun getLenientDecoding ()Z
+	public final fun setEncoding (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$EnumEncoding;)V
+	public final fun setLenientDecoding (Z)V
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/CodecOptionsBuilder$PolymorphismOptionsBuilder {
+	public fun <init> (Lorg/quiltmc/qkl/library/serialization/options/CodecOptions$PolymorphismOptions;)V
+	public final fun getClassDiscriminator ()Ljava/lang/String;
+	public final fun getFlatten ()Z
+	public final fun setClassDiscriminator (Ljava/lang/String;)V
+	public final fun setFlatten (Z)V
+}
+
+public final class org/quiltmc/qkl/library/serialization/options/TypedCodec {
+	public fun <init> (Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Ljava/lang/String;)V
+	public final fun component1 ()Lkotlin/reflect/KClass;
+	public final fun component2 ()Lcom/mojang/serialization/Codec;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Ljava/lang/String;)Lorg/quiltmc/qkl/library/serialization/options/TypedCodec;
+	public static synthetic fun copy$default (Lorg/quiltmc/qkl/library/serialization/options/TypedCodec;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Ljava/lang/String;ILjava/lang/Object;)Lorg/quiltmc/qkl/library/serialization/options/TypedCodec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCodec ()Lcom/mojang/serialization/Codec;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getType ()Lkotlin/reflect/KClass;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/quiltmc/qkl/library/tag/TagsKt {
+	public static final fun get (Lorg/quiltmc/qsl/tag/api/TagRegistry$TagValues;I)Lnet/minecraft/util/Holder;
+	public static final fun getTag (Lnet/minecraft/tag/TagKey;)Ljava/util/Collection;
+	public static final fun getTags (Lnet/minecraft/util/registry/Registry;Lorg/quiltmc/qsl/tag/api/TagType;)Ljava/util/List;
+	public static synthetic fun getTags$default (Lnet/minecraft/util/registry/Registry;Lorg/quiltmc/qsl/tag/api/TagType;ILjava/lang/Object;)Ljava/util/List;
+}
+
+public final class org/quiltmc/qkl/library/text/ClickEvents {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/text/ClickEvents;
+	public final fun changePage (I)Lnet/minecraft/text/ClickEvent;
+	public final fun copyToClipboard (Ljava/lang/String;)Lnet/minecraft/text/ClickEvent;
+	public final fun openFile (Ljava/lang/String;)Lnet/minecraft/text/ClickEvent;
+	public final fun openUrl (Ljava/lang/String;)Lnet/minecraft/text/ClickEvent;
+	public final fun runCommand (Ljava/lang/String;)Lnet/minecraft/text/ClickEvent;
+	public final fun suggestCommand (Ljava/lang/String;)Lnet/minecraft/text/ClickEvent;
+}
+
+public final class org/quiltmc/qkl/library/text/Color {
+	public static final field Companion Lorg/quiltmc/qkl/library/text/Color$Companion;
+	public static final synthetic fun box-impl (I)Lorg/quiltmc/qkl/library/text/Color;
+	public static fun constructor-impl (I)I
+	public static fun constructor-impl (III)I
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public static final fun getBlue-impl (I)I
+	public static final fun getGreen-impl (I)I
+	public static final fun getRed-impl (I)I
+	public final fun getValue ()I
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public static final fun toTextColor-impl (I)Lnet/minecraft/text/TextColor;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class org/quiltmc/qkl/library/text/Color$Companion {
+	public final fun from-YN6vkGo (Lnet/minecraft/block/MapColor;)I
+	public final fun from-YN6vkGo (Lnet/minecraft/text/TextColor;)I
+	public final fun from-YN6vkGo (Lnet/minecraft/util/DyeColor;)I
+	public final fun from-YN6vkGo (Lnet/minecraft/util/Formatting;)I
+	public final fun getAQUA-5FxsLHU ()I
+	public final fun getBLACK-5FxsLHU ()I
+	public final fun getBLUE-5FxsLHU ()I
+	public final fun getDARK_AQUA-5FxsLHU ()I
+	public final fun getDARK_BLUE-5FxsLHU ()I
+	public final fun getDARK_GREEN-5FxsLHU ()I
+	public final fun getDARK_GREY-5FxsLHU ()I
+	public final fun getDARK_PURPLE-5FxsLHU ()I
+	public final fun getDARK_RED-5FxsLHU ()I
+	public final fun getGOLD-5FxsLHU ()I
+	public final fun getGREEN-5FxsLHU ()I
+	public final fun getGREY-5FxsLHU ()I
+	public final fun getLIGHT_PURPLE-5FxsLHU ()I
+	public final fun getRED-5FxsLHU ()I
+	public final fun getWHITE-5FxsLHU ()I
+	public final fun getYELLOW-5FxsLHU ()I
+}
+
+public final class org/quiltmc/qkl/library/text/ColorKt {
+	public static final fun Color (DDD)I
+	public static final fun Color (FFF)I
+}
+
+public final class org/quiltmc/qkl/library/text/HoverEvents {
+	public static final field INSTANCE Lorg/quiltmc/qkl/library/text/HoverEvents;
+	public final fun showEntity (Lnet/minecraft/entity/EntityType;Ljava/util/UUID;Lnet/minecraft/text/Text;)Lnet/minecraft/text/HoverEvent;
+	public static synthetic fun showEntity$default (Lorg/quiltmc/qkl/library/text/HoverEvents;Lnet/minecraft/entity/EntityType;Ljava/util/UUID;Lnet/minecraft/text/Text;ILjava/lang/Object;)Lnet/minecraft/text/HoverEvent;
+	public final fun showItem (Lnet/minecraft/item/Item;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/text/HoverEvent;
+	public final fun showItem (Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/HoverEvent;
+	public final fun showItem (Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/text/HoverEvent;
+	public static synthetic fun showItem$default (Lorg/quiltmc/qkl/library/text/HoverEvents;Lnet/minecraft/item/Item;Lnet/minecraft/nbt/NbtCompound;ILjava/lang/Object;)Lnet/minecraft/text/HoverEvent;
+	public final fun showText (Lnet/minecraft/text/Text;)Lnet/minecraft/text/HoverEvent;
+}
+
+public final class org/quiltmc/qkl/library/text/StyleBuilder {
+	public fun <init> ()V
+	public final fun applyTo (Lnet/minecraft/text/MutableText;)Lnet/minecraft/text/MutableText;
+	public final fun buildStyle ()Lnet/minecraft/text/Style;
+	public final fun color (DDD)V
+	public final fun color (FFF)V
+	public final fun color (I)V
+	public final fun color (III)V
+	public final fun color (Ljava/lang/String;)V
+	public final fun copyFrom (Lnet/minecraft/text/Style;)V
+	public final fun getBold ()Ljava/lang/Boolean;
+	public final fun getClickEvent ()Lnet/minecraft/text/ClickEvent;
+	public final fun getColor-aTITyr8 ()Lorg/quiltmc/qkl/library/text/Color;
+	public final fun getFont ()Lnet/minecraft/util/Identifier;
+	public final fun getHoverEvent ()Lnet/minecraft/text/HoverEvent;
+	public final fun getInsertion ()Ljava/lang/String;
+	public final fun getItalic ()Ljava/lang/Boolean;
+	public final fun getObfuscated ()Ljava/lang/Boolean;
+	public final fun getStrikethrough ()Ljava/lang/Boolean;
+	public final fun getUnderlined ()Ljava/lang/Boolean;
+	public final fun setBold (Ljava/lang/Boolean;)V
+	public final fun setClickEvent (Lnet/minecraft/text/ClickEvent;)V
+	public final fun setColor-HdEpIpc (Lorg/quiltmc/qkl/library/text/Color;)V
+	public final fun setFont (Lnet/minecraft/util/Identifier;)V
+	public final fun setHoverEvent (Lnet/minecraft/text/HoverEvent;)V
+	public final fun setInsertion (Ljava/lang/String;)V
+	public final fun setItalic (Ljava/lang/Boolean;)V
+	public final fun setObfuscated (Ljava/lang/Boolean;)V
+	public final fun setStrikethrough (Ljava/lang/Boolean;)V
+	public final fun setUnderlined (Ljava/lang/Boolean;)V
+}
+
+public abstract interface annotation class org/quiltmc/qkl/library/text/StyleDsl : java/lang/annotation/Annotation {
+}
+
+public final class org/quiltmc/qkl/library/text/StyleDslKt {
+	public static final fun buildStyle (Lkotlin/jvm/functions/Function1;)Lnet/minecraft/text/Style;
+}
+
+public final class org/quiltmc/qkl/library/text/TextBuilder {
+	public fun <init> ()V
+	public final fun build ()Lnet/minecraft/text/Text;
+	public final fun getStyle ()Lorg/quiltmc/qkl/library/text/StyleBuilder;
+	public final fun getText ()Lnet/minecraft/text/MutableText;
+	public final fun styleAndAppend (Lnet/minecraft/text/MutableText;)V
+	public final fun withProp (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract interface annotation class org/quiltmc/qkl/library/text/TextDsl : java/lang/annotation/Annotation {
+}
+
+public final class org/quiltmc/qkl/library/text/TextDslKt {
+	public static final fun bold (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun bold$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun buildText (Lkotlin/jvm/functions/Function1;)Lnet/minecraft/text/Text;
+	public static final fun clickEvent (Lorg/quiltmc/qkl/library/text/TextBuilder;Lnet/minecraft/text/ClickEvent;Lkotlin/jvm/functions/Function1;)V
+	public static final fun color-fZx8uMo (Lorg/quiltmc/qkl/library/text/TextBuilder;Lorg/quiltmc/qkl/library/text/Color;Lkotlin/jvm/functions/Function1;)V
+	public static final fun empty (Lorg/quiltmc/qkl/library/text/TextBuilder;)V
+	public static final fun font (Lorg/quiltmc/qkl/library/text/TextBuilder;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)V
+	public static final fun hoverEvent (Lorg/quiltmc/qkl/library/text/TextBuilder;Lnet/minecraft/text/HoverEvent;Lkotlin/jvm/functions/Function1;)V
+	public static final fun insertion (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun italic (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun italic$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun keyBind (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;)V
+	public static final fun literal (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;)V
+	public static final fun nbt (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;ZLjava/util/Optional;Lkotlin/jvm/functions/Function1;)V
+	public static final fun nbt (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;ZLjava/util/Optional;Lnet/minecraft/text/data/TextData;)V
+	public static final fun obfuscated (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun obfuscated$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun scoreboard (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun selector (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;Ljava/util/Optional;)V
+	public static final fun strikethrough (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun strikethrough$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun styled (Lorg/quiltmc/qkl/library/text/TextBuilder;Lnet/minecraft/text/Style;Lkotlin/jvm/functions/Function1;)V
+	public static final fun styled-cpsPKG8 (Lorg/quiltmc/qkl/library/text/TextBuilder;Lorg/quiltmc/qkl/library/text/Color;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/text/ClickEvent;Lnet/minecraft/text/HoverEvent;Ljava/lang/String;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun styled-cpsPKG8$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Lorg/quiltmc/qkl/library/text/Color;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/text/ClickEvent;Lnet/minecraft/text/HoverEvent;Ljava/lang/String;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun text (Lorg/quiltmc/qkl/library/text/TextBuilder;Lnet/minecraft/text/Text;)V
+	public static final fun translatable (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;[Ljava/lang/Object;)V
+	public static final fun underlined (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun underlined$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class org/quiltmc/qkl/library/worlds/DimensionExtensionsKt {
+	public static final fun teleportGeneral (Lnet/minecraft/entity/Entity;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/TeleportTarget;)Lnet/minecraft/entity/Entity;
+}
+
