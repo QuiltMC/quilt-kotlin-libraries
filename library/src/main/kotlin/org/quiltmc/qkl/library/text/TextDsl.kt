@@ -115,7 +115,7 @@ public inline fun buildText(action: TextBuilder.() -> Unit): Text {
  */
 @TextDsl
 public fun TextBuilder.translatable(value: String, vararg args: Any) {
-    styleAndAppend(Text.translatable(value, args))
+    styleAndAppend(Text.translatable(value, *args))
 }
 
 /**
