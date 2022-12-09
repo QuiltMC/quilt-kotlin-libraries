@@ -1,8 +1,5 @@
 # Quilt Kotlin Libraries
 
-#### Note: At the moment Quilt Kotlin Libraries is not ready for general use. Please make an issue or talk to the QKL team on discord before writing any PRs.
-
-
 ### What are the Quilt Kotlin Libraries?
 
 Quilt Kotlin Libraries is a wrapper and API provider for Minecraft written in Kotlin, and as such allows modders to 
@@ -14,7 +11,6 @@ with QSL features.
 
 
 ### Repository Structure
-* The `core` folder. This contains all the core functionality for the Quilt Kotlin Libraries.
-* The `fatjar` folder. This contains the means for creating one Quilt Kotlin Libraries Jar that can be added to mods
-folders and development environments.
-* The `wrapper` folder. This contains all the Kotlin wrappers to both QSL and Minecraft features/functions.
+* `core` contains the language adapter, kotlin standard library and kotlin reflect library
+* `library` contains everything else including the rest of the kotlinx stuff brought in by FKL
+* The root project is responsible for bundling both the submodules and some required dependencies into a single jar

@@ -19,8 +19,6 @@ plugins {
     alias(libs.plugins.licenser)
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.binary.compatibility)
-    alias(libs.plugins.serialization)
     `maven-publish`
 }
 
@@ -42,15 +40,13 @@ repositories {
     mavenCentral()
 }
 
+fun DependencyHandlerScope.includeApi(dependency: Any) {
+    include(dependency)?.let { api(it) }
+}
+
 dependencies {
-    minecraft(rootProject.libs.minecraft)
-    mappings(loom.layered {
-        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
-    })
-
-    modImplementation(rootProject.libs.quilt.loader)
-
-    modImplementation(rootProject.libs.qsl)
+    includeApi(project(":core"))
+    includeApi(project(":library"))
 }
 
 allprojects {
@@ -58,7 +54,8 @@ allprojects {
     apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
     apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
     apply(plugin=rootProject.libs.plugins.dokka.get().pluginId)
-    apply(plugin=rootProject.libs.plugins.serialization.get().pluginId)
+    apply(plugin="maven-publish")
+    apply(plugin=rootProject.libs.plugins.quilt.loom.get().pluginId)
 
     repositories {
         mavenCentral()
@@ -137,20 +134,17 @@ allprojects {
             }
         }
     }
-}
-
-subprojects {
-    apply(plugin = "maven-publish")
-    apply(plugin = rootProject.libs.plugins.quilt.loom.get().pluginId)
 
     group = "org.quiltmc.quilt-kotlin-libraries"
     version = projectVersion
 
     dependencies {
         minecraft(rootProject.libs.minecraft)
-        mappings(loom.layered {
-            addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${rootProject.libs.versions.quilt.mappings.get()}:v2"))
-        })
+        mappings(
+            variantOf(rootProject.libs.quilt.mappings) {
+                classifier("intermediary-v2")
+            }
+        )
 
         modImplementation(rootProject.libs.quilt.loader)
 
@@ -158,15 +152,6 @@ subprojects {
     }
 
     tasks {
-        remapJar {
-            archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
-            dependsOn(remapSourcesJar)
-        }
-
-        remapSourcesJar {
-            archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
-        }
-
         processResources {
             inputs.property("version", rootProject.version)
 
@@ -175,9 +160,12 @@ subprojects {
             }
         }
 
+        remapJar {
+            dependsOn(remapSourcesJar)
+        }
+
         val dokkaJavadocJar by creating(Jar::class.java) {
             group = "documentation"
-            archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
             archiveClassifier.set("javadoc")
             from(dokkaJavadoc)
         }
@@ -192,25 +180,20 @@ subprojects {
 
     publishing {
         publications {
-            if (project.name != "wrapper") {
-                create<MavenPublication>("Maven") {
-                    artifactId = project.name
-                    if (project.name == "fatjar") {
-                        artifactId = "quilt-kotlin-libraries"
-                    }
-                    version = projectVersion
+            create<MavenPublication>("Maven") {
+                artifactId = project.name
+                version = projectVersion
 
-                    artifact(tasks.remapSourcesJar.get().archiveFile) {
-                        builtBy(tasks.remapSourcesJar)
-                        this.classifier = "sources"
-                    }
-                    artifact(tasks.remapJar.get().archiveFile) {
-                        builtBy(tasks.remapJar)
-                    }
-                    artifact(tasks.getByName<Jar>("dokkaJavadocJar").archiveFile) {
-                        builtBy(tasks.getByName("dokkaJavadocJar"))
-                        this.classifier = "javadoc"
-                    }
+                artifact(tasks.remapSourcesJar.get().archiveFile) {
+                    builtBy(tasks.remapSourcesJar)
+                    this.classifier = "sources"
+                }
+                artifact(tasks.remapJar.get().archiveFile) {
+                    builtBy(tasks.remapJar)
+                }
+                artifact(tasks.getByName<Jar>("dokkaJavadocJar").archiveFile) {
+                    builtBy(tasks.getByName("dokkaJavadocJar"))
+                    this.classifier = "javadoc"
                 }
             }
         }
@@ -240,11 +223,24 @@ subprojects {
     }
 }
 
-tasks {
-    remapJar {
-        archiveBaseName.set("quilt-kotlin-libraries")
-    }
+subprojects {
+    tasks {
+        remapJar {
+            archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+            dependsOn(remapSourcesJar)
+        }
 
+        remapSourcesJar {
+            archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+        }
+
+        named<Jar>("dokkaJavadocJar") {
+            archiveBaseName.set("quilt-kotlin-libraries-${project.name}")
+        }
+    }
+}
+
+tasks {
     create("dokkaHtmlJar", Jar::class.java) {
         group = "documentation"
         archiveBaseName.set("quilt-kotlin-libraries")
@@ -254,8 +250,16 @@ tasks {
     }
 }
 
-apiValidation {
-    ignoredProjects.addAll(setOf("core", "fatjar"))
+publishing {
+    publications {
+        getByName<MavenPublication>("Maven") {
+            val dokka = rootProject.tasks.getByName<Jar>("dokkaHtmlJar")
+            artifact(dokka.archiveFile) {
+                builtBy(dokka)
+                classifier = "dokka"
+            }
+        }
+    }
 }
 
 gitHooks {

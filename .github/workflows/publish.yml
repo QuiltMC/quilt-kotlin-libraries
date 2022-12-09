@@ -1,8 +1,9 @@
 name: Release
 on:
-  workflow_dispatch: # Only manual
-    branches:
-      - "main"
+  release:
+    types:
+      - published
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -27,3 +28,9 @@ jobs:
           MAVEN_URL: ${{ secrets.MAVEN_URL }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+
+      - name: Upload artifacts to GitHub
+        uses: AButler/upload-release-assets@v2.0
+        with:
+          files: 'build/libs/*.jar'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
