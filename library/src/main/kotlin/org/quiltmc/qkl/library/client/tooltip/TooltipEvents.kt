@@ -15,18 +15,17 @@
  */
 
 @file:Suppress("unused")
-@file:Environment(EnvType.CLIENT)
+@file:ClientOnly
 
 package org.quiltmc.qkl.library.client.tooltip
 
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.client.gui.tooltip.TooltipComponent
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.client.item.TooltipData
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
+import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.tooltip.api.client.ItemTooltipCallback
 import org.quiltmc.qsl.tooltip.api.client.TooltipComponentCallback

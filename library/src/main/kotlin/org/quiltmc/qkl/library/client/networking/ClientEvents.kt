@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-@file:Environment(EnvType.CLIENT)
+@file:ClientOnly
 @file:Suppress("unused")
 
 package org.quiltmc.qkl.library.client.networking
 
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientLoginNetworkHandler
 import net.minecraft.client.network.ClientPlayNetworkHandler
 import net.minecraft.util.Identifier
+import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.networking.api.PacketSender
 import org.quiltmc.qsl.networking.api.client.C2SPlayChannelEvents

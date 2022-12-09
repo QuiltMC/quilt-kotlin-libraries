@@ -15,14 +15,13 @@
  */
 
 @file:Suppress("unused")
-@file:Environment(EnvType.CLIENT)
+@file:ClientOnly
 
 package org.quiltmc.qkl.library.client.lifecycle
 
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.client.MinecraftClient
 import net.minecraft.world.World
+import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.lifecycle.api.client.event.ClientLifecycleEvents
 import org.quiltmc.qsl.lifecycle.api.client.event.ClientTickEvents

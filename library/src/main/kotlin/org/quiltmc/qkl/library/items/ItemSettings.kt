@@ -17,9 +17,9 @@
 package org.quiltmc.qkl.library.items
 
 import net.minecraft.entity.EquipmentSlot
+import net.minecraft.feature_flags.FeatureFlag
 import net.minecraft.item.FoodComponent
 import net.minecraft.item.Item
-import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Rarity
 import org.quiltmc.qsl.item.setting.api.CustomDamageHandler
@@ -34,24 +34,24 @@ import org.quiltmc.qsl.item.setting.api.QuiltItemSettings
  * @author sschr15
  */
 public fun itemSettingsOf(
-    maxCount: Int = 64,
-    maxDamage: Int = 0,
+    maxCount: Int? = null,
+    maxDamage: Int? = null,
     recipeRemainder: Item? = null,
-    group: ItemGroup? = null,
-    rarity: Rarity = Rarity.COMMON,
+    rarity: Rarity? = null,
     foodComponent: FoodComponent? = null,
     fireproof: Boolean = false,
+    requiredFlags: List<FeatureFlag>? = null,
     customDamage: CustomDamageHandler? = null,
     equipmentSlot: ((ItemStack) -> EquipmentSlot)? = null,
     otherSettings: List<Pair<CustomItemSetting<*>, *>> = emptyList()
 ): QuiltItemSettings = buildItemSettings {
-    maxCount(maxCount)
-    maxDamage(maxDamage)
+    if (maxDamage != null) maxDamage(maxDamage)
+    if (maxCount != null) maxCount(maxCount)
     if (recipeRemainder != null) recipeRemainder(recipeRemainder)
-    if (group != null) group(group)
-    rarity(rarity)
+    if (rarity != null) rarity(rarity)
     if (foodComponent != null) food(foodComponent)
     if (fireproof) fireproof()
+    if (requiredFlags != null) requiredFlags(*requiredFlags.toTypedArray())
     if (customDamage != null) customDamage(customDamage)
     if (equipmentSlot != null) equipmentSlot(equipmentSlot)
     otherSettings.forEach { (setting, value) ->
