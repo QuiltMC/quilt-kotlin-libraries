@@ -187,7 +187,7 @@ public fun ArgumentReader<
         ServerCommandSource,
         ListScoreHolderArgumentDescriptor
         >.defaultToAllKnown(): Collection<String> {
-    return ScoreHolderArgumentType.getScoreboardScoreHolders(context, name)
+    return ScoreHolderArgumentType.getScoreHoldersWithGlobalWildcard(context, name)
 }
 
 /**

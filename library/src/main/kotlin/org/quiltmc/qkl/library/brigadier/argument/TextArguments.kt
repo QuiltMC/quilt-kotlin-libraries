@@ -22,7 +22,6 @@
 
 package org.quiltmc.qkl.library.brigadier.argument
 
-
 import net.minecraft.command.argument.ColorArgumentType
 import net.minecraft.command.argument.MessageArgumentType
 import net.minecraft.command.argument.TextArgumentType
@@ -30,8 +29,7 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import org.quiltmc.qkl.library.brigadier.*
-import net.minecraft.command.argument.MessageArgumentType.C_ygsxruyj as SignedMessage
-import net.minecraft.command.argument.MessageArgumentType.m_lwllvwff as getSignedMessage
+import net.minecraft.unmapped.C_zzdolisx
 
 //TODO remove the named imports above once caught up on mappings
 
@@ -55,10 +53,13 @@ public fun ArgumentReader<
 }
 
 /**
- * Reads the [SignedMessage] value from
- * the argument in the receiver [ArgumentReader].
+ * Reads the [C_zzdolisx] value from
+ * the argument in the receiver [ArgumentReader]
+ * and calls [consumer] with it as an argument.
  *
- * @see getSignedMessage
+ * The value may not be available immediately.
+ *
+ * @see MessageArgumentType.m_hqcmqrcd
  *
  * @author Cypher121
  */
@@ -68,8 +69,8 @@ public fun ArgumentReader<
         DefaultArgumentDescriptor<
                 MessageArgumentType
                 >
-        >.signed(): SignedMessage {
-    return getSignedMessage(context, name)
+        >.getSignedAsync(consumer: (C_zzdolisx) -> Unit) {
+    MessageArgumentType.m_hqcmqrcd(context, name, consumer)
 }
 
 /**

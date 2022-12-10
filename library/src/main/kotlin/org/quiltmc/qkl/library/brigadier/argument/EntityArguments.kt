@@ -24,10 +24,8 @@ package org.quiltmc.qkl.library.brigadier.argument
 
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.command.argument.EntityArgumentType
-import net.minecraft.command.argument.EntitySummonArgumentType
 import net.minecraft.entity.Entity
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.brigadier.*
 
 /**
@@ -67,23 +65,6 @@ public fun DefaultArgumentReader<EntityAnchorArgumentType>.value(): EntityAnchor
         context.assumeSourceNotUsed(),
         name
     )
-}
-
-/**
- * Reads the entity summon [Identifier] value of the argument
- * in the receiver [ArgumentReader].
- *
- * @see EntitySummonArgumentType.getEntitySummon
- *
- * @author Cypher121
- */
-@JvmName("valueEntitySummonArg")
-@BrigadierDsl
-public fun ArgumentReader<
-        *,
-        DefaultArgumentDescriptor<EntitySummonArgumentType>
-        >.value(): Identifier {
-    return EntitySummonArgumentType.getEntitySummon(context.assumeSourceNotUsed(), name)
 }
 
 /**
@@ -182,17 +163,4 @@ public fun <S> entity(
         SingleEntityArgumentDescriptor
         > {
     return argument(name, EntityArgumentType.entity(), SingleEntityArgumentDescriptor)
-}
-
-/**
- * Creates an entity summon argument with [name] as the parameter name.
- *
- * @author Oliver-makes-code (Emma)
- * @author Cypher121
- */
-@BrigadierDsl
-public fun <S> entitySummon(
-    name: String
-): DefaultArgumentConstructor<S, EntitySummonArgumentType> {
-    return argument(name, EntitySummonArgumentType.entitySummon())
 }

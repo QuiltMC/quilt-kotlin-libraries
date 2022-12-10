@@ -18,8 +18,8 @@ package samples.qkl.registry
 
 import net.minecraft.block.Block
 import net.minecraft.item.Item
+import net.minecraft.registry.Registries
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
 import org.quiltmc.qkl.library.registry.*
 
 /**
@@ -42,20 +42,20 @@ private object RegistryDslSamples {
         val item: TestItem = stub()
         val identifier: Identifier = stub()
 
-        item withId identifier toRegistry Registry.ITEM
+        item withId identifier toRegistry Registries.ITEM
     }
 
     fun sampleRegisterWithRegistry() {
         val item: TestItem = stub()
         val identifier = Identifier("my", "item1")
 
-        Registry.ITEM("my") {
+        Registries.ITEM("my") {
             item withId identifier // Goes under `my:item1`
             item withId "my:item2" // Goes under `my:item2`
             item withId "item3" // Goes under `my:item3`
         }
 
-        Registry.ITEM {
+        Registries.ITEM {
             item withId identifier // Goes under `my:item1`
             item withId "my:item2" // Goes under `my:item2`
             item withId "item3" // Goes under `minecraft:item3`
@@ -67,13 +67,13 @@ private object RegistryDslSamples {
         val identifier = Identifier("my", "item1")
 
         registryScope("my") {
-            Registry.ITEM {
+            Registries.ITEM {
                 item withId identifier // Goes under `my:item1`
                 item withId "my:item2" // Goes under `my:item2`
                 item withId "item3" // Goes under `my:item3`
             }
 
-            item withPath "item3" toRegistry Registry.ITEM
+            item withPath "item3" toRegistry Registries.ITEM
         }
     }
 
@@ -83,7 +83,7 @@ private object RegistryDslSamples {
         val item: TestItem by scope.provide {
             val instance: TestItem = stub()
 
-            instance withPath "item" toRegistry Registry.ITEM
+            instance withPath "item" toRegistry Registries.ITEM
         }
     }
 
@@ -92,19 +92,19 @@ private object RegistryDslSamples {
         val scope: RegistryScope = stub()
 
         // Blocks.kt
-        val blocks = scope.action(Registry.BLOCK)
+        val blocks = scope.action(Registries.BLOCK)
 
         val myBlock by blocks.provide("block") { TestBlock(stub()) }
 
         // Items.kt
-        val items = scope.action(Registry.ITEM)
+        val items = scope.action(Registries.ITEM)
 
         val myItem: TestItem by items.provide("item") { TestItem(stub()) }
         val myBlockItem by items.provideBlockItem("block") { myBlock } // Shortcut
     }
 
     fun sampleScopeWithResult() {
-        val item: TestItem = with(RegistryAction("id", Registry.ITEM)) {
+        val item: TestItem = with(RegistryAction("id", Registries.ITEM)) {
             TestItem(stub()) withId "test"
         }
     }

@@ -15,15 +15,14 @@
  */
 
 @file:Suppress("unused")
-@file:Environment(EnvType.CLIENT)
+@file:ClientOnly
 
 package org.quiltmc.qkl.library.client.screen
 
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.util.math.MatrixStack
+import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.base.api.util.TriState
 import org.quiltmc.qsl.screen.api.client.ScreenEvents

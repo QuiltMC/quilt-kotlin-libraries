@@ -16,12 +16,24 @@
 
 package org.quiltmc.qkl.library.math
 
-import net.minecraft.client.util.math.Vector2f
 import net.minecraft.util.math.Vec2f
 
-//region Standard math operators
 /**
- * Adds a [Vec2f] to a [Vec2f].
+ * The [`x`][Vec2f.x] component of this [Vec2f].
+ */
+public operator fun Vec2f.component1(): Float {
+    return this.x
+}
+
+/**
+ * The [`y`][Vec2f.y] component of this [Vec2f].
+ */
+public operator fun Vec2f.component2(): Float {
+    return this.y
+}
+
+/**
+ * Adds [this] and [other], returning a new [Vec2f].
  */
 public operator fun Vec2f.plus(other: Vec2f): Vec2f {
     return Vec2f(
@@ -31,7 +43,7 @@ public operator fun Vec2f.plus(other: Vec2f): Vec2f {
 }
 
 /**
- * Subtracts a [Vec2f] from a [Vec2f].
+ * Subtracts [other] from [this], returning a new [Vec2f].
  */
 public operator fun Vec2f.minus(other: Vec2f): Vec2f {
     return Vec2f(
@@ -41,8 +53,7 @@ public operator fun Vec2f.minus(other: Vec2f): Vec2f {
 }
 
 /**
- * Multiplies a [Vec2f] and a [Vec2f].
- * This method is a shorthand for component wise multiplication.
+ * Multiplies [this] and [other] component-wise, returning a new [Vec2f].
  */
 public operator fun Vec2f.times(other: Vec2f): Vec2f {
     return Vec2f(
@@ -52,7 +63,7 @@ public operator fun Vec2f.times(other: Vec2f): Vec2f {
 }
 
 /**
- * Multiplies a [Vec2f] and a Float.
+ * Multiplies [this] with [other], returning a new [Vec2f].
  */
 public operator fun Vec2f.times(other: Float): Vec2f {
     return Vec2f(
@@ -62,17 +73,24 @@ public operator fun Vec2f.times(other: Float): Vec2f {
 }
 
 /**
- * Multiplies a Float and a [Vec2f].
+ * Multiplies [other] with [this], returning a new [Vec2f].
  */
 public operator fun Float.times(other: Vec2f): Vec2f {
+    return other * this
+}
+
+/**
+ * Divides [this] by [other] component-wise, returning a new [Vec2f].
+ */
+public operator fun Vec2f.div(other: Vec2f): Vec2f {
     return Vec2f(
-        this * other.x,
-        this * other.y
+        this.x / other.x,
+        this.y / other.y
     )
 }
 
 /**
- * Divides a [Vec2f] and a Float.
+ * Divides [this] by [other], returning a new [Vec2f].
  */
 public operator fun Vec2f.div(other: Float): Vec2f {
     return Vec2f(
@@ -82,84 +100,15 @@ public operator fun Vec2f.div(other: Float): Vec2f {
 }
 
 /**
- * Negates a [Vec2f].
+ * Negates [this], returning a new [Vec2f].
  */
 public operator fun Vec2f.unaryMinus(): Vec2f {
-    return this.times(-1f)
-}
-//endregion
-
-//region Type compatibility operator variations
-/**
- * Adds a [Vector2f] to a [Vec2f].
- */
-public operator fun Vec2f.plus(other: Vector2f): Vec2f {
-    return Vec2f(
-        this.x + other.x,
-        this.y + other.y
-    )
+    return -1f * this
 }
 
 /**
- * Subtracts a [Vector2f] from a [Vec2f].
- */
-public operator fun Vec2f.minus(other: Vector2f): Vec2f {
-    return Vec2f(
-        this.x - other.x,
-        this.y - other.y
-    )
-}
-
-/**
- * Multiplies a [Vec2f] and a [Vector2f].
- * This method is a shorthand for component wise multiplication.
- */
-public operator fun Vec2f.times(other: Vector2f): Vec2f {
-    return Vec2f(
-        this.x * other.x,
-        this.y * other.y
-    )
-}
-//endregion
-
-//region Vector specific operators
-/**
- * The dot product of a [Vec2f] and a [Vec2f].
+ * The dot product of [this] and [other].
  */
 public infix fun Vec2f.dot(other: Vec2f): Float {
     return this.dot(other)
 }
-
-/**
- * The dot product of a [Vec2f] and a [Vector2f].
- */
-public infix fun Vec2f.dot(other: Vector2f): Float {
-    return this.dot(Vec2f(other.x, other.y))
-}
-
-/**
- * The [`x`][Vec2f.x] component of a [Vec2f].
- */
-public operator fun Vec2f.component1(): Float {
-    return this.x
-}
-
-/**
- * The [`y`][Vec2f.y] component of a [Vec2f].
- */
-public operator fun Vec2f.component2(): Float {
-    return this.y
-}
-//endregion
-
-//region Conversion methods
-/**
- * Converts a [Vec2f] to a [Vector2f].
- */
-public fun Vec2f.toVector2f(): Vector2f {
-    return Vector2f(
-        this.x,
-        this.y
-    )
-}
-//endregion
