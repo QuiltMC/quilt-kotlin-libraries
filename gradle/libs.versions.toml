@@ -7,7 +7,7 @@ kotlin = "1.7.20"
 minecraft = "1.19.3"
 qsl = "4.0.0-beta.1+1.19.3"
 quilt_loader = "0.17.6"
-quilt_mappings = "1.19.3+build.1"
+quilt_mappings = "1.19.3+build.5"
 serialization = "1.4.1"
 serialization_plugin = "1.7.20" # usually same as kotlin but can lag behind
 

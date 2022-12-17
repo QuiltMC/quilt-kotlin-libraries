@@ -58,13 +58,12 @@ public fun <S> CommandDispatcher<S>.register(
  *
  * @see CommandBuildContext
  */
-@Suppress("MISSING_DEPENDENCY_CLASS")
 public fun commandBuildContext(
     dynamicRegistryManager: DynamicRegistryManager,
     featureFlags: FeatureFlagBitSet,
     action: CommandBuildContext.() -> Unit
 ): CommandBuildContext {
-    val context = CommandBuildContext.m_lghonqhw(dynamicRegistryManager, featureFlags) as CommandBuildContext
+    val context = CommandBuildContext.createConfigurable(dynamicRegistryManager, featureFlags)
     context.apply(action)
     return context
 }

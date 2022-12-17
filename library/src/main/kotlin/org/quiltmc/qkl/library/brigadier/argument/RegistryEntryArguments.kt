@@ -24,6 +24,7 @@ package org.quiltmc.qkl.library.brigadier.argument
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException
 import net.minecraft.command.CommandBuildContext
+import net.minecraft.command.argument.RegistryEntryArgumentType
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.attribute.EntityAttribute
@@ -34,77 +35,76 @@ import net.minecraft.registry.RegistryKey
 import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.StructureFeature
 import org.quiltmc.qkl.library.brigadier.*
-import net.minecraft.unmapped.C_mymnmzsx
 
-public typealias DefaultRegistryReader<T> = DefaultArgumentReader<C_mymnmzsx<T>>
+public typealias DefaultRegistryReader<T> = DefaultArgumentReader<RegistryEntryArgumentType<T>>
 
 /**
  * Retrieves the registry entry from the registry of [registryKey]
  * matching the receiver [ArgumentReader].
  *
- * @see C_mymnmzsx.m_mvzlmalk
+ * @see RegistryEntryArgumentType.getRegistryEntry
  *
  * @author Cypher121
  */
 @BrigadierDsl
 public fun <T> DefaultRegistryReader<T>.getFromRegistry(registryKey: RegistryKey<Registry<T>>): Holder.Reference<T> {
-    return C_mymnmzsx.m_mvzlmalk(context.assumeSourceNotUsed(), name, registryKey)
+    return RegistryEntryArgumentType.getRegistryEntry(context.assumeSourceNotUsed(), name, registryKey)
 }
 
 /**
  * Reads the [EntityAttribute] value from the
  * argument in the receiver [ArgumentReader].
  *
- * @see C_mymnmzsx.m_mlvqftoi
+ * @see RegistryEntryArgumentType.getEntityAttribute
  *
  * @author Cypher121
  */
 @JvmName("valueEntityAttributeRegistryArg")
 @BrigadierDsl
 public fun DefaultRegistryReader<EntityAttribute>.value(): Holder.Reference<EntityAttribute> {
-    return C_mymnmzsx.m_mlvqftoi(context.assumeSourceNotUsed(), name)
+    return RegistryEntryArgumentType.getEntityAttribute(context.assumeSourceNotUsed(), name)
 }
 
 /**
  * Reads the [ConfiguredFeature] value from the
  * argument in the receiver [ArgumentReader].
  *
- * @see C_mymnmzsx.m_smpebqpi
+ * @see RegistryEntryArgumentType.getConfiguredFeature
  *
  * @author Cypher121
  */
 @JvmName("valueConfiguredFeatureRegistryArg")
 @BrigadierDsl
 public fun DefaultRegistryReader<ConfiguredFeature<*, *>>.value(): Holder.Reference<ConfiguredFeature<*, *>> {
-    return C_mymnmzsx.m_smpebqpi(context.assumeSourceNotUsed(), name)
+    return RegistryEntryArgumentType.getConfiguredFeature(context.assumeSourceNotUsed(), name)
 }
 
 /**
  * Reads the [StructureFeature] value from the
  * argument in the receiver [ArgumentReader].
  *
- * @see C_mymnmzsx.m_lewkpddi
+ * @see RegistryEntryArgumentType.getStructureFeature
  *
  * @author Cypher121
  */
 @JvmName("valueStructureFeatureRegistryArg")
 @BrigadierDsl
 public fun DefaultRegistryReader<StructureFeature>.value(): Holder.Reference<StructureFeature> {
-    return C_mymnmzsx.m_lewkpddi(context.assumeSourceNotUsed(), name)
+    return RegistryEntryArgumentType.getStructureFeature(context.assumeSourceNotUsed(), name)
 }
 
 /**
  * Reads the [EntityType] value from the
  * argument in the receiver [ArgumentReader].
  *
- * @see C_mymnmzsx.m_ywgminmu
+ * @see RegistryEntryArgumentType.getEntityType
  *
  * @author Cypher121
  */
 @JvmName("valueEntityTypeRegistryArg")
 @BrigadierDsl
 public fun DefaultRegistryReader<EntityType<*>>.value(): Holder.Reference<EntityType<*>> {
-    return C_mymnmzsx.m_ywgminmu(context.assumeSourceNotUsed(), name)
+    return RegistryEntryArgumentType.getEntityType(context.assumeSourceNotUsed(), name)
 }
 
 /**
@@ -113,41 +113,41 @@ public fun DefaultRegistryReader<EntityType<*>>.value(): Holder.Reference<Entity
  *
  * @throws CommandSyntaxException if the given entity type is not summonable
  *
- * @see C_mymnmzsx.m_vafbfynk
+ * @see RegistryEntryArgumentType.getSummonableEntityType
  *
  * @author Cypher121
  */
 @BrigadierDsl
 public fun DefaultRegistryReader<EntityType<*>>.requireSummonable(): Holder.Reference<EntityType<*>> {
-    return C_mymnmzsx.m_vafbfynk(context.assumeSourceNotUsed(), name)
+    return RegistryEntryArgumentType.getSummonableEntityType(context.assumeSourceNotUsed(), name)
 }
 
 /**
  * Reads the [StatusEffect] value from the
  * argument in the receiver [ArgumentReader].
  *
- * @see C_mymnmzsx.m_chqmsdty
+ * @see RegistryEntryArgumentType.getStatusEffect
  *
  * @author Cypher121
  */
 @JvmName("valueStatusEffectRegistryArg")
 @BrigadierDsl
 public fun DefaultRegistryReader<StatusEffect>.value(): Holder.Reference<StatusEffect> {
-    return C_mymnmzsx.m_chqmsdty(context.assumeSourceNotUsed(), name)
+    return RegistryEntryArgumentType.getStatusEffect(context.assumeSourceNotUsed(), name)
 }
 
 /**
  * Reads the [Enchantment] value from the
  * argument in the receiver [ArgumentReader].
  *
- * @see C_mymnmzsx.m_ilcygena
+ * @see RegistryEntryArgumentType.getEnchantment
  *
  * @author Cypher121
  */
 @JvmName("valueEnchantmentRegistryArg")
 @BrigadierDsl
 public fun DefaultRegistryReader<Enchantment>.value(): Holder.Reference<Enchantment> {
-    return C_mymnmzsx.m_ilcygena(context.assumeSourceNotUsed(), name)
+    return RegistryEntryArgumentType.getEnchantment(context.assumeSourceNotUsed(), name)
 }
 
 /**
@@ -163,6 +163,6 @@ public fun <S, T> registryEntry(
     name: String,
     context: CommandBuildContext,
     registryKey: RegistryKey<Registry<T>>
-) : DefaultArgumentConstructor<S, C_mymnmzsx<T>> {
-    return argument(name, C_mymnmzsx.m_jtygmkqu(context, registryKey))
+) : DefaultArgumentConstructor<S, RegistryEntryArgumentType<T>> {
+    return argument(name, RegistryEntryArgumentType.registryEntry(context, registryKey))
 }

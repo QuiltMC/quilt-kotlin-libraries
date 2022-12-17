@@ -26,13 +26,12 @@ package org.quiltmc.qkl.library.brigadier.argument
 import net.minecraft.command.argument.ColorArgumentType
 import net.minecraft.command.argument.MessageArgumentType
 import net.minecraft.command.argument.TextArgumentType
+import net.minecraft.network.message.SignedChatMessage
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import org.quiltmc.qkl.library.brigadier.*
-import net.minecraft.unmapped.C_zzdolisx
 
-//TODO remove the named imports above once caught up on mappings
 
 /**
  * Reads the message's [Text] value from
@@ -54,13 +53,13 @@ public fun ArgumentReader<
 }
 
 /**
- * Reads the [C_zzdolisx] value from
+ * Reads the [SignedChatMessage] value from
  * the argument in the receiver [ArgumentReader]
  * and calls [consumer] with it as an argument.
  *
  * The value may not be available immediately.
  *
- * @see MessageArgumentType.m_hqcmqrcd
+ * @see MessageArgumentType.resolveSignedMessage
  *
  * @author Cypher121
  */
@@ -70,8 +69,8 @@ public fun ArgumentReader<
         DefaultArgumentDescriptor<
                 MessageArgumentType
                 >
-        >.getSignedAsync(consumer: (C_zzdolisx) -> Unit) {
-    MessageArgumentType.m_hqcmqrcd(context, name, consumer)
+        >.resolveSigned(consumer: (SignedChatMessage) -> Unit) {
+    MessageArgumentType.resolveSignedMessage(context, name, consumer)
 }
 
 /**
