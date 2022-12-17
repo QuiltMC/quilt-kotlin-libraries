@@ -137,7 +137,6 @@ public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun functions (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
 	public static final fun gameProfile (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun getFromRegistry (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;Lnet/minecraft/registry/RegistryKey;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun getSignedAsync (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;Lkotlin/jvm/functions/Function1;)V
 	public static final fun greedyString (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun identifier (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun intRange (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
@@ -165,6 +164,7 @@ public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun requireSummonable (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
 	public static final fun requiredEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
 	public static final fun requiredPlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun resolveSigned (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;Lkotlin/jvm/functions/Function1;)V
 	public static final fun rotation (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun scoreHolder (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun scoreHolders (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
@@ -328,13 +328,6 @@ public final class org/quiltmc/qkl/library/client/networking/ClientEventsKt {
 public final class org/quiltmc/qkl/library/client/resource/ResourceLoaderEventsKt {
 	public static final fun onResourcePackReloadFinish (Lkotlin/jvm/functions/Function4;)V
 	public static final fun onResourcePackReloadStart (Lkotlin/jvm/functions/Function3;)V
-}
-
-public final class org/quiltmc/qkl/library/client/screen/QuiltScreenKt {
-	public static final fun getButtons (Lnet/minecraft/client/gui/screen/Screen;)Ljava/util/List;
-	public static final fun getClient (Lnet/minecraft/client/gui/screen/Screen;)Lnet/minecraft/client/MinecraftClient;
-	public static final fun getItemRenderer (Lnet/minecraft/client/gui/screen/Screen;)Lnet/minecraft/client/render/item/ItemRenderer;
-	public static final fun getTextRenderer (Lnet/minecraft/client/gui/screen/Screen;)Lnet/minecraft/client/font/TextRenderer;
 }
 
 public final class org/quiltmc/qkl/library/client/screen/ScreenEventsKt {
@@ -552,8 +545,8 @@ public final class org/quiltmc/qkl/library/recipe/RecipeEventsKt {
 
 public final class org/quiltmc/qkl/library/recipe/RecipeExtensionsKt {
 	public static final fun coerceIngredient (Ljava/lang/Object;)Lnet/minecraft/recipe/Ingredient;
-	public static final fun foodCookingRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/unmapped/C_gtxamkec;FIII)[Lnet/minecraft/recipe/AbstractCookingRecipe;
-	public static synthetic fun foodCookingRecipe$default (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/unmapped/C_gtxamkec;FIIIILjava/lang/Object;)[Lnet/minecraft/recipe/AbstractCookingRecipe;
+	public static final fun foodCookingRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/book/CookingRecipeCategory;FIII)[Lnet/minecraft/recipe/AbstractCookingRecipe;
+	public static synthetic fun foodCookingRecipe$default (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/book/CookingRecipeCategory;FIIIILjava/lang/Object;)[Lnet/minecraft/recipe/AbstractCookingRecipe;
 	public static final fun registerStaticRecipe (Lnet/minecraft/recipe/Recipe;)Lnet/minecraft/recipe/Recipe;
 	public static final fun registerStaticRecipes ([Lnet/minecraft/recipe/Recipe;)V
 	public static final fun shapedRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Lkotlin/Pair;)Lnet/minecraft/recipe/ShapedRecipe;
