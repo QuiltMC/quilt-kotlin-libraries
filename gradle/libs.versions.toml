@@ -1,15 +1,15 @@
 [versions]
-atomic = "0.18.4"
+atomic = "0.18.5"
 coroutines = "1.6.4"
 datetime = "0.4.0"
 dokka = "1.7.20"
-kotlin = "1.7.20"
+kotlin = "1.7.22"
 minecraft = "1.19.3"
 qsl = "4.0.0-beta.1+1.19.3"
-quilt_loader = "0.17.6"
+quilt_loader = "0.17.8"
 quilt_mappings = "1.19.3+build.5"
 serialization = "1.4.1"
-serialization_plugin = "1.7.20" # usually same as kotlin but can lag behind
+serialization_plugin = "1.7.22" # usually same as kotlin but can lag behind
 
 [libraries]
 atomic = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
