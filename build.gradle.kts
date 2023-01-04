@@ -19,6 +19,7 @@ plugins {
     alias(libs.plugins.licenser)
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.binary.compatibility)
     `maven-publish`
 }
 
@@ -89,7 +90,7 @@ allprojects {
         withType<KotlinCompile> {
             kotlinOptions {
                 jvmTarget = javaVersion.toString()
-                languageVersion = rootProject.libs.plugins.kotlin.get().version.strictVersion
+                //languageVersion = rootProject.libs.plugins.kotlin.get().version.strictVersion
             }
         }
 
@@ -248,6 +249,16 @@ tasks {
         from(dokkaHtmlMultiModule.get().outputDirectory)
         duplicatesStrategy = DuplicatesStrategy.FAIL
     }
+
+    /*
+     * To update the gradle version for the project, update the gradleVersion here, the sha256sum and then run
+     * `./gradlew wrapper -x build` or `gradle wrapper -x build` TWICE to update the gradle scripts.
+     */
+    wrapper {
+        gradleVersion = "7.6"
+        distributionType = Wrapper.DistributionType.BIN
+        distributionSha256Sum = "7ba68c54029790ab444b39d7e293d3236b2632631fb5f2e012bb28b4ff669e4b"
+    }
 }
 
 publishing {
@@ -265,4 +276,8 @@ publishing {
 gitHooks {
     // Before committing, check that licenses are all ready and the detekt checks have passed.
     setHooks(mapOf("pre-commit" to "checkLicenses apiCheck detekt"))
+}
+
+apiValidation {
+    ignoredProjects.addAll(listOf("quilt-kotlin-libraries", "core"))
 }

@@ -1,6 +1,5 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.binary.compatibility)
     alias(libs.plugins.serialization)
 }
 
