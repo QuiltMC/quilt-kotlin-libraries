@@ -91,7 +91,7 @@ allprojects {
             kotlinOptions {
                 jvmTarget = javaVersion.toString()
                 languageVersion =
-                    rootProject.libs.plugins.kotlin.get().version.requiredVersion.split(".").dropLast(1).joinToString(".")
+                    rootProject.libs.plugins.kotlin.get().version.requiredVersion.substringBeforeLast(".")
             }
         }
 
