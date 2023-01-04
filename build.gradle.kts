@@ -90,7 +90,8 @@ allprojects {
         withType<KotlinCompile> {
             kotlinOptions {
                 jvmTarget = javaVersion.toString()
-                //languageVersion = rootProject.libs.plugins.kotlin.get().version.strictVersion
+                languageVersion =
+                    rootProject.libs.plugins.kotlin.get().version.requiredVersion.split(".").dropLast(1).joinToString(".")
             }
         }
 
