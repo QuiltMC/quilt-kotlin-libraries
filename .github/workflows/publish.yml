@@ -14,16 +14,13 @@ jobs:
           java-version: "17"
       - uses: actions/checkout@v3
       - run: chmod +x ./gradlew
-    
-      - name: Check Licenses
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: checkLicenses --stacktrace
 
       - name: Build Artifacts
         uses: gradle/gradle-build-action@v2
         with:  
-          arguments: build publish --stacktrace
+          arguments: build checkLicenses publish --stacktrace
+          gradle-home-cache-cleanup: true
+
         env:
           MAVEN_URL: ${{ secrets.MAVEN_URL }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
