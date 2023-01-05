@@ -15,14 +15,13 @@
  */
 
 @file:Suppress("unused")
-@file:Environment(EnvType.CLIENT)
+@file:ClientOnly
 
 package org.quiltmc.qkl.library.client.resource
 
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.client.MinecraftClient
 import net.minecraft.resource.ResourceManager
+import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents
 
 public typealias ReloadStart = MinecraftClient.(

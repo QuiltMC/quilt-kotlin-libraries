@@ -20,7 +20,8 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandBuildContext
-import net.minecraft.util.registry.DynamicRegistryManager
+import net.minecraft.feature_flags.FeatureFlagBitSet
+import net.minecraft.registry.DynamicRegistryManager
 
 public typealias ArgumentAccessor<S, D> =
         CommandContext<S>.() -> ArgumentReader<S, D>
@@ -59,9 +60,10 @@ public fun <S> CommandDispatcher<S>.register(
  */
 public fun commandBuildContext(
     dynamicRegistryManager: DynamicRegistryManager,
+    featureFlags: FeatureFlagBitSet,
     action: CommandBuildContext.() -> Unit
 ): CommandBuildContext {
-    val context = CommandBuildContext(dynamicRegistryManager)
+    val context = CommandBuildContext.createConfigurable(dynamicRegistryManager, featureFlags)
     context.apply(action)
     return context
 }

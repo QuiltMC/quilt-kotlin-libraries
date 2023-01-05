@@ -20,7 +20,7 @@ package org.quiltmc.qkl.library.registry
 
 import com.mojang.serialization.Codec
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.Registry
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.registry.api.event.RegistryEntryContext
 import org.quiltmc.qsl.registry.api.event.RegistryEvents

@@ -25,9 +25,8 @@ package org.quiltmc.qkl.library.brigadier.argument
 
 import com.mojang.datafixers.util.Either
 import com.mojang.datafixers.util.Pair
+import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.*
-import net.minecraft.enchantment.Enchantment
-import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.particle.ParticleEffect
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.function.CommandFunction
@@ -102,20 +101,6 @@ public fun ArgumentReader<
 }
 
 /**
- * Reads the [Enchantment] value from the
- * argument in the receiver [ArgumentReader].
- *
- * @see EnchantmentArgumentType.getEnchantment
- *
- * @author Cypher121
- */
-@JvmName("valueEnchantmentArg")
-@BrigadierDsl
-public fun DefaultArgumentReader<EnchantmentArgumentType>.value(): Enchantment {
-    return EnchantmentArgumentType.getEnchantment(context.assumeSourceNotUsed(), name)
-}
-
-/**
  * Reads the [ParticleEffect] value from the
  * argument in the receiver [ArgumentReader].
  *
@@ -127,20 +112,6 @@ public fun DefaultArgumentReader<EnchantmentArgumentType>.value(): Enchantment {
 @BrigadierDsl
 public fun DefaultArgumentReader<ParticleEffectArgumentType>.value(): ParticleEffect {
     return ParticleEffectArgumentType.getParticle(context.assumeSourceNotUsed(), name)
-}
-
-/**
- * Reads the [StatusEffect] value from the
- * argument in the receiver [ArgumentReader].
- *
- * @see StatusEffectArgumentType.getStatusEffect
- *
- * @author Cypher121
- */
-@JvmName("valueStatusEffectArg")
-@BrigadierDsl
-public fun DefaultArgumentReader<StatusEffectArgumentType>.value(): StatusEffect {
-    return StatusEffectArgumentType.getStatusEffect(context.assumeSourceNotUsed(), name)
 }
 
 /**
@@ -168,38 +139,16 @@ public fun <S> dimension(
 }
 
 /**
- * Creates an enchantment argument with [name] as the parameter name.
- *
- * @author Oliver-makes-code (Emma)
- */
-@BrigadierDsl
-public fun <S> enchantment(
-    name: String
-): DefaultArgumentConstructor<S, EnchantmentArgumentType> {
-    return argument(name, EnchantmentArgumentType.enchantment())
-}
-
-
-/**
  * Creates a particle effect argument with [name] as the parameter name.
+ *
+ * @param context The command build context
  *
  * @author Oliver-makes-code (Emma)
  */
 @BrigadierDsl
 public fun <S> particleEffect(
-    name: String
+    name: String,
+    context: CommandBuildContext
 ): DefaultArgumentConstructor<S, ParticleEffectArgumentType> {
-    return argument(name, ParticleEffectArgumentType())
-}
-
-/**
- * Creates a status effect argument with [name] as the parameter name.
- *
- * @author Oliver-makes-code (Emma)
- */
-@BrigadierDsl
-public fun <S> statusEffect(
-    name: String
-): DefaultArgumentConstructor<S, StatusEffectArgumentType> {
-    return argument(name, StatusEffectArgumentType())
+    return argument(name, ParticleEffectArgumentType(context))
 }

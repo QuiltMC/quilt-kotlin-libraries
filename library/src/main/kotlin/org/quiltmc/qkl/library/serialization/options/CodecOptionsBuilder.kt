@@ -24,8 +24,8 @@ import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.modules.SerializersModule
-import net.minecraft.util.registry.Registry
-import net.minecraft.util.registry.RegistryKey
+import net.minecraft.registry.Registry
+import net.minecraft.registry.RegistryKey
 import org.quiltmc.qkl.library.serialization.CodecFactory
 import org.quiltmc.qkl.library.serialization.annotation.CodecSerializable
 import kotlin.reflect.KClass

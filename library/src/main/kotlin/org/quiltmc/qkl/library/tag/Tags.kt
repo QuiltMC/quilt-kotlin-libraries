@@ -16,9 +16,9 @@
 
 package org.quiltmc.qkl.library.tag
 
-import net.minecraft.tag.TagKey
-import net.minecraft.util.Holder
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.tag.TagKey
+import net.minecraft.registry.Holder
+import net.minecraft.registry.Registry
 import org.quiltmc.qsl.tag.api.TagRegistry
 import org.quiltmc.qsl.tag.api.TagRegistry.TagValues
 import org.quiltmc.qsl.tag.api.TagType

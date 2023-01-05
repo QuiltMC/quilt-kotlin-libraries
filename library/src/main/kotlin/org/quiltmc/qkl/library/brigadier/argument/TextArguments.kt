@@ -26,14 +26,12 @@ package org.quiltmc.qkl.library.brigadier.argument
 import net.minecraft.command.argument.ColorArgumentType
 import net.minecraft.command.argument.MessageArgumentType
 import net.minecraft.command.argument.TextArgumentType
+import net.minecraft.network.message.SignedChatMessage
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import org.quiltmc.qkl.library.brigadier.*
-import net.minecraft.command.argument.MessageArgumentType.C_ygsxruyj as SignedMessage
-import net.minecraft.command.argument.MessageArgumentType.m_lwllvwff as getSignedMessage
 
-//TODO remove the named imports above once caught up on mappings
 
 /**
  * Reads the message's [Text] value from
@@ -55,10 +53,13 @@ public fun ArgumentReader<
 }
 
 /**
- * Reads the [SignedMessage] value from
- * the argument in the receiver [ArgumentReader].
+ * Reads the [SignedChatMessage] value from
+ * the argument in the receiver [ArgumentReader]
+ * and calls [consumer] with it as an argument.
  *
- * @see getSignedMessage
+ * The value may not be available immediately.
+ *
+ * @see MessageArgumentType.resolveSignedMessage
  *
  * @author Cypher121
  */
@@ -68,8 +69,8 @@ public fun ArgumentReader<
         DefaultArgumentDescriptor<
                 MessageArgumentType
                 >
-        >.signed(): SignedMessage {
-    return getSignedMessage(context, name)
+        >.resolveSigned(consumer: (SignedChatMessage) -> Unit) {
+    MessageArgumentType.resolveSignedMessage(context, name, consumer)
 }
 
 /**

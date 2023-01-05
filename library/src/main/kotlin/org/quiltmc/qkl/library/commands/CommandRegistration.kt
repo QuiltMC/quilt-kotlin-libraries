@@ -19,11 +19,10 @@
 package org.quiltmc.qkl.library.commands
 
 import com.mojang.brigadier.CommandDispatcher
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.command.CommandBuildContext
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
+import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.command.api.CommandRegistrationCallback
 import org.quiltmc.qsl.command.api.client.ClientCommandRegistrationCallback
@@ -50,7 +49,7 @@ public fun EventRegistration.onCommandRegistration(
  *
  * @author sschr15
  */
-@Environment(EnvType.CLIENT)
+@ClientOnly
 public fun EventRegistration.onClientCommandRegistration(
     callback: CommandRegisterCallback<QuiltClientCommandSource>
 ) {

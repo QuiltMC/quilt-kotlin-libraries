@@ -21,9 +21,10 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.*
-import net.minecraft.tag.TagKey
+import net.minecraft.recipe.book.CookingRecipeCategory
+import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.RegistryKeys
 import org.quiltmc.qsl.recipe.api.RecipeManagerHelper
 import org.quiltmc.qsl.recipe.api.builder.ShapedRecipeBuilder
 import org.quiltmc.qsl.recipe.api.builder.ShapelessRecipeBuilder
@@ -56,7 +57,7 @@ public fun coerceIngredient(ingredient: IngredientLike): Ingredient = when (ingr
     is ItemConvertible -> Ingredient.ofItems(ingredient)
     is Array<*> -> coerceArrayToIngredient(ingredient)
     is Collection<*> -> coerceArrayToIngredient(ingredient.toTypedArray())
-    is TagKey<*> -> if (ingredient.isOfRegistry(Registry.ITEM_KEY)) {
+    is TagKey<*> -> if (ingredient.isOfRegistry(RegistryKeys.ITEM)) {
         Ingredient.ofTag(ingredient as TagKey<Item>)
     } else {
         error("Unsupported ingredient type")
@@ -173,6 +174,7 @@ public fun foodCookingRecipe(
     group: String,
     input: IngredientLike,
     result: ItemStack,
+    category: CookingRecipeCategory,
     experience: Float = 0.0f,
     cookTime: Int = 200,
     smokerCookTime: Int = cookTime / 2,
@@ -188,6 +190,7 @@ public fun foodCookingRecipe(
         smeltingId,
         group,
         ingredient,
+        category,
         result,
         experience,
         cookTime
@@ -196,6 +199,7 @@ public fun foodCookingRecipe(
     val smokingRecipe = smokingRecipe(
         smokingId,
         group,
+        category,
         ingredient,
         result,
         experience,
@@ -205,6 +209,7 @@ public fun foodCookingRecipe(
     val campfireRecipe = campfireCookingRecipe(
         campfireId,
         group,
+        category,
         ingredient,
         result,
         experience,
