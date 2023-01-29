@@ -67,6 +67,7 @@ allprojects {
     }
 
     license {
+        rule(file("${rootProject.projectDir}/codeformat/CODEGEN_HEADER"))
         rule(file("${rootProject.projectDir}/codeformat/HEADER"))
         include("**/*.kt")
     }
