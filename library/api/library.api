@@ -109,81 +109,132 @@ public final class org/quiltmc/qkl/library/brigadier/DefaultArgumentDescriptor :
 	public fun <init> ()V
 }
 
-public final class org/quiltmc/qkl/library/brigadier/argument/BlockArgumentsKt {
+public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
+	public static final fun absoluteRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun angle (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun asAdvancement (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/advancement/Advancement;
+	public static final fun asItemModifier (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/function/LootFunction;
+	public static final fun asPredicate (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/condition/LootCondition;
+	public static final fun asRecipe (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/recipe/Recipe;
+	public static final fun blockPos (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun blockPredicate (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun blockState (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueBlockPredicateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/function/Predicate;
-	public static final fun valueBlockStateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/BlockStateArgument;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/EntityArgumentsKt {
+	public static final fun boolean (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun color (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun columnPos (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun commandFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun defaultToAllKnownListScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun dimension (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun double (Ljava/lang/String;DD)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun double$default (Ljava/lang/String;DDILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun entities (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun entity (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun entityAnchor (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun optionalEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
-	public static final fun requiredEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
-	public static final fun valueEntityAnchorArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/EntityAnchorArgumentType$EntityAnchor;
-	public static final fun valueSingleEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/entity/Entity;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/EnumArgumentsKt {
-	public static final fun enum (Ljava/lang/String;Ljava/util/List;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun enum (Ljava/lang/String;Ljava/util/Map;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun enum (Ljava/lang/String;Lkotlin/reflect/KClass;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun enumAllowedSublist (Ljava/lang/String;Ljava/util/List;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueEnumClassArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/Enum;
-	public static final fun valueEnumMappedArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/Object;
-	public static final fun valueEnumStringArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/GameObjectArgumentsKt {
-	public static final fun commandFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun dimension (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun float (Ljava/lang/String;FF)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun float$default (Ljava/lang/String;FFILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun floatRange (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun functionOrTag (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lcom/mojang/datafixers/util/Pair;
 	public static final fun functions (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun gameProfile (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun getFromRegistry (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;Lnet/minecraft/registry/RegistryKey;)Lnet/minecraft/registry/Holder$Reference;
+	public static final fun greedyString (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun identifier (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun intRange (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun integer (Ljava/lang/String;II)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun integer$default (Ljava/lang/String;IIILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun itemPredicate (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun itemSlot (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun itemStack (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun literal (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun long (Ljava/lang/String;JJ)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun long$default (Ljava/lang/String;JJILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun message (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun nbtCompound (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun nbtElement (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun nbtPath (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun operation (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun optionalEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun optionalPlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
 	public static final fun particleEffect (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueDimensionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/server/world/ServerWorld;
-	public static final fun valueParticleEffectArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/particle/ParticleEffect;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/GeometricArgumentsKt {
-	public static final fun absoluteRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec2f;
-	public static final fun angle (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun blockPos (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun columnPos (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun player (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun players (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun posVec3Arg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/PosArgument;
+	public static final fun registryEntry (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;Lnet/minecraft/registry/RegistryKey;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun requireLoaded (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun requireSummonable (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
+	public static final fun requiredEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun requiredPlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun resolveSigned (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;Lkotlin/jvm/functions/Function1;)V
 	public static final fun rotation (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreHolder (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreHolders (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreboardCriterion (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreboardObjective (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun scoreboardSlot (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun string (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun swizzle (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun team (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun testClass (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun testFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun text (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun time (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun uuid (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun valueAngleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)F
 	public static final fun valueBlockPosArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun valueBlockPredicateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/function/Predicate;
+	public static final fun valueBlockStateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/BlockStateArgument;
+	public static final fun valueBoolArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Z
+	public static final fun valueColorArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/Formatting;
 	public static final fun valueColumnPosArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/ColumnPos;
+	public static final fun valueConfiguredFeatureRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
+	public static final fun valueDimensionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/server/world/ServerWorld;
+	public static final fun valueDoubleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)D
+	public static final fun valueEnchantmentRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
+	public static final fun valueEntityAnchorArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/EntityAnchorArgumentType$EntityAnchor;
+	public static final fun valueEntityAttributeRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
+	public static final fun valueEntityTypeRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
+	public static final fun valueFloatArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)F
+	public static final fun valueFloatRangeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/predicate/NumberRange$FloatRange;
+	public static final fun valueGameProfileArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun valueIdentifierArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/Identifier;
+	public static final fun valueIntArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueIntRangeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/predicate/NumberRange$IntRange;
+	public static final fun valueItemPredicateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/function/Predicate;
+	public static final fun valueItemSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueItemStackArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/ItemStackArgument;
+	public static final fun valueListScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
+	public static final fun valueLongArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)J
+	public static final fun valueMessageArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/text/Text;
+	public static final fun valueNbtCompoundArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/nbt/NbtCompound;
+	public static final fun valueNbtElementArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/nbt/NbtElement;
+	public static final fun valueNbtPathArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/NbtPathArgumentType$NbtPath;
+	public static final fun valueOperationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/OperationArgumentType$Operation;
+	public static final fun valueParticleEffectArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/particle/ParticleEffect;
+	public static final fun valuePlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/server/network/ServerPlayerEntity;
 	public static final fun valueRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/PosArgument;
+	public static final fun valueScoreboardCriterionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardCriterion;
+	public static final fun valueScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
+	public static final fun valueScoreboardSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueSingleEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/entity/Entity;
+	public static final fun valueSingleScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+	public static final fun valueStatusEffectRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
+	public static final fun valueStringArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+	public static final fun valueStructureFeatureRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
 	public static final fun valueSwizzleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/EnumSet;
+	public static final fun valueTeamArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/Team;
+	public static final fun valueTestClassArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+	public static final fun valueTestFunctionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/test/TestFunction;
+	public static final fun valueTextArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/text/Text;
+	public static final fun valueTimeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueUuidArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/UUID;
 	public static final fun valueVec2Arg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun valueVec3Arg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec3d;
 	public static final fun vec2 (Ljava/lang/String;Z)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static synthetic fun vec2$default (Ljava/lang/String;ZILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun vec3 (Ljava/lang/String;Z)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static synthetic fun vec3$default (Ljava/lang/String;ZILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/IdentifierArgumentsKt {
-	public static final fun asAdvancement (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/advancement/Advancement;
-	public static final fun asItemModifier (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/function/LootFunction;
-	public static final fun asPredicate (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/condition/LootCondition;
-	public static final fun asRecipe (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/recipe/Recipe;
-	public static final fun identifier (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueIdentifierArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/Identifier;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/ItemArgumentsKt {
-	public static final fun itemPredicate (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun itemSlot (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun itemStack (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueItemPredicateArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/function/Predicate;
-	public static final fun valueItemSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
-	public static final fun valueItemStackArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/ItemStackArgument;
+	public static final fun word (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun writableScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
 }
 
 public final class org/quiltmc/qkl/library/brigadier/argument/ListEntityArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
@@ -207,86 +258,14 @@ public final class org/quiltmc/qkl/library/brigadier/argument/MappedStringEnumAr
 	public final fun getMap ()Ljava/util/Map;
 }
 
-public final class org/quiltmc/qkl/library/brigadier/argument/MiscArgumentsKt {
-	public static final fun literal (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun time (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun uuid (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueTimeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
-	public static final fun valueUuidArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/UUID;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/NBTArgumentsKt {
-	public static final fun nbtCompound (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun nbtElement (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun nbtPath (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueNbtCompoundArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/nbt/NbtCompound;
-	public static final fun valueNbtElementArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/nbt/NbtElement;
-	public static final fun valueNbtPathArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/NbtPathArgumentType$NbtPath;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/PlayerArgumentsKt {
-	public static final fun gameProfile (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun optionalPlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
-	public static final fun player (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun players (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun requiredPlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
-	public static final fun team (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueGameProfileArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
-	public static final fun valuePlayerArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/server/network/ServerPlayerEntity;
-	public static final fun valueTeamArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/Team;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/PrimitiveArgumentsKt {
-	public static final fun boolean (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun double (Ljava/lang/String;DD)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static synthetic fun double$default (Ljava/lang/String;DDILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun float (Ljava/lang/String;FF)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static synthetic fun float$default (Ljava/lang/String;FFILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun integer (Ljava/lang/String;II)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static synthetic fun integer$default (Ljava/lang/String;IIILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun long (Ljava/lang/String;JJ)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static synthetic fun long$default (Ljava/lang/String;JJILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueBoolArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Z
-	public static final fun valueDoubleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)D
-	public static final fun valueFloatArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)F
-	public static final fun valueIntArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
-	public static final fun valueLongArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)J
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/RangeArgumentsKt {
-	public static final fun floatRange (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun intRange (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueFloatRangeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/predicate/NumberRange$FloatRange;
-	public static final fun valueIntRangeArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/predicate/NumberRange$IntRange;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/RegistryEntryArgumentsKt {
-	public static final fun getFromRegistry (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;Lnet/minecraft/registry/RegistryKey;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun registryEntry (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;Lnet/minecraft/registry/RegistryKey;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun requireSummonable (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun valueConfiguredFeatureRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun valueEnchantmentRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun valueEntityAttributeRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun valueEntityTypeRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun valueStatusEffectRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
-	public static final fun valueStructureFeatureRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/ScoreboardArgumentsKt {
-	public static final fun defaultToAllKnownListScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
-	public static final fun operation (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun scoreHolder (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun scoreHolders (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun scoreboardCriterion (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun scoreboardObjective (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun scoreboardSlot (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueListScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/util/Collection;
-	public static final fun valueOperationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/OperationArgumentType$Operation;
-	public static final fun valueScoreboardCriterionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardCriterion;
-	public static final fun valueScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
-	public static final fun valueScoreboardSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
-	public static final fun valueSingleScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
-	public static final fun writableScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
+public final class org/quiltmc/qkl/library/brigadier/argument/QuiltArgumentsKt {
+	public static final fun enum (Ljava/lang/String;Ljava/util/List;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun enum (Ljava/lang/String;Ljava/util/Map;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun enum (Ljava/lang/String;Lkotlin/reflect/KClass;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun enumAllowedSublist (Ljava/lang/String;Ljava/util/List;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun valueEnumClassArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/Enum;
+	public static final fun valueEnumMappedArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/Object;
+	public static final fun valueEnumStringArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
 }
 
 public final class org/quiltmc/qkl/library/brigadier/argument/SingleEntityArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
@@ -301,32 +280,8 @@ public final class org/quiltmc/qkl/library/brigadier/argument/SingleScoreHolderA
 	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/SingleScoreHolderArgumentDescriptor;
 }
 
-public final class org/quiltmc/qkl/library/brigadier/argument/StringArgumentsKt {
-	public static final fun greedyString (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun string (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueStringArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
-	public static final fun word (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-}
-
 public final class org/quiltmc/qkl/library/brigadier/argument/StringEnumArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
 	public static final field INSTANCE Lorg/quiltmc/qkl/library/brigadier/argument/StringEnumArgumentDescriptor;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/TestingArgumentsKt {
-	public static final fun testClass (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun testFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueTestClassArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
-	public static final fun valueTestFunctionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/test/TestFunction;
-}
-
-public final class org/quiltmc/qkl/library/brigadier/argument/TextArgumentsKt {
-	public static final fun color (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun message (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun resolveSigned (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;Lkotlin/jvm/functions/Function1;)V
-	public static final fun text (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun valueColorArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/Formatting;
-	public static final fun valueMessageArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/text/Text;
-	public static final fun valueTextArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/text/Text;
 }
 
 public final class org/quiltmc/qkl/library/brigadier/argument/TypedEnumArgumentDescriptor : org/quiltmc/qkl/library/brigadier/ArgumentDescriptor {
