@@ -19,6 +19,7 @@
 package org.quiltmc.qkl.library.math
 
 import org.joml.Vector3f
+import kotlin.math.sqrt
 
 //region Standard math operators
 /**
@@ -69,13 +70,14 @@ public operator fun Vector3f.unaryMinus(): Vector3f {
 
 //region Vector specific operators
 /**
- * Divides a [Vector3f] and a Float.
+ * Returns the normalized version of this vector.
  */
-public operator fun Vector3f.div(other: Float): Vector3f {
+public fun Vector3f.normalized(): Vector3f {
+    val length = sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z).toDouble())
     return Vector3f(
-        this.x / other,
-        this.y / other,
-        this.z / other
+        (this.x / length).toFloat(),
+        (this.y / length).toFloat(),
+        (this.z / length).toFloat()
     )
 }
 

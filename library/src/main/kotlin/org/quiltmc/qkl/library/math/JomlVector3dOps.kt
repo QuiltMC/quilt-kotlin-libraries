@@ -18,6 +18,7 @@ package org.quiltmc.qkl.library.math
 
 import net.minecraft.util.math.Vec3d
 import org.joml.Vector3d
+import kotlin.math.sqrt
 
 //region Standard math operators
 /**
@@ -104,13 +105,14 @@ public operator fun Vector3d.times(other: Vec3d): Vector3d {
 
 //region Vector specific operators
 /**
- * Divides a [Vector3d] and a Double.
+ * Returns the normalized version of this vector.
  */
-public operator fun Vector3d.div(other: Double): Vector3d {
+public fun Vector3d.normalized(): Vector3d {
+    val length = sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z))
     return Vector3d(
-        this.x / other,
-        this.y / other,
-        this.z / other
+        this.x / length,
+        this.y / length,
+        this.z / length
     )
 }
 

@@ -19,6 +19,7 @@
 package org.quiltmc.qkl.library.math
 
 import net.minecraft.util.math.Vec2f
+import kotlin.math.sqrt
 
 //region Standard math operators
 /**
@@ -135,6 +136,17 @@ public operator fun Vec2f.div(other: Float): Vec2f {
     return Vec2f(
         this.x / other,
         this.y / other
+    )
+}
+
+/**
+ * Returns the normalized version of this vector.
+ */
+public fun Vec2f.normalized(): Vec2f {
+    val length = sqrt((this.x * this.x) + (this.y * this.y).toDouble())
+    return Vec2f(
+        (this.x / length).toFloat(),
+        (this.y / length).toFloat()
     )
 }
 

@@ -19,6 +19,7 @@
 package org.quiltmc.qkl.library.math
 
 import org.joml.Vector2i
+import kotlin.math.sqrt
 
 //region Standard math operators
 /**
@@ -65,12 +66,13 @@ public operator fun Vector2i.unaryMinus(): Vector2i {
 
 //region Vector specific operators
 /**
- * Divides a [Vector2i] and an Int.
+ * Returns the normalized version of this vector.
  */
-public operator fun Vector2i.div(other: Int): Vector2i {
+public fun Vector2i.normalized(): Vector2i {
+    val length = sqrt((this.x * this.x) + (this.y * this.y).toDouble())
     return Vector2i(
-        this.x / other,
-        this.y / other
+        (this.x / length).toInt(),
+        (this.y / length).toInt()
     )
 }
 
