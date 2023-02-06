@@ -397,9 +397,9 @@ public final class org/quiltmc/qkl/library/lifecycle/ServerEventsKt {
 public final class org/quiltmc/qkl/library/math/JomlVector2dOpsKt {
 	public static final fun component1 (Lorg/joml/Vector2d;)D
 	public static final fun component2 (Lorg/joml/Vector2d;)D
-	public static final fun div (Lorg/joml/Vector2d;D)Lorg/joml/Vector2d;
 	public static final fun dot (Lorg/joml/Vector2d;Lorg/joml/Vector2d;)D
 	public static final fun minus (Lorg/joml/Vector2d;Lorg/joml/Vector2d;)Lorg/joml/Vector2d;
+	public static final fun normalized (Lorg/joml/Vector2d;)Lorg/joml/Vector2d;
 	public static final fun plus (Lorg/joml/Vector2d;Lorg/joml/Vector2d;)Lorg/joml/Vector2d;
 	public static final fun times (Lorg/joml/Vector2d;Lorg/joml/Vector2d;)Lorg/joml/Vector2d;
 	public static final fun unaryMinus (Lorg/joml/Vector2d;)Lorg/joml/Vector2d;
@@ -408,13 +408,13 @@ public final class org/quiltmc/qkl/library/math/JomlVector2dOpsKt {
 public final class org/quiltmc/qkl/library/math/JomlVector2fOpsKt {
 	public static final fun component1 (Lorg/joml/Vector2f;)F
 	public static final fun component2 (Lorg/joml/Vector2f;)F
-	public static final fun div (Lorg/joml/Vector2f;F)Lorg/joml/Vector2f;
 	public static final fun dot (Lorg/joml/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)F
 	public static final fun dot (Lorg/joml/Vector2f;Lnet/minecraft/util/math/Vec2f;)F
 	public static final fun dot (Lorg/joml/Vector2f;Lorg/joml/Vector2f;)F
 	public static final fun minus (Lorg/joml/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)Lorg/joml/Vector2f;
 	public static final fun minus (Lorg/joml/Vector2f;Lnet/minecraft/util/math/Vec2f;)Lorg/joml/Vector2f;
 	public static final fun minus (Lorg/joml/Vector2f;Lorg/joml/Vector2f;)Lorg/joml/Vector2f;
+	public static final fun normalized (Lorg/joml/Vector2f;)Lorg/joml/Vector2f;
 	public static final fun plus (Lorg/joml/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)Lorg/joml/Vector2f;
 	public static final fun plus (Lorg/joml/Vector2f;Lnet/minecraft/util/math/Vec2f;)Lorg/joml/Vector2f;
 	public static final fun plus (Lorg/joml/Vector2f;Lorg/joml/Vector2f;)Lorg/joml/Vector2f;
@@ -429,9 +429,9 @@ public final class org/quiltmc/qkl/library/math/JomlVector2fOpsKt {
 public final class org/quiltmc/qkl/library/math/JomlVector2iOpsKt {
 	public static final fun component1 (Lorg/joml/Vector2i;)I
 	public static final fun component2 (Lorg/joml/Vector2i;)I
-	public static final fun div (Lorg/joml/Vector2i;I)Lorg/joml/Vector2i;
 	public static final fun dot (Lorg/joml/Vector2i;Lorg/joml/Vector2i;)I
 	public static final fun minus (Lorg/joml/Vector2i;Lorg/joml/Vector2i;)Lorg/joml/Vector2i;
+	public static final fun normalized (Lorg/joml/Vector2i;)Lorg/joml/Vector2i;
 	public static final fun plus (Lorg/joml/Vector2i;Lorg/joml/Vector2i;)Lorg/joml/Vector2i;
 	public static final fun times (Lorg/joml/Vector2i;Lorg/joml/Vector2i;)Lorg/joml/Vector2i;
 	public static final fun unaryMinus (Lorg/joml/Vector2i;)Lorg/joml/Vector2i;
@@ -443,11 +443,11 @@ public final class org/quiltmc/qkl/library/math/JomlVector3dOpsKt {
 	public static final fun component3 (Lorg/joml/Vector3d;)D
 	public static final fun cross (Lorg/joml/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lorg/joml/Vector3d;
 	public static final fun cross (Lorg/joml/Vector3d;Lorg/joml/Vector3d;)Lorg/joml/Vector3d;
-	public static final fun div (Lorg/joml/Vector3d;D)Lorg/joml/Vector3d;
 	public static final fun dot (Lorg/joml/Vector3d;Lnet/minecraft/util/math/Vec3d;)D
 	public static final fun dot (Lorg/joml/Vector3d;Lorg/joml/Vector3d;)D
 	public static final fun minus (Lorg/joml/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lorg/joml/Vector3d;
 	public static final fun minus (Lorg/joml/Vector3d;Lorg/joml/Vector3d;)Lorg/joml/Vector3d;
+	public static final fun normalized (Lorg/joml/Vector3d;)Lorg/joml/Vector3d;
 	public static final fun plus (Lorg/joml/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lorg/joml/Vector3d;
 	public static final fun plus (Lorg/joml/Vector3d;Lorg/joml/Vector3d;)Lorg/joml/Vector3d;
 	public static final fun times (Lorg/joml/Vector3d;Lnet/minecraft/util/math/Vec3d;)Lorg/joml/Vector3d;
@@ -461,9 +461,9 @@ public final class org/quiltmc/qkl/library/math/JomlVector3fOpsKt {
 	public static final fun component2 (Lorg/joml/Vector3f;)F
 	public static final fun component3 (Lorg/joml/Vector3f;)F
 	public static final fun cross (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
-	public static final fun div (Lorg/joml/Vector3f;F)Lorg/joml/Vector3f;
 	public static final fun dot (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)F
 	public static final fun minus (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
+	public static final fun normalized (Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
 	public static final fun plus (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
 	public static final fun times (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
 	public static final fun unaryMinus (Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
@@ -476,13 +476,13 @@ public final class org/quiltmc/qkl/library/math/JomlVector3iOpsKt {
 	public static final fun cross (Lorg/joml/Vector3i;Lnet/minecraft/util/math/BlockPos;)Lorg/joml/Vector3i;
 	public static final fun cross (Lorg/joml/Vector3i;Lnet/minecraft/util/math/Vec3i;)Lorg/joml/Vector3i;
 	public static final fun cross (Lorg/joml/Vector3i;Lorg/joml/Vector3i;)Lorg/joml/Vector3i;
-	public static final fun div (Lorg/joml/Vector3i;I)Lorg/joml/Vector3i;
 	public static final fun dot (Lorg/joml/Vector3i;Lnet/minecraft/util/math/BlockPos;)I
 	public static final fun dot (Lorg/joml/Vector3i;Lnet/minecraft/util/math/Vec3i;)I
 	public static final fun dot (Lorg/joml/Vector3i;Lorg/joml/Vector3i;)I
 	public static final fun minus (Lorg/joml/Vector3i;Lnet/minecraft/util/math/BlockPos;)Lorg/joml/Vector3i;
 	public static final fun minus (Lorg/joml/Vector3i;Lnet/minecraft/util/math/Vec3i;)Lorg/joml/Vector3i;
 	public static final fun minus (Lorg/joml/Vector3i;Lorg/joml/Vector3i;)Lorg/joml/Vector3i;
+	public static final fun normalized (Lorg/joml/Vector3i;)Lorg/joml/Vector3i;
 	public static final fun plus (Lorg/joml/Vector3i;Lnet/minecraft/util/math/BlockPos;)Lorg/joml/Vector3i;
 	public static final fun plus (Lorg/joml/Vector3i;Lnet/minecraft/util/math/Vec3i;)Lorg/joml/Vector3i;
 	public static final fun plus (Lorg/joml/Vector3i;Lorg/joml/Vector3i;)Lorg/joml/Vector3i;
@@ -499,9 +499,9 @@ public final class org/quiltmc/qkl/library/math/JomlVector4dOpsKt {
 	public static final fun component2 (Lorg/joml/Vector4d;)D
 	public static final fun component3 (Lorg/joml/Vector4d;)D
 	public static final fun component4 (Lorg/joml/Vector4d;)D
-	public static final fun div (Lorg/joml/Vector4d;D)Lorg/joml/Vector4d;
 	public static final fun dot (Lorg/joml/Vector4d;Lorg/joml/Vector4d;)D
 	public static final fun minus (Lorg/joml/Vector4d;Lorg/joml/Vector4d;)Lorg/joml/Vector4d;
+	public static final fun normalized (Lorg/joml/Vector4d;)Lorg/joml/Vector4d;
 	public static final fun plus (Lorg/joml/Vector4d;Lorg/joml/Vector4d;)Lorg/joml/Vector4d;
 	public static final fun times (Lorg/joml/Vector4d;Lorg/joml/Vector4d;)Lorg/joml/Vector4d;
 	public static final fun unaryMinus (Lorg/joml/Vector4d;)Lorg/joml/Vector4d;
@@ -512,9 +512,9 @@ public final class org/quiltmc/qkl/library/math/JomlVector4fOpsKt {
 	public static final fun component2 (Lorg/joml/Vector4f;)F
 	public static final fun component3 (Lorg/joml/Vector4f;)F
 	public static final fun component4 (Lorg/joml/Vector4f;)F
-	public static final fun div (Lorg/joml/Vector4f;F)Lorg/joml/Vector4f;
 	public static final fun dot (Lorg/joml/Vector4f;Lorg/joml/Vector4f;)F
 	public static final fun minus (Lorg/joml/Vector4f;Lorg/joml/Vector4f;)Lorg/joml/Vector4f;
+	public static final fun normalized (Lorg/joml/Vector4f;)Lorg/joml/Vector4f;
 	public static final fun plus (Lorg/joml/Vector4f;Lorg/joml/Vector4f;)Lorg/joml/Vector4f;
 	public static final fun times (Lorg/joml/Vector4f;Lorg/joml/Vector4f;)Lorg/joml/Vector4f;
 	public static final fun unaryMinus (Lorg/joml/Vector4f;)Lorg/joml/Vector4f;
@@ -525,9 +525,9 @@ public final class org/quiltmc/qkl/library/math/JomlVector4iOpsKt {
 	public static final fun component2 (Lorg/joml/Vector4i;)I
 	public static final fun component3 (Lorg/joml/Vector4i;)I
 	public static final fun component4 (Lorg/joml/Vector4i;)I
-	public static final fun div (Lorg/joml/Vector4i;I)Lorg/joml/Vector4i;
 	public static final fun dot (Lorg/joml/Vector4i;Lorg/joml/Vector4i;)I
 	public static final fun minus (Lorg/joml/Vector4i;Lorg/joml/Vector4i;)Lorg/joml/Vector4i;
+	public static final fun normalized (Lorg/joml/Vector4i;)Lorg/joml/Vector4i;
 	public static final fun plus (Lorg/joml/Vector4i;Lorg/joml/Vector4i;)Lorg/joml/Vector4i;
 	public static final fun times (Lorg/joml/Vector4i;Lorg/joml/Vector4i;)Lorg/joml/Vector4i;
 	public static final fun unaryMinus (Lorg/joml/Vector4i;)Lorg/joml/Vector4i;
@@ -547,6 +547,7 @@ public final class org/quiltmc/qkl/library/math/MinecraftBlockPosOpsKt {
 	public static final fun minus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
 	public static final fun minus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos;
 	public static final fun minus (Lnet/minecraft/util/math/BlockPos;Lorg/joml/Vector3i;)Lnet/minecraft/util/math/BlockPos;
+	public static final fun normalized (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
 	public static final fun plus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/BlockPos;
 	public static final fun plus (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/BlockPos;
 	public static final fun plus (Lnet/minecraft/util/math/BlockPos;Lorg/joml/Vector3i;)Lnet/minecraft/util/math/BlockPos;
@@ -568,6 +569,7 @@ public final class org/quiltmc/qkl/library/math/MinecraftVec2fOpsKt {
 	public static final fun minus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun minus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun minus (Lnet/minecraft/util/math/Vec2f;Lorg/joml/Vector2f;)Lnet/minecraft/util/math/Vec2f;
+	public static final fun normalized (Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun plus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun plus (Lnet/minecraft/util/math/Vec2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun plus (Lnet/minecraft/util/math/Vec2f;Lorg/joml/Vector2f;)Lnet/minecraft/util/math/Vec2f;
@@ -590,6 +592,7 @@ public final class org/quiltmc/qkl/library/math/MinecraftVec3dOpsKt {
 	public static final fun dot (Lnet/minecraft/util/math/Vec3d;Lorg/joml/Vector3d;)D
 	public static final fun minus (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
 	public static final fun minus (Lnet/minecraft/util/math/Vec3d;Lorg/joml/Vector3d;)Lnet/minecraft/util/math/Vec3d;
+	public static final fun normalized (Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
 	public static final fun plus (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
 	public static final fun plus (Lnet/minecraft/util/math/Vec3d;Lorg/joml/Vector3d;)Lnet/minecraft/util/math/Vec3d;
 	public static final fun times (Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;
@@ -612,6 +615,7 @@ public final class org/quiltmc/qkl/library/math/MinecraftVec3iOpsKt {
 	public static final fun minus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3i;
 	public static final fun minus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
 	public static final fun minus (Lnet/minecraft/util/math/Vec3i;Lorg/joml/Vector3i;)Lnet/minecraft/util/math/Vec3i;
+	public static final fun normalized (Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
 	public static final fun plus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/math/Vec3i;
 	public static final fun plus (Lnet/minecraft/util/math/Vec3i;Lnet/minecraft/util/math/Vec3i;)Lnet/minecraft/util/math/Vec3i;
 	public static final fun plus (Lnet/minecraft/util/math/Vec3i;Lorg/joml/Vector3i;)Lnet/minecraft/util/math/Vec3i;
@@ -633,6 +637,7 @@ public final class org/quiltmc/qkl/library/math/MinecraftVector2fOpsKt {
 	public static final fun minus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
 	public static final fun minus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/client/util/math/Vector2f;
 	public static final fun minus (Lnet/minecraft/client/util/math/Vector2f;Lorg/joml/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
+	public static final fun normalized (Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
 	public static final fun plus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/client/util/math/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
 	public static final fun plus (Lnet/minecraft/client/util/math/Vector2f;Lnet/minecraft/util/math/Vec2f;)Lnet/minecraft/client/util/math/Vector2f;
 	public static final fun plus (Lnet/minecraft/client/util/math/Vector2f;Lorg/joml/Vector2f;)Lnet/minecraft/client/util/math/Vector2f;
