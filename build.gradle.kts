@@ -1,4 +1,3 @@
-
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
@@ -31,8 +30,8 @@ buildscript {
 
 group = "org.quiltmc"
 val rootVersion = project.version
-val flk_version: String by project
-version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk." + flk_version
+val flkVersion: String by project
+version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk." + flkVersion
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 val javaVersion = 17 // The current version of Java used by Minecraft
@@ -42,12 +41,13 @@ repositories {
 }
 
 fun DependencyHandlerScope.includeApi(dependency: Any) {
-    include(dependency)?.let { api(it) }
+    api(dependency)
+    include(dependency)
 }
 
 dependencies {
-    includeApi(project(":core"))
-    includeApi(project(":library"))
+    includeApi(project(":core", configuration = "namedElements"))
+    includeApi(project(":library", configuration = "namedElements"))
 }
 
 allprojects {
@@ -82,7 +82,7 @@ allprojects {
             filesMatching("quilt.mod.json") {
                 expand(
                     "version" to rootVersion,
-                    "flk_version" to "$flk_version+kotlin.${project.libs.versions.kotlin.orNull}"
+                    "flk_version" to "$flkVersion+kotlin.${project.libs.versions.kotlin.orNull}"
                 )
             }
         }
