@@ -10,7 +10,7 @@ quilt_loader = "0.18.3"
 quilt_mappings = "1.19.3+build.5"
 serialization = "1.4.1"
 serialization_plugin = "1.8.10" # usually same as kotlin but can lag behind
-binary_compat_plugin = "0.13.0"
+binary_compat_plugin = "0.12.1"
 
 [libraries]
 atomic = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
