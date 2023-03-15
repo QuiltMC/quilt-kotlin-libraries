@@ -19,7 +19,6 @@ package org.quiltmc.qkl.core.adapter
 import org.quiltmc.loader.api.LanguageAdapter
 import org.quiltmc.loader.api.LanguageAdapterException
 import org.quiltmc.loader.api.ModContainer
-import org.quiltmc.loader.impl.launch.common.QuiltLauncherBase
 import org.quiltmc.loader.impl.util.DefaultLanguageAdapter
 import java.lang.reflect.Proxy
 import kotlin.reflect.KProperty1
@@ -50,7 +49,7 @@ public open class KotlinAdapter : LanguageAdapter {
             Class.forName(
                 splitMethod[0],
                 true,
-                QuiltLauncherBase.getLauncher().targetClassLoader
+                mod.classLoader
             )
         } catch (error: ClassNotFoundException) {
             throw LanguageAdapterException(error)
@@ -115,7 +114,7 @@ public open class KotlinAdapter : LanguageAdapter {
 
                 // Return a proxy of T that calls the method
                 return Proxy.newProxyInstance(
-                    QuiltLauncherBase.getLauncher().targetClassLoader,
+                    mod.classLoader,
                     arrayOf(type)
                 ) { _, _, _ ->
                     methods[0].call(instance)
