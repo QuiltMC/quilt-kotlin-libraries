@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 QuiltMC
+ * Copyright 2023 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -143,16 +143,29 @@ public typealias EntityTrackingCallback = (
 ) -> Unit
 
 /**
- * Invoked when a player on the server starts tracking an entity.
+ * Invoked before a player on the server starts tracking an entity.
  * This usually happens when the entity gets close enough
  * to the player to be seen.
  *
- * @see EntityTrackingEvents.START_TRACKING
+ * @see EntityTrackingEvents.BEFORE_START_TRACKING
+ *
+ * @author SilverAndro
+ */
+public fun EventRegistration.onBeforeEntityTrackingStart(callback: EntityTrackingCallback) {
+    EntityTrackingEvents.BEFORE_START_TRACKING.register(EntityTrackingEvents.BeforeStartTracking(callback))
+}
+
+/**
+ * Invoked after a player on the server starts tracking an entity.
+ * This usually happens when the entity gets close enough
+ * to the player to be seen.
+ *
+ * @see EntityTrackingEvents.AFTER_START_TRACKING
  *
  * @author sschr15
  */
-public fun EventRegistration.onEntityTrackingStart(callback: EntityTrackingCallback) {
-    EntityTrackingEvents.START_TRACKING.register(EntityTrackingEvents.StartTracking(callback))
+public fun EventRegistration.onAfterEntityTrackingStart(callback: EntityTrackingCallback) {
+    EntityTrackingEvents.AFTER_START_TRACKING.register(EntityTrackingEvents.AfterStartTracking(callback))
 }
 
 /**

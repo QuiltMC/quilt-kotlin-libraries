@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 QuiltMC
+ * Copyright 2023 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,9 +77,10 @@ public fun DefaultArgumentReader<UuidArgumentType>.value(): UUID {
  */
 @BrigadierDsl
 public fun <S> time(
-    name: String
+    name: String,
+    minimumTicks: Int = 0
 ): DefaultArgumentConstructor<S, TimeArgumentType> {
-    return argument(name, TimeArgumentType.time())
+    return argument(name, TimeArgumentType.of(minimumTicks))
 }
 
 /**

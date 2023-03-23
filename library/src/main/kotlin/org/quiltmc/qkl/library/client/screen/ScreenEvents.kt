@@ -211,8 +211,7 @@ public fun EventRegistration.afterKeyRelease(callback: KeyboardKey<Unit>) {
 public typealias ScreenGenericCallback = Screen.() -> Unit
 public typealias ScreenInitCallback = Screen.(
     client: MinecraftClient,
-    scaledWidth: Int,
-    scaledHeight: Int
+    firstTimeInit: Boolean
 ) -> Unit
 
 public typealias ScreenRenderCallback = Screen.(
