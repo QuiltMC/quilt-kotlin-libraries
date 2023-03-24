@@ -151,7 +151,7 @@ public typealias EntityTrackingCallback = (
  *
  * @author SilverAndro
  */
-public fun EventRegistration.onBeforeEntityTrackingStart(callback: EntityTrackingCallback) {
+public fun EventRegistration.beforeEntityTrackingStart(callback: EntityTrackingCallback) {
     EntityTrackingEvents.BEFORE_START_TRACKING.register(EntityTrackingEvents.BeforeStartTracking(callback))
 }
 
@@ -164,7 +164,7 @@ public fun EventRegistration.onBeforeEntityTrackingStart(callback: EntityTrackin
  *
  * @author sschr15
  */
-public fun EventRegistration.onAfterEntityTrackingStart(callback: EntityTrackingCallback) {
+public fun EventRegistration.afterEntityTrackingStart(callback: EntityTrackingCallback) {
     EntityTrackingEvents.AFTER_START_TRACKING.register(EntityTrackingEvents.AfterStartTracking(callback))
 }
 

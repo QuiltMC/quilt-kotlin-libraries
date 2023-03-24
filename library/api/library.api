@@ -783,8 +783,8 @@ public final class org/quiltmc/qkl/library/networking/PlayerLookupsKt {
 }
 
 public final class org/quiltmc/qkl/library/networking/ServerEventsKt {
-	public static final fun onAfterEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
-	public static final fun onBeforeEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun afterEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun beforeEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onEntityTrackingStop (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
