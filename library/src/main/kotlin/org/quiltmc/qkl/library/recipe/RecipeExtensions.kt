@@ -21,7 +21,6 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.*
-import net.minecraft.recipe.book.CookingRecipeCategory
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.Identifier
 import net.minecraft.registry.RegistryKeys
@@ -174,7 +173,7 @@ public fun foodCookingRecipe(
     group: String,
     input: IngredientLike,
     result: ItemStack,
-    category: CookingRecipeCategory,
+    category: CookingCategory,
     experience: Float = 0.0f,
     cookTime: Int = 200,
     smokerCookTime: Int = cookTime / 2,

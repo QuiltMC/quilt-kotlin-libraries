@@ -70,7 +70,7 @@ public fun ArgumentReader<
                 MessageArgumentType
                 >
         >.resolveSigned(consumer: (SignedChatMessage) -> Unit) {
-    MessageArgumentType.resolveSignedMessage(context, name, consumer)
+    MessageArgumentType.resolveChatMessage(context, name, consumer)
 }
 
 /**

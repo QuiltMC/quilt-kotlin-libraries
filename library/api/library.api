@@ -177,7 +177,8 @@ public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun testClass (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun testFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun text (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun time (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun time (Ljava/lang/String;I)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static synthetic fun time$default (Ljava/lang/String;IILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun uuid (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun valueAngleArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)F
 	public static final fun valueBlockPosArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/BlockPos;
@@ -297,7 +298,9 @@ public final class org/quiltmc/qkl/library/brigadier/util/RequiredChainKt {
 public final class org/quiltmc/qkl/library/brigadier/util/ServerCommandUtilKt {
 	public static final fun broadcastSystemMessage (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/text/Text;Z)V
 	public static final fun getEntity (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/entity/Entity;
+	public static final fun getEntityOrThrow (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/entity/Entity;
 	public static final fun getPlayer (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/network/ServerPlayerEntity;
+	public static final fun getPlayerOrThrow (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/network/ServerPlayerEntity;
 	public static final fun getServer (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/MinecraftServer;
 	public static final fun getWorld (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/world/ServerWorld;
 	public static final fun sendFeedback (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/text/Text;Z)V
@@ -336,7 +339,7 @@ public final class org/quiltmc/qkl/library/client/screen/ScreenEventsKt {
 	public static final fun afterMouseClick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun afterMouseRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun afterMouseScroll (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
-	public static final fun afterScreenInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun afterScreenInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
 	public static final fun afterScreenRender (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
 	public static final fun afterScreenTick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
 	public static final fun allowKeyPress (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
@@ -349,7 +352,7 @@ public final class org/quiltmc/qkl/library/client/screen/ScreenEventsKt {
 	public static final fun beforeMouseClick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun beforeMouseRelease (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun beforeMouseScroll (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
-	public static final fun beforeScreenInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun beforeScreenInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
 	public static final fun beforeScreenRender (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
 	public static final fun beforeScreenTick (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
 	public static final fun onScreenRemoved (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
@@ -780,7 +783,8 @@ public final class org/quiltmc/qkl/library/networking/PlayerLookupsKt {
 }
 
 public final class org/quiltmc/qkl/library/networking/ServerEventsKt {
-	public static final fun onEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun afterEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun beforeEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onEntityTrackingStop (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
@@ -800,8 +804,8 @@ public final class org/quiltmc/qkl/library/recipe/RecipeEventsKt {
 
 public final class org/quiltmc/qkl/library/recipe/RecipeExtensionsKt {
 	public static final fun coerceIngredient (Ljava/lang/Object;)Lnet/minecraft/recipe/Ingredient;
-	public static final fun foodCookingRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/book/CookingRecipeCategory;FIII)[Lnet/minecraft/recipe/AbstractCookingRecipe;
-	public static synthetic fun foodCookingRecipe$default (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/book/CookingRecipeCategory;FIIIILjava/lang/Object;)[Lnet/minecraft/recipe/AbstractCookingRecipe;
+	public static final fun foodCookingRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/CookingCategory;FIII)[Lnet/minecraft/recipe/AbstractCookingRecipe;
+	public static synthetic fun foodCookingRecipe$default (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/CookingCategory;FIIIILjava/lang/Object;)[Lnet/minecraft/recipe/AbstractCookingRecipe;
 	public static final fun registerStaticRecipe (Lnet/minecraft/recipe/Recipe;)Lnet/minecraft/recipe/Recipe;
 	public static final fun registerStaticRecipes ([Lnet/minecraft/recipe/Recipe;)V
 	public static final fun shapedRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Lkotlin/Pair;)Lnet/minecraft/recipe/ShapedRecipe;

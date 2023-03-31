@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 QuiltMC
+ * Copyright 2023 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ internal class SerializerCodec<A>(
                 "Encoding exception at $trace: ${e.message}"
             }
 
-            DataResult.error(errorMessage)
+            DataResult.error { errorMessage }
         }
     }
 
@@ -65,7 +65,7 @@ internal class SerializerCodec<A>(
                 "Encoding exception at $trace: ${e.message}"
             }
 
-            DataResult.error(errorMessage)
+            DataResult.error { errorMessage }
         }
     }
 

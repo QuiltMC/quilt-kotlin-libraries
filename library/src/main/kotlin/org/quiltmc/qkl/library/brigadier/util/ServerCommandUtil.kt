@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 QuiltMC
+ * Copyright 2023 QuiltMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,24 +29,45 @@ import net.minecraft.text.Text
  * Player executing the command or
  * `null` if not executed by a player.
  *
- * @see ServerCommandSource.m_ozupobtn
+ * @see ServerCommandSource.getPlayer
  *
  * @author Cypher121
  */
-//TODO wait for mappings
 public val CommandContext<ServerCommandSource>.player: ServerPlayerEntity?
-    get() = source.m_ozupobtn()
+    get() = source.player
+
+/**
+ * Player executing the command or throws
+ * `REQUIRES_PLAYER_EXCEPTION` if not executed by a player.
+ *
+ * @see ServerCommandSource.getPlayerOrThrow
+ *
+ * @author SilverAndro
+ */
+public val CommandContext<ServerCommandSource>.playerOrThrow: ServerPlayerEntity
+    get() = source.playerOrThrow
 
 /**
  * Entity executing the command or
  * `null` if not executed by an entity.
  *
- * @see ServerCommandSource.entity
+ * @see ServerCommandSource.getEntity
  *
  * @author Cypher121
  */
 public val CommandContext<ServerCommandSource>.entity: Entity?
     get() = source.entity
+
+/**
+ * Entity executing the command or throws
+ * `REQUIRES_ENTITY_EXCEPTION` if not executed by an entity.
+ *
+ * @see ServerCommandSource.getEntityOrThrow
+ *
+ * @author SilverAndro
+ */
+public val CommandContext<ServerCommandSource>.entityOrThrow: Entity
+    get() = source.entityOrThrow
 
 /**
  * World from which the command originates.
@@ -87,7 +108,7 @@ public fun CommandContext<ServerCommandSource>.sendFeedback(
  * Sends [message] to every player on the server,
  * to chat or the toolbar overlay controlled by [overlay]
  *
- * @see PlayerManager.m_bgctehjy
+ * @see PlayerManager.broadcastSystemMessage
  *
  * @author Cypher121
  */
@@ -95,5 +116,5 @@ public fun CommandContext<ServerCommandSource>.broadcastSystemMessage(
     message: Text,
     overlay: Boolean
 ) {
-    server.playerManager.m_bgctehjy(message, overlay)
+    server.playerManager.broadcastSystemMessage(message, overlay)
 }
