@@ -18,6 +18,7 @@ package samples.qkl.networking
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.networking.serialization.*
 
@@ -75,6 +76,8 @@ private object NetworkingSerializationSamples {
 
         // Send the created data from the client to the server
         SerializedClientPlayNetworking.send(Identifier("example", "packet"), person)
+        // or vice versa
+        SerializedServerPlayNetworking.send(stub<ServerPlayerEntity>(), Identifier("example", "packet"), person)
     }
 
     @Serializable
