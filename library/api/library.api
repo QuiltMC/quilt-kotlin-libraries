@@ -926,7 +926,7 @@ public final class org/quiltmc/qkl/library/serialization/ExtendedDynamicOps$Elem
 public abstract interface annotation class org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap : java/lang/annotation/Annotation {
 }
 
-public final class org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap {
+public synthetic class org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecEntryListMap {
 	public fun <init> ()V
 }
 
@@ -935,8 +935,9 @@ public abstract interface annotation class org/quiltmc/qkl/library/serialization
 	public abstract fun useInlineWrapper ()Lorg/quiltmc/qsl/base/api/util/TriState;
 }
 
-public final class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecSerializable {
+public synthetic class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecSerializable {
 	public fun <init> (Lorg/quiltmc/qsl/base/api/util/TriState;Lorg/quiltmc/qsl/base/api/util/TriState;)V
+	public synthetic fun <init> (Lorg/quiltmc/qsl/base/api/util/TriState;Lorg/quiltmc/qsl/base/api/util/TriState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final synthetic fun encodeDefaults ()Lorg/quiltmc/qsl/base/api/util/TriState;
 	public final synthetic fun useInlineWrapper ()Lorg/quiltmc/qsl/base/api/util/TriState;
 }
@@ -946,8 +947,9 @@ public abstract interface annotation class org/quiltmc/qkl/library/serialization
 	public abstract fun flatten ()Lorg/quiltmc/qsl/base/api/util/TriState;
 }
 
-public final class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Polymorphic$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Polymorphic {
+public synthetic class org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Polymorphic$Impl : org/quiltmc/qkl/library/serialization/annotation/CodecSerializable$Polymorphic {
 	public fun <init> (Ljava/lang/String;Lorg/quiltmc/qsl/base/api/util/TriState;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/quiltmc/qsl/base/api/util/TriState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final synthetic fun classDiscriminator ()Ljava/lang/String;
 	public final synthetic fun flatten ()Lorg/quiltmc/qsl/base/api/util/TriState;
 }
