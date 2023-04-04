@@ -17,6 +17,7 @@
 package org.quiltmc.qkl.library.networking.serialization
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.AbstractDecoder
@@ -100,5 +101,19 @@ public class PacketByteBufEncoder(
     override fun beginCollection(descriptor: SerialDescriptor, collectionSize: Int): CompositeEncoder {
         packetByteBuf.writeVarInt(collectionSize)
         return this
+    }
+
+    public companion object {
+        /**
+         * Encodes an instance of [T] and returns the [PacketByteBuf].
+         */
+        public inline fun <reified T> encode(
+            value: @Serializable T,
+            serializersModule: SerializersModule = EmptySerializersModule()
+        ): PacketByteBuf {
+            val encoder = PacketByteBufEncoder(serializersModule)
+            encoder.encodeSerializableValue(serializer(), value)
+            return encoder.packetByteBuf
+        }
     }
 }

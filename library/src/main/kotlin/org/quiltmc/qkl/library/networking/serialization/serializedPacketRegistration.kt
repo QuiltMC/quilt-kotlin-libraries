@@ -16,7 +16,8 @@
 
 package org.quiltmc.qkl.library.networking.serialization
 
-import kotlinx.serialization.serializer
+import kotlinx.serialization.modules.EmptySerializersModule
+import kotlinx.serialization.modules.SerializersModule
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayNetworkHandler
 import net.minecraft.server.MinecraftServer
@@ -36,8 +37,13 @@ public typealias OnSerializedPacketServer<T> =
  * A utility class for serialized packet registration.
  * @param id The packet channel to expect this packet on.
  * @param direction The directions that this packet can be sent in.
+ * @param serializersModule The serializers module to be used for decoding
  */
-public class SerializedPacketRegistration<P>(public val id: Identifier, public val direction: Direction) {
+public class SerializedPacketRegistration<P>(
+    public val id: Identifier,
+    public val direction: Direction,
+    public val serializersModule: SerializersModule
+) {
     /**
      * Action to be executed when this packet is received on the client.
      */
@@ -75,7 +81,7 @@ public class SerializedPacketRegistration<P>(public val id: Identifier, public v
 
             ServerPlayNetworking
                 .registerGlobalReceiver(id) { server, serverPlayer, playNetworking, packetByteBuf, sender ->
-                val decoded = PacketByteBufDecoder(packetByteBuf).decodeSerializableValue<T>(serializer())
+                val decoded = PacketByteBufDecoder.decodeFrom<T>(packetByteBuf, serializersModule)
                 server.execute {
                     @Suppress("UNCHECKED_CAST")
                     onServerReceiveAction!!.invoke(decoded as P, server, serverPlayer, playNetworking, sender)
@@ -91,7 +97,7 @@ public class SerializedPacketRegistration<P>(public val id: Identifier, public v
             }
 
             ClientPlayNetworking.registerGlobalReceiver(id) { client, playNetworking, packetByteBuf, sender ->
-                val decoded = PacketByteBufDecoder(packetByteBuf).decodeSerializableValue<T>(serializer())
+                val decoded = PacketByteBufDecoder.decodeFrom<T>(packetByteBuf, serializersModule)
                 client.execute {
                     @Suppress("UNCHECKED_CAST")
                     onClientReceiveAction!!.invoke(decoded as P, client, playNetworking, sender)
@@ -116,7 +122,8 @@ public class SerializedPacketRegistration<P>(public val id: Identifier, public v
 public inline fun <reified T> registerSerializedPacket(
     id: Identifier,
     direction: SerializedPacketRegistration.Direction,
+    serializersModule: SerializersModule = EmptySerializersModule(),
     action: SerializedPacketRegistration<T>.()->Unit
 ) {
-    SerializedPacketRegistration<T>(id, direction).apply(action).finalize<T>()
+    SerializedPacketRegistration<T>(id, direction, serializersModule).apply(action).finalize<T>()
 }

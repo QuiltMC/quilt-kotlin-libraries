@@ -797,6 +797,7 @@ public final class org/quiltmc/qkl/library/networking/ServerEventsKt {
 }
 
 public final class org/quiltmc/qkl/library/networking/serialization/PacketByteBufDecoder : kotlinx/serialization/encoding/AbstractDecoder {
+	public static final field Companion Lorg/quiltmc/qkl/library/networking/serialization/PacketByteBufDecoder$Companion;
 	public fun <init> (Lnet/minecraft/network/PacketByteBuf;Lkotlinx/serialization/modules/SerializersModule;)V
 	public synthetic fun <init> (Lnet/minecraft/network/PacketByteBuf;Lkotlinx/serialization/modules/SerializersModule;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun decodeBoolean ()Z
@@ -818,7 +819,11 @@ public final class org/quiltmc/qkl/library/networking/serialization/PacketByteBu
 	public fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
 }
 
+public final class org/quiltmc/qkl/library/networking/serialization/PacketByteBufDecoder$Companion {
+}
+
 public final class org/quiltmc/qkl/library/networking/serialization/PacketByteBufEncoder : kotlinx/serialization/encoding/AbstractEncoder {
+	public static final field Companion Lorg/quiltmc/qkl/library/networking/serialization/PacketByteBufEncoder$Companion;
 	public fun <init> ()V
 	public fun <init> (Lkotlinx/serialization/modules/SerializersModule;)V
 	public synthetic fun <init> (Lkotlinx/serialization/modules/SerializersModule;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -841,16 +846,20 @@ public final class org/quiltmc/qkl/library/networking/serialization/PacketByteBu
 	public final fun setPacketByteBuf (Lnet/minecraft/network/PacketByteBuf;)V
 }
 
+public final class org/quiltmc/qkl/library/networking/serialization/PacketByteBufEncoder$Companion {
+}
+
 public final class org/quiltmc/qkl/library/networking/serialization/SerializedClientPlayNetworking {
 	public static final field INSTANCE Lorg/quiltmc/qkl/library/networking/serialization/SerializedClientPlayNetworking;
 }
 
 public final class org/quiltmc/qkl/library/networking/serialization/SerializedPacketRegistration {
-	public fun <init> (Lnet/minecraft/util/Identifier;Lorg/quiltmc/qkl/library/networking/serialization/SerializedPacketRegistration$Direction;)V
+	public fun <init> (Lnet/minecraft/util/Identifier;Lorg/quiltmc/qkl/library/networking/serialization/SerializedPacketRegistration$Direction;Lkotlinx/serialization/modules/SerializersModule;)V
 	public final fun getDirection ()Lorg/quiltmc/qkl/library/networking/serialization/SerializedPacketRegistration$Direction;
 	public final fun getId ()Lnet/minecraft/util/Identifier;
 	public final fun getOnClientReceiveAction ()Lkotlin/jvm/functions/Function4;
 	public final fun getOnServerReceiveAction ()Lkotlin/jvm/functions/Function5;
+	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
 	public final fun onClientReceive (Lkotlin/jvm/functions/Function4;)V
 	public final fun onServerReceive (Lkotlin/jvm/functions/Function5;)V
 	public final fun setOnClientReceiveAction (Lkotlin/jvm/functions/Function4;)V

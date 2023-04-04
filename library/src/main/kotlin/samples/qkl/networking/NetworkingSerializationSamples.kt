@@ -21,9 +21,13 @@ import kotlinx.serialization.serializer
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.networking.serialization.*
 
-@Suppress("unused")
+@Suppress("unused", "UNUSED_VARIABLE")
 private object NetworkingSerializationSamples {
     val age = 19
+
+    fun <T> stub(): T {
+        TODO()
+    }
 
     fun example() {
         // Define the data
@@ -38,13 +42,18 @@ private object NetworkingSerializationSamples {
         )
 
         // Encode to a packet byte buf
-        val asByteBuf = PacketByteBufEncoder().let {
+        val asByteBuf = PacketByteBufEncoder.encode(person)
+        // or, if you need more control such as a serializers module
+        val asByteBuf2 = PacketByteBufEncoder(serializersModule = stub()).let {
             it.encodeSerializableValue(serializer(), person)
             it.packetByteBuf
         }
 
         // Read it from a packet byte buf (in this case, the one we just created)
-        val andBackAgain = PacketByteBufDecoder(asByteBuf).decodeSerializableValue<TestPerson>(serializer())
+        val andBackAgain = PacketByteBufDecoder.decodeFrom<TestPerson>(asByteBuf)
+        // or, if you need more control such as a serializers module
+        val andBackAgain2 = PacketByteBufDecoder(asByteBuf, serializersModule = stub())
+            .decodeSerializableValue<TestPerson>(serializer())
         assert(person == andBackAgain)
 
         // Register a bi-directional packet of type `TestPerson`

@@ -17,7 +17,8 @@
 package org.quiltmc.qkl.library.networking.serialization
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.serializer
+import kotlinx.serialization.modules.EmptySerializersModule
+import kotlinx.serialization.modules.SerializersModule
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 import org.quiltmc.loader.api.minecraft.ClientOnly
@@ -34,10 +35,12 @@ public object SerializedClientPlayNetworking {
     /**
      * Serializes and sends a packet object from the client to the server.
      */
-    public inline fun <reified T> send(id: Identifier, obj: @Serializable T) {
-        val encoder = PacketByteBufEncoder()
-        encoder.encodeSerializableValue(serializer(), obj)
-        ClientPlayNetworking.send(id, encoder.packetByteBuf)
+    public inline fun <reified T> send(
+        id: Identifier,
+        obj: @Serializable T,
+        serializersModule: SerializersModule = EmptySerializersModule()
+    ) {
+        ClientPlayNetworking.send(id, PacketByteBufEncoder.encode(obj, serializersModule))
     }
 }
 
@@ -50,18 +53,24 @@ public object SerializedServerPlayNetworking {
     /**
      * Serializes and sends a packet object from the server to a player.
      */
-    public inline fun <reified T> send(player: ServerPlayerEntity, id: Identifier, obj: @Serializable T) {
-        val encoder = PacketByteBufEncoder()
-        encoder.encodeSerializableValue(serializer(), obj)
-        ServerPlayNetworking.send(player, id, encoder.packetByteBuf)
+    public inline fun <reified T> send(
+        player: ServerPlayerEntity,
+        id: Identifier,
+        obj: @Serializable T,
+        serializersModule: SerializersModule = EmptySerializersModule()
+    ) {
+        ServerPlayNetworking.send(player, id, PacketByteBufEncoder.encode(obj, serializersModule))
     }
 
     /**
      * Serializes and sends a packet object from the server to the provided players.
      */
-    public inline fun <reified T> send(players: Collection<ServerPlayerEntity>, id: Identifier, obj: @Serializable T) {
-        val encoder = PacketByteBufEncoder()
-        encoder.encodeSerializableValue(serializer(), obj)
-        ServerPlayNetworking.send(players, id, encoder.packetByteBuf)
+    public inline fun <reified T> send(
+        players: Collection<ServerPlayerEntity>,
+        id: Identifier,
+        obj: @Serializable T,
+        serializersModule: SerializersModule = EmptySerializersModule()
+    ) {
+        ServerPlayNetworking.send(players, id, PacketByteBufEncoder.encode(obj, serializersModule))
     }
 }

@@ -90,4 +90,16 @@ public class PacketByteBufDecoder(
     override fun decodeCollectionSize(descriptor: SerialDescriptor): Int {
         return input.readVarInt()
     }
+
+    public companion object {
+        /**
+         * Decodes a [PacketByteBuf] to an instance of [T]
+         */
+        public inline fun <reified T> decodeFrom(
+            packetByteBuf: PacketByteBuf,
+            serializersModule: SerializersModule = EmptySerializersModule()
+        ): T {
+            return PacketByteBufDecoder(packetByteBuf, serializersModule).decodeSerializableValue(serializer())
+        }
+    }
 }
