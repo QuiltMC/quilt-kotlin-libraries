@@ -81,7 +81,7 @@ public class SerializedPacketRegistration<P>(
 
             ServerPlayNetworking
                 .registerGlobalReceiver(id) { server, serverPlayer, playNetworking, packetByteBuf, sender ->
-                val decoded = PacketByteBufDecoder.decodeFrom<T>(packetByteBuf, serializersModule)
+                val decoded = PacketByteBufDecoder.decode<T>(packetByteBuf, serializersModule)
                 server.execute {
                     @Suppress("UNCHECKED_CAST")
                     onServerReceiveAction!!.invoke(decoded as P, server, serverPlayer, playNetworking, sender)
@@ -97,7 +97,7 @@ public class SerializedPacketRegistration<P>(
             }
 
             ClientPlayNetworking.registerGlobalReceiver(id) { client, playNetworking, packetByteBuf, sender ->
-                val decoded = PacketByteBufDecoder.decodeFrom<T>(packetByteBuf, serializersModule)
+                val decoded = PacketByteBufDecoder.decode<T>(packetByteBuf, serializersModule)
                 client.execute {
                     @Suppress("UNCHECKED_CAST")
                     onClientReceiveAction!!.invoke(decoded as P, client, playNetworking, sender)

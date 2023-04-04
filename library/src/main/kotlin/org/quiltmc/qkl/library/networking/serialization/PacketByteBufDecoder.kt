@@ -95,7 +95,7 @@ public class PacketByteBufDecoder(
         /**
          * Decodes a [PacketByteBuf] to an instance of [T]
          */
-        public inline fun <reified T> decodeFrom(
+        public inline fun <reified T> decode(
             packetByteBuf: PacketByteBuf,
             serializersModule: SerializersModule = EmptySerializersModule()
         ): T {

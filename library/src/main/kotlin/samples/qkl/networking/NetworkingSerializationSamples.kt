@@ -50,7 +50,7 @@ private object NetworkingSerializationSamples {
         }
 
         // Read it from a packet byte buf (in this case, the one we just created)
-        val andBackAgain = PacketByteBufDecoder.decodeFrom<TestPerson>(asByteBuf)
+        val andBackAgain = PacketByteBufDecoder.decode<TestPerson>(asByteBuf)
         // or, if you need more control such as a serializers module
         val andBackAgain2 = PacketByteBufDecoder(asByteBuf, serializersModule = stub())
             .decodeSerializableValue<TestPerson>(serializer())
