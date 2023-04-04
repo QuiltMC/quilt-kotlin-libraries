@@ -17,7 +17,6 @@
 package samples.qkl.networking
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.serializer
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.networking.serialization.*
@@ -45,16 +44,12 @@ private object NetworkingSerializationSamples {
         // Encode to a packet byte buf
         val asByteBuf = PacketByteBufEncoder.encode(person)
         // or, if you need more control such as a serializers module
-        val asByteBuf2 = PacketByteBufEncoder(serializersModule = stub()).let {
-            it.encodeSerializableValue(serializer(), person)
-            it.packetByteBuf
-        }
+        val asByteBuf2 = PacketByteBufEncoder.encode(person, serializersModule = stub())
 
         // Read it from a packet byte buf (in this case, the one we just created)
         val andBackAgain = PacketByteBufDecoder.decode<TestPerson>(asByteBuf)
         // or, if you need more control such as a serializers module
-        val andBackAgain2 = PacketByteBufDecoder(asByteBuf, serializersModule = stub())
-            .decodeSerializableValue<TestPerson>(serializer())
+        val andBackAgain2 = PacketByteBufDecoder.decode<TestPerson>(asByteBuf, serializersModule = stub())
         assert(person == andBackAgain)
 
         // Register a bi-directional packet of type `TestPerson`

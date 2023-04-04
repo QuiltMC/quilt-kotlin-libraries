@@ -55,30 +55,39 @@ public class PacketByteBufDecoder(
     override fun decodeBoolean(): Boolean {
         return input.readBoolean()
     }
+
     override fun decodeByte(): Byte {
         return input.readByte()
     }
+
     override fun decodeChar(): Char {
         return input.readChar()
     }
+
     override fun decodeShort(): Short {
         return input.readShort()
     }
+
     override fun decodeInt(): Int {
         return input.readInt()
     }
+
     override fun decodeLong(): Long {
         return input.readLong()
     }
+
     override fun decodeFloat(): Float {
         return input.readFloat()
     }
+
     override fun decodeDouble(): Double {
         return input.readDouble()
     }
+
     override fun decodeString(): String {
         return input.readString()
     }
+
     override fun decodeEnum(enumDescriptor: SerialDescriptor): Int {
         return input.readVarInt()
     }
