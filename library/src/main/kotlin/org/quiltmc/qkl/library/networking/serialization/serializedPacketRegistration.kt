@@ -29,9 +29,9 @@ import org.quiltmc.qsl.networking.api.ServerPlayNetworking
 import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking
 
 public typealias OnSerializedPacketClient<T> =
-        T.(MinecraftClient, ClientPlayNetworkHandler, PacketSender)->Unit
+        T.(MinecraftClient, ClientPlayNetworkHandler, PacketSender) -> Unit
 public typealias OnSerializedPacketServer<T> =
-        T.(MinecraftServer, ServerPlayerEntity, ServerPlayNetworkHandler, PacketSender)->Unit
+        T.(MinecraftServer, ServerPlayerEntity, ServerPlayNetworkHandler, PacketSender) -> Unit
 
 /**
  * A utility class for serialized packet registration.
@@ -73,10 +73,8 @@ public class SerializedPacketRegistration<P>(
      */
     public inline fun <reified T> finalize() {
         if (direction == Direction.ClientToServer || direction == Direction.BiDirectional) {
-            if (onServerReceiveAction == null) {
-                throw IllegalStateException(
-                    "No action set for receiving on the server with packet direction ${direction.name}"
-                )
+            check(onServerReceiveAction != null) {
+                "No action set for receiving on the server with packet direction ${direction.name}"
             }
 
             ServerPlayNetworking
@@ -90,10 +88,8 @@ public class SerializedPacketRegistration<P>(
         }
 
         if (direction == Direction.ServerToClient || direction == Direction.BiDirectional) {
-            if (onClientReceiveAction == null) {
-                throw IllegalStateException(
-                    "No action set for receiving on the client with packet direction ${direction.name}"
-                )
+            check(onClientReceiveAction == null) {
+                "No action set for receiving on the client with packet direction ${direction.name}"
             }
 
             ClientPlayNetworking.registerGlobalReceiver(id) { client, playNetworking, packetByteBuf, sender ->
