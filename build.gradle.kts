@@ -149,8 +149,6 @@ allprojects {
         )
 
         modImplementation(rootProject.libs.quilt.loader)
-
-        modImplementation(rootProject.libs.qsl)
     }
 
     tasks {

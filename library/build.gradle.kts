@@ -5,4 +5,5 @@ plugins {
 
 dependencies {
     implementation(project(":core"))
+    modImplementation(rootProject.libs.qsl)
 }
