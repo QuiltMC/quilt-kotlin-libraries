@@ -88,7 +88,7 @@ public class SerializedPacketRegistration<P>(
         }
 
         if (direction == Direction.ServerToClient || direction == Direction.BiDirectional) {
-            check(onClientReceiveAction == null) {
+            check(onClientReceiveAction != null) {
                 "No action set for receiving on the client with packet direction ${direction.name}"
             }
 
