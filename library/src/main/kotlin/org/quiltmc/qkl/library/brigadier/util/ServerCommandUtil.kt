@@ -101,6 +101,21 @@ public fun CommandContext<ServerCommandSource>.sendFeedback(
     message: Text,
     broadcastToOps: Boolean = false
 ) {
+    source.sendFeedback({ message }, broadcastToOps)
+}
+
+/**
+ * Sends [message] as a system message to the player.
+ * Also sends to operators, if [broadcastToOps] is `true`.
+ *
+ * @see ServerCommandSource.sendFeedback
+ * 
+ * @author sschr15
+ */
+public fun CommandContext<ServerCommandSource>.sendFeedback(
+    broadcastToOps: Boolean = false,
+    message: () -> Text
+) {
     source.sendFeedback(message, broadcastToOps)
 }
 

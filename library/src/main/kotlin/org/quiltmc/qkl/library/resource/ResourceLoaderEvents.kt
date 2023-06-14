@@ -18,36 +18,14 @@
 
 package org.quiltmc.qkl.library.resource
 
-import net.minecraft.resource.ResourceManager
-import net.minecraft.server.MinecraftServer
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.resource.loader.api.ResourceLoaderEvents
+import org.quiltmc.qsl.resource.loader.api.ResourceLoaderEvents.EndDataPackReload
+import org.quiltmc.qsl.resource.loader.api.ResourceLoaderEvents.StartDataPackReload
 
-public typealias DataPackReloadStart = (
-    /**
-     * The current server, or `null` if this is the first load.
-     */
-    server: MinecraftServer?,
-    /**
-     * The resource manager that is being reloaded, or `null` if this is the first load.
-     */
-    resourceManager: ResourceManager?,
-) -> Unit
+public typealias DataPackReloadStart = StartDataPackReload.Context.() -> Unit
 
-public typealias DataPackReloadFinish = (
-    /**
-     * The current server, or `null` if this is the first load.
-     */
-    server: MinecraftServer?,
-    /**
-     * The resource manager that is being reloaded, or `null` if this is the first load.
-     */
-    resourceManager: ResourceManager?,
-    /**
-     * An error that occurred during the reload, or `null` if no error occurred.
-     */
-    error: Throwable?,
-) -> Unit
+public typealias DataPackReloadFinish = EndDataPackReload.Context.() -> Unit
 
 /**
  * Called when data pack reloading is about to begin.

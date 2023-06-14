@@ -20,8 +20,8 @@
 package org.quiltmc.qkl.library.client.screen
 
 import net.minecraft.client.MinecraftClient
+import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screen.Screen
-import net.minecraft.client.util.math.MatrixStack
 import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.base.api.util.TriState
@@ -215,7 +215,7 @@ public typealias ScreenInitCallback = Screen.(
 ) -> Unit
 
 public typealias ScreenRenderCallback = Screen.(
-    matrices: MatrixStack,
+    graphics: GuiGraphics,
     mouseX: Int,
     mouseY: Int,
     tickDelta: Float
