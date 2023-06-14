@@ -16,12 +16,10 @@ public final class org/quiltmc/qkl/library/MixinAccessorsKt {
 }
 
 public final class org/quiltmc/qkl/library/blocks/BlockExtensionsKt {
-	public static final fun blockSettingsOf (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;ZLnet/minecraft/sound/BlockSoundGroup;ILkotlin/jvm/functions/Function1;FLjava/lang/Float;ZZFFFLjava/lang/Object;ZZLkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;)Lnet/minecraft/block/AbstractBlock$Settings;
-	public static synthetic fun blockSettingsOf$default (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;ZLnet/minecraft/sound/BlockSoundGroup;ILkotlin/jvm/functions/Function1;FLjava/lang/Float;ZZFFFLjava/lang/Object;ZZLkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ILjava/lang/Object;)Lnet/minecraft/block/AbstractBlock$Settings;
-	public static final fun buildBlockSettings (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/block/AbstractBlock$Settings;
-	public static final fun buildMaterial (Lnet/minecraft/block/MapColor;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/block/Material;
-	public static final fun materialOf (Lnet/minecraft/block/MapColor;Lnet/minecraft/block/piston/PistonBehavior;ZZZZZZ)Lnet/minecraft/block/Material;
-	public static synthetic fun materialOf$default (Lnet/minecraft/block/MapColor;Lnet/minecraft/block/piston/PistonBehavior;ZZZZZZILjava/lang/Object;)Lnet/minecraft/block/Material;
+	public static final fun blockSettingsOf (Lnet/minecraft/block/MapColor;ZLnet/minecraft/sound/BlockSoundGroup;ILkotlin/jvm/functions/Function1;FLjava/lang/Float;ZZFFFLjava/lang/Object;ZZLkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;)Lnet/minecraft/block/AbstractBlock$Settings;
+	public static synthetic fun blockSettingsOf$default (Lnet/minecraft/block/MapColor;ZLnet/minecraft/sound/BlockSoundGroup;ILkotlin/jvm/functions/Function1;FLjava/lang/Float;ZZFFFLjava/lang/Object;ZZLkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ILjava/lang/Object;)Lnet/minecraft/block/AbstractBlock$Settings;
+	public static final fun buildBlockSettings (Lnet/minecraft/block/AbstractBlock$Settings;Lkotlin/jvm/functions/Function1;)Lnet/minecraft/block/AbstractBlock$Settings;
+	public static synthetic fun buildBlockSettings$default (Lnet/minecraft/block/AbstractBlock$Settings;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lnet/minecraft/block/AbstractBlock$Settings;
 }
 
 public final class org/quiltmc/qkl/library/brigadier/ArgumentConstructor {
@@ -304,7 +302,9 @@ public final class org/quiltmc/qkl/library/brigadier/util/ServerCommandUtilKt {
 	public static final fun getServer (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/MinecraftServer;
 	public static final fun getWorld (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/world/ServerWorld;
 	public static final fun sendFeedback (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/text/Text;Z)V
+	public static final fun sendFeedback (Lcom/mojang/brigadier/context/CommandContext;ZLkotlin/jvm/functions/Function0;)V
 	public static synthetic fun sendFeedback$default (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/text/Text;ZILjava/lang/Object;)V
+	public static synthetic fun sendFeedback$default (Lcom/mojang/brigadier/context/CommandContext;ZLkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 }
 
 public final class org/quiltmc/qkl/library/client/lifecycle/ClientEventsKt {
@@ -329,8 +329,8 @@ public final class org/quiltmc/qkl/library/client/networking/ClientEventsKt {
 }
 
 public final class org/quiltmc/qkl/library/client/resource/ResourceLoaderEventsKt {
-	public static final fun onResourcePackReloadFinish (Lkotlin/jvm/functions/Function4;)V
-	public static final fun onResourcePackReloadStart (Lkotlin/jvm/functions/Function3;)V
+	public static final fun onResourcePackReloadFinish (Lkotlin/jvm/functions/Function1;)V
+	public static final fun onResourcePackReloadStart (Lkotlin/jvm/functions/Function1;)V
 }
 
 public final class org/quiltmc/qkl/library/client/screen/ScreenEventsKt {
@@ -886,8 +886,8 @@ public final class org/quiltmc/qkl/library/registry/RegistrySugarKt {
 }
 
 public final class org/quiltmc/qkl/library/resource/ResourceLoaderEventsKt {
-	public static final fun onDataPackReloadFinish (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
-	public static final fun onDataPackReloadStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onDataPackReloadFinish (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onDataPackReloadStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
 }
 
 public abstract class org/quiltmc/qkl/library/serialization/CodecFactory {

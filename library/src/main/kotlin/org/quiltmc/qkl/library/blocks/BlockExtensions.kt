@@ -16,48 +16,16 @@
 
 package org.quiltmc.qkl.library.blocks
 
-import net.minecraft.block.*
-import net.minecraft.block.piston.PistonBehavior
+import net.minecraft.block.AbstractBlock
+import net.minecraft.block.Block
+import net.minecraft.block.BlockState
+import net.minecraft.block.MapColor
 import net.minecraft.entity.EntityType
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.BlockView
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings
-import org.quiltmc.qsl.block.extensions.api.QuiltMaterialBuilder
-
-/**
- * Create a [Material] with the given settings.
- *
- * @author sschr15
- */
-public fun materialOf(
-    color: MapColor,
-    pistonBehavior: PistonBehavior = PistonBehavior.NORMAL,
-    blocksMovement: Boolean = true,
-    isBurnable: Boolean = false,
-    isLiquid: Boolean = false,
-    isReplaceable: Boolean = false,
-    isSolid: Boolean = true,
-    isOpaque: Boolean = true,
-): Material = buildMaterial(color) {
-    pistonBehavior(pistonBehavior)
-    if (!blocksMovement) allowsMovement()
-    if (isBurnable) burnable()
-    if (isLiquid) liquid()
-    if (isReplaceable) replaceable()
-    if (!isSolid) notSolid()
-    if (!isOpaque) lightPassesThrough()
-}
-
-/**
- * [Build][QuiltMaterialBuilder] a [Material] with the given [color].
- */
-public fun buildMaterial(color: MapColor, block: QuiltMaterialBuilder.() -> Unit): Material {
-    val builder = QuiltMaterialBuilder(color)
-    builder.block()
-    return builder.build()
-}
 
 public typealias BlockTest = (
     state: BlockState,
@@ -81,8 +49,7 @@ public typealias EntityTest = (
  * @author sschr15
  */
 public fun blockSettingsOf(
-    material: Material,
-    color: MapColor = material.color,
+    mapColor: MapColor? = null,
     isCollidable: Boolean = true,
     soundGroup: BlockSoundGroup = BlockSoundGroup.STONE,
     luminance: Int = 0,
@@ -103,7 +70,8 @@ public fun blockSettingsOf(
     blocksVision: BlockTest? = null,
     shouldPostProcess: BlockTest? = null,
     isEmissive: BlockTest? = null,
-): AbstractBlock.Settings = buildBlockSettings(material, color) {
+): AbstractBlock.Settings = buildBlockSettings {
+    if (mapColor != null) mapColor(mapColor)
     collidable(isCollidable)
     sounds(soundGroup)
     if (luminanceFunction == null) {
@@ -135,15 +103,14 @@ public fun blockSettingsOf(
 }
 
 /**
- * Build a [Block settings object][AbstractBlock.Settings] with the given [material] and [color],
+ * Build a [Block settings object][AbstractBlock.Settings] with the given [base] settings,
  * using builder-style syntax.
  */
 public fun buildBlockSettings(
-    material: Material,
-    color: MapColor,
+    base: AbstractBlock.Settings = AbstractBlock.Settings.create(),
     block: QuiltBlockSettings.() -> Unit
 ): AbstractBlock.Settings {
-    val settings = QuiltBlockSettings.of(material, color)
+    val settings = QuiltBlockSettings.copyOf(base)
     settings.block()
     return settings
 }

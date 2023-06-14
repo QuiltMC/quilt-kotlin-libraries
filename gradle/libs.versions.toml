@@ -1,16 +1,16 @@
 [versions]
 atomic = "0.20.1"
-coroutines = "1.6.4"
+coroutines = "1.7.1"
 datetime = "0.4.0"
 dokka = "1.7.20"
-kotlin = "1.8.20"
-minecraft = "1.19.4"
-qsl = "5.0.0-beta.1+1.19.4"
-quilt_loader = "0.18.5"
-quilt_mappings = "1.19.4+build.5"
-serialization = "1.5.0"
-serialization_plugin = "1.8.20" # usually same as kotlin but can lag behind
-binary_compat_plugin = "0.12.1"
+kotlin = "1.8.22"
+minecraft = "1.20"
+qsl = "6.0.1+1.20"
+quilt_loader = "0.19.0"
+quilt_mappings = "1.20+build.4"
+serialization = "1.5.1"
+serialization_plugin = "1.8.21" # usually same as kotlin but can lag behind
+binary_compat_plugin = "0.13.2"
 
 [libraries]
 atomic = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
@@ -28,11 +28,11 @@ serialization_core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cor
 serialization_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "serialization" }
 
 [plugins]
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.22.0" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-licenser = { id = "org.quiltmc.gradle.licenser", version = "2.0.0" }
+licenser = { id = "org.quiltmc.gradle.licenser", version = "2.0.1" }
 quilt_loom = { id = "org.quiltmc.loom", version = "1.+" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization_plugin" }
 binary_compatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary_compat_plugin" }

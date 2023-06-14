@@ -19,24 +19,14 @@
 
 package org.quiltmc.qkl.library.client.resource
 
-import net.minecraft.client.MinecraftClient
-import net.minecraft.resource.ResourceManager
 import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents
+import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents.EndResourcePackReload
+import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents.StartResourcePackReload
 
-public typealias ReloadStart = MinecraftClient.(
-    manager: ResourceManager,
-    isFirstLoad: Boolean
-) -> Unit
+public typealias ReloadStart = StartResourcePackReload.Context.() -> Unit
 
-public typealias ReloadFinish = MinecraftClient.(
-    manager: ResourceManager,
-    isFirstLoad: Boolean,
-    /**
-     * The error if the reload failed, or `null` if it succeeded.
-     */
-    error: Throwable?
-) -> Unit
+public typealias ReloadFinish = EndResourcePackReload.Context.() -> Unit
 
 /**
  * @see ClientResourceLoaderEvents.START_RESOURCE_PACK_RELOAD
