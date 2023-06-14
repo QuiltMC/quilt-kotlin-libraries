@@ -248,16 +248,6 @@ tasks {
         from(dokkaHtmlMultiModule.get().outputDirectory)
         duplicatesStrategy = DuplicatesStrategy.FAIL
     }
-
-    /*
-     * To update the gradle version for the project, update the gradleVersion here, the sha256sum and then run
-     * `./gradlew wrapper -x build` or `gradle wrapper -x build` TWICE to update the gradle scripts.
-     */
-    wrapper {
-        gradleVersion = "7.6"
-        distributionType = Wrapper.DistributionType.BIN
-        distributionSha256Sum = "7ba68c54029790ab444b39d7e293d3236b2632631fb5f2e012bb28b4ff669e4b"
-    }
 }
 
 publishing {
