@@ -15,16 +15,18 @@ jobs:
       - uses: actions/checkout@v3
       - run: chmod +x ./gradlew
 
-      - name: Build Artifacts
+      - name: Build and Publish Artifacts
         uses: gradle/gradle-build-action@v2
         with:  
-          arguments: build checkLicenses publish --stacktrace
+          arguments: build checkLicenses publish curseforge modrinth --stacktrace
           gradle-home-cache-cleanup: true
 
         env:
           MAVEN_URL: ${{ secrets.MAVEN_URL }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
 
       - name: Upload artifacts to GitHub
         uses: AButler/upload-release-assets@v2.0

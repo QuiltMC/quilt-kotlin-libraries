@@ -1,3 +1,5 @@
+import com.matthewprenger.cursegradle.CurseProject
+import com.matthewprenger.cursegradle.CurseRelation
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
@@ -19,6 +21,8 @@ plugins {
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
     alias(libs.plugins.binary.compatibility)
+    alias(libs.plugins.minotaur)
+    alias(libs.plugins.cursegradle)
     `maven-publish`
 }
 
@@ -31,7 +35,7 @@ buildscript {
 group = "org.quiltmc"
 val rootVersion = project.version
 val flkVersion: String by project
-version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk." + flkVersion
+version = "${project.version}+kt.${project.libs.versions.kotlin.orNull}+flk.$flkVersion"
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 val javaVersion = 17 // The current version of Java used by Minecraft
@@ -270,3 +274,41 @@ gitHooks {
 apiValidation {
     ignoredProjects.addAll(listOf("quilt-kotlin-libraries", "core"))
 }
+
+curseforge {
+    System.getenv("CURSEFORGE_TOKEN")?.let { apiKey = it }
+
+    project(closureOf<CurseProject> {
+        id = "720410"
+        releaseType = "release"
+        addGameVersion(libs.versions.minecraft)
+        addGameVersion("Quilt")
+
+        mainArtifact(tasks.remapJar)
+        addArtifact(project(":core").tasks.remapJar)
+
+        relations(closureOf<CurseRelation> { 
+            embeddedLibrary("308769")
+        })
+
+        afterEvaluate { 
+            uploadTask.dependsOn(tasks.remapJar)
+            uploadTask.dependsOn(project(":core").tasks.remapJar)
+        }
+    })
+
+    curseGradleOptions.forgeGradleIntegration = false
+}
+
+modrinth {
+    projectId.set("qkl")
+    versionName.set("[${libs.versions.minecraft.get()}] QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}")
+    versionType.set("release")
+    dependencies { 
+        embedded.project("flk")
+    }
+
+    file.set(tasks.remapJar.get().archiveFile)
+}
+
+tasks.modrinth.get().dependsOn(tasks.remapJar)
