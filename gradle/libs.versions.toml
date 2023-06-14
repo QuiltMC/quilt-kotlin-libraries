@@ -2,7 +2,7 @@
 atomic = "0.20.1"
 coroutines = "1.7.1"
 datetime = "0.4.0"
-dokka = "1.7.20"
+dokka = "1.8.20"
 kotlin = "1.8.22"
 minecraft = "1.20"
 qsl = "6.0.1+1.20"

@@ -108,7 +108,7 @@ allprojects {
 
             doLast {
                 // Script overriding does not work, so we have to do it manually
-                val scriptsOut = outputDirectory.get().resolve("scripts")
+                val scriptsOut = outputDirectory.asFile.get().resolve("scripts")
                 val scriptsIn = file("${rootProject.projectDir}/codeformat/dokka/scripts")
                 if (project != rootProject) return@doLast
                 scriptsIn.listFiles()!!.forEach {
