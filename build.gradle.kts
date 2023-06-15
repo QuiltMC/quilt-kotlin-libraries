@@ -1,3 +1,4 @@
+import com.matthewprenger.cursegradle.CurseArtifact
 import com.matthewprenger.cursegradle.CurseProject
 import com.matthewprenger.cursegradle.CurseRelation
 import org.jetbrains.dokka.base.DokkaBase
@@ -284,31 +285,43 @@ curseforge {
         addGameVersion(libs.versions.minecraft)
         addGameVersion("Quilt")
 
-        mainArtifact(tasks.remapJar)
+        changelog = System.getenv("CHANGELOG") ?: "No changelog provided."
+        changelogType = "markdown"
+
+        mainArtifact(tasks.remapJar, closureOf<CurseArtifact> {
+            displayName = "QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}"
+        })
         addArtifact(project(":core").tasks.remapJar)
 
-        relations(closureOf<CurseRelation> { 
-            embeddedLibrary("308769")
+        relations(closureOf<CurseRelation> {
+            requiredDependency("qsl")
+            embeddedLibrary("fabric-language-kotlin")
         })
-
-        afterEvaluate { 
-            uploadTask.dependsOn(tasks.remapJar)
-            uploadTask.dependsOn(project(":core").tasks.remapJar)
-        }
     })
 
     curseGradleOptions.forgeGradleIntegration = false
 }
 
+tasks.curseforge.get().dependsOn(tasks.remapJar)
+tasks.curseforge.get().dependsOn(project(":core").tasks.remapJar)
+
 modrinth {
+    token.set(System.getenv("MODRINTH_TOKEN"))
+    
     projectId.set("qkl")
-    versionName.set("[${libs.versions.minecraft.get()}] QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}")
+    versionName.set("QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}")
     versionType.set("release")
-    dependencies { 
-        embedded.project("flk")
-    }
+    
+    changelog.set(System.getenv("CHANGELOG") ?: "No changelog provided.")
 
     file.set(tasks.remapJar.get().archiveFile)
+    additionalFiles.add(project(":core").tasks.remapJar.get().archiveFile)
+    
+    dependencies { 
+        required.project("qsl")
+        embedded.project("fabric-language-kotlin")
+    }
 }
 
 tasks.modrinth.get().dependsOn(tasks.remapJar)
+tasks.modrinth.get().dependsOn(project(":core").tasks.remapJar)
