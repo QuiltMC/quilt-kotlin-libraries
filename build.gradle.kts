@@ -282,16 +282,16 @@ curseforge {
     project(closureOf<CurseProject> {
         id = "720410"
         releaseType = "release"
-        addGameVersion(libs.versions.minecraft)
+        addGameVersion(libs.versions.minecraft.get())
         addGameVersion("Quilt")
 
         changelog = System.getenv("CHANGELOG") ?: "No changelog provided."
         changelogType = "markdown"
 
-        mainArtifact(tasks.remapJar, closureOf<CurseArtifact> {
+        mainArtifact(tasks.remapJar.get(), closureOf<CurseArtifact> {
             displayName = "QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}"
         })
-        addArtifact(project(":core").tasks.remapJar)
+        addArtifact(project(":core").tasks.remapJar.get())
 
         relations(closureOf<CurseRelation> {
             requiredDependency("qsl")
