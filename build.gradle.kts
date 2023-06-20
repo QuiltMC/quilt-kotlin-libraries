@@ -1,3 +1,6 @@
+import com.matthewprenger.cursegradle.CurseArtifact
+import com.matthewprenger.cursegradle.CurseProject
+import com.matthewprenger.cursegradle.CurseRelation
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
@@ -19,6 +22,8 @@ plugins {
     alias(libs.plugins.git.hooks)
     alias(libs.plugins.dokka)
     alias(libs.plugins.binary.compatibility)
+    alias(libs.plugins.minotaur)
+    alias(libs.plugins.cursegradle)
     `maven-publish`
 }
 
@@ -31,7 +36,7 @@ buildscript {
 group = "org.quiltmc"
 val rootVersion = project.version
 val flkVersion: String by project
-version = project.version.toString() + "+kt." + project.libs.versions.kotlin.orNull + "+flk." + flkVersion
+version = "${project.version}+kt.${project.libs.versions.kotlin.orNull}+flk.$flkVersion"
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 val javaVersion = 17 // The current version of Java used by Minecraft
@@ -270,3 +275,53 @@ gitHooks {
 apiValidation {
     ignoredProjects.addAll(listOf("quilt-kotlin-libraries", "core"))
 }
+
+curseforge {
+    System.getenv("CURSEFORGE_TOKEN")?.let { apiKey = it }
+
+    project(closureOf<CurseProject> {
+        id = "720410"
+        releaseType = "release"
+        addGameVersion(libs.versions.minecraft.get())
+        addGameVersion("Quilt")
+
+        changelog = System.getenv("CHANGELOG") ?: "No changelog provided."
+        changelogType = "markdown"
+
+        mainArtifact(tasks.remapJar.get(), closureOf<CurseArtifact> {
+            displayName = "QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}"
+        })
+        addArtifact(project(":core").tasks.remapJar.get())
+
+        relations(closureOf<CurseRelation> {
+            requiredDependency("qsl")
+            embeddedLibrary("fabric-language-kotlin")
+        })
+    })
+
+    curseGradleOptions.forgeGradleIntegration = false
+}
+
+tasks.curseforge.get().dependsOn(tasks.remapJar)
+tasks.curseforge.get().dependsOn(project(":core").tasks.remapJar)
+
+modrinth {
+    token.set(System.getenv("MODRINTH_TOKEN"))
+    
+    projectId.set("qkl")
+    versionName.set("QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}")
+    versionType.set("release")
+    
+    changelog.set(System.getenv("CHANGELOG") ?: "No changelog provided.")
+
+    file.set(tasks.remapJar.get().archiveFile)
+    additionalFiles.add(project(":core").tasks.remapJar.get().archiveFile)
+    
+    dependencies { 
+        required.project("qsl")
+        embedded.project("fabric-language-kotlin")
+    }
+}
+
+tasks.modrinth.get().dependsOn(tasks.remapJar)
+tasks.modrinth.get().dependsOn(project(":core").tasks.remapJar)
