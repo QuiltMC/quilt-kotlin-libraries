@@ -108,7 +108,7 @@ allprojects {
                 customAssets = file("$rootPath/assets").listFiles()!!.toList()
                 templatesDir = file("$rootPath/templates")
 
-                footerMessage = "© ${Year.now().value} QuiltMC"
+                footerMessage = "© ${Year.now().value} The Quilt Project"
             }
 
             doLast {
