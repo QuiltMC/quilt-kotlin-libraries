@@ -16,7 +16,7 @@
         "sources": "https://github.com/quiltmc/quilt-kotlin-libraries"
       },
       "license": "Apache-2.0",
-      "icon": "assets/qkl/icon.png"
+      "icon": "assets/qkl_core/icon.png"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "depends": [
