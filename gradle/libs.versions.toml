@@ -4,12 +4,12 @@ coroutines = "1.7.1"
 datetime = "0.4.0"
 dokka = "1.8.20"
 kotlin = "1.8.22"
-minecraft = "1.20"
-qsl = "6.0.1+1.20"
-quilt_loader = "0.19.0"
-quilt_mappings = "1.20+build.4"
+minecraft = "1.20.1"
+qsl = "6.0.4+1.20.1"
+quilt_loader = "0.19.2"
+quilt_mappings = "1.20.1+build.20"
 serialization = "1.5.1"
-serialization_plugin = "1.8.21" # usually same as kotlin but can lag behind
+serialization_plugin = "1.8.22" # usually same as kotlin but can lag behind
 binary_compat_plugin = "0.13.2"
 
 [libraries]
