@@ -919,6 +919,7 @@ public final class org/quiltmc/qkl/library/serialization/ExtendedDynamicOps$Elem
 	public static final field ANY Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
 	public static final field PRIMITIVES Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
 	public static final field STRINGS Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
 	public static fun values ()[Lorg/quiltmc/qkl/library/serialization/ExtendedDynamicOps$ElementSupport;
 }
