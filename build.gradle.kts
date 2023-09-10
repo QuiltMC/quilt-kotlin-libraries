@@ -37,8 +37,7 @@ group = "org.quiltmc"
 val rootVersion = project.version
 val flkVersion: String by project
 version = "${project.version}+kt.${project.libs.versions.kotlin.orNull}+flk.$flkVersion"
-val projectVersion =
-    project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
+val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 val javaVersion = 17 // The current version of Java used by Minecraft
 
