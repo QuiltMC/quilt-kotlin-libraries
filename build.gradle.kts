@@ -37,7 +37,8 @@ group = "org.quiltmc"
 val rootVersion = project.version
 val flkVersion: String by project
 version = "${project.version}+kt.${project.libs.versions.kotlin.orNull}+flk.$flkVersion"
-val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
+val projectVersion =
+    project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
 val javaVersion = 17 // The current version of Java used by Minecraft
 
@@ -50,18 +51,29 @@ fun DependencyHandlerScope.includeApi(dependency: Any) {
     include(dependency)
 }
 
+fun DependencyHandlerScope.includeModApi(dependency: Provider<MinimalExternalModuleDependency>) {
+    include(dependency)
+    modApi(dependency) {
+        exclude(group = "net.fabricmc")
+    }
+}
+
 dependencies {
     includeApi(project(":core", configuration = "namedElements"))
     includeApi(project(":library", configuration = "namedElements"))
+
+    includeModApi(libs.serialization.minecraft)
+    includeApi(libs.collections.immutable)
+    includeApi(libs.klogging)
 }
 
 allprojects {
-    apply(plugin=rootProject.libs.plugins.kotlin.get().pluginId)
-    apply(plugin=rootProject.libs.plugins.detekt.get().pluginId)
-    apply(plugin=rootProject.libs.plugins.licenser.get().pluginId)
-    apply(plugin=rootProject.libs.plugins.dokka.get().pluginId)
-    apply(plugin="maven-publish")
-    apply(plugin=rootProject.libs.plugins.quilt.loom.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.kotlin.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.detekt.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.licenser.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.dokka.get().pluginId)
+    apply(plugin = "maven-publish")
+    apply(plugin = rootProject.libs.plugins.quilt.loom.get().pluginId)
 
     repositories {
         mavenCentral()
@@ -307,17 +319,17 @@ tasks.curseforge.get().dependsOn(project(":core").tasks.remapJar)
 
 modrinth {
     token.set(System.getenv("MODRINTH_TOKEN"))
-    
+
     projectId.set("qkl")
     versionName.set("QKL $rootVersion + FLK $flkVersion + Kotlin ${project.libs.versions.kotlin.orNull}")
     versionType.set("release")
-    
+
     changelog.set(System.getenv("CHANGELOG") ?: "No changelog provided.")
 
     file.set(tasks.remapJar.get().archiveFile)
     additionalFiles.add(project(":core").tasks.remapJar.get().archiveFile)
-    
-    dependencies { 
+
+    dependencies {
         required.project("qsl")
         embedded.project("fabric-language-kotlin")
     }
