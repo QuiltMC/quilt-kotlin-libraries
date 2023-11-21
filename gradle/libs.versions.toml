@@ -1,23 +1,28 @@
 [versions]
 atomic = "0.22.0"
+binary_compat_plugin = "0.13.2"
+collections_immutable = "0.3.5"
 coroutines = "1.7.3"
 datetime = "0.4.1"
 dokka = "1.9.0"
+klogging = "5.1.0"
 kotlin = "1.9.10"
 minecraft = "1.20.1"
 qsl = "6.1.1+1.20.1"
 quilt_loader = "0.20.2"
 quilt_mappings = "1.20.1+build.23"
 serialization = "1.6.0"
+serialization_minecraft = "2.0.0+1.20.1"
 serialization_plugin = "1.9.10" # usually same as kotlin but can lag behind
-binary_compat_plugin = "0.13.2"
 
 [libraries]
 atomic = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
+collections_immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm", version.ref = "collections_immutable" }
 coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines_jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
 coroutines_jvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm", version.ref = "coroutines" }
 datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime-jvm", version.ref = "datetime" }
+klogging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "klogging" }
 dokka_base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
 qsl = { module = "org.quiltmc:qsl", version.ref = "qsl" }
@@ -26,6 +31,7 @@ quilt_mappings = { module = "org.quiltmc:quilt-mappings", version.ref = "quilt_m
 serialization_cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor-jvm", version.ref = "serialization" }
 serialization_core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm", version.ref = "serialization" }
 serialization_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "serialization" }
+serialization_minecraft = { module = "io.github.natanfudge:kotlinx-serialization-minecraft", version.ref = "serialization_minecraft" }
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
