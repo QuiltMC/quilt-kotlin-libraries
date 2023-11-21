@@ -1,5 +1,4 @@
 [versions]
-
 atomic = "0.22.0"
 binary_compat_plugin = "0.13.2"
 collections_immutable = "0.3.5"
