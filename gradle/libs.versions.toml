@@ -1,19 +1,20 @@
 [versions]
-atomic = "0.21.0"
-collections_immutable = "0.3.5"
-coroutines = "1.7.2"
-datetime = "0.4.0"
-dokka = "1.8.20"
-klogging = "5.1.0"
-kotlin = "1.9.0"
-minecraft = "1.20.1"
-qsl = "6.0.4+1.20.1"
-quilt_loader = "0.19.2"
-quilt_mappings = "1.20.1+build.21"
-serialization = "1.5.1"
-serialization_minecraft = "2.0.0+1.20.1"
-serialization_plugin = "1.9.0" # usually same as kotlin but can lag behind
+
+atomic = "0.22.0"
 binary_compat_plugin = "0.13.2"
+collections_immutable = "0.3.5"
+coroutines = "1.7.3"
+datetime = "0.4.1"
+dokka = "1.9.0"
+klogging = "5.1.0"
+kotlin = "1.9.10"
+minecraft = "1.20.1"
+qsl = "6.1.1+1.20.1"
+quilt_loader = "0.20.2"
+quilt_mappings = "1.20.1+build.23"
+serialization = "1.6.0"
+serialization_minecraft = "2.0.0+1.20.1"
+serialization_plugin = "1.9.10" # usually same as kotlin but can lag behind
 
 [libraries]
 atomic = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
@@ -34,7 +35,7 @@ serialization_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-jso
 serialization_minecraft = { module = "io.github.natanfudge:kotlinx-serialization-minecraft", version.ref = "serialization_minecraft" }
 
 [plugins]
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -42,5 +43,5 @@ licenser = { id = "org.quiltmc.gradle.licenser", version = "2.0.1" }
 quilt_loom = { id = "org.quiltmc.loom", version = "1.+" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization_plugin" }
 binary_compatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary_compat_plugin" }
-minotaur = { id = "com.modrinth.minotaur", version = "2.8.1" }
+minotaur = { id = "com.modrinth.minotaur", version = "2.8.2" }
 cursegradle = { id = "com.matthewprenger.cursegradle", version = "1.4.0" }
