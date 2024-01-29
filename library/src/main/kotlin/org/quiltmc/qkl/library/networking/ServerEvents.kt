@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
 package org.quiltmc.qkl.library.networking
 
 import net.minecraft.entity.Entity
+import net.minecraft.network.packet.payload.CustomPayload
+import net.minecraft.network.packet.s2c.login.payload.CustomQueryPayload
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerLoginNetworkHandler
 import net.minecraft.server.network.ServerPlayNetworkHandler
@@ -34,7 +36,7 @@ public typealias GenericLoginCallback = ServerLoginNetworkHandler.(
 
 public typealias LoginQueryStartCallback = ServerLoginNetworkHandler.(
     server: MinecraftServer,
-    packetSender: PacketSender,
+    packetSender: PacketSender<CustomQueryPayload>,
     synchronizer: ServerLoginNetworking.LoginSynchronizer,
 ) -> Unit
 
@@ -76,7 +78,7 @@ public typealias GenericPlayCallback = ServerPlayNetworkHandler.(
 ) -> Unit
 
 public typealias S2CPlayReadyCallback = ServerPlayNetworkHandler.(
-    packetSender: PacketSender,
+    packetSender: PacketSender<CustomPayload>,
     server: MinecraftServer,
 ) -> Unit
 
@@ -112,7 +114,7 @@ public fun EventRegistration.onPlayDisconnect(callback: GenericPlayCallback) {
 
 //region: S2C play channel events
 public typealias S2CPlayChannelCallback = ServerPlayNetworkHandler.(
-    packetSender: PacketSender,
+    packetSender: PacketSender<CustomPayload>,
     server: MinecraftServer,
     channels: List<Identifier>
 ) -> Unit

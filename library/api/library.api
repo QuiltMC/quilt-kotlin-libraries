@@ -110,10 +110,10 @@ public final class org/quiltmc/qkl/library/brigadier/DefaultArgumentDescriptor :
 public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun absoluteRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun angle (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun asAdvancement (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/advancement/Advancement;
+	public static final fun asAdvancement (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/unmapped/C_unoypvme;
 	public static final fun asItemModifier (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/function/LootFunction;
 	public static final fun asPredicate (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/condition/LootCondition;
-	public static final fun asRecipe (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/recipe/Recipe;
+	public static final fun asRecipe (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/recipe/RecipeHolder;
 	public static final fun blockPos (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun blockPredicate (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun blockState (Ljava/lang/String;Lnet/minecraft/command/CommandBuildContext;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
@@ -213,7 +213,7 @@ public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun valueRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/command/argument/PosArgument;
 	public static final fun valueScoreboardCriterionArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardCriterion;
 	public static final fun valueScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
-	public static final fun valueScoreboardSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)I
+	public static final fun valueScoreboardSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardDisplaySlot;
 	public static final fun valueSingleEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/entity/Entity;
 	public static final fun valueSingleScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
 	public static final fun valueStatusEffectRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
@@ -329,8 +329,8 @@ public final class org/quiltmc/qkl/library/client/networking/ClientEventsKt {
 }
 
 public final class org/quiltmc/qkl/library/client/resource/ResourceLoaderEventsKt {
-	public static final fun onResourcePackReloadFinish (Lkotlin/jvm/functions/Function1;)V
-	public static final fun onResourcePackReloadStart (Lkotlin/jvm/functions/Function1;)V
+	public static final fun onPackReloadFinish (Lkotlin/jvm/functions/Function1;)V
+	public static final fun onPackReloadStart (Lkotlin/jvm/functions/Function1;)V
 }
 
 public final class org/quiltmc/qkl/library/client/screen/ScreenEventsKt {
@@ -804,12 +804,12 @@ public final class org/quiltmc/qkl/library/recipe/RecipeEventsKt {
 
 public final class org/quiltmc/qkl/library/recipe/RecipeExtensionsKt {
 	public static final fun coerceIngredient (Ljava/lang/Object;)Lnet/minecraft/recipe/Ingredient;
-	public static final fun foodCookingRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/CookingCategory;FIII)[Lnet/minecraft/recipe/AbstractCookingRecipe;
-	public static synthetic fun foodCookingRecipe$default (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/CookingCategory;FIIIILjava/lang/Object;)[Lnet/minecraft/recipe/AbstractCookingRecipe;
-	public static final fun registerStaticRecipe (Lnet/minecraft/recipe/Recipe;)Lnet/minecraft/recipe/Recipe;
-	public static final fun registerStaticRecipes ([Lnet/minecraft/recipe/Recipe;)V
-	public static final fun shapedRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Lkotlin/Pair;)Lnet/minecraft/recipe/ShapedRecipe;
-	public static final fun shapelessRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Ljava/lang/Object;)Lnet/minecraft/recipe/ShapelessRecipe;
+	public static final fun foodCookingRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/CookingCategory;FIII)[Lnet/minecraft/recipe/RecipeHolder;
+	public static synthetic fun foodCookingRecipe$default (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/Object;Lnet/minecraft/item/ItemStack;Lnet/minecraft/recipe/CookingCategory;FIIIILjava/lang/Object;)[Lnet/minecraft/recipe/RecipeHolder;
+	public static final fun registerStaticRecipe (Lnet/minecraft/recipe/RecipeHolder;)Lnet/minecraft/recipe/RecipeHolder;
+	public static final fun registerStaticRecipes ([Lnet/minecraft/recipe/RecipeHolder;)V
+	public static final fun shapedRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Lkotlin/Pair;)Lnet/minecraft/recipe/RecipeHolder;
+	public static final fun shapelessRecipe (Lnet/minecraft/util/Identifier;Ljava/lang/String;Lnet/minecraft/item/ItemStack;[Ljava/lang/Object;)Lnet/minecraft/recipe/RecipeHolder;
 }
 
 public final class org/quiltmc/qkl/library/registry/RegistryAction {

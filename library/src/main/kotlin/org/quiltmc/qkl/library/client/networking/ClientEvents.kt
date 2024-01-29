@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ package org.quiltmc.qkl.library.client.networking
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientLoginNetworkHandler
 import net.minecraft.client.network.ClientPlayNetworkHandler
+import net.minecraft.network.packet.payload.CustomPayload
 import net.minecraft.util.Identifier
 import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
@@ -73,7 +74,7 @@ public typealias ClientPlayCallback = ClientPlayNetworkHandler.(
 ) -> Unit
 
 public typealias ClientPlayJoinCallback = ClientPlayNetworkHandler.(
-    sender: PacketSender,
+    sender: PacketSender<CustomPayload>,
     client: MinecraftClient
 ) -> Unit
 
@@ -109,7 +110,7 @@ public fun EventRegistration.onPlayConnectionDisconnect(callback: ClientPlayCall
 
 //region: C2S play channel events
 public typealias C2SPlayCallback = ClientPlayNetworkHandler.(
-    sender: PacketSender,
+    sender: PacketSender<CustomPayload>,
     client: MinecraftClient,
     channels: List<Identifier>
 ) -> Unit

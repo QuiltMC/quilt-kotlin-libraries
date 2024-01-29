@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -105,7 +105,7 @@ public fun shapedRecipe(
     pattern: String,
     result: ItemStack,
     vararg ingredients: Pair<Char, IngredientLike>
-): ShapedRecipe {
+): RecipeHolder<ShapedRecipe> {
     val builder = ShapedRecipeBuilder(*pattern.split("\n").toTypedArray())
     ingredients.forEach { (key, ingredient) ->
         builder.ingredient(key, coerceIngredient(ingredient))
@@ -135,7 +135,7 @@ public fun shapelessRecipe(
     group: String,
     result: ItemStack,
     vararg ingredients: IngredientLike
-): ShapelessRecipe {
+): RecipeHolder<ShapelessRecipe> {
     val builder = ShapelessRecipeBuilder(result)
     ingredients.forEach { ingredient ->
         builder.ingredient(coerceIngredient(ingredient))
@@ -178,7 +178,7 @@ public fun foodCookingRecipe(
     cookTime: Int = 200,
     smokerCookTime: Int = cookTime / 2,
     campfireCookTime: Int = cookTime * 3
-): Array<AbstractCookingRecipe> {
+): Array<RecipeHolder<out AbstractCookingRecipe>> {
     val smeltingId = Identifier(baseId.namespace, "${baseId.path}_smelting")
     val smokingId = Identifier(baseId.namespace, "${baseId.path}_smoking")
     val campfireId = Identifier(baseId.namespace, "${baseId.path}_campfire")
@@ -223,7 +223,7 @@ public fun foodCookingRecipe(
  *
  * @author sschr15
  */
-public fun registerStaticRecipes(vararg recipes: Recipe<*>) {
+public fun registerStaticRecipes(vararg recipes: RecipeHolder<*>) {
     recipes.forEach(RecipeManagerHelper::registerStaticRecipe)
 }
 
@@ -233,5 +233,5 @@ public fun registerStaticRecipes(vararg recipes: Recipe<*>) {
  * @author sschr15
  */
 @Suppress("UNCHECKED_CAST") // The implementation is defined as returning the input
-public fun <C : Inventory, R : Recipe<C>> registerStaticRecipe(recipe: R): R =
+public fun <C : Inventory, R : RecipeHolder<C>> registerStaticRecipe(recipe: R): R =
     RecipeManagerHelper.registerStaticRecipe(recipe) as R
