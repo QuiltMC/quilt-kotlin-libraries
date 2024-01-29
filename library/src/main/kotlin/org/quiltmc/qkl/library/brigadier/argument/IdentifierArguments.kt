@@ -32,6 +32,8 @@ import net.minecraft.unmapped.C_unoypvme
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.brigadier.*
 
+public typealias AdvancementHolder = C_unoypvme // Mapped in later versions, should be removed.
+
 /**
  * Reads the [Identifier] value from the
  * argument in the receiver [ArgumentReader].
@@ -61,7 +63,7 @@ public fun ArgumentReader<
         DefaultArgumentDescriptor<
                 IdentifierArgumentType
                 >
-        >.asAdvancement(): C_unoypvme {
+        >.asAdvancement(): AdvancementHolder {
     return IdentifierArgumentType.getAdvancementArgument(context, name)
 }
 
