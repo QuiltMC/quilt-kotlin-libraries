@@ -22,7 +22,7 @@
     "depends": [
       {
         "id": "quilt_loader",
-        "versions": ">=0.18.1"
+        "versions": ">=0.23.0"
       },
       {
         "id": "qkl_core",
