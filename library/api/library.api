@@ -318,8 +318,13 @@ public final class org/quiltmc/qkl/library/client/lifecycle/ClientEventsKt {
 }
 
 public final class org/quiltmc/qkl/library/client/networking/ClientEventsKt {
+	public static final fun onClientConfigurationChannelRegister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onClientConfigurationChannelUnregister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun onClientPlayChannelRegister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun onClientPlayChannelUnregister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onConfigurationDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onConfigurationInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onConfigurationReady (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
 	public static final fun onLoginDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginQueryStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
@@ -785,6 +790,12 @@ public final class org/quiltmc/qkl/library/networking/PlayerLookupsKt {
 public final class org/quiltmc/qkl/library/networking/ServerEventsKt {
 	public static final fun afterEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun beforeEntityTrackingStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onConfigurationAddTasks (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onConfigurationChannelRegister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onConfigurationChannelUnregister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onConfigurationDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onConfigurationInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onConfigurationReady (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
 	public static final fun onEntityTrackingStop (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
