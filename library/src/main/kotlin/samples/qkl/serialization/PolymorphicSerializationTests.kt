@@ -19,7 +19,7 @@ package samples.qkl.serialization
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.quiltmc.qkl.library.serialization.CodecFactory
-import org.quiltmc.qkl.library.serialization.annotation.CodecSerializable
+import org.quiltmc.qkl.library.serialization.annotation.PolymorphicCodecSerializable
 import org.quiltmc.qsl.base.api.util.TriState
 import samples.qkl.serialization.SerializationTestUtils.decodesFromJson
 import samples.qkl.serialization.SerializationTestUtils.encodesToJson
@@ -28,7 +28,7 @@ import samples.qkl.serialization.SerializationTestUtils.failsToEncode
 
 @Suppress("MagicNumber", "Unused")
 private object PolymorphicSerializationTests {
-    @CodecSerializable.Polymorphic(
+    @PolymorphicCodecSerializable(
         flatten = TriState.TRUE
     )
     @Serializable
@@ -50,7 +50,7 @@ private object PolymorphicSerializationTests {
         ) : Foo()
     }
 
-    @CodecSerializable.Polymorphic(
+    @PolymorphicCodecSerializable(
         classDiscriminator = "foo",
         flatten = TriState.TRUE
     )
