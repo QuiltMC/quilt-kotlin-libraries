@@ -32,7 +32,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.4" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-licenser = { id = "org.quiltmc.gradle.licenser", version = "2.0.1" }
+licenser = { id = "dev.yumi.gradle.licenser", version = "1.1.1" }
 quilt_loom = { id = "org.quiltmc.loom", version = "1.4.1" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization_plugin" }
 binary_compatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary_compat_plugin" }
