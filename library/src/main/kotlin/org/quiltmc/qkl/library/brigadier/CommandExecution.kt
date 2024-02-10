@@ -19,7 +19,7 @@ package org.quiltmc.qkl.library.brigadier
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
-import net.minecraft.command.CommandException
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
 import net.minecraft.text.Text
 
 public typealias CommandActionWithResult<S> = CommandContext<S>.() -> CommandResult
@@ -76,7 +76,7 @@ public sealed class CommandResult {
  * If [command] returns [CommandResult.Success], the command will return with [CommandResult.Success.result].
  *
  * If [command] returns [CommandResult.Failure],
- * the command will throw a [CommandException] containing the returned [CommandResult.Failure.message].
+ * the command will throw a [SimpleCommandExceptionType] containing the returned [CommandResult.Failure.message].
  *
  * @sample samples.qkl.brigadier.BrigadierDslSamples.sampleCommandWithResult
  *
@@ -89,7 +89,7 @@ public fun <S> ArgumentBuilder<S, *>.executeWithResult(command: CommandActionWit
     executes {
         when (val result = command(it)) {
             is CommandResult.Success -> result.result
-            is CommandResult.Failure -> throw CommandException(result.message)
+            is CommandResult.Failure -> throw SimpleCommandExceptionType(result.message).create()
         }
     }
 }
