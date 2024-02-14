@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,24 +17,31 @@
 package org.quiltmc.qkl.library.serialization.annotation
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InheritableSerialInfo
 import kotlinx.serialization.MetaSerializable
 import org.quiltmc.qkl.library.serialization.options.CodecOptions
 import org.quiltmc.qsl.base.api.util.TriState
 
 /**
- * Marks the target class as [Serializable] and allows overriding [CodecOptions]
+ * Marks the target class as [Serializable] and allows overriding [CodecOptions.PolymorphismOptions]
  * properties with annotation values.
  *
- * @param encodeDefaults overrides [CodecOptions.encodeDefaults] for target class
- * @param useInlineWrapper overrides [CodecOptions.useInlineWrappers] for target class
+ * Note that unlike regular [CodecSerializable], the polymorphic version is considered
+ * [InheritableSerialInfo] and, if present on subclasses, must have same values as the parent annotation,
+ * as described in documentation for [InheritableSerialInfo].
+ *
+ * @param classDiscriminator overrides
+ * [CodecOptions.polymorphism.classDiscriminator][CodecOptions.PolymorphismOptions.classDiscriminator]
+ * for target class and its subclasses
+ *
+ * @param flatten overrides [CodecOptions.polymorphism.flatten][CodecOptions.PolymorphismOptions.flatten]
+ * for target class and its subclasses
  */
 @OptIn(ExperimentalSerializationApi::class)
 @Target(AnnotationTarget.CLASS)
 @MetaSerializable
-public annotation class CodecSerializable(
-    //common options
-    val encodeDefaults: TriState = TriState.DEFAULT,
-
-    //inline options
-    val useInlineWrapper: TriState = TriState.DEFAULT
+@InheritableSerialInfo
+public annotation class PolymorphicCodecSerializable(
+    val classDiscriminator: String = "",
+    val flatten: TriState = TriState.DEFAULT
 )

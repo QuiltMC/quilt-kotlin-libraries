@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +23,16 @@
 package org.quiltmc.qkl.library.brigadier.argument
 
 
-import net.minecraft.advancement.Advancement
 import net.minecraft.command.argument.IdentifierArgumentType
 import net.minecraft.loot.condition.LootCondition
 import net.minecraft.loot.function.LootFunction
-import net.minecraft.recipe.Recipe
+import net.minecraft.recipe.RecipeHolder
 import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.unmapped.C_unoypvme
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.brigadier.*
+
+public typealias AdvancementHolder = C_unoypvme // Mapped in later versions, should be removed.
 
 /**
  * Reads the [Identifier] value from the
@@ -49,7 +51,7 @@ public fun DefaultArgumentReader<IdentifierArgumentType>.value(): Identifier {
 /**
  * Reads the [Identifier] value from the
  * argument in the receiver [ArgumentReader]
- * as an [Advancement].
+ * as an [AdvancementHolder].
  *
  * @see IdentifierArgumentType.getAdvancementArgument
  *
@@ -61,7 +63,7 @@ public fun ArgumentReader<
         DefaultArgumentDescriptor<
                 IdentifierArgumentType
                 >
-        >.asAdvancement(): Advancement {
+        >.asAdvancement(): AdvancementHolder {
     return IdentifierArgumentType.getAdvancementArgument(context, name)
 }
 
@@ -106,7 +108,7 @@ public fun ArgumentReader<
 /**
  * Reads the [Identifier] value from the
  * argument in the receiver [ArgumentReader]
- * as a [Recipe].
+ * as a [RecipeHolder].
  *
  * @see IdentifierArgumentType.getRecipeArgument
  *
@@ -118,7 +120,7 @@ public fun ArgumentReader<
         DefaultArgumentDescriptor<
                 IdentifierArgumentType
                 >
-        >.asRecipe(): Recipe<*> {
+        >.asRecipe(): RecipeHolder<*> {
     return IdentifierArgumentType.getRecipeArgument(context, name)
 }
 

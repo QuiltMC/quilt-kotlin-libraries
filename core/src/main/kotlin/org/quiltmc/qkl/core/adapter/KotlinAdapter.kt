@@ -116,8 +116,12 @@ public open class KotlinAdapter : LanguageAdapter {
                 return Proxy.newProxyInstance(
                     mod.classLoader,
                     arrayOf(type)
-                ) { _, _, _ ->
-                    methods[0].call(instance)
+                ) { _, _, params ->
+                    if (params != null) {
+                        methods[0].call(instance, *params)
+                    } else {
+                        methods[0].call(instance)
+                    }
                 } as T
             }
             else -> {

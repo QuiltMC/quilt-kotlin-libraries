@@ -73,7 +73,6 @@ allprojects {
 
     license {
         rule(file("${rootProject.projectDir}/codeformat/HEADER"))
-        include("**/*.kt")
     }
 
     kotlin {

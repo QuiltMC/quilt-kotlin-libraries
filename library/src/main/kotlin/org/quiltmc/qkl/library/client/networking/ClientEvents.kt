@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +20,17 @@
 package org.quiltmc.qkl.library.client.networking
 
 import net.minecraft.client.MinecraftClient
+import net.minecraft.client.network.ClientConfigurationNetworkHandler
 import net.minecraft.client.network.ClientLoginNetworkHandler
 import net.minecraft.client.network.ClientPlayNetworkHandler
+import net.minecraft.network.packet.payload.CustomPayload
 import net.minecraft.util.Identifier
 import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.networking.api.PacketSender
+import org.quiltmc.qsl.networking.api.client.C2SConfigurationChannelEvents
 import org.quiltmc.qsl.networking.api.client.C2SPlayChannelEvents
+import org.quiltmc.qsl.networking.api.client.ClientConfigurationConnectionEvents
 import org.quiltmc.qsl.networking.api.client.ClientLoginConnectionEvents
 import org.quiltmc.qsl.networking.api.client.ClientPlayConnectionEvents
 
@@ -67,13 +71,77 @@ public fun EventRegistration.onLoginDisconnect(callback: ClientLoginCallback) {
 }
 //endregion
 
+//region: Client configuration events
+public typealias ClientConfigurationCallback = ClientConfigurationNetworkHandler.(
+    client: MinecraftClient
+) -> Unit
+
+public typealias ClientConfigurationReadyCallback = ClientConfigurationNetworkHandler.(
+    sender: PacketSender<CustomPayload>,
+    client: MinecraftClient
+) -> Unit
+
+/**
+ * @see ClientConfigurationConnectionEvents.INIT
+ *
+ * @author Ellie Semele
+ */
+public fun EventRegistration.onConfigurationInit(callback: ClientConfigurationCallback) {
+    ClientConfigurationConnectionEvents.INIT.register(ClientConfigurationConnectionEvents.Init(callback))
+}
+
+/**
+ * @see ClientConfigurationConnectionEvents.READY
+ *
+ * @author Ellie Semele
+ */
+public fun EventRegistration.onConfigurationReady(callback: ClientConfigurationReadyCallback) {
+    ClientConfigurationConnectionEvents.READY.register(ClientConfigurationConnectionEvents.Ready(callback))
+}
+
+/**
+ * @see ClientConfigurationConnectionEvents.DISCONNECT
+ *
+ * @author Ellie Semele
+ */
+public fun EventRegistration.onConfigurationDisconnect(callback: ClientConfigurationCallback) {
+    ClientConfigurationConnectionEvents.DISCONNECT.register(ClientConfigurationConnectionEvents.Disconnect(callback))
+}
+//endregion
+
+//region: C2S configuration channel events
+public typealias C2SConfigurationCallback = ClientConfigurationNetworkHandler.(
+    sender: PacketSender<CustomPayload>,
+    client: MinecraftClient,
+    channels: List<Identifier>
+) -> Unit
+
+/**
+ * @see C2SConfigurationChannelEvents.REGISTER
+ *
+ * @author Ellie Semele
+ */
+public fun EventRegistration.onClientConfigurationChannelRegister(callback: C2SConfigurationCallback) {
+    C2SConfigurationChannelEvents.REGISTER.register(C2SConfigurationChannelEvents.Register(callback))
+}
+
+/**
+ * @see C2SConfigurationChannelEvents.UNREGISTER
+ *
+ * @author Ellie Semele
+ */
+public fun EventRegistration.onClientConfigurationChannelUnregister(callback: C2SConfigurationCallback) {
+    C2SConfigurationChannelEvents.UNREGISTER.register(C2SConfigurationChannelEvents.Unregister(callback))
+}
+//endregion
+
 //region: Client play connection events
 public typealias ClientPlayCallback = ClientPlayNetworkHandler.(
     client: MinecraftClient
 ) -> Unit
 
 public typealias ClientPlayJoinCallback = ClientPlayNetworkHandler.(
-    sender: PacketSender,
+    sender: PacketSender<CustomPayload>,
     client: MinecraftClient
 ) -> Unit
 
@@ -109,7 +177,7 @@ public fun EventRegistration.onPlayConnectionDisconnect(callback: ClientPlayCall
 
 //region: C2S play channel events
 public typealias C2SPlayCallback = ClientPlayNetworkHandler.(
-    sender: PacketSender,
+    sender: PacketSender<CustomPayload>,
     client: MinecraftClient,
     channels: List<Identifier>
 ) -> Unit

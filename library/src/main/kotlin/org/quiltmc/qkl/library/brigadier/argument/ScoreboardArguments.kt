@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ package org.quiltmc.qkl.library.brigadier.argument
 
 import net.minecraft.command.argument.*
 import net.minecraft.scoreboard.ScoreboardCriterion
+import net.minecraft.scoreboard.ScoreboardDisplaySlot
 import net.minecraft.scoreboard.ScoreboardObjective
 import net.minecraft.server.command.ServerCommandSource
 import org.quiltmc.qkl.library.brigadier.*
@@ -120,7 +121,7 @@ public fun ArgumentReader<
 }
 
 /**
- * Reads the integer slot value from the argument in
+ * Reads the [ScoreboardDisplaySlot] value from the argument in
  * the receiver [ArgumentReader].
  *
  * @see ScoreboardSlotArgumentType.getScoreboardSlot
@@ -129,7 +130,7 @@ public fun ArgumentReader<
  */
 @JvmName("valueScoreboardSlotArg")
 @BrigadierDsl
-public fun DefaultArgumentReader<ScoreboardSlotArgumentType>.value(): Int {
+public fun DefaultArgumentReader<ScoreboardSlotArgumentType>.value(): ScoreboardDisplaySlot {
     return ScoreboardSlotArgumentType.getScoreboardSlot(context.assumeSourceNotUsed(), name)
 }
 

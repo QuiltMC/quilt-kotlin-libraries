@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Quilt Project
+ * Copyright 2024 The Quilt Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,33 +21,33 @@ package org.quiltmc.qkl.library.client.resource
 
 import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents
-import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents.EndResourcePackReload
-import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents.StartResourcePackReload
+import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents.EndPackReload
+import org.quiltmc.qsl.resource.loader.api.client.ClientResourceLoaderEvents.StartPackReload
 
-public typealias ReloadStart = StartResourcePackReload.Context.() -> Unit
+public typealias ReloadStart = StartPackReload.Context.() -> Unit
 
-public typealias ReloadFinish = EndResourcePackReload.Context.() -> Unit
+public typealias ReloadFinish = EndPackReload.Context.() -> Unit
 
 /**
- * @see ClientResourceLoaderEvents.START_RESOURCE_PACK_RELOAD
- * @see ClientResourceLoaderEvents.StartResourcePackReload.onStartResourcePackReload
+ * @see ClientResourceLoaderEvents.START_PACK_RELOAD
+ * @see ClientResourceLoaderEvents.StartPackReload.onStartPackReload
  *
  * @author sschr15
  */
-public fun onResourcePackReloadStart(callback: ReloadStart) {
-    ClientResourceLoaderEvents.START_RESOURCE_PACK_RELOAD.register(
-        ClientResourceLoaderEvents.StartResourcePackReload(callback)
+public fun onPackReloadStart(callback: ReloadStart) {
+    ClientResourceLoaderEvents.START_PACK_RELOAD.register(
+        StartPackReload(callback)
     )
 }
 
 /**
- * @see ClientResourceLoaderEvents.END_RESOURCE_PACK_RELOAD
- * @see ClientResourceLoaderEvents.EndResourcePackReload.onEndResourcePackReload
+ * @see ClientResourceLoaderEvents.END_PACK_RELOAD
+ * @see ClientResourceLoaderEvents.EndPackReload.onEndPackReload
  *
  * @author sschr15
  */
-public fun onResourcePackReloadFinish(callback: ReloadFinish) {
-    ClientResourceLoaderEvents.END_RESOURCE_PACK_RELOAD.register(
-        ClientResourceLoaderEvents.EndResourcePackReload(callback)
+public fun onPackReloadFinish(callback: ReloadFinish) {
+    ClientResourceLoaderEvents.END_PACK_RELOAD.register(
+        EndPackReload(callback)
     )
 }

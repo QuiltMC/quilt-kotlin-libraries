@@ -12,7 +12,7 @@
       },
       "contact": {
         "homepage": "https://quiltmc.org",
-        "issues": "https://github.com/quiltmc/quilt-kotlin-libaries/issues",
+        "issues": "https://github.com/quiltmc/quilt-kotlin-libraries/issues",
         "sources": "https://github.com/quiltmc/quilt-kotlin-libraries"
       },
       "license": "Apache-2.0",
@@ -22,7 +22,7 @@
     "depends": [
       {
         "id": "quilt_loader",
-        "versions": ">=0.18.1"
+        "versions": ">=0.23.0"
       }
     ],
     "provides": [
