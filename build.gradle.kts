@@ -68,7 +68,7 @@ allprojects {
     }
 
     detekt {
-        config = files("${rootProject.projectDir}/codeformat/detekt.yml")
+        config.setFrom(files("${rootProject.projectDir}/codeformat/detekt.yml"))
     }
 
     license {
@@ -186,16 +186,18 @@ allprojects {
     publishing {
         publications {
             create<MavenPublication>("Maven") {
+                // Copy data from the kotlin component, notably dependencies
+                from(components.getByName("kotlin"))
+
                 artifactId = project.name
                 version = projectVersion
 
+                // Publish Sources Jar
                 artifact(tasks.remapSourcesJar.get().archiveFile) {
                     builtBy(tasks.remapSourcesJar)
                     this.classifier = "sources"
                 }
-                artifact(tasks.remapJar.get().archiveFile) {
-                    builtBy(tasks.remapJar)
-                }
+                // Publish Javadoc
                 artifact(tasks.getByName<Jar>("dokkaJavadocJar").archiveFile) {
                     builtBy(tasks.getByName("dokkaJavadocJar"))
                     this.classifier = "javadoc"
@@ -317,7 +319,7 @@ modrinth {
     file.set(tasks.remapJar.get().archiveFile)
     additionalFiles.add(project(":core").tasks.remapJar.get().archiveFile)
     
-    dependencies { 
+    dependencies {
         required.project("qsl")
         embedded.project("fabric-language-kotlin")
     }
