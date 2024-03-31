@@ -16,8 +16,6 @@
 
 package org.quiltmc.qkl.library.text
 
-import net.minecraft.nbt.NbtCompound
-import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.*
 import net.minecraft.text.data.TextData
 import net.minecraft.util.Identifier
@@ -27,7 +25,6 @@ import org.quiltmc.qkl.library.isItalicRaw
 import org.quiltmc.qkl.library.isStrikethroughRaw
 import org.quiltmc.qkl.library.isUnderlinedRaw
 import java.util.*
-import java.util.stream.Stream
 
 /**
  * Marks objects as being part of QKL's Text Builder DSL.
@@ -156,28 +153,6 @@ public fun TextBuilder.nbt(
     interpreting: Boolean,
     separator: Optional<Text>,
     nbt: TextData
-) {
-    styleAndAppend(
-        Text.nbt(
-            pathPattern,
-            interpreting,
-            separator,
-            nbt
-        )
-    )
-}
-
-/**
- * @see Text.nbt
- *
- * @author NoComment1105
- */
-@TextDsl
-public fun TextBuilder.nbt(
-    pathPattern: String,
-    interpreting: Boolean,
-    separator: Optional<Text>,
-    nbt: ((ServerCommandSource) -> Stream<NbtCompound>)
 ) {
     styleAndAppend(
         Text.nbt(

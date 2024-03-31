@@ -48,7 +48,7 @@ public fun ArgumentReader<
         DefaultArgumentDescriptor<
                 CommandFunctionArgumentType
                 >
-        >.functions(): Collection<CommandFunction> {
+        >.functions(): Collection<CommandFunction<ServerCommandSource>> {
     return CommandFunctionArgumentType.getFunctions(context, name)
 }
 
@@ -74,8 +74,8 @@ public fun ArgumentReader<
         >.functionOrTag(): Pair<
         Identifier,
         Either<
-                CommandFunction,
-                Collection<CommandFunction>
+                CommandFunction<ServerCommandSource>,
+                Collection<CommandFunction<ServerCommandSource>>
                 >
         > {
     return CommandFunctionArgumentType.getFunctionOrTag(context, name)

@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.library.brigadier.argument
 
 import net.minecraft.command.argument.*
+import net.minecraft.scoreboard.ScoreHolder
 import net.minecraft.scoreboard.ScoreboardCriterion
 import net.minecraft.scoreboard.ScoreboardDisplaySlot
 import net.minecraft.scoreboard.ScoreboardObjective
@@ -147,7 +148,7 @@ public fun DefaultArgumentReader<ScoreboardSlotArgumentType>.value(): Scoreboard
 public fun ArgumentReader<
         ServerCommandSource,
         SingleScoreHolderArgumentDescriptor
-        >.value(): String {
+        >.value(): ScoreHolder {
     return ScoreHolderArgumentType.getScoreHolder(context, name)
 }
 
@@ -167,7 +168,7 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         ListScoreHolderArgumentDescriptor
-        >.value(): Collection<String> {
+        >.value(): Collection<ScoreHolder> {
     return ScoreHolderArgumentType.getScoreHolders(context, name)
 }
 
@@ -187,7 +188,7 @@ public fun ArgumentReader<
 public fun ArgumentReader<
         ServerCommandSource,
         ListScoreHolderArgumentDescriptor
-        >.withGlobalWildcard(): Collection<String> {
+        >.withGlobalWildcard(): Collection<ScoreHolder> {
     return ScoreHolderArgumentType.getScoreHoldersWithGlobalWildcard(context, name)
 }
 

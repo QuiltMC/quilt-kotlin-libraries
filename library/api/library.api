@@ -110,7 +110,7 @@ public final class org/quiltmc/qkl/library/brigadier/DefaultArgumentDescriptor :
 public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun absoluteRotationArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/util/math/Vec2f;
 	public static final fun angle (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun asAdvancement (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/unmapped/C_unoypvme;
+	public static final fun asAdvancement (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/advancement/AdvancementHolder;
 	public static final fun asItemModifier (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/function/LootFunction;
 	public static final fun asPredicate (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/loot/condition/LootCondition;
 	public static final fun asRecipe (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/recipe/RecipeHolder;
@@ -215,7 +215,7 @@ public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun valueScoreboardObjectiveArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardObjective;
 	public static final fun valueScoreboardSlotArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreboardDisplaySlot;
 	public static final fun valueSingleEntityArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/entity/Entity;
-	public static final fun valueSingleScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
+	public static final fun valueSingleScoreHolderArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/scoreboard/ScoreHolder;
 	public static final fun valueStatusEffectRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
 	public static final fun valueStringArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Ljava/lang/String;
 	public static final fun valueStructureFeatureRegistryArg (Lorg/quiltmc/qkl/library/brigadier/ArgumentReader;)Lnet/minecraft/registry/Holder$Reference;
@@ -1250,7 +1250,6 @@ public final class org/quiltmc/qkl/library/text/TextDslKt {
 	public static synthetic fun italic$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun keyBind (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;)V
 	public static final fun literal (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;)V
-	public static final fun nbt (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;ZLjava/util/Optional;Lkotlin/jvm/functions/Function1;)V
 	public static final fun nbt (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;ZLjava/util/Optional;Lnet/minecraft/text/data/TextData;)V
 	public static final fun obfuscated (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun obfuscated$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
