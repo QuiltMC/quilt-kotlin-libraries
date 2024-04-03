@@ -23,16 +23,14 @@
 package org.quiltmc.qkl.library.brigadier.argument
 
 
+import net.minecraft.advancement.AdvancementHolder
 import net.minecraft.command.argument.IdentifierArgumentType
 import net.minecraft.loot.condition.LootCondition
 import net.minecraft.loot.function.LootFunction
 import net.minecraft.recipe.RecipeHolder
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.unmapped.C_unoypvme
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.brigadier.*
-
-public typealias AdvancementHolder = C_unoypvme // Mapped in later versions, should be removed.
 
 /**
  * Reads the [Identifier] value from the
