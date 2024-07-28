@@ -16,11 +16,13 @@
 
 package org.quiltmc.qkl.library.text
 
+import net.minecraft.component.DataComponentMap
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.registry.HolderLookup
 import net.minecraft.text.ClickEvent
 import net.minecraft.text.HoverEvent
 import net.minecraft.text.Text
@@ -119,8 +121,8 @@ public object HoverEvents {
      *
      * @author NoComment1105
      */
-    public fun showItem(nbt: NbtCompound): HoverEvent {
-        return showItem(ItemStack.fromNbt(nbt))
+    public fun showItem(lookupProvider: HolderLookup.Provider, nbt: NbtCompound): HoverEvent {
+        return showItem(ItemStack.fromNbt(lookupProvider, nbt))
     }
 
     /**
@@ -131,8 +133,8 @@ public object HoverEvents {
      *
      * @author NoComment1105
      */
-    public fun showItem(item: Item, nbt: NbtCompound? = null): HoverEvent {
-        return showItem(item.defaultStack.also { it.nbt = nbt })
+    public fun showItem(item: Item, components: DataComponentMap = DataComponentMap.EMPTY): HoverEvent {
+        return showItem(item.defaultStack.also { it.applyComponents(components) })
     }
 
     /**

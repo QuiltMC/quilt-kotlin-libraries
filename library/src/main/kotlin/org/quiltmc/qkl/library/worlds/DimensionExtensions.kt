@@ -18,7 +18,7 @@ package org.quiltmc.qkl.library.worlds
 
 import net.minecraft.entity.Entity
 import net.minecraft.server.world.ServerWorld
-import net.minecraft.world.TeleportTarget
+import net.minecraft.world.DimensionTransition
 import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
 
 /**
@@ -37,7 +37,7 @@ import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
  */
 public inline fun <reified E : Entity> E.teleport(
     targetWorld: ServerWorld,
-    location: TeleportTarget
+    location: DimensionTransition
 ): E? = when (val teleported = QuiltDimensions.teleport<Entity>(this, targetWorld, location)) {
     null -> null
     is E -> teleported
@@ -53,5 +53,5 @@ public inline fun <reified E : Entity> E.teleport(
  */
 public fun Entity.teleportGeneral(
     targetWorld: ServerWorld,
-    location: TeleportTarget
+    location: DimensionTransition
 ): Entity? = QuiltDimensions.teleport(this, targetWorld, location)
