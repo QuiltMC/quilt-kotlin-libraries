@@ -17,13 +17,9 @@
 package org.quiltmc.qkl.library.text
 
 import net.minecraft.text.*
-import net.minecraft.text.data.TextData
+import net.minecraft.text.data.TextDataSource
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.*
-import org.quiltmc.qkl.library.isBoldRaw
-import org.quiltmc.qkl.library.isItalicRaw
-import org.quiltmc.qkl.library.isStrikethroughRaw
-import org.quiltmc.qkl.library.isUnderlinedRaw
 import java.util.*
 
 /**
@@ -152,7 +148,7 @@ public fun TextBuilder.nbt(
     pathPattern: String,
     interpreting: Boolean,
     separator: Optional<Text>,
-    nbt: TextData
+    nbt: TextDataSource
 ) {
     styleAndAppend(
         Text.nbt(

@@ -63,7 +63,7 @@ public fun commandBuildContext(
     featureFlags: FeatureFlagBitSet,
     action: CommandBuildContext.() -> Unit
 ): CommandBuildContext {
-    val context = CommandBuildContext.createConfigurable(dynamicRegistryManager, featureFlags)
+    val context = CommandBuildContext.createSimple(dynamicRegistryManager, featureFlags)
     context.apply(action)
     return context
 }

@@ -21,9 +21,9 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.*
+import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.Identifier
-import net.minecraft.registry.RegistryKeys
 import org.quiltmc.qsl.recipe.api.RecipeManagerHelper
 import org.quiltmc.qsl.recipe.api.builder.ShapedRecipeBuilder
 import org.quiltmc.qsl.recipe.api.builder.ShapelessRecipeBuilder
@@ -179,9 +179,9 @@ public fun foodCookingRecipe(
     smokerCookTime: Int = cookTime / 2,
     campfireCookTime: Int = cookTime * 3
 ): Array<RecipeHolder<out AbstractCookingRecipe>> {
-    val smeltingId = Identifier(baseId.namespace, "${baseId.path}_smelting")
-    val smokingId = Identifier(baseId.namespace, "${baseId.path}_smoking")
-    val campfireId = Identifier(baseId.namespace, "${baseId.path}_campfire")
+    val smeltingId = Identifier.of(baseId.namespace, "${baseId.path}_smelting")
+    val smokingId = Identifier.of(baseId.namespace, "${baseId.path}_smoking")
+    val campfireId = Identifier.of(baseId.namespace, "${baseId.path}_campfire")
 
     val ingredient = coerceIngredient(input)
 

@@ -47,7 +47,7 @@ private object RegistryDslSamples {
 
     fun sampleRegisterWithRegistry() {
         val item: TestItem = stub()
-        val identifier = Identifier("my", "item1")
+        val identifier = Identifier.of("my", "item1")
 
         Registries.ITEM("my") {
             item withId identifier // Goes under `my:item1`
@@ -64,7 +64,7 @@ private object RegistryDslSamples {
 
     fun sampleRegisterWithScope() {
         val item: TestItem = stub()
-        val identifier = Identifier("my", "item1")
+        val identifier = Identifier.of("my", "item1")
 
         registryScope("my") {
             Registries.ITEM {

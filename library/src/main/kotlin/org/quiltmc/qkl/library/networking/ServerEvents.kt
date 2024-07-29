@@ -19,10 +19,10 @@
 package org.quiltmc.qkl.library.networking
 
 import net.minecraft.entity.Entity
-import net.minecraft.network.ServerConfigurationPacketHandler
 import net.minecraft.network.packet.payload.CustomPayload
 import net.minecraft.network.packet.s2c.login.payload.CustomQueryPayload
 import net.minecraft.server.MinecraftServer
+import net.minecraft.server.network.ServerConfigurationNetworkHandler
 import net.minecraft.server.network.ServerLoginNetworkHandler
 import net.minecraft.server.network.ServerPlayNetworkHandler
 import net.minecraft.server.network.ServerPlayerEntity
@@ -74,11 +74,11 @@ public fun EventRegistration.onLoginDisconnect(callback: GenericLoginCallback) {
 //endregion
 
 //region: Server configuration events
-public typealias ServerConfigurationCallback = ServerConfigurationPacketHandler.(
+public typealias ServerConfigurationCallback = ServerConfigurationNetworkHandler.(
     server: MinecraftServer
 ) -> Unit
 
-public typealias ServerConfigurationReadyCallback = ServerConfigurationPacketHandler.(
+public typealias ServerConfigurationReadyCallback = ServerConfigurationNetworkHandler.(
     sender: PacketSender<CustomPayload>,
     server: MinecraftServer
 ) -> Unit
@@ -121,7 +121,7 @@ public fun EventRegistration.onConfigurationAddTasks(callback: ServerConfigurati
 //endregion
 
 //region: S2C configuration channel events
-public typealias S2CConfigurationChannelCallback = ServerConfigurationPacketHandler.(
+public typealias S2CConfigurationChannelCallback = ServerConfigurationNetworkHandler.(
     packetSender: PacketSender<CustomPayload>,
     server: MinecraftServer,
     channels: List<Identifier>

@@ -3,11 +3,11 @@ atomic = "0.23.2"
 coroutines = "1.8.0"
 datetime = "0.5.0"
 dokka = "1.9.10"
-kotlin = "1.9.23"
-minecraft = "1.20.4"
+kotlin = "2.0.0"
+minecraft = "1.21"
 qsl = "8.0.0-alpha.10+1.20.4"
-quilt_loader = "0.24.0"
-quilt_mappings = "1.20.4+build.3"
+quilt_loader = "0.26.4-beta.1"
+quilt_mappings = "1.21+build.12"
 serialization = "1.6.3"
 serialization_plugin = "1.9.23" # usually same as kotlin but can lag behind
 binary_compat_plugin = "0.14.0"
@@ -33,7 +33,7 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 licenser = { id = "dev.yumi.gradle.licenser", version = "1.1.1" }
-quilt_loom = { id = "org.quiltmc.loom", version = "1.4.2" }
+quilt_loom = { id = "org.quiltmc.loom", version = "1.7.4" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization_plugin" }
 binary_compatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary_compat_plugin" }
 minotaur = { id = "com.modrinth.minotaur", version = "2.8.7" }

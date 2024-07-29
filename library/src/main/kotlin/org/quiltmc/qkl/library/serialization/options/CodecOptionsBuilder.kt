@@ -19,9 +19,8 @@
 package org.quiltmc.qkl.library.serialization.options
 
 import com.mojang.serialization.Codec
-import com.mojang.serialization.DataResult.PartialResult
-import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.modules.SerializersModule
 import net.minecraft.registry.Registry

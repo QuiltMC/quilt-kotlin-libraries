@@ -174,7 +174,7 @@ public final class org/quiltmc/qkl/library/brigadier/argument/ArgumentsKt {
 	public static final fun team (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun testClass (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun testFunction (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
-	public static final fun text (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
+	public static final fun text (Lnet/minecraft/command/CommandBuildContext;Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun time (Ljava/lang/String;I)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static synthetic fun time$default (Ljava/lang/String;IILjava/lang/Object;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
 	public static final fun uuid (Ljava/lang/String;)Lorg/quiltmc/qkl/library/brigadier/ArgumentConstructor;
@@ -1178,10 +1178,10 @@ public final class org/quiltmc/qkl/library/text/HoverEvents {
 	public static final field INSTANCE Lorg/quiltmc/qkl/library/text/HoverEvents;
 	public final fun showEntity (Lnet/minecraft/entity/EntityType;Ljava/util/UUID;Lnet/minecraft/text/Text;)Lnet/minecraft/text/HoverEvent;
 	public static synthetic fun showEntity$default (Lorg/quiltmc/qkl/library/text/HoverEvents;Lnet/minecraft/entity/EntityType;Ljava/util/UUID;Lnet/minecraft/text/Text;ILjava/lang/Object;)Lnet/minecraft/text/HoverEvent;
-	public final fun showItem (Lnet/minecraft/item/Item;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/text/HoverEvent;
+	public final fun showItem (Lnet/minecraft/item/Item;Lnet/minecraft/component/DataComponentMap;)Lnet/minecraft/text/HoverEvent;
 	public final fun showItem (Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/HoverEvent;
-	public final fun showItem (Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/text/HoverEvent;
-	public static synthetic fun showItem$default (Lorg/quiltmc/qkl/library/text/HoverEvents;Lnet/minecraft/item/Item;Lnet/minecraft/nbt/NbtCompound;ILjava/lang/Object;)Lnet/minecraft/text/HoverEvent;
+	public final fun showItem (Lnet/minecraft/registry/HolderLookup$Provider;Lnet/minecraft/nbt/NbtCompound;)Lnet/minecraft/text/HoverEvent;
+	public static synthetic fun showItem$default (Lorg/quiltmc/qkl/library/text/HoverEvents;Lnet/minecraft/item/Item;Lnet/minecraft/component/DataComponentMap;ILjava/lang/Object;)Lnet/minecraft/text/HoverEvent;
 	public final fun showText (Lnet/minecraft/text/Text;)Lnet/minecraft/text/HoverEvent;
 }
 
@@ -1250,7 +1250,7 @@ public final class org/quiltmc/qkl/library/text/TextDslKt {
 	public static synthetic fun italic$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun keyBind (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;)V
 	public static final fun literal (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;)V
-	public static final fun nbt (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;ZLjava/util/Optional;Lnet/minecraft/text/data/TextData;)V
+	public static final fun nbt (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;ZLjava/util/Optional;Lnet/minecraft/text/data/TextDataSource;)V
 	public static final fun obfuscated (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun obfuscated$default (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun scoreboard (Lorg/quiltmc/qkl/library/text/TextBuilder;Ljava/lang/String;Ljava/lang/String;)V
@@ -1267,6 +1267,6 @@ public final class org/quiltmc/qkl/library/text/TextDslKt {
 }
 
 public final class org/quiltmc/qkl/library/worlds/DimensionExtensionsKt {
-	public static final fun teleportGeneral (Lnet/minecraft/entity/Entity;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/TeleportTarget;)Lnet/minecraft/entity/Entity;
+	public static final fun teleportGeneral (Lnet/minecraft/entity/Entity;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/DimensionTransition;)Lnet/minecraft/entity/Entity;
 }
 
