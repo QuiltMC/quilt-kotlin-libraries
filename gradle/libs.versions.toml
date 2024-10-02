@@ -1,7 +1,7 @@
 [versions]
-atomic = "0.23.2"
-coroutines = "1.8.0"
-datetime = "0.5.0"
+atomic = "0.24.0"
+coroutines = "1.8.1"
+datetime = "0.6.0"
 dokka = "1.9.10"
 kotlin = "2.0.0"
 minecraft = "1.21"
@@ -9,7 +9,7 @@ qsl = "8.0.0-alpha.10+1.20.4"
 quilt_loader = "0.26.4-beta.1"
 quilt_mappings = "1.21+build.12"
 serialization = "1.6.3"
-serialization_plugin = "1.9.23" # usually same as kotlin but can lag behind
+serialization_plugin = "2.0.0" # usually same as kotlin but can lag behind
 binary_compat_plugin = "0.14.0"
 
 [libraries]
