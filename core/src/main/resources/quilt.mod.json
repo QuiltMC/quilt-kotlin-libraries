@@ -23,17 +23,12 @@
       {
         "id": "quilt_loader",
         "versions": ">=0.23.0"
-      }
-    ],
-    "provides": [
+      },
       {
         "id": "fabric-language-kotlin",
         "version": "${flk_version}"
       }
-    ],
-    "language_adapters": {
-      "kotlin": "org.quiltmc.qkl.core.adapter.KotlinAdapter"
-    }
+    ]
   },
   "modmenu": {
     "badges": [

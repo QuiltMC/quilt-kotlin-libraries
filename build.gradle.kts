@@ -35,7 +35,7 @@ buildscript {
 
 group = "org.quiltmc"
 val rootVersion = project.version
-val flkVersion: String by project
+val flkVersion = rootProject.libs.versions.fabric.kotlin.get().substringBefore('+')
 version = "${project.version}+kt.${project.libs.versions.kotlin.orNull}+flk.$flkVersion"
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
@@ -52,8 +52,8 @@ fun DependencyHandlerScope.includeApi(dependency: Any) {
 }
 
 dependencies {
-    includeApi(project(":core", configuration = "namedElements"))
-    includeApi(project(":library", configuration = "namedElements"))
+    includeApi(project(":core"))
+    includeApi(project(":library"))
 }
 
 allprojects {
@@ -93,7 +93,7 @@ allprojects {
             filesMatching("quilt.mod.json") {
                 expand(
                     "version" to rootVersion,
-                    "flk_version" to "$flkVersion+kotlin.${project.libs.versions.kotlin.orNull}"
+                    "flk_version" to rootProject.libs.versions.fabric.kotlin.get()
                 )
             }
         }
