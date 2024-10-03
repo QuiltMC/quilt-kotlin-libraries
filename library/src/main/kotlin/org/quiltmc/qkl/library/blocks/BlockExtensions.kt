@@ -21,8 +21,9 @@ import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.MapColor
 import net.minecraft.entity.EntityType
+import net.minecraft.loot.LootTable
+import net.minecraft.registry.RegistryKey
 import net.minecraft.sound.BlockSoundGroup
-import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.BlockView
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings
@@ -81,13 +82,13 @@ public fun blockSettingsOf(
     }
     resistance(resistance)
     hardness(hardness ?: resistance)
-    if (requiresTool) requiresTool()
+    if (requiresTool) toolRequired()
     if (ticksRandomly) ticksRandomly()
     slipperiness(slipperiness)
     velocityMultiplier(velocityMultiplier)
     jumpVelocityMultiplier(jumpVelocityMultiplier)
     when (lootTableId) {
-        is Identifier -> drops(lootTableId)
+        is RegistryKey<*> -> drops(lootTableId as RegistryKey<LootTable>)
         is Block -> dropsLike(lootTableId)
         else -> dropsNothing()
     }

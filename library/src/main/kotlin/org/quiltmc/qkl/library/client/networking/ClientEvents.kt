@@ -24,7 +24,6 @@ import net.minecraft.client.network.ClientConfigurationNetworkHandler
 import net.minecraft.client.network.ClientLoginNetworkHandler
 import net.minecraft.client.network.ClientPlayNetworkHandler
 import net.minecraft.network.packet.payload.CustomPayload
-import net.minecraft.util.Identifier
 import org.quiltmc.loader.api.minecraft.ClientOnly
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.networking.api.PacketSender
@@ -84,25 +83,34 @@ public typealias ClientConfigurationReadyCallback = ClientConfigurationNetworkHa
 /**
  * @see ClientConfigurationConnectionEvents.INIT
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationInit(callback: ClientConfigurationCallback) {
     ClientConfigurationConnectionEvents.INIT.register(ClientConfigurationConnectionEvents.Init(callback))
 }
 
 /**
- * @see ClientConfigurationConnectionEvents.READY
+ * @see ClientConfigurationConnectionEvents.START
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
-public fun EventRegistration.onConfigurationReady(callback: ClientConfigurationReadyCallback) {
-    ClientConfigurationConnectionEvents.READY.register(ClientConfigurationConnectionEvents.Ready(callback))
+public fun EventRegistration.onConfigurationStart(callback: ClientConfigurationReadyCallback) {
+    ClientConfigurationConnectionEvents.START.register(ClientConfigurationConnectionEvents.Start(callback))
+}
+
+/**
+ * @see ClientConfigurationConnectionEvents.CONFIGURED
+ *
+ * @author Quinn Semele
+ */
+public fun EventRegistration.onConfigurationConfigured(callback: ClientConfigurationCallback) {
+    ClientConfigurationConnectionEvents.CONFIGURED.register(ClientConfigurationConnectionEvents.Configured(callback))
 }
 
 /**
  * @see ClientConfigurationConnectionEvents.DISCONNECT
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationDisconnect(callback: ClientConfigurationCallback) {
     ClientConfigurationConnectionEvents.DISCONNECT.register(ClientConfigurationConnectionEvents.Disconnect(callback))
@@ -113,13 +121,13 @@ public fun EventRegistration.onConfigurationDisconnect(callback: ClientConfigura
 public typealias C2SConfigurationCallback = ClientConfigurationNetworkHandler.(
     sender: PacketSender<CustomPayload>,
     client: MinecraftClient,
-    channels: List<Identifier>
+    channels: List<CustomPayload.Id<*>>
 ) -> Unit
 
 /**
  * @see C2SConfigurationChannelEvents.REGISTER
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onClientConfigurationChannelRegister(callback: C2SConfigurationCallback) {
     C2SConfigurationChannelEvents.REGISTER.register(C2SConfigurationChannelEvents.Register(callback))
@@ -128,7 +136,7 @@ public fun EventRegistration.onClientConfigurationChannelRegister(callback: C2SC
 /**
  * @see C2SConfigurationChannelEvents.UNREGISTER
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onClientConfigurationChannelUnregister(callback: C2SConfigurationCallback) {
     C2SConfigurationChannelEvents.UNREGISTER.register(C2SConfigurationChannelEvents.Unregister(callback))
@@ -179,7 +187,7 @@ public fun EventRegistration.onPlayConnectionDisconnect(callback: ClientPlayCall
 public typealias C2SPlayCallback = ClientPlayNetworkHandler.(
     sender: PacketSender<CustomPayload>,
     client: MinecraftClient,
-    channels: List<Identifier>
+    channels: List<CustomPayload.Id<*>>
 ) -> Unit
 
 /**

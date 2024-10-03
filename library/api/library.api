@@ -322,9 +322,10 @@ public final class org/quiltmc/qkl/library/client/networking/ClientEventsKt {
 	public static final fun onClientConfigurationChannelUnregister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun onClientPlayChannelRegister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
 	public static final fun onClientPlayChannelUnregister (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onConfigurationConfigured (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onConfigurationDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onConfigurationInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
-	public static final fun onConfigurationReady (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
+	public static final fun onConfigurationStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function3;)V
 	public static final fun onLoginDisconnect (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginInit (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onLoginQueryStart (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function2;)V
@@ -364,7 +365,7 @@ public final class org/quiltmc/qkl/library/client/screen/ScreenEventsKt {
 }
 
 public final class org/quiltmc/qkl/library/client/tooltip/TooltipEventsKt {
-	public static final fun onItemTooltip (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function4;)V
+	public static final fun onItemTooltip (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function5;)V
 	public static final fun onTooltipComponent (Lorg/quiltmc/qkl/library/EventRegistration;Lkotlin/jvm/functions/Function1;)V
 }
 
@@ -889,8 +890,8 @@ public final class org/quiltmc/qkl/library/registry/RegistrySugarKt {
 	public static synthetic fun buildIntRegistryEntryAttachment$default (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
 	public static final fun buildLongRegistryEntryAttachment (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
 	public static synthetic fun buildLongRegistryEntryAttachment$default (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
-	public static final fun buildRegistryEntryAttachment (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
-	public static synthetic fun buildRegistryEntryAttachment$default (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static final fun buildRegistryEntryAttachment (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Lnet/minecraft/network/codec/PacketCodec;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
+	public static synthetic fun buildRegistryEntryAttachment$default (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/reflect/KClass;Lcom/mojang/serialization/Codec;Lnet/minecraft/network/codec/PacketCodec;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
 	public static final fun buildStringRegistryEntryAttachment (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
 	public static synthetic fun buildStringRegistryEntryAttachment$default (Lnet/minecraft/registry/Registry;Lnet/minecraft/util/Identifier;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/quiltmc/qsl/registry/attachment/api/RegistryEntryAttachment;
 	public static final fun onRegistryEntryAdded (Lorg/quiltmc/qkl/library/EventRegistration;Lnet/minecraft/registry/Registry;Lkotlin/jvm/functions/Function1;)V
@@ -1267,6 +1268,6 @@ public final class org/quiltmc/qkl/library/text/TextDslKt {
 }
 
 public final class org/quiltmc/qkl/library/worlds/DimensionExtensionsKt {
-	public static final fun teleportGeneral (Lnet/minecraft/entity/Entity;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/world/DimensionTransition;)Lnet/minecraft/entity/Entity;
+	public static final fun teleportGeneral (Lnet/minecraft/entity/Entity;Lnet/minecraft/world/DimensionTransition;)Lnet/minecraft/entity/Entity;
 }
 

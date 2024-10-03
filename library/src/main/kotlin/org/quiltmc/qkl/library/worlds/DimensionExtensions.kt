@@ -17,12 +17,11 @@
 package org.quiltmc.qkl.library.worlds
 
 import net.minecraft.entity.Entity
-import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.DimensionTransition
 import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
 
 /**
- * Teleport this entity to the [targetWorld] at the given [location].
+ * Teleport this entity to the given [location].
  * If [location] is null, the entity will not be teleported.
  * If the entity in the teleported location is not the same type
  * and is not null, an exception will be thrown. Otherwise,
@@ -36,9 +35,8 @@ import org.quiltmc.qsl.worldgen.dimension.api.QuiltDimensions
  * @author sschr15
  */
 public inline fun <reified E : Entity> E.teleport(
-    targetWorld: ServerWorld,
     location: DimensionTransition
-): E? = when (val teleported = QuiltDimensions.teleport<Entity>(this, targetWorld, location)) {
+): E? = when (val teleported = QuiltDimensions.teleport<Entity>(this, location)) {
     null -> null
     is E -> teleported
     else -> error("Unexpected teleported entity type: " +
@@ -52,6 +50,5 @@ public inline fun <reified E : Entity> E.teleport(
  * @author sschr15
  */
 public fun Entity.teleportGeneral(
-    targetWorld: ServerWorld,
     location: DimensionTransition
-): Entity? = QuiltDimensions.teleport(this, targetWorld, location)
+): Entity? = QuiltDimensions.teleport(this, location)
