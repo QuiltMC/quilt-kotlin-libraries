@@ -1,13 +1,13 @@
 [versions]
 dokka = "1.9.20"
-kotlin = "2.0.20"
+kotlin = "2.0.21"
 minecraft = "1.21"
 qsl = "10.0.0-alpha.2+1.21.1"
 quilt_loader = "0.26.4"
 quilt_mappings = "1.21+build.18"
-serialization_plugin = "2.0.20" # usually same as kotlin but can lag behind
+serialization_plugin = "2.0.21" # usually same as kotlin but can lag behind
 binary_compat_plugin = "0.16.3"
-fabric_kotlin = "1.12.2+kotlin.2.0.20"
+fabric_kotlin = "1.12.3+kotlin.2.0.21"
 
 [libraries]
 dokka_base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
