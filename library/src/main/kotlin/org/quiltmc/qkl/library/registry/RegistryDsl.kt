@@ -16,8 +16,8 @@
 
 package org.quiltmc.qkl.library.registry
 
-import net.minecraft.util.Identifier
 import net.minecraft.registry.Registry
+import net.minecraft.util.Identifier
 
 /**
  * Marks functions as part of QKL Registry DSL.
@@ -46,7 +46,7 @@ public data class RegistryObject<T>(val modid: String, val path: String, val t: 
      * */
     @RegistryDsl
     public infix fun toRegistry(registry: Registry<in T>): T {
-        return Registry.register(registry, Identifier(modid, path), t)
+        return Registry.register(registry, Identifier.of(modid, path), t)
     }
 }
 
@@ -85,9 +85,9 @@ public data class RegistryAction<T>(val modid: String?, val registry: Registry<T
     @RegistryDsl
     public infix fun <R : T> R.withId(id: String): R {
         val identifier = if (':' in id || modid == null) {
-            Identifier(id)
+            Identifier.parse(id)
         } else {
-            Identifier(modid, id)
+            Identifier.of(modid, id)
         }
         return Registry.register(registry, identifier, this)
     }

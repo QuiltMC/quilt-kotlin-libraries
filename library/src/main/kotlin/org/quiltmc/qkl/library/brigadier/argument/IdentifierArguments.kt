@@ -29,6 +29,7 @@ import net.minecraft.loot.condition.LootCondition
 import net.minecraft.loot.function.LootFunction
 import net.minecraft.recipe.RecipeHolder
 import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.unmapped.C_jjjbxeeq
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.brigadier.*
 
@@ -81,7 +82,7 @@ public fun ArgumentReader<
                 IdentifierArgumentType
                 >
         >.asPredicate(): LootCondition {
-    return IdentifierArgumentType.getPredicateArgument(context, name)
+    return C_jjjbxeeq.method_58488(context, name).value()
 }
 
 /**
@@ -100,7 +101,7 @@ public fun ArgumentReader<
                 IdentifierArgumentType
                 >
         >.asItemModifier(): LootFunction {
-    return IdentifierArgumentType.getItemModifierArgument(context, name)
+    return C_jjjbxeeq.method_58485(context, name).value()
 }
 
 /**

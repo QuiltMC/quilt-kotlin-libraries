@@ -19,16 +19,16 @@
 package org.quiltmc.qkl.library.networking
 
 import net.minecraft.entity.Entity
-import net.minecraft.network.ServerConfigurationPacketHandler
 import net.minecraft.network.packet.payload.CustomPayload
 import net.minecraft.network.packet.s2c.login.payload.CustomQueryPayload
 import net.minecraft.server.MinecraftServer
+import net.minecraft.server.network.ServerConfigurationNetworkHandler
 import net.minecraft.server.network.ServerLoginNetworkHandler
 import net.minecraft.server.network.ServerPlayNetworkHandler
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.EventRegistration
 import org.quiltmc.qsl.networking.api.*
+import org.quiltmc.qsl.networking.api.server.*
 
 //region: Server login events
 public typealias GenericLoginCallback = ServerLoginNetworkHandler.(
@@ -74,11 +74,11 @@ public fun EventRegistration.onLoginDisconnect(callback: GenericLoginCallback) {
 //endregion
 
 //region: Server configuration events
-public typealias ServerConfigurationCallback = ServerConfigurationPacketHandler.(
+public typealias ServerConfigurationCallback = ServerConfigurationNetworkHandler.(
     server: MinecraftServer
 ) -> Unit
 
-public typealias ServerConfigurationReadyCallback = ServerConfigurationPacketHandler.(
+public typealias ServerConfigurationReadyCallback = ServerConfigurationNetworkHandler.(
     sender: PacketSender<CustomPayload>,
     server: MinecraftServer
 ) -> Unit
@@ -86,7 +86,7 @@ public typealias ServerConfigurationReadyCallback = ServerConfigurationPacketHan
 /**
  * @see ServerConfigurationConnectionEvents.INIT
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationInit(callback: ServerConfigurationCallback) {
     ServerConfigurationConnectionEvents.INIT.register(ServerConfigurationConnectionEvents.Init(callback))
@@ -95,7 +95,7 @@ public fun EventRegistration.onConfigurationInit(callback: ServerConfigurationCa
 /**
  * @see ServerConfigurationConnectionEvents.READY
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationReady(callback: ServerConfigurationReadyCallback) {
     ServerConfigurationConnectionEvents.READY.register(ServerConfigurationConnectionEvents.Join(callback))
@@ -104,7 +104,7 @@ public fun EventRegistration.onConfigurationReady(callback: ServerConfigurationR
 /**
  * @see ServerConfigurationConnectionEvents.DISCONNECT
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationDisconnect(callback: ServerConfigurationCallback) {
     ServerConfigurationConnectionEvents.DISCONNECT.register(ServerConfigurationConnectionEvents.Disconnect(callback))
@@ -113,7 +113,7 @@ public fun EventRegistration.onConfigurationDisconnect(callback: ServerConfigura
 /**
  * @see ServerConfigurationConnectionEvents.ADD_TASKS
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationAddTasks(callback: ServerConfigurationCallback) {
     ServerConfigurationConnectionEvents.ADD_TASKS.register(ServerConfigurationConnectionEvents.AddTasks(callback))
@@ -121,16 +121,16 @@ public fun EventRegistration.onConfigurationAddTasks(callback: ServerConfigurati
 //endregion
 
 //region: S2C configuration channel events
-public typealias S2CConfigurationChannelCallback = ServerConfigurationPacketHandler.(
+public typealias S2CConfigurationChannelCallback = ServerConfigurationNetworkHandler.(
     packetSender: PacketSender<CustomPayload>,
     server: MinecraftServer,
-    channels: List<Identifier>
+    channels: List<CustomPayload.Id<*>>
 ) -> Unit
 
 /**
  * @see S2CConfigurationChannelEvents.REGISTER
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationChannelRegister(callback: S2CConfigurationChannelCallback) {
     S2CConfigurationChannelEvents.REGISTER.register(S2CConfigurationChannelEvents.Register(callback))
@@ -139,7 +139,7 @@ public fun EventRegistration.onConfigurationChannelRegister(callback: S2CConfigu
 /**
  * @see S2CConfigurationChannelEvents.UNREGISTER
  *
- * @author Ellie Semele
+ * @author Quinn Semele
  */
 public fun EventRegistration.onConfigurationChannelUnregister(callback: S2CConfigurationChannelCallback) {
     S2CConfigurationChannelEvents.UNREGISTER.register(S2CConfigurationChannelEvents.Unregister(callback))
@@ -190,7 +190,7 @@ public fun EventRegistration.onPlayDisconnect(callback: GenericPlayCallback) {
 public typealias S2CPlayChannelCallback = ServerPlayNetworkHandler.(
     packetSender: PacketSender<CustomPayload>,
     server: MinecraftServer,
-    channels: List<Identifier>
+    channels: List<CustomPayload.Id<*>>
 ) -> Unit
 
 /**

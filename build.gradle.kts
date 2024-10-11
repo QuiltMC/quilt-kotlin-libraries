@@ -5,7 +5,7 @@ import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
 import org.jetbrains.dokka.gradle.AbstractDokkaTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import java.time.Year
 
 @Suppress(
@@ -35,11 +35,12 @@ buildscript {
 
 group = "org.quiltmc"
 val rootVersion = project.version
-val flkVersion: String by project
+val flkVersion = rootProject.libs.versions.fabric.kotlin.get().substringBefore('+')
 version = "${project.version}+kt.${project.libs.versions.kotlin.orNull}+flk.$flkVersion"
 val projectVersion = project.version as String + if (System.getenv("SNAPSHOTS_URL") != null && System.getenv("MAVEN_URL") == null) "-SNAPSHOT" else ""
 
-val javaVersion = 17 // The current version of Java used by Minecraft
+// 8 <= 1.17-alpha.21.18.a, 16 >= 1.17-alpha.21.19.a, 17 >= 1.18-beta.2, 21 >= 1.20.5-alpha.24.14.a
+val javaVersion = 21 // The current version of Java used by Minecraft
 
 repositories {
     mavenCentral()
@@ -51,8 +52,8 @@ fun DependencyHandlerScope.includeApi(dependency: Any) {
 }
 
 dependencies {
-    includeApi(project(":core", configuration = "namedElements"))
-    includeApi(project(":library", configuration = "namedElements"))
+    includeApi(project(":core"))
+    includeApi(project(":library"))
 }
 
 allprojects {
@@ -78,6 +79,12 @@ allprojects {
     kotlin {
         // Enable explicit API mode, as this is a library
         explicitApi()
+        jvmToolchain(javaVersion)
+        compilerOptions {
+            languageVersion = KotlinVersion.fromVersion(
+                rootProject.libs.plugins.kotlin.get().version.requiredVersion.substringBeforeLast(".")
+            )
+        }
     }
 
     tasks {
@@ -86,16 +93,8 @@ allprojects {
             filesMatching("quilt.mod.json") {
                 expand(
                     "version" to rootVersion,
-                    "flk_version" to "$flkVersion+kotlin.${project.libs.versions.kotlin.orNull}"
+                    "flk_version" to rootProject.libs.versions.fabric.kotlin.get()
                 )
-            }
-        }
-
-        withType<KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = javaVersion.toString()
-                languageVersion =
-                    rootProject.libs.plugins.kotlin.get().version.requiredVersion.substringBeforeLast(".")
             }
         }
 

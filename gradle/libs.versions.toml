@@ -1,39 +1,29 @@
 [versions]
-atomic = "0.23.2"
-coroutines = "1.8.0"
-datetime = "0.5.0"
-dokka = "1.9.10"
-kotlin = "1.9.23"
-minecraft = "1.20.4"
-qsl = "8.0.0-alpha.10+1.20.4"
-quilt_loader = "0.24.0"
-quilt_mappings = "1.20.4+build.3"
-serialization = "1.6.3"
-serialization_plugin = "1.9.23" # usually same as kotlin but can lag behind
-binary_compat_plugin = "0.14.0"
+dokka = "1.9.20"
+kotlin = "2.0.21"
+minecraft = "1.21"
+qsl = "10.0.0-alpha.2+1.21.1"
+quilt_loader = "0.26.4"
+quilt_mappings = "1.21+build.18"
+serialization_plugin = "2.0.21" # usually same as kotlin but can lag behind
+binary_compat_plugin = "0.16.3"
+fabric_kotlin = "1.12.3+kotlin.2.0.21"
 
 [libraries]
-atomic = { module = "org.jetbrains.kotlinx:atomicfu-jvm", version.ref = "atomic" }
-coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines_jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
-coroutines_jvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm", version.ref = "coroutines" }
-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime-jvm", version.ref = "datetime" }
 dokka_base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
 qsl = { module = "org.quiltmc:qsl", version.ref = "qsl" }
 quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt_loader" }
 quilt_mappings = { module = "org.quiltmc:quilt-mappings", version.ref = "quilt_mappings" }
-serialization_cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor-jvm", version.ref = "serialization" }
-serialization_core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm", version.ref = "serialization" }
-serialization_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "serialization" }
+fabric_kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabric_kotlin" }
 
 [plugins]
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.5" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.7" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 git_hooks = { id = "com.github.jakemarsden.git-hooks", version = "0.0.2" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-licenser = { id = "dev.yumi.gradle.licenser", version = "1.1.1" }
-quilt_loom = { id = "org.quiltmc.loom", version = "1.4.2" }
+licenser = { id = "dev.yumi.gradle.licenser", version = "1.2.0" }
+quilt_loom = { id = "org.quiltmc.loom", version = "1.7.4" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization_plugin" }
 binary_compatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary_compat_plugin" }
 minotaur = { id = "com.modrinth.minotaur", version = "2.8.7" }

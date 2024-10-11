@@ -81,7 +81,7 @@ private object MapSerializationTests {
         require(
             encodesToJson(
                 codecCodec,
-                mapOf(Identifier("foo:bar") to "baz"),
+                mapOf(Identifier.parse("foo:bar") to "baz"),
                 """{"foo:bar": "baz"}"""
             )
         )
@@ -89,7 +89,7 @@ private object MapSerializationTests {
         require(
             encodesToJson(
                 inlineCodecCodec,
-                mapOf(AllowedCodecInline(Identifier("foo:bar")) to "baz"),
+                mapOf(AllowedCodecInline(Identifier.parse("foo:bar")) to "baz"),
                 """{"foo:bar": "baz"}"""
             )
         )
@@ -113,7 +113,7 @@ private object MapSerializationTests {
         require(
             decodesFromJson(
                 codecCodec,
-                mapOf(Identifier("foo:bar") to "baz"),
+                mapOf(Identifier.parse("foo:bar") to "baz"),
                 """{"foo:bar": "baz"}"""
             )
         )
@@ -123,7 +123,7 @@ private object MapSerializationTests {
         require(
             decodesFromJson(
                 inlineCodecCodec,
-                mapOf(AllowedCodecInline(Identifier("foo:bar")) to "baz"),
+                mapOf(AllowedCodecInline(Identifier.parse("foo:bar")) to "baz"),
                 """{"foo:bar": "baz"}"""
             )
         )

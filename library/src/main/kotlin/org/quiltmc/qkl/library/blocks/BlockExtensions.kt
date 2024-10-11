@@ -21,6 +21,9 @@ import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.MapColor
 import net.minecraft.entity.EntityType
+import net.minecraft.loot.LootTable
+import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
@@ -81,14 +84,15 @@ public fun blockSettingsOf(
     }
     resistance(resistance)
     hardness(hardness ?: resistance)
-    if (requiresTool) requiresTool()
+    if (requiresTool) toolRequired()
     if (ticksRandomly) ticksRandomly()
     slipperiness(slipperiness)
     velocityMultiplier(velocityMultiplier)
     jumpVelocityMultiplier(jumpVelocityMultiplier)
     when (lootTableId) {
-        is Identifier -> drops(lootTableId)
+        is RegistryKey<*> -> drops(lootTableId as RegistryKey<LootTable>)
         is Block -> dropsLike(lootTableId)
+        is Identifier -> drops(RegistryKey.of(RegistryKeys.LOOT_TABLE, lootTableId))
         else -> dropsNothing()
     }
     if (!isOpaque) nonOpaque()

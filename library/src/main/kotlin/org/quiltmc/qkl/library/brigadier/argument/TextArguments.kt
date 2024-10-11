@@ -23,6 +23,7 @@
 package org.quiltmc.qkl.library.brigadier.argument
 
 
+import net.minecraft.command.CommandBuildContext
 import net.minecraft.command.argument.ColorArgumentType
 import net.minecraft.command.argument.MessageArgumentType
 import net.minecraft.command.argument.TextArgumentType
@@ -132,7 +133,8 @@ public fun <S> color(
  */
 @BrigadierDsl
 public fun <S> text(
+    context: CommandBuildContext,
     name: String
 ): DefaultArgumentConstructor<S, TextArgumentType> {
-    return argument(name, TextArgumentType.text())
+    return argument(name, TextArgumentType.text(context))
 }

@@ -19,6 +19,8 @@
 package org.quiltmc.qkl.library.registry
 
 import com.mojang.serialization.Codec
+import net.minecraft.network.RegistryByteBuf
+import net.minecraft.network.codec.PacketCodec
 import net.minecraft.util.Identifier
 import net.minecraft.registry.Registry
 import org.quiltmc.qkl.library.EventRegistration
@@ -48,9 +50,10 @@ public fun <R, V : Any> buildRegistryEntryAttachment(
     id: Identifier,
     valueClass: KClass<V>,
     codec: Codec<V>,
+    packetCodec: PacketCodec<RegistryByteBuf, V>,
     block: RegistryEntryAttachment.Builder<R, V>.() -> Unit = {}
 ): RegistryEntryAttachment<R, V> {
-    val builder = RegistryEntryAttachment.builder(registry, id, valueClass.java, codec)
+    val builder = RegistryEntryAttachment.builder(registry, id, valueClass.java, codec, packetCodec)
     builder.block()
     return builder.build()
 }
@@ -63,7 +66,9 @@ public fun <R> buildBooleanRegistryEntryAttachment(
     id: Identifier,
     block: RegistryEntryAttachment.Builder<R, Boolean>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Boolean> {
-    return buildRegistryEntryAttachment(registry, id, Boolean::class, Codec.BOOL, block)
+    val builder = RegistryEntryAttachment.boolBuilder(registry, id)
+    builder.block()
+    return builder.build()
 }
 
 /**
@@ -74,7 +79,9 @@ public fun <R> buildIntRegistryEntryAttachment(
     id: Identifier,
     block: RegistryEntryAttachment.Builder<R, Int>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Int> {
-    return buildRegistryEntryAttachment(registry, id, Int::class, Codec.INT, block)
+    val builder = RegistryEntryAttachment.intBuilder(registry, id)
+    builder.block()
+    return builder.build()
 }
 
 /**
@@ -85,7 +92,9 @@ public fun <R> buildStringRegistryEntryAttachment(
     id: Identifier,
     block: RegistryEntryAttachment.Builder<R, String>.() -> Unit = {}
 ): RegistryEntryAttachment<R, String> {
-    return buildRegistryEntryAttachment(registry, id, String::class, Codec.STRING, block)
+    val builder = RegistryEntryAttachment.stringBuilder(registry, id)
+    builder.block()
+    return builder.build()
 }
 
 /**
@@ -96,7 +105,9 @@ public fun <R> buildLongRegistryEntryAttachment(
     id: Identifier,
     block: RegistryEntryAttachment.Builder<R, Long>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Long> {
-    return buildRegistryEntryAttachment(registry, id, Long::class, Codec.LONG, block)
+    val builder = RegistryEntryAttachment.longBuilder(registry, id)
+    builder.block()
+    return builder.build()
 }
 
 /**
@@ -107,7 +118,9 @@ public fun <R> buildFloatRegistryEntryAttachment(
     id: Identifier,
     block: RegistryEntryAttachment.Builder<R, Float>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Float> {
-    return buildRegistryEntryAttachment(registry, id, Float::class, Codec.FLOAT, block)
+    val builder = RegistryEntryAttachment.floatBuilder(registry, id)
+    builder.block()
+    return builder.build()
 }
 
 /**
@@ -118,5 +131,7 @@ public fun <R> buildDoubleRegistryEntryAttachment(
     id: Identifier,
     block: RegistryEntryAttachment.Builder<R, Double>.() -> Unit = {}
 ): RegistryEntryAttachment<R, Double> {
-    return buildRegistryEntryAttachment(registry, id, Double::class, Codec.DOUBLE, block)
+    val builder = RegistryEntryAttachment.doubleBuilder(registry, id)
+    builder.block()
+    return builder.build()
 }

@@ -20,9 +20,10 @@
 package org.quiltmc.qkl.library.client.tooltip
 
 import net.minecraft.client.gui.tooltip.TooltipComponent
-import net.minecraft.client.item.TooltipContext
+import net.minecraft.client.item.TooltipConfig
 import net.minecraft.client.item.TooltipData
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import org.quiltmc.loader.api.minecraft.ClientOnly
@@ -33,8 +34,9 @@ import org.quiltmc.qsl.tooltip.api.client.TooltipComponentCallback
 public typealias TooltipCallback = (
     stack: ItemStack,
     player: PlayerEntity?,
-    ctx: TooltipContext,
-    lines: List<Text>
+    ctx: Item.TooltipContext,
+    config: TooltipConfig,
+    lines: MutableList<Text>
 ) -> Unit
 
 public typealias TooltipComponentGenerator = (data: TooltipData) -> TooltipComponent?
