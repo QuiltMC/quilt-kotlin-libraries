@@ -23,7 +23,9 @@ import net.minecraft.block.MapColor
 import net.minecraft.entity.EntityType
 import net.minecraft.loot.LootTable
 import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys
 import net.minecraft.sound.BlockSoundGroup
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.BlockView
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings
@@ -90,6 +92,7 @@ public fun blockSettingsOf(
     when (lootTableId) {
         is RegistryKey<*> -> drops(lootTableId as RegistryKey<LootTable>)
         is Block -> dropsLike(lootTableId)
+        is Identifier -> drops(RegistryKey.of(RegistryKeys.LOOT_TABLE, lootTableId))
         else -> dropsNothing()
     }
     if (!isOpaque) nonOpaque()
